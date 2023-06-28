@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('short_description');
             $table->longText('body');
             $table->longText('extra');
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }
