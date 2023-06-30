@@ -77,14 +77,7 @@
                             {{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="slug">Slug</label>
-                        <input type="text" name="slug" id="slug" class="form-control @error('slug')is-invalid @enderror" value="{{ $blog->slug }}">
-                        @error('slug')
-                        <small class="form-text text-danger">
-                            {{ $message }}</small>
-                        @enderror
-                    </div>
+                    
                     <div class="form-group">
                         <label for="short_description">Short Description</label>
                         <textarea name="short_description" id="short_description" class="form-control @error('short_description')is-invalid @enderror" rows="4">{{$blog->short_description}}</textarea>

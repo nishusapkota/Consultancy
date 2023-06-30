@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,8 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs=Blog::all();
-        return view('admin.blog.index',compact('blogs'));
+        $blogs = Blog::all();
+        return view('admin.blog.index', compact('blogs'));
     }
 
     /**
@@ -37,16 +38,28 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-       $data = $request->validate([
+        $data = $request->validate([
             'title' => 'required',
-            'slug' => 'required',
             'short_description' => 'required',
             'body' => 'required',
             'extra' => 'required',
-            'status' =>'nullable|boolean'
+            'status' => 'nullable|boolean'
         ]);
-        Blog::create($data);
-        return redirect()->route('admin.blog.index')->with('success','Blog created successfully');
+        $slug = Str::slug($request->title);
+        $counter = 1;
+        while (Blog::where('slug', $slug)->exists()) {
+            $slug = Str::slug($request->title) . '-' . $counter;
+            $counter++;
+        }
+        Blog::create([
+            'title' => $request->title,
+            'slug' => $slug,
+            'short_description' => $request->short_description,
+            'body' => $request->body,
+            'extra' => $request->extra,
+            'status' => $request->status ? 1 : 0
+        ]);
+        return redirect()->route('admin.blog.index')->with('success', 'Blog created successfully');
     }
 
     /**
@@ -55,10 +68,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Blog $blog)
     {
-        $blog=Blog::findOrFail($id);
-        return view('admin.blog.show',compact('blog'));
+        return view('admin.blog.show', compact('blog'));
     }
 
     /**
@@ -69,8 +81,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $blog=Blog::findOrFail($id);
-        return view('admin.blog.edit',compact('blog'));
+        $blog = Blog::findOrFail($id);
+        return view('admin.blog.edit', compact('blog'));
     }
 
     /**
@@ -80,22 +92,33 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Blog $blog)
     {
         $data = $request->validate([
             'title' => 'required',
-            'slug' => 'required',
             'short_description' => 'required',
             'body' => 'required',
             'extra' => 'required',
-            'status' =>'nullable|boolean'
+            'status' => 'nullable|boolean'
         ]);
-        $blog=Blog::findOrFail($id);
-        $blog->update($data);
-        return redirect()->route('admin.blog.index')->with('success','Blog updated successfully');    
+        $slug = Str::slug($request->title);
+        $counter = 1;
+        while (Blog::where('slug', $slug)->exists()) {
+            $slug = Str::slug($request->title) . '-' . $counter;
+            $counter++;
+        }
+        $blog->update([
+            'title' => $request->title,
+            'slug' => $slug,
+            'short_description' => $request->short_description,
+            'body' => $request->body,
+            'extra' => $request->extra,
+            'status' => $request->status ? 1 : 0
+        ]);
+        return redirect()->route('admin.blog.index')->with('success', 'Blog updated successfully');
     }
-        
-    
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -106,7 +129,6 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        return redirect()->route('admin.blog.index')->with('success','Blog deleted successfully'); 
+        return redirect()->route('admin.blog.index')->with('success', 'Blog deleted successfully');
     }
-
 }
