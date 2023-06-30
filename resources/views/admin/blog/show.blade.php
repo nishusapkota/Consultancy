@@ -12,11 +12,28 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Courses</p>
-            </a>
+      <a href="#" class="nav-link">
+        <i class="nav-icon far fa-envelope"></i>
+        <p>
+          Courses
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+          <a href="{{Route('admin.course-category.index')}}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Category</p>
+          </a>
         </li>
+        <li class="nav-item">
+          <a href="{{Route('admin.course.index')}}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Course</p>
+          </a>
+        </li>
+      </ul>
+    </li>
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-file"></i>
