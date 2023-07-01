@@ -22,5 +22,8 @@ class Course extends Model
     function levels(){
         return $this->belongsToMany(Level::class,'course_levels','course_id','level_id');
     }
+    function universities(){
+        return $this->belongsToMany(University::class,'course_universities','course_id','university_id');
+    }
 }
 

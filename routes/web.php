@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\LevelController;
+use App\Http\Controllers\Admin\UniversityController;
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
 Auth::routes();
@@ -22,7 +23,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/course',CourseController::class);
     Route::resource('/level',LevelController::class);
-
+    Route::resource('/university',UniversityController::class);
 });
 
 
