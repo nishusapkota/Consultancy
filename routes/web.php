@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
@@ -18,6 +19,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     });
     Route::resource('/blog',BlogController::class);
     Route::resource('/course-category',CourseCategoryController::class);
+    Route::resource('/course',CourseController::class);
+
 });
 
 

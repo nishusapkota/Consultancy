@@ -4,7 +4,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item menu-open">
-            <a href="" class="nav-link">
+            <a href="{{route('admin.')}}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -66,7 +66,7 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    Add New Blogs</h3>
+                    Edit Blog</h3>
                 <div class="card-tools">
                     <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
                         <i class="fas fa-arrow-circle-left mr-2"></i>

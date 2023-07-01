@@ -12,7 +12,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a href="#" class="nav-link active">
         <i class="nav-icon far fa-envelope"></i>
         <p>
           Courses
@@ -21,13 +21,13 @@
       </a>
       <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-          <a href="{{Route('admin.course-category.index')}}" class="nav-link">
+          <a href="{{route('admin.course-category.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{Route('admin.course.index')}}" class="nav-link">
+          <a href="{{route('admin.course.index')}}" class="nav-link active">
             <i class="far fa-circle nav-icon"></i>
             <p>Course</p>
           </a>
@@ -47,7 +47,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('admin.blog.index')}}" class="nav-link active">
+      <a href="{{ route('admin.blog.index')}}" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Blogs</p>
       </a>
@@ -66,9 +66,9 @@
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-          Add New Blogs</h3>
+          Edit Course</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
+          <a class="btn btn-primary" href="{{route('admin.course.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -76,44 +76,40 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.blog.store') }}">
+        <form method="post" action="{{ route('admin.course.update',$course) }}">
         @if($errors->any())
             <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
               {{$errors->first()}}</div>
             @endif
           @csrf
+          @method('PUT')
           <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
-            @error('title')
+            <label for="name"> Course</label>
+            <input type="name" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{$course->name}}">
+            @error('name')
             <small class="form-text text-danger">
               {{ $message }}</small>
             @enderror
           </div>
-          
+
           <div class="form-group">
-            <label for="short_description">Short Description</label>
-            <textarea name="short_description" id="short_description" class="form-control @error('short_description')is-invalid @enderror" rows="4"></textarea>
-            @error('short_description')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
-          <div class="form-group">
-            <label for="body">Body</label>
-            <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror" rows="4"></textarea>
-            @error('body')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
-          <div class="form-group">
-            <label for="extra">Extra</label>
-            <textarea name="extra" id="extra" class="form-control @error('extra')is-invalid @enderror" rows="4"></textarea>
-            @error('extra')
+                <label for="cat_id">Category</label>
+                <select name="cat_id" class="form-control">
+                    <option>select Category-------</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}" {{$course->cat_id ==$category->id ? 'selected':''}} >
+                        {{$category->name}}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+            <label for="description"> Description</label>
+            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$course->description}}
+            </textarea>
+            @error('description')
             <small class="form-text text-danger">
               {{ $message }}
             </small>
@@ -121,12 +117,12 @@
           </div>
 
           <div class="form-group">
-          <label for="status">Status</label>
-            <div class="form-check">
-              <input type="checkbox" name="status" id="status" value="1" class="form-check-input">
-              <label class="form-check-label" for="status">Active</label>
-            </div>
-          </div>
+                        <label for="status">Status</label>
+                        <div class="form-check">
+                            <input type="checkbox" name="status" id="status" value="1" class="form-check-input" {{$course->status =='1' ? 'checked' : ''}}>
+                            <label class="form-check-label" for="status">Active</label>
+                        </div>
+                    </div>
 
           <button class="btn btn-primary">
             <i class="fas fa-save mr-2"></i>

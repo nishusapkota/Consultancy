@@ -21,13 +21,13 @@
       </a>
       <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-          <a href="{{route('admin.course-category.index')}}" class="nav-link active">
+          <a href="{{route('admin.course-category.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('admin.course.index')}}" class="nav-link">
+          <a href="{{route('admin.course.index')}}" class="nav-link  active">
             <i class="far fa-circle nav-icon"></i>
             <p>Course</p>
           </a>
@@ -66,11 +66,11 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    Show Category</h3>
+                    Courses</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.course-category.create')}}">
+                    <a class="btn btn-primary" href="{{route('admin.course.create')}}">
                         <i class="fas fa-plus circle-left mr-2"></i>
-                        Add Category
+                        Add Course
                     </a>
                 </div>
             </div>
@@ -82,17 +82,45 @@
                     {{session('success')}}
                 </div>
                 @endif
-                <table class="table table-bordered table-condensed" style="width:50%">
-                <tr>
-                    <th>ID</th>
-                    <td>{{$course_category->id}}</td>
-                </tr>
-                <tr>
-                    <th>Category</th>
-                    <td>{{$course_category->name}}</td>
-                </tr>
+                <table class="table table-bordered">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Course</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
 
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($courses as $course)
+                        <tr>
+                            <td>{{$course->id}}</td>
+                            <td>{{$course->name}}</td>
+                            <td>{{$course->category->name}}</td>
+                            <td>{{$course->description}}</td>
+                            <td>{{$course->status}}</td>
+                            <td>
+
+                                <a class="btn btn-secondary" href="{{route('admin.course.show',$course)}}"><i class="fas fa-eye"></i>Show</a>
+                                <a class="btn btn-warning" href="{{route('admin.course.edit',$course)}}"><i class="fas fa-edit"></i>Edit</a>
+                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.course.destroy',$course)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>Delete</button>
+                                </form>
+
+                            </td>
+                        </tr>
+
+                        @endforeach
+
+                    </tbody>
+
+                </table>
 
             </div>
         </div>
