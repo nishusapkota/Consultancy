@@ -6,6 +6,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\CourseCategory;
 use App\Http\Controllers\Controller;
+use App\Models\University;
 
 class CourseController extends Controller
 {
@@ -28,7 +29,8 @@ class CourseController extends Controller
     public function create()
     {
         $categories=CourseCategory::all();
-        return view('admin.course.create',compact('categories'));
+        $universities=University::all();
+        return view('admin.course.create',compact('categories','universities'));
     }
 
     /**

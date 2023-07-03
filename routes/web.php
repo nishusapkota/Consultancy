@@ -13,14 +13,24 @@ use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
+Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
+Route::get('/course-details/id',[SiteController::class, 'courseDetail'])->name('course-detail');
+
+Route::get('/colleges',[SiteController::class, 'colleges'])->name('college');
+Route::get('/blogs',[SiteController::class, 'blog'])->name('blog');
+Route::get('/contacts',[SiteController::class, 'contact'])->name('contact');
+Route::get('/apply',[SiteController::class, 'applyNow'])->name('apply');
+
+
 Auth::routes();
+
 Route::get('/home', [SiteController::class, 'home'])->name('home')->middleware('auth');
 
 //->middleware('auth','isAdmin')
 Route::prefix('/admin')->name('admin.')->group(function(){
-    Route::get('/',function () {
-        return view('admin.dashboard');
-    });
+    // Route::get('/',function () {
+    //     return view('admin.dashboard');
+    // });
     Route::resource('/blog',BlogController::class);
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/course',CourseController::class);

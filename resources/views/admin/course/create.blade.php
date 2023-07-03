@@ -127,6 +127,32 @@
           </div>
 
           <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
+            @error('image')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="university_id">University</label>
+            <div class="checkbox-list">
+              @foreach ($universities as $university)
+              <div class="checkbox">
+                <input type="checkbox" name="university_id[]" value="{{ $university->id }}" id="university_{{ $university->id }}">
+                <label for="university_{{ $university->id }}">{{ $university->name }}</label>
+              </div>
+              @endforeach
+            </div>
+            @error('university_id')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div>
+
+          <div class="form-group">
           <label for="status">Status</label>
             <div class="form-check">
               <input type="checkbox" name="status" id="status" value="1" class="form-check-input">

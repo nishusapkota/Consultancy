@@ -1,0 +1,49 @@
+.custom-component {
+    margin-top: 8rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8rem;
+}
+
+.filter-title {
+    font-family: 'Arimo', sans-serif;
+    font-style: bold;
+    margin-bottom: 2rem;
+}
+
+.filter-component{
+    margin-left: 2rem;
+    width: 40%;
+
+}
+
+.filter-component .filter-container{
+    width: 60%;
+
+}
+
+.course-component {
+    margin-right: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .custom-component {
+        flex-direction: column;
+        margin-top: 4rem;
+    }
+
+    .filter-component{
+        width: 100%;
+        margin-left: 0;
+    }
+    .filter-component .filter-container{
+        width: auto;
+    }
+
+    .course-component {
+        margin-left: 2rem;
+    }
+}

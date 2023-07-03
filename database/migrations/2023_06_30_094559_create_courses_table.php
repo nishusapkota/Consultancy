@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('cat_id')->references('id')->on('course_categories')->onDelete('cascade');
            $table->string('name');
            $table->Text('description');
+           $table->string('image');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

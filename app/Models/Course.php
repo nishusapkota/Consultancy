@@ -14,6 +14,7 @@ class Course extends Model
         'cat_id',
         'name',
         'description',
+        'image',
         'status'
     ];
     function category(){
