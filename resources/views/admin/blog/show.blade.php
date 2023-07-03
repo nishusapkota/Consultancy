@@ -2,16 +2,16 @@
 
 @section('sidebar')
 <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item menu-open">
-            <a href="{{route('admin.')}}" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Dashboard
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <li class="nav-item menu-open">
+      <a href="{{route('admin.')}}" class="nav-link">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+          Dashboard
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
       <a href="#" class="nav-link">
         <i class="nav-icon far fa-envelope"></i>
         <p>
@@ -21,40 +21,54 @@
       </a>
       <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-          <a href="{{route('admin.course-category.index')}}" class="nav-link">
+          <a href="{{Route('admin.course-category.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('admin.course.index')}}" class="nav-link">
+          <a href="{{Route('admin.course.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Course</p>
           </a>
         </li>
       </ul>
     </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Colleges</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Universities</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.blog.create')}}" class="nav-link active">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Blogs</p>
-            </a>
-        </li>
+    <li class="nav-item">
+      <a href="{{route('admin.user.index')}}" class="nav-link">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Users</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{route('admin.university.index')}}" class="nav-link">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Universities</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ route('admin.blog.index')}}" class="nav-link active">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Blogs</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{route('admin.level.index')}}" class="nav-link">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Level</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Student Enquiry</p>
+      </a>
+    </li>
 
 
-    </ul>
+  </ul>
 </nav>
 @endsection
 

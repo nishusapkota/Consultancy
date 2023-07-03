@@ -35,19 +35,19 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="{{route('admin.user.index')}}" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Users</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{route('admin.university.index')}}" class="nav-link">
+      <a href="{{route('admin.university.index')}}" class="nav-link active">
         <i class="nav-icon fas fa-file"></i>
         <p>Universities</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('admin.blog.index')}}" class="nav-link active">
+      <a href="{{ route('admin.blog.index')}}" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Blogs</p>
       </a>
@@ -61,7 +61,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link">
+      <a href="" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Student Enquiry</p>
       </a>
@@ -73,16 +73,16 @@
 @endsection
 
 
+
 @section('content')
 <section class="content">
   <div class="container-fluid">
     <div class="card">
       <div class="card-header bg-secondary">
-        <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
-        font-weight:bold">
-          Add New Blogs</h3>
+        <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;font-weight:bold">
+          Edit University</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
+          <a class="btn btn-primary" href="{{ route('admin.university.index') }}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -90,44 +90,19 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.blog.store') }}">
-        @if($errors->any())
-            <div class="alert alert-danger">
+        <form method="post" action="{{ route('admin.university.update', $university) }}" enctype="multipart/form-data">
+          @if($errors->any())
+          <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
-              {{$errors->first()}}</div>
-            @endif
+            {{ $errors->first() }}
+          </div>
+          @endif
           @csrf
+          @method('PUT')
           <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
-            @error('title')
-            <small class="form-text text-danger">
-              {{ $message }}</small>
-            @enderror
-          </div>
-          
-          <div class="form-group">
-            <label for="short_description">Short Description</label>
-            <textarea name="short_description" id="short_description" class="form-control @error('short_description')is-invalid @enderror" rows="4"></textarea>
-            @error('short_description')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
-          <div class="form-group">
-            <label for="body">Body</label>
-            <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror" rows="4"></textarea>
-            @error('body')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
-          <div class="form-group">
-            <label for="extra">Extra</label>
-            <textarea name="extra" id="extra" class="form-control @error('extra')is-invalid @enderror" rows="4"></textarea>
-            @error('extra')
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $university->name }}">
+            @error('name')
             <small class="form-text text-danger">
               {{ $message }}
             </small>
@@ -135,23 +110,67 @@
           </div>
 
           <div class="form-group">
-          <label for="status">Status</label>
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ $university->address }}">
+            @error('address')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+            @error('image')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="course_id">Course</label>
+            <div class="checkbox-list">
+              @foreach ($courses as $course)
+              <div class="checkbox">
+                <input type="checkbox" name="course_id[]" value="{{ $course->id }}" id="course_{{ $course->id }}" {{ in_array($course->id, $university->courses->pluck('id')->toArray()) ? 'checked' : '' }}>
+                <label for="course_{{ $course->id }}">{{ $course->name }}</label>
+              </div>
+              @endforeach
+            </div>
+            @error('course_id')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="details">Details</label>
+            <textarea name="details" id="details" class="form-control @error('details') is-invalid @enderror" rows="4">{{ $university->details }}</textarea>
+            @error('details')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
             <div class="form-check">
-              <input type="checkbox" name="status" id="status" value="1" class="form-check-input">
+              <input type="checkbox" name="status" id="status" value="1" class="form-check-input" {{ $university->status ? 'checked' : '' }}>
               <label class="form-check-label" for="status">Active</label>
             </div>
           </div>
 
           <button class="btn btn-primary">
             <i class="fas fa-save mr-2"></i>
-            Save
+            Update
           </button>
         </form>
       </div>
     </div>
-
-
-
   </div>
 </section>
 @endsection

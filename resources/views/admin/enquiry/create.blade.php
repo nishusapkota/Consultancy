@@ -27,7 +27,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{Route('admin.course.index')}}" class="nav-link active">
+          <a href="{{Route('admin.course.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Course</p>
           </a>
@@ -35,7 +35,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="{{route('admin.user.index')}}" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Users</p>
       </a>
@@ -47,7 +47,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('admin.blog.index')}}" class="nav-link ">
+      <a href="{{ route('admin.blog.index')}}" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Blogs</p>
       </a>
@@ -61,7 +61,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link">
+      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link active">
         <i class="nav-icon fas fa-file"></i>
         <p>Student Enquiry</p>
       </a>
@@ -80,9 +80,9 @@
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-          Add New Courses</h3>
+          Add New Levels</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.course.index')}}">
+          <a class="btn btn-primary" href="{{route('admin.level.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -90,16 +90,17 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.course.store') }}">
-        @if($errors->any())
-            <div class="alert alert-danger">
+        <form method="post" action="{{ route('admin.level.store') }}">
+          @if($errors->any())
+          <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
-              {{$errors->first()}}</div>
-            @endif
+            {{$errors->first()}}
+          </div>
+          @endif
           @csrf
           <div class="form-group">
-            <label for="name"> Course</label>
-            <input type="name" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
             @error('name')
             <small class="form-text text-danger">
               {{ $message }}</small>
@@ -107,27 +108,26 @@
           </div>
 
           <div class="form-group">
-                <label for="cat_id">Category</label>
-                <select name="cat_id" class="form-control">
-                    <option>select Category-------</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
+            <label for="course_id">Course</label>
+            <div class="checkbox-list">
+              @foreach ($courses as $course)
+              <div class="checkbox">
+                <input type="checkbox" name="course_id[]" value="{{ $course->id }}" id="course_{{ $course->id }}">
+                <label for="course_{{ $course->id }}">{{ $course->name }}</label>
+              </div>
+              @endforeach
             </div>
-
-            <div class="form-group">
-            <label for="description"> Description</label>
-            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4"></textarea>
-            @error('description')
+            @error('course_id')
             <small class="form-text text-danger">
               {{ $message }}
             </small>
             @enderror
           </div>
 
+
+
           <div class="form-group">
-          <label for="status">Status</label>
+            <label for="status">Status</label>
             <div class="form-check">
               <input type="checkbox" name="status" id="status" value="1" class="form-check-input">
               <label class="form-check-label" for="status">Active</label>

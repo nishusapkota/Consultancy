@@ -27,7 +27,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{Route('admin.course.index')}}" class="nav-link active">
+          <a href="{{Route('admin.course.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Course</p>
           </a>
@@ -35,7 +35,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="{{route('admin.user.index')}}" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Users</p>
       </a>
@@ -47,21 +47,21 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('admin.blog.index')}}" class="nav-link ">
+      <a href="{{ route('admin.blog.index')}}" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Blogs</p>
       </a>
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.level.index')}}" class="nav-link">
+      <a href="{{route('admin.level.index')}}" class="nav-link active">
         <i class="nav-icon fas fa-file"></i>
         <p>Level</p>
       </a>
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link">
+      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link active">
         <i class="nav-icon fas fa-file"></i>
         <p>Student Enquiry</p>
       </a>
@@ -72,6 +72,7 @@
 </nav>
 @endsection
 
+
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -79,9 +80,9 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                   Show Course</h3>
+                   Show Level</h3>
                 <div class="card-tools">
-                <a class="btn btn-primary" href="{{route('admin.course.index')}}">
+                <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -92,23 +93,16 @@
             <table class="table table-bordered table-condensed" style="width:50%">
                 <tr>
                     <th>ID</th>
-                    <td>{{$course->id}}</td>
+                    <td>{{$level->id}}</td>
                 </tr>
                 <tr>
-                    <th>Course</th>
-                    <td>{{$course->name}}</td>
+                    <th>Name</th>
+                    <td>{{$level->name}}</td>
                 </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{$course->description}}</td>
-                </tr>
-                <tr>
-                    <th>Category</th>
-                    <td>{{$course->category->name}}</td>
-                </tr>
+                
                 <tr>
                     <th>Status</th>
-                    <td>{{$course->status}}</td>
+                    <td>{{$level->status}}</td>
                 </tr>
 
             </table>

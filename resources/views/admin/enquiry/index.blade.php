@@ -21,7 +21,7 @@
       </a>
       <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-          <a href="{{Route('admin.course-category.index')}}" class="nav-link active">
+          <a href="{{Route('admin.course-category.index')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category</p>
           </a>
@@ -35,7 +35,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="{{route('admin.user.index')}}" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Users</p>
       </a>
@@ -47,21 +47,21 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('admin.blog.index')}}" class="nav-link ">
+      <a href="{{ route('admin.blog.index')}}" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>Blogs</p>
       </a>
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.level.index')}}" class="nav-link">
+      <a href="{{route('admin.level.index')}}" class="nav-link active">
         <i class="nav-icon fas fa-file"></i>
         <p>Level</p>
       </a>
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link">
+      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link active">
         <i class="nav-icon fas fa-file"></i>
         <p>Student Enquiry</p>
       </a>
@@ -73,6 +73,7 @@
 @endsection
 
 
+
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -80,11 +81,11 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    Categories</h3>
+                    Levels</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.course-category.create')}}">
+                    <a class="btn btn-primary" href="{{route('admin.level.create')}}">
                         <i class="fas fa-plus circle-left mr-2"></i>
-                        Add Category
+                        Add Level
                     </a>
                 </div>
             </div>
@@ -101,20 +102,22 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
 
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category )
+                        @foreach ($levels as $level )
                         <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
+                            <td>{{$level->id}}</td>
+                            <td>{{$level->name}}</td>
+                            <td>{{$level->status}}</td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.course-category.show',$category)}}"><i class="fas fa-eye"></i>Show</a>
-                                <a class="btn btn-warning" href="{{route('admin.course-category.edit',$category)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.course-category.destroy',$category)}}" method="post">
+                                <a class="btn btn-secondary" href="{{route('admin.level.show',$level)}}"><i class="fas fa-eye"></i>Show</a>
+                                <a class="btn btn-warning" href="{{route('admin.level.edit',$level)}}"><i class="fas fa-edit"></i>Edit</a>
+                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.level.destroy',$level)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">
