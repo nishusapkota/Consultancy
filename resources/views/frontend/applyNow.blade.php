@@ -1,8 +1,11 @@
 @extends('frontend.layouts.master')
 @section('title', 'ApplyNow')
+@section('header')
+    @include('frontend.layouts.headers.otherPageHeader')
+@endsection
 @section('content')
 <!--Page Title-->
-<section class="page-title centred" style="background-image: url(frontend/images/background/page-title-2.jpg);">
+<section class="page-title centred" style="background-image: {{asset('frontend/images/background/page-title-2.jpg')}};">
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1>Apply Now</h1>
@@ -74,11 +77,11 @@
               <div class="col-lg-5 col-md-6 col-sm-12 info-column">
                 <div class="info-inner">
                   <figure class="image-box">
-                    <img src="frontend/images/resource/info-1.jpg" alt="" />
+                    <img src="{{asset('frontend/images/resource/info-1.jpg')}}" alt="" />
                   </figure>
                   <div class="info-box">
                     <figure class="info-logo">
-                      <img src="frontend/images/icons/info-logo.png" alt="" />
+                      <img src="{{asset('frontend/images/icons/info-logo.png')}}" alt="" />
                     </figure>
                     <div class="icon-box"><i class="fas fa-phone"></i></div>
                     <h2><a href="tel:18003698527">(+977) 9841111111</a></h2>

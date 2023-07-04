@@ -14,22 +14,25 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current"><a href="{{route('index')}}">Home</a>
-                                    
+                                <li class="{{ request()->is('/') ? 'current' : '' }}">
+                                    <a href="{{ route('index') }}">Home</a>
                                 </li> 
-                                <li class=""><a href="{{route('courses')}}">Course</a>
-                
-        
+                                <li class="{{ request()->is('courses') ? 'current' : '' }}">
+                                    <a href="{{ route('courses') }}">Courses</a>
                                 </li>
-                                <li class=""><a href="{{route('college')}}">University/ Colleges</a>
+                                <li class="{{ request()->is('colleges') ? 'current' : '' }}">
+                                    <a href="{{ route('college') }}">University/Colleges</a>
                                 </li>
-
-                                <li><a href="{{route('blog')}}">Blogs</a></li>
-                                                            
-                                <li><a href="{{route('contact')}}">Contact</a></li>
+                                <li class="{{ request()->is('blogs') ? 'current' : '' }}">
+                                    <a href="{{ route('blog') }}">Blogs</a>
+                                </li>
+                                <li class="{{ request()->is('contacts') ? 'current' : '' }}">
+                                    <a href="{{ route('contact') }}">Contact</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
+                    
                     <div class="menu-right-content clearfix">
                         <div class="btn-box">
                             <a href="{{route('apply')}}" class="theme-btn style-one">Apply Now</a>

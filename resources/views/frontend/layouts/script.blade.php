@@ -12,7 +12,7 @@
 <script src="{{asset('frontend/js/nav-tool.js')}}"></script>
 <script src="{{asset('frontend/js/TweenMax.min.js')}}"></script>
 <script src="{{asset('frontend/js/circle-progress.js')}}"></script>
-<script src="{{asset('frontend/js/jquery.nice-select.min.js')}}"></script>
+{{-- <script src="{{asset('frontend/js/jquery.nice-select.min.js')}}"></script> --}}
 <!-- map script -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
 <script src="{{asset('frontend/js/gmaps.js')}}"></script>

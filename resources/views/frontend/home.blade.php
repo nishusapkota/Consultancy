@@ -8,7 +8,7 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             <div class="slide-item first-slide">
-                <div class="image-layer" style="background-image:url(frontend/images/banner/banner-1.jpg)"></div>
+                <div class="image-layer" style="background-image:{{asset('frontend/images/banner/banner-1.jpg')}}"></div>
                 <div class="auto-container">
                     <div class="content-box first-slide-content">
                         <h5>get on the right way</h5>
@@ -25,7 +25,7 @@
             <div class="video-slide-item">
                 <section class="main-banner" id="top" data-section="section1">
                     <video autoplay muted loop id="bg-video">
-                        <source src="frontend/images/course-video.mp4" type="video/mp4" />
+                        <source src="{{asset('frontend/images/course-video.mp4')}}" type="video/mp4" />
                     </video>
 
                     <div class="video-overlay header-text">
@@ -46,7 +46,7 @@
             </div>
 
             <div class="slide-item last-slide">
-                <div class="image-layer" style="background-image:url(frontend/images/banner/banner-3.jpg)"></div>
+                <div class="image-layer" style="background-image:{{asset('frontend/images/banner/banner-3.jpg')}}"></div>
                 <div class="auto-container">
                     <div class="content-box last-slide-content">
                         <h5>get on the right way</h5>
@@ -76,19 +76,19 @@
                     </div> -->
                     <div class="banner-carousel owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
                         <div class="custom-slide-item">
-                            <div class="image-layer" style="background-image: url(frontend/images/gallery/project-14.jpg)">
+                            <div class="image-layer" style="background-image:{{asset('frontend/images/gallery/project-14.jpg')}}">
                                 <!-- <figure class="image-box"><img src="frontend/images/gallery/project-14.jpg" alt=""></figure> -->
                             </div>
                         </div>
 
                         <div class="custom-slide-item">
-                            <div class="image-layer" style="background-image: url(frontend/images/gallery/project-1.jpg)">
+                            <div class="image-layer" style="background-image: {{asset('frontend/images/gallery/project-1.jpg')}}">
 
                             </div>
                         </div>
 
                         <div class="custom-slide-item">
-                            <div class="image-layer" style="background-image: url(frontend/images/gallery/project-17.jpg)">
+                            <div class="image-layer" style="background-image: {{asset('frontend/images/gallery/project-17.jpg')}}">
 
                             </div>
                         </div>
@@ -133,7 +133,7 @@
 
                         <div class="rounded inner-div">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/manavrachna.png" alt="" class="uni-image"></a>
+                                        src="{{asset('frontend/images/University/manavrachna.png')}}" alt="" class="uni-image"></a>
                             </figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -154,7 +154,7 @@
 
                         <div class="">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/bangalore.jpeg" class="uni-image" alt=""></a>
+                                        src="{{asset('frontend/images/University/bangalore.jpeg')}}" class="uni-image" alt=""></a>
                             </figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -174,7 +174,7 @@
                     <div class="news-block-one">
                         <div class="">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/gurunanak.jpeg" class="uni-image"
+                                        src="{{asset('frontend/images/University/gurunanak.jpeg')}}" class="uni-image"
                                         alt=""></a></figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -195,7 +195,7 @@
 
                         <div class="rounded inner-div">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/Anna.jpeg" alt="" class="uni-image"></a>
+                                        src="{{asset('frontend/images/University/Anna.jpeg')}}" alt="" class="uni-image"></a>
                             </figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -216,7 +216,7 @@
 
                         <div class="">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/Ambedkar.jpeg" class="uni-image"
+                                        src="{{asset('frontend/images/University/Ambedkar.jpeg')}}" class="uni-image"
                                         alt=""></a></figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -236,7 +236,7 @@
                     <div class="news-block-one">
                         <div class="">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/sikim.png" class="uni-image" alt=""></a>
+                                        src="{{asset('frontend/images/University/sikim.png')}}" class="uni-image" alt=""></a>
                             </figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -257,7 +257,7 @@
 
                         <div class="rounded inner-div">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/Eastpoint.jpeg" alt=""
+                                        src="{{asset('frontend/images/University/Eastpoint.jpeg')}}" alt=""
                                         class="uni-image"></a></figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -278,7 +278,7 @@
 
                         <div class="">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/MS.jpeg" class="uni-image" alt=""></a>
+                                        src="{{asset('frontend/images/University/MS.jpeg')}}" class="uni-image" alt=""></a>
                             </figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -298,7 +298,7 @@
                     <div class="news-block-one">
                         <div class="">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/University/gurunanak.jpeg" class="uni-image"
+                                        src="{{asset('frontend/images/University/gurunanak.jpeg')}}" class="uni-image"
                                         alt=""></a></figure>
                             <div class="lower-content uni-lower-content">
                                 <ul class="post-info">
@@ -341,7 +341,7 @@
             <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
                 <div class="team-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="frontend/images/courses/B.E E&C.jpg" alt=""></figure>
+                        <figure class="image-box"><img src="{{asset('frontend/images/courses/B.E E&C.jpg')}}" alt=""></figure>
                         <div class="lower-content">
                             <div class="content-box">
                                 <h3 class="course-title"><a href="index.html">Bachelor of Engineering in Electronics and
@@ -356,7 +356,7 @@
                 </div>
                 <div class="team-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="frontend/images/courses/BBA.jpg" alt=""></figure>
+                        <figure class="image-box"><img src="{{asset('frontend/images/courses/BBA.jpg')}}" alt=""></figure>
                         <div class="lower-content">
                             <div class="content-box">
                                 <h3 class="course-title"><a href="index.html">Bachelors in Business Administration</a>
@@ -372,7 +372,7 @@
                 </div>
                 <div class="team-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="frontend/images/courses/MBA.jpg" alt=""></figure>
+                        <figure class="image-box"><img src="{{asset('frontend/images/courses/MBA.jpg')}}" alt=""></figure>
                         <div class="lower-content">
                             <div class="content-box">
                                 <h3 class="course-title"><a href="index.html">Master in Business Administration</a></h3>
@@ -387,7 +387,7 @@
                 </div>
                 <div class="team-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="frontend/images/courses/BBA.jpg" alt=""></figure>
+                        <figure class="image-box"><img src="{{asset('frontend/images/courses/BBA.jpg')}}" alt=""></figure>
                         <div class="lower-content">
                             <div class="content-box">
                                 <h3 class="course-title"><a href="index.html">Master of Science in Information
@@ -403,7 +403,7 @@
                 </div>
                 <div class="team-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="frontend/images/courses/DBA.jpg" alt=""></figure>
+                        <figure class="image-box"><img src="{{asset('frontend/images/courses/DBA.jpg')}}" alt=""></figure>
                         <div class="lower-content">
                             <div class="content-box">
                                 <h3 class="course-title"><a href="index.html">Doctorate of Business Administration</a>
@@ -480,11 +480,11 @@
           <div class="col-lg-5 col-md-6 col-sm-12 info-column">
             <div class="info-inner">
               <figure class="image-box">
-                <img src="assets/images/resource/info-1.jpg" alt="" />
+                <img src="{{asset('assets/images/resource/info-1.jpg')}}" alt="" />
               </figure>
               <div class="info-box">
                 <figure class="info-logo">
-                  <img src="assets/images/icons/info-logo.png" alt="" />
+                  <img src="{{asset('assets/images/icons/info-logo.png')}}" alt="" />
                 </figure>
                 <div class="icon-box"><i class="fas fa-phone"></i></div>
                 <h2><a href="tel:18003698527">(+977) 9841111111</a></h2>
@@ -522,7 +522,7 @@
                         data-wow-duration="1500ms">
                         <div class="inner-box">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/blogs/first.jpg" alt=""></a></figure>
+                                        src="{{asset('frontend/images/blogs/first.jpg')}}" alt=""></a></figure>
                             <div class="lower-content">
                                 <ul class="post-info">
                                     <li>August 25, 2028</li>
@@ -542,7 +542,7 @@
                         data-wow-duration="1500ms">
                         <div class="inner-box">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/blogs/second.jpg" alt=""></a></figure>
+                                        src="{{asset('frontend/images/blogs/second.jpg')}}" alt=""></a></figure>
                             <div class="lower-content">
                                 <ul class="post-info">
                                     <li>August 25, 2018</li>
@@ -562,7 +562,7 @@
                         data-wow-duration="1500ms">
                         <div class="inner-box">
                             <figure class="image-box"><a href="blog-details.html"><img
-                                        src="frontend/images/blogs/third.jpg" alt=""></a></figure>
+                                        src="{{asset('frontend/images/blogs/third.jpg')}}" alt=""></a></figure>
                             <div class="lower-content">
                                 <ul class="post-info">
                                     <li>August 25, 2018</li>

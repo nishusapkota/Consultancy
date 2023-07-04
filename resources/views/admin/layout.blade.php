@@ -84,7 +84,7 @@
 
 
         <!-- Sidebar Menu -->
-        @yield('sidebar')
+        @include('admin.layouts.sidebar')
 
         <!-- /.sidebar-menu -->
       </div>
@@ -96,6 +96,7 @@
 
       <!-- /.content-header -->
       @yield('header')
+      {{-- @include('admin.layouts.sidebar') --}}
       <!-- Main content -->
       @yield('content')
       <!-- /.content -->

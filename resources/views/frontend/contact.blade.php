@@ -1,8 +1,11 @@
 @extends('frontend.layouts.master')
 @section('title', 'Contact')
+@section('header')
+    @include('frontend.layouts.headers.otherPageHeader')
+@endsection
 @section('content')
 <!--Page Title-->
-<section class="page-title centred" style="background-image: url(frontend/images/background/page-title-5.jpg);">
+<section class="page-title centred" style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}};">
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1>Contact Us</h1>
@@ -63,7 +66,7 @@
 
 
 <!-- contact-style-two -->
-<section class="contact-style-two" style="background-image: url(frontend/images/background/contact-3.jpg);">
+<section class="contact-style-two" style="background-image: {{asset('frontend/images/background/contact-3.jpg')}};">
     <div class="auto-container">
         <div class="col-xl-8 col-lg-12 col-md-12 inner-column">
             <div class="sec-title left light">

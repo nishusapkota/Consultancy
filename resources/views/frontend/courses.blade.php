@@ -7,7 +7,7 @@
     <!--Page Title-->
     <section
       class="page-title centred"
-      style="background-image: url(frontend/images/background/page-title-2.jpg)"
+      style="background-image: {{asset('frontend/images/background/page-title-2.jpg')}}"
     >
       <div class="auto-container">
         <div class="content-box clearfix">
@@ -189,12 +189,12 @@
           <div class="team-block-one">
             <div class="inner-box">
               <figure class="image-box">
-                <img src="frontend/images/courses/B.E E&C.jpg" alt="" />
+                <img src="{{asset('frontend/images/courses/B.E E&C.jpg')}}" alt="" />
               </figure>
               <div class="lower-content">
                 <div class="content-box">
                   <h3 class="course-title">
-                    <a href="course-details.html"
+                    <a href="{{route('course-detail')}}"
                       >Bachelor of Engineering in Electronics and Communication
                     </a>
                   </h3>
@@ -211,19 +211,19 @@
           <div class="team-block-one">
             <div class="inner-box">
               <figure class="image-box">
-                <img src="frontend/images/courses/BBA.jpg" alt="" />
+                <img src="{{asset('frontend/images/courses/BBA.jpg')}}" alt="" />
               </figure>
               <div class="lower-content">
                 <div class="content-box">
                   <h3 class="course-title">
-                    <a href="course-details.html"
+                    <a href="{{route('course-detail')}}"
                       >Bachelors in Business Administration</a
                     >
                   </h3>
                   <span class="designation">(BBA)</span>
                 </div>
                 <div class="ovellay-box">
-                  <a href="course-details.html" class="theme-btn style-one"
+                  <a href="{{route('course-detail')}}" class="theme-btn style-one"
                     >View Details</a
                   >
                 </div>
@@ -233,17 +233,17 @@
           <div class="team-block-one">
             <div class="inner-box">
               <figure class="image-box">
-                <img src="frontend/images/courses/MBA.jpg" alt="" />
+                <img src="{{asset('frontend/images/courses/MBA.jpg')}}" alt="" />
               </figure>
               <div class="lower-content">
                 <div class="content-box">
                   <h3 class="course-title">
-                    <a href="course-details.html">Master in Business Administration</a>
+                    <a href="{{route('course-detail')}}">Master in Business Administration</a>
                   </h3>
                   <span class="designation">(MBA)</span>
                 </div>
                 <div class="ovellay-box">
-                  <a href="course-details.html" class="theme-btn style-one"
+                  <a href="{{route('course-detail')}}" class="theme-btn style-one"
                     >View Details</a
                   >
                 </div>
@@ -253,19 +253,19 @@
           <div class="team-block-one">
             <div class="inner-box">
               <figure class="image-box">
-                <img src="frontend/images/courses/BBA.jpg" alt="" />
+                <img src="{{asset('frontend/images/courses/BBA.jpg')}}" alt="" />
               </figure>
               <div class="lower-content">
                 <div class="content-box">
                   <h3 class="course-title">
-                    <a href="course-details.html"
+                    <a href="{{route('course-detail')}}"
                       >Master of Science in Information Technology</a
                     >
                   </h3>
                   <span class="designation">(MSIT)</span>
                 </div>
                 <div class="ovellay-box">
-                  <a href="course-details.html" class="theme-btn style-one"
+                  <a href="{{route('course-detail')}}" class="theme-btn style-one"
                     >View Details</a
                   >
                 </div>
@@ -275,19 +275,19 @@
           <div class="team-block-one">
             <div class="inner-box">
               <figure class="image-box">
-                <img src="frontend/images/courses/B.E E&C.jpg" alt="" />
+                <img src="{{asset('frontend/images/courses/B.E E&C.jpg')}}" alt="" />
               </figure>
               <div class="lower-content">
                 <div class="content-box">
                   <h3 class="course-title">
-                    <a href="course-details.html"
+                    <a href="{{route('course-detail')}}"
                       >Bachelor of Engineering in Electronics and Communication
                     </a>
                   </h3>
                   <span class="designation">(B.E. E&C)</span>
                 </div>
                 <div class="ovellay-box">
-                  <a href="course-details.html" class="theme-btn style-one"
+                  <a href="{{route('course-detail')}}" class="theme-btn style-one"
                     >View Details</a
                   >
                 </div>
@@ -358,11 +358,11 @@
             <div class="col-lg-5 col-md-6 col-sm-12 info-column">
               <div class="info-inner">
                 <figure class="image-box">
-                  <img src="frontend/images/resource/info-1.jpg" alt="" />
+                  <img src="{{asset('frontend/images/resource/info-1.jpg')}}" alt="" />
                 </figure>
                 <div class="info-box">
                   <figure class="info-logo">
-                    <img src="frontend/images/icons/info-logo.png" alt="" />
+                    <img src="{{asset('frontend/images/icons/info-logo.png')}}" alt="" />
                   </figure>
                   <div class="icon-box"><i class="fas fa-phone"></i></div>
                   <h2><a href="tel:18003698527">(+977) 9841111111</a></h2>

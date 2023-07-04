@@ -1,78 +1,4 @@
 @extends('admin.layout')
-
-@section('sidebar')
-<nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <li class="nav-item menu-open">
-      <a href="{{route('admin.')}}" class="nav-link">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
-        <p>
-          Dashboard
-        </p>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link">
-        <i class="nav-icon far fa-envelope"></i>
-        <p>
-          Courses
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview" style="display: none;">
-        <li class="nav-item">
-          <a href="{{Route('admin.course-category.index')}}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{Route('admin.course.index')}}" class="nav-link active">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Course</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a href="{{route('admin.user.index')}}" class="nav-link">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Users</p>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="{{route('admin.university.index')}}" class="nav-link">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Universities</p>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="{{ route('admin.blog.index')}}" class="nav-link ">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Blogs</p>
-      </a>
-    </li>
-
-    <li class="nav-item">
-      <a href="{{route('admin.level.index')}}" class="nav-link">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Level</p>
-      </a>
-    </li>
-
-    <li class="nav-item">
-      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Student Enquiry</p>
-      </a>
-    </li>
-
-
-  </ul>
-</nav>
-@endsection
-
-
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -82,7 +8,7 @@
         font-weight:bold">
                     Courses</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.course.create')}}">
+                    <a class="btn btn-primary" href="{{route('admin.courses.create')}}">
                         <i class="fas fa-plus circle-left mr-2"></i>
                         Add Course
                     </a>
@@ -118,9 +44,9 @@
                             <td>{{$course->status}}</td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.course.show',$course)}}"><i class="fas fa-eye"></i>Show</a>
-                                <a class="btn btn-warning" href="{{route('admin.course.edit',$course)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.course.destroy',$course)}}" method="post">
+                                <a class="btn btn-secondary" href="{{route('admin.courses.show',$course)}}"><i class="fas fa-eye"></i>Show</a>
+                                <a class="btn btn-warning" href="{{route('admin.courses.edit',$course)}}"><i class="fas fa-edit"></i>Edit</a>
+                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.courses.destroy',$course)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">

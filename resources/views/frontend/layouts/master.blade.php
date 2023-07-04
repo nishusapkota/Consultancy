@@ -23,6 +23,7 @@
         <div class="layer layer-two"><span class="overlay"></span></div>        
         <div class="layer layer-three"><span class="overlay"></span></div>        
     </div>
+    @yield('page-direction')
     <!-- search-popup -->
     <div id="search-popup" class="search-popup">
         <div class="close-search"><span>Close</span></div>
