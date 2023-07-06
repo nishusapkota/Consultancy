@@ -10,6 +10,9 @@ class SiteController extends Controller
     public function index() {
         return view('frontend.home');
     }
+    public function scholarship() {
+        return view('frontend.scholarship');
+    }
     public function courses() {
         return view('frontend.courses');
     }

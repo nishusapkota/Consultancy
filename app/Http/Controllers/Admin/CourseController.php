@@ -40,17 +40,43 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data=$request->validate([
-            'name' =>'required',
-            'cat_id' =>'required|exists:course_categories,id',
-            'description' =>'required',
-         'status' => 'nullable|boolean'
-        ]);
+{
+    $data = $request->validate([
+        'name' => 'required',
+        'cat_id' => 'required|exists:course_categories,id',
+        'description' => 'required',
+        'image' => 'required|file|image|mimes:jpeg,png,gif',
+        'status' => 'boolean',
+        'university_id' => 'nullable|array',
+        'university_id.*' => 'exists:universities,id'
+    ], [
+        'image.required' => 'The image field is required.',
+        'image.file' => 'The file field must be a file.',
+        'image.image' => 'The file must be an image.',
+        'image.mimes' => 'The file must be a valid image (jpeg, png, gif).',
+        'university_id.*.exists' => 'One or more selected universities do not exist.'
+    ]);
 
-        Course::create($data);
-        return redirect()->route('admin.courses.index')->with('success','course created successfuly');
+    if ($request->hasFile('image')) {
+        $img_name = time() . '_' . $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('course'), $img_name);
     }
+
+    $course = Course::create([
+        'name' => $data['name'],
+        'cat_id' => $data['cat_id'],
+        'description' => $data['description'],
+        'image' => isset($img_name) ? 'course/'.$img_name : null,
+        'status' => $data['status']  ? 1 :0
+    ]);
+
+    if (isset($data['university_id'])) {
+        $course->universities()->attach($data['university_id']);
+    }
+    return redirect()->route('admin.courses.index')->with('success', 'Course created successfully.');
+}
+
+
 
     /**
      * Display the specified resource.

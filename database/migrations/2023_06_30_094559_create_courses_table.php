@@ -20,7 +20,7 @@ return new class extends Migration
            $table->string('name');
            $table->Text('description');
            $table->string('image');
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }

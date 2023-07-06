@@ -3,7 +3,7 @@
         <div class="auto-container">
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="{{route('index')}}"><img src="frontend/images/TempLogo.png" alt=""></a></figure>
+                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset('frontend/images/TempLogo.png')}}" alt=""></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <div class="mobile-nav-toggler">
@@ -22,6 +22,9 @@
                                 </li>
                                 <li class="{{ request()->is('colleges') ? 'current' : '' }}">
                                     <a href="{{ route('college') }}">University/Colleges</a>
+                                </li>
+                                <li class="{{ request()->is('scholarship') ? 'current' : '' }}">
+                                    <a href="{{ route('scholarship') }}">Scholarship</a>                                        
                                 </li>
                                 <li class="{{ request()->is('blogs') ? 'current' : '' }}">
                                     <a href="{{ route('blog') }}">Blogs</a>
@@ -76,11 +79,11 @@
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                <li><a href="{{route('index')}}"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="{{route('index')}}"><span class="fab fa-facebook-square"></span></a></li>
+                <li><a href="{{route('index')}}"><span class="fab fa-pinterest-p"></span></a></li>
+                <li><a href="{{route('index')}}"><span class="fab fa-instagram"></span></a></li>
+                <li><a href="{{route('index')}}"><span class="fab fa-youtube"></span></a></li>
             </ul>
         </div>
     </nav>

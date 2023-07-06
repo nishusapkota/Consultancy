@@ -40,11 +40,11 @@
                 </form>
                 <h3>Recent Search Keywords</h3>
                 <ul class="recent-searches">
-                    <li><a href="index.html">Finance</a></li>
-                    <li><a href="index.html">Idea</a></li>
-                    <li><a href="index.html">Service</a></li>
-                    <li><a href="index.html">Growth</a></li>
-                    <li><a href="index.html">Plan</a></li>
+                    <li><a href="{{route('index')}}">Finance</a></li>
+                    <li><a href="{{route('index')}}">Idea</a></li>
+                    <li><a href="{{route('index')}}">Service</a></li>
+                    <li><a href="{{route('index')}}">Growth</a></li>
+                    <li><a href="{{route('index')}}">Plan</a></li>
                 </ul>
             </div>
         </div>

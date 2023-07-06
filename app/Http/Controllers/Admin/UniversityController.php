@@ -45,7 +45,7 @@ class UniversityController extends Controller
             'image'=>'required|image|mimes:png,jpg',
             'details'=>'required',
             'status'=> 'boolean|nullable',
-            'course_id' => 'array',
+            'course_id' => 'nullable|array',
             'course_id.*' => 'exists:courses,id'
         ]);
         $img_name=$request->file('image')->getClientOriginalName();
@@ -58,7 +58,10 @@ class UniversityController extends Controller
             'status' => $request->status
         ]);
         
-        $university->courses()->attach($request->course_id);
+        if (isset($data['course_id'])) {
+            $university->courses()->attach($request->course_id);
+        }
+       
        return redirect()->route('admin.university.index')->with('success','university created successfully');
     }
 

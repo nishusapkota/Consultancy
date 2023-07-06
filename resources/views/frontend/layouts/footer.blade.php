@@ -7,7 +7,7 @@
                     <p>If you have any further queries regarding our services then please feel free to contact us anytime.</p>
                 </div>
                 <div class="btn-box pull-right">
-                    <a href="contact.html" class="theme-btn style-one">Get In Touch Today</a>
+                    <a href="{{route('contact')}}" class="theme-btn style-one">Get In Touch Today</a>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column first-content">
                         <div class="footer-widget logo-widget">
-                            <figure class="footer-logo"><a href="index.html"><img src="{{asset('frontend/images/TempLogo.png')}}" alt=""></a></figure>
+                            <figure class="footer-logo"><a href="{{route('index')}}"><img src="{{asset('frontend/images/TempLogo.png')}}" alt=""></a></figure>
                             <div class="text">
                                 <p>Tempor incididunt ut labore eut dolore veniam quis nostrud exercitation ullamc consequat. Duis aute irure.</p>
                             </div>
@@ -38,11 +38,12 @@
                             </div>
                             <div class="widget-content">
                                 <ul class="list clearfix">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="courses.html">Course</a></li>
-                                    <li><a href="college.html">University/Colleges</a></li>
-                                    <li><a href="blog-grid.html">Blogs</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{route('index')}}">Home</a></li>
+                                    <li><a href="{{route('courses')}}">Course</a></li>
+                                    <li><a href="{{route('college')}}">University/Colleges</a></li>
+                                    <li><a href="{{route('scholarship')}}">Scholarship</a></li>
+                                    <li><a href="{{route('blog')}}">Blogs</a></li>
+                                    <li><a href="{{route('contact')}}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,11 +56,11 @@
                             </div>
                             <div class="socialLink">
                                 <ul class="list clearfix">
-                                    <li><i class="fab fa-facebook-f socio-icon"></i> <a href="index.html">Facebook</a></li>
-                                    <li><i class="fab fa-twitter socio-icon"></i> <a href="index.html">Twitter</a> </li>
-                                    <li><i class="fab fa-instagram socio-icon"> </i> <a href="index.html">Instagram</a></li>
-                                    <li><i class="fab fa-linkedin-in socio-icon"></i> <a href="index.html">LinkedIn</a></li>
-                                    <li><i class="fab fa-pinterest-p socio-icon"></i> <a href="index.html">Pinterest</a></li>
+                                    <li><i class="fab fa-facebook-f socio-icon"></i> <a href="{{route('index')}}">Facebook</a></li>
+                                    <li><i class="fab fa-twitter socio-icon"></i> <a href="{{route('index')}}">Twitter</a> </li>
+                                    <li><i class="fab fa-instagram socio-icon"> </i> <a href="{{route('index')}}">Instagram</a></li>
+                                    <li><i class="fab fa-linkedin-in socio-icon"></i> <a href="{{route('index')}}">LinkedIn</a></li>
+                                    <li><i class="fab fa-pinterest-p socio-icon"></i> <a href="{{route('index')}}">Pinterest</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -71,7 +72,7 @@
     </div>
     <div class="footer-bottom">
         <div class="auto-container">
-            <div class="copyright"><p>&copy; 2020 <a href="index.html">SPELL</a> - Business & Consulting. All rights reserved.</p></div>
+            <div class="copyright"><p>&copy; 2020 <a href="{{route('index')}}">SPELL</a> - Business & Consulting. All rights reserved.</p></div>
         </div>
     </div>
 </footer>
@@ -94,7 +95,7 @@
                 <div class="content-inner">
                     <div class="upper-box">
                         <div class="logo">
-                            <a href="index.html"><img src="{{asset('frontend/images/sidebar-logo.png')}}" alt="" /></a>
+                            <a href="{{route('index')}}"><img src="{{asset('frontend/images/sidebar-logo.png')}}" alt="" /></a>
                         </div>
                         <div class="text">
                             <p>Exercitation ullamco laboris nis aliquip sed conseqrure dolorn repreh deris ptate velit ecepteur duis.</p>
@@ -117,19 +118,19 @@
                             <li><i class="fas fa-headphones-alt"></i><a href="tel:101005200369">+1  0100 5200 369</a></li>
                             <li><i class="far fa-clock"></i>Monday to Friday: 9am - 6pm</li>
                         </ul>
-                        <form action="http://azim.commonsupport.com/Fionca/contact.html" method="post" class="subscribe-form">
+                        <form action="http://azim.commonsupport.com/Fionca/index.html" method="post" class="subscribe-form">
                             <div class="form-group">
                                 <input type="email" name="email" placeholder="Email address" required="">
                                 <button type="submit" class="theme-btn style-one">subscribe now</button>
                             </div>
                         </form>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="{{route('index')}}"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="{{route('index')}}"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="{{route('index')}}"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="{{route('index')}}"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li><a href="{{route('index')}}"><i class="fab fa-pinterest-p"></i></a></li>
+                            <li><a href="{{route('index')}}"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>

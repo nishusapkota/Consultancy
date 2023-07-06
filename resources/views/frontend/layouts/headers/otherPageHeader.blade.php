@@ -23,6 +23,9 @@
                                 <li class="{{ request()->is('colleges') ? 'current' : '' }}">
                                     <a href="{{ route('college') }}">University/Colleges</a>
                                 </li>
+                                <li class="{{ request()->is('scholarship') ? 'current' : '' }}">
+                                    <a href="{{ route('scholarship') }}">Scholarship</a>                                        
+                                </li>
                                 <li class="{{ request()->is('blogs') ? 'current' : '' }}">
                                     <a href="{{ route('blog') }}">Blogs</a>
                                 </li>
