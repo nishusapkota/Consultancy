@@ -57,6 +57,38 @@
           </div>
 
           <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image"
+                class="form-control @error('image') is-invalid @enderror">
+            @error('image')
+                <small class="form-text text-danger">
+                    {{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="university_id">University</label>
+      
+          <div class="row d-flex mt-100">
+              <div class="col-md-6">
+                  <select id="choices-multiple-remove-button" placeholder="Select university" multiple name="university_id[]">
+                      @foreach ($universities as $university)
+                          <option value="{{ $university->id }}" {{ old('university_id') && in_array($university->id, old('university_id')) ? 'selected' : '' }}>
+                              {{ $university->name }}
+                          </option>
+                      @endforeach
+                  </select>
+              </div>
+          </div>
+      
+          @error('university_id')
+              <small class="form-text text-danger">
+                  {{ $message }}
+              </small>
+          @enderror
+      </div>
+      
+          <div class="form-group">
                         <label for="status">Status</label>
                         <div class="form-check">
                             <input type="checkbox" name="status" id="status" value="1" class="form-check-input" {{$course->status =='1' ? 'checked' : ''}}>

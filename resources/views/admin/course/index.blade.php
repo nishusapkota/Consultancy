@@ -28,7 +28,7 @@
                             <th>ID</th>
                             <th>Course</th>
                             <th>Category</th>
-                            <th>Description</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -40,7 +40,11 @@
                             <td>{{$course->id}}</td>
                             <td>{{$course->name}}</td>
                             <td>{{$course->category->name}}</td>
-                            <td>{{$course->description}}</td>
+                            <td>
+                                <div style="width: 100px; height: 100px; overflow: hidden;">
+                                    <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
+                                  </div> 
+                            </td>
                             <td>{{$course->status}}</td>
                             <td>
 

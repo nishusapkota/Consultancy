@@ -45,16 +45,10 @@ class CourseController extends Controller
         'name' => 'required',
         'cat_id' => 'required|exists:course_categories,id',
         'description' => 'required',
-        'image' => 'required|file|image|mimes:jpeg,png,gif',
+        'image' => 'required|image|mimes:jpeg,png,gif',
         'status' => 'boolean',
         'university_id' => 'nullable|array',
         'university_id.*' => 'exists:universities,id'
-    ], [
-        'image.required' => 'The image field is required.',
-        'image.file' => 'The file field must be a file.',
-        'image.image' => 'The file must be an image.',
-        'image.mimes' => 'The file must be a valid image (jpeg, png, gif).',
-        'university_id.*.exists' => 'One or more selected universities do not exist.'
     ]);
 
     if ($request->hasFile('image')) {
@@ -86,7 +80,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return view('admin.courses.show',compact('course'));
+        return view('admin.course.show',compact('course'));
     }
 
     /**
@@ -98,7 +92,8 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
     $categories=CourseCategory::all();
-       return view('admin.courses.edit', compact('course','categories'));
+    $universities=University::all();
+       return view('admin.course.edit', compact('course','categories','universities'));
     }
 
     /**
@@ -113,10 +108,27 @@ class CourseController extends Controller
         $data=$request->validate([
             'name' =>'required',
             'cat_id' =>'required|exists:course_categories,id',
+            'image' =>'nullable',
             'description' =>'required',
-         'status' => 'nullable|boolean'
+         'status' => 'nullable|boolean',
+         'university_id' => 'array',
+            'university_id.*' => 'exists:universities,id'
         ]);
-        $course->update($data);
+        if($request->hasFile('image')){
+            unlink(public_path($course->image));
+             $image = $request->file('image');
+            $img_name = $image->getClientOriginalName();
+            $image->move(public_path('course'), $img_name);
+            
+            }
+        $course->update([
+            'name'=>$request->name,
+            'cat_id'=>$request->cat_id,
+            'image'=>$request->hasfile('image') ? 'course/'.$img_name : $course->image,
+            'description'=>$request->description,
+            'status'=>$request->status,
+        ]);
+        $course->universities()->sync($request->university_id);
         return redirect()->route('admin.courses.index')->with('success','Course updated successfully');
         
     }
@@ -129,6 +141,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        if ($course->image && file_exists(public_path($course->image))) {
+            unlink(public_path($course->image));
+        } 
+        $course->universities()->detach();
         $course->delete();
         return redirect()->route('admin.courses.index')->with('success','Course deleted successfully');
     }

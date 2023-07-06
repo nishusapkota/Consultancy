@@ -26,6 +26,12 @@
                     <td>{{$course->name}}</td>
                 </tr>
                 <tr>
+                    <th>Image</th>
+                    <td> <div style="width: 100px; height: 100px; overflow: hidden;">
+                        <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
+                      </div> </td>
+                </tr>
+                <tr>
                     <th>Description</th>
                     <td>{{$course->description}}</td>
                 </tr>

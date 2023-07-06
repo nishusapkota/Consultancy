@@ -67,14 +67,6 @@
 
                         <div class="form-group">
                             <label for="university_id">University</label>
-                            {{-- <div class="checkbox-list">
-              @foreach ($universities as $university)
-              <div class="checkbox">
-                <input type="checkbox" name="university_id[]" value="" id="university_{{ $university->id }}">
-                <label for="university_{{ $university->id }}"></label>
-              </div>
-              @endforeach
-            </div> --}}
 
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
