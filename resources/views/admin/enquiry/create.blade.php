@@ -6,9 +6,9 @@
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-          Add New Levels</h3>
+          Add New Enquiry</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.level.index')}}">
+          <a class="btn btn-primary" href="{{route('admin.student-enquiry.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.level.store') }}">
+        <form method="post" action="{{ route('admin.student-enquiry.store') }}">
           @if($errors->any())
           <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
@@ -32,33 +32,58 @@
               {{ $message }}</small>
             @enderror
           </div>
-
           <div class="form-group">
-            <label for="course_id">Course</label>
-            <div class="checkbox-list">
-              @foreach ($courses as $course)
-              <div class="checkbox">
-                <input type="checkbox" name="course_id[]" value="{{ $course->id }}" id="course_{{ $course->id }}">
-                <label for="course_{{ $course->id }}">{{ $course->name }}</label>
-              </div>
-              @endforeach
-            </div>
-            @error('course_id')
+            <label for="contact">Contact</label>
+            <input type="text" name="contact" id="contact" class="form-control @error('contact') is-invalid @enderror" value="{{ old('contact') }}">
+            @error('contact')
             <small class="form-text text-danger">
-              {{ $message }}
-            </small>
+              {{ $message }}</small>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+            @error('email')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
+            @error('address')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
             @enderror
           </div>
 
-
-
           <div class="form-group">
-            <label for="status">Status</label>
-            <div class="form-check">
-              <input type="checkbox" name="status" id="status" value="1" class="form-check-input">
-              <label class="form-check-label" for="status">Active</label>
-            </div>
-          </div>
+            <label for="course_id">Course</label>
+            <select name="course_id" class="form-control">
+                <option>select Course-------</option>
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}">{{ $course->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="level_id">Level</label>
+          <select name="level_id" class="form-control">
+              <option>select Level-------</option>
+              @foreach ($levels as $level)
+                  <option value="{{ $level->id }}">{{ $level->name }}</option>
+              @endforeach
+          </select>
+      </div>
+      <div class="form-group">
+        <label for="university_id">University</label>
+        <select name="university_id" class="form-control">
+            <option>select Level-------</option>
+            @foreach ($universities as $university)
+                <option value="{{ $university->id }}">{{ $university->name }}</option>
+            @endforeach
+        </select>
+    </div>
 
           <button class="btn btn-primary">
             <i class="fas fa-save mr-2"></i>

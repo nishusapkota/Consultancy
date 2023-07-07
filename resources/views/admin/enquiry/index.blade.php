@@ -6,12 +6,9 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    Levels</h3>
+                    enquiries</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.level.create')}}">
-                        <i class="fas fa-plus circle-left mr-2"></i>
-                        Add Level
-                    </a>
+                    
                 </div>
             </div>
 
@@ -27,22 +24,31 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Status</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>University</th>
+                            <th>Course</th>
+                            <th>Level</th>
                             <th>Action</th>
                         </tr>
 
                     </thead>
                     <tbody>
-                        @foreach ($levels as $level )
+                        @foreach ($enquiries as $enquiry )
                         <tr>
-                            <td>{{$level->id}}</td>
-                            <td>{{$level->name}}</td>
-                            <td>{{$level->status}}</td>
+                            <td>{{$enquiry->id}}</td>
+                            <td>{{$enquiry->name}}</td>
+                            <td>{{$enquiry->contact}}</td>
+                            <td>{{$enquiry->email}}</td>
+                            <td>{{$enquiry->address}}</td>
+                            <td>{{$enquiry->level->name}}</td>
+                            <td>{{$enquiry->course->name}}</td>
+                            <td>{{$enquiry->university->name}}</td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.level.show',$level)}}"><i class="fas fa-eye"></i>Show</a>
-                                <a class="btn btn-warning" href="{{route('admin.level.edit',$level)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.level.destroy',$level)}}" method="post">
+                                <a class="btn btn-secondary" href="{{route('admin.student-enquiry.show',$enquiry)}}"><i class="fas fa-eye"></i>Show</a>
+                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.student-enquiry.destroy',$enquiry)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Level;
 use App\Models\CourseCategory;
+use App\Models\StudentEnquiry;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,6 +26,9 @@ class Course extends Model
     }
     function universities(){
         return $this->belongsToMany(University::class,'course_universities','course_id','university_id');
+    }
+    function enquiries(){
+        return $this->hasMany(StudentEnquiry::class);
     }
 }
 
