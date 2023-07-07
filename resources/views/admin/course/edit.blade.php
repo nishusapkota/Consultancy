@@ -68,12 +68,21 @@
 
         <div class="form-group">
           <label for="university_id">University</label>
-      
+          {{-- @dd($course-universities) --}}
           <div class="row d-flex mt-100">
               <div class="col-md-6">
-                  <select id="choices-multiple-remove-button" placeholder="Select university" multiple name="university_id[]">
+                  <select id="choices-multiple-remove-button" name="university_id[]" placeholder="Select university" multiple>
                       @foreach ($universities as $university)
-                          <option value="{{ $university->id }}" {{ old('university_id') && in_array($university->id, old('university_id')) ? 'selected' : '' }}>
+                          <option value="{{ $university->id }}" 
+
+                            @foreach ($course->universities as $item)
+                            {{-- @dd($item->id===$university->id) --}}
+                                @if ($item->id===$university->id)
+                                selected
+                                @endif
+                            @endforeach
+                            
+                            >
                               {{ $university->name }}
                           </option>
                       @endforeach
@@ -87,6 +96,7 @@
               </small>
           @enderror
       </div>
+      
       
           <div class="form-group">
                         <label for="status">Status</label>

@@ -70,7 +70,7 @@
 
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
-                                    <select id="choices-multiple-remove-button" placeholder="Select university" multiple>
+                                    <select id="choices-multiple-remove-button" name="university_id[]"placeholder="Select university" multiple>
                                         @foreach ($universities as $university)
                                             <option value="{{ $university->id }}">{{ $university->name }}</option>
                                         @endforeach

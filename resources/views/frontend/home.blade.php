@@ -117,7 +117,7 @@
             <div class="sec-title centred">
                 <h2>Our University</h2>
                 <div class="sec-text">
-                    <p class="blog-text">Let us know your interest and we will find you the right institution</p>
+                    <p class="blog-text" style="max-width:100%">Let us know your interest and we will find you the right institution</p>
                 </div>
             </div>
             <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">

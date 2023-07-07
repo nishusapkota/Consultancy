@@ -101,11 +101,12 @@ class UniversityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(University $university)
+    public function edit($id)
     {
-        $courses = Course::all();
+        $university = University::with('courses')->find($id);
+        $courses=Course::all();
         $user=User::where('university_id',$university->id)->first();
-        return view('admin.university.edit', compact('courses', 'university','user'));
+        return view('admin.university.edit', compact('courses','university','user'));
     }
 
     /**

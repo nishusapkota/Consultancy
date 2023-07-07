@@ -56,21 +56,35 @@
 
           <div class="form-group">
             <label for="course_id">Course</label>
-            <div class="checkbox-list">
-              @foreach ($courses as $course)
-              <div class="checkbox">
-                <input type="checkbox" name="course_id[]" value="{{ $course->id }}" id="course_{{ $course->id }}" {{ in_array($course->id, $university->courses->pluck('id')->toArray()) ? 'checked' : '' }}>
-                <label for="course_{{ $course->id }}">{{ $course->name }}</label>
-              </div>
-              @endforeach
+            
+            <div class="row d-flex mt-100">
+                <div class="col-md-6">
+                  
+                    <select id="choices-multiple-remove-button" name="course_id[]" placeholder="Select course" multiple>
+                        @foreach ($courses as $course)
+                            <option value="{{ $course->id }}" 
+  
+                              @foreach ($university->courses as $item)
+                              {{-- @dd($item->id===$university->id) --}}
+                                  @if ($item->id===$course->id)
+                                  selected
+                                  @endif
+                              @endforeach
+                              
+                              >
+                                {{ $course->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
+        
             @error('course_id')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
+                <small class="form-text text-danger">
+                    {{ $message }}
+                </small>
             @enderror
-          </div>
-
+        </div>
           <div class="form-group">
             <label for="details">Details</label>
             <textarea name="details" id="details" class="form-control @error('details') is-invalid @enderror" rows="4">{{ $university->details }}</textarea>
