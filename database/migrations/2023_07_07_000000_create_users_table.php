@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('username')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('admin');
+            $table->unsignedBigInteger('university_id')->nullable();
+            $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

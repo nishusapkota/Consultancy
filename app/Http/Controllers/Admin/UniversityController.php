@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Course;
+use App\Models\University;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\University;
+use Illuminate\Support\Facades\Hash;
 
 class UniversityController extends Controller
 {
@@ -16,8 +18,8 @@ class UniversityController extends Controller
      */
     public function index()
     {
-        $universities=University::with('courses')->get();
-        return view('admin.university.index',compact('universities'));
+        $universities = University::with('courses')->get();
+        return view('admin.university.index', compact('universities'));
     }
 
     /**
@@ -27,8 +29,8 @@ class UniversityController extends Controller
      */
     public function create()
     {
-        $courses=Course::all();
-        return view('admin.university.create',compact('courses'));
+        $courses = Course::all();
+        return view('admin.university.create', compact('courses'));
     }
 
     /**
@@ -41,28 +43,45 @@ class UniversityController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:universities,name',
-            'address'=>'required',
-            'image'=>'required|image|mimes:png,jpg',
-            'details'=>'required',
-            'status'=> 'boolean|nullable',
+            'address' => 'required',
+            'image' => 'required|image|mimes:png,jpg',
+            'details' => 'required',
+            'status' => 'boolean|nullable',
             'course_id' => 'nullable|array',
-            'course_id.*' => 'exists:courses,id'
+            'course_id.*' => 'exists:courses,id',
+            
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required',
+            'password' => 'required|confirmed',
+            
         ]);
-        $img_name=$request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('university'),$img_name);
-       $university= University::create([
+       
+        $img_name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('university'), $img_name);
+        $university = University::create([
             'name' => $request->name,
-            'address'=>$request->address,
-            'image'=>'university/'.$img_name,
-            'details'=>$request->details,
-            'status' => $request->status
+            'address' => $request->address,
+            'image' => 'university/' . $img_name,
+            'details' => $request->details,
+            'status' => $request->status ? 1 : 0
         ]);
-        
+
         if (isset($data['course_id'])) {
             $university->courses()->attach($request->course_id);
         }
-       
-       return redirect()->route('admin.university.index')->with('success','university created successfully');
+
+        User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'username'=>$request->username,
+            'password'=>Hash::make($request->password),
+            'role'=>'university',
+            'university_id'=>$university->id
+        ]);
+
+
+        return redirect()->route('admin.university.index')->with('success', 'university created successfully');
     }
 
     /**
@@ -73,7 +92,7 @@ class UniversityController extends Controller
      */
     public function show(University $university)
     {
-        return view('admin.university.show',compact('university'));
+        return view('admin.university.show', compact('university'));
     }
 
     /**
@@ -84,8 +103,9 @@ class UniversityController extends Controller
      */
     public function edit(University $university)
     {
-        $courses=Course::all();
-        return view('admin.university.edit',compact('courses','university'));
+        $courses = Course::all();
+        $user=User::where('university_id',$university->id)->first();
+        return view('admin.university.edit', compact('courses', 'university','user'));
     }
 
     /**
@@ -104,28 +124,27 @@ class UniversityController extends Controller
             'details' => 'required',
             'status' => 'boolean|nullable',
             'course_id' => 'array',
-            'course_id.*' => 'exists:courses,id'
+            'course_id.*' => 'exists:courses,id',
+
+            
         ]);
 
-        if($request->hasFile('image')){
-        unlink(public_path($university->image));
-         $image = $request->file('image');
-        $img_name = $image->getClientOriginalName();
-        $image->move(public_path('university'), $img_name);
+        if ($request->hasFile('image')) {
+            unlink(public_path($university->image));
+            $image = $request->file('image');
+            $img_name = $image->getClientOriginalName();
+            $image->move(public_path('university'), $img_name);
         }
 
-       $university->update([
+        $university->update([
             'name' => $request->name,
-            'address'=>$request->address,
-            'image'=>$request->hasfile('image') ? 'university/'.$img_name : $university->image,
-            'details'=>$request->details,
+            'address' => $request->address,
+            'image' => $request->hasfile('image') ? 'university/' . $img_name : $university->image,
+            'details' => $request->details,
             'status' => $request->status
         ]);
-        
         $university->courses()->sync($request->course_id);
-       return redirect()->route('admin.university.index')->with('success','university updated successfully');
-
-
+        return redirect()->route('admin.university.index')->with('success', 'university updated successfully');
     }
 
     /**
@@ -138,9 +157,8 @@ class UniversityController extends Controller
     {
         if ($university->image && file_exists(public_path($university->image))) {
             unlink(public_path($university->image));
-        } 
-        
+        }
         $university->delete();
-        return redirect()->route('admin.university.index')->with('success','record deleted successfully');
+        return redirect()->route('admin.university.index')->with('success', 'record deleted successfully');
     }
 }

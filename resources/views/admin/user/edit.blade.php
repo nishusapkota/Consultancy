@@ -5,9 +5,9 @@
     <div class="card">
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;font-weight:bold">
-          Edit University</h3>
+          Edit User</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{ route('admin.university.index') }}">
+          <a class="btn btn-primary" href="{{ route('admin.user.index') }}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -15,7 +15,7 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.university.update', $university) }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.user.update', $user) }}" enctype="multipart/form-data">
           @if($errors->any())
           <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
@@ -24,20 +24,39 @@
           @endif
           @csrf
           @method('PUT')
+
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $university->name }}">
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}">
             @error('name')
             <small class="form-text text-danger">
-              {{ $message }}
-            </small>
+              {{ $message }}</small>
+            @enderror
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}">
+            @error('email')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
             @enderror
           </div>
 
           <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ $university->address }}">
-            @error('address')
+            <label for="username">UserName</label>
+            <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ $user->username }}">
+            @error('username')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
+            @enderror
+          </div> 
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
+            @error('password')
             <small class="form-text text-danger">
               {{ $message }}
             </small>
@@ -45,49 +64,24 @@
           </div>
 
           <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
-            @error('image')
+            <label for="password_confirmation">Confirm Password</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}">
+            @error('password_confirmation')
             <small class="form-text text-danger">
               {{ $message }}
             </small>
             @enderror
-          </div>
+          </div> 
 
-          <div class="form-group">
-            <label for="course_id">Course</label>
-            <div class="checkbox-list">
-              @foreach ($courses as $course)
-              <div class="checkbox">
-                <input type="checkbox" name="course_id[]" value="{{ $course->id }}" id="course_{{ $course->id }}" {{ in_array($course->id, $university->courses->pluck('id')->toArray()) ? 'checked' : '' }}>
-                <label for="course_{{ $course->id }}">{{ $course->name }}</label>
-              </div>
-              @endforeach
-            </div>
-            @error('course_id')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
+       
+         
 
-          <div class="form-group">
-            <label for="details">Details</label>
-            <textarea name="details" id="details" class="form-control @error('details') is-invalid @enderror" rows="4">{{ $university->details }}</textarea>
-            @error('details')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
+          
 
-          <div class="form-group">
-            <label for="status">Status</label>
-            <div class="form-check">
-              <input type="checkbox" name="status" id="status" value="1" class="form-check-input" {{ $university->status ? 'checked' : '' }}>
-              <label class="form-check-label" for="status">Active</label>
-            </div>
-          </div>
+         
+
+         
+
 
           <button class="btn btn-primary">
             <i class="fas fa-save mr-2"></i>

@@ -6,9 +6,9 @@
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-          Show Level</h3>
+          Show user</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
+          <a class="btn btn-primary" href="{{route('admin.user.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -19,33 +19,31 @@
         <table class="table table-bordered table-condensed" style="width:50%">
           <tr>
             <th>ID</th>
-            <td>{{$university->id}}</td>
+            <td>{{$user->id}}</td>
           </tr>
           <tr>
             <th>Name</th>
-            <td>{{$university->name}}</td>
+            <td>{{$user->name}}</td>
           </tr>
           <tr>
-            <th>Address</th>
-            <td>{{$university->address}}</td>
+            <th>Email</th>
+            <td>{{$user->email}}</td>
           </tr>
           <tr>
-            <th>Image</th>
+            <th>Username</th>
             <td>
-              <div style="width: 100px; height: 100px; overflow: hidden;">
-                <img src="{{ asset($university->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
-              </div>
+              {{$user->username}}
             </td>
           </tr>
           <tr>
-            <th>Details</th>
-            <td>{{$university->details}}</td>
+            <th>University</th>
+            <td>@if ($user->university)
+              {{ $user->university->name }}
+          @else
+              No University Assigned
+          @endif</td>
           </tr>
-          <tr>
-            <th>Status</th>
-            <td>{{$university->status}}</td>
-          </tr>
-
+          
         </table>
 
 
