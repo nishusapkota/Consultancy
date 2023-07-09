@@ -11,7 +11,7 @@
             <div class="content-box clearfix">
                 <h1>Course Name</h1>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{route('index')}}">Home</a></li>
                     <li>Course Details</li>
                 </ul>
             </div>
@@ -35,7 +35,7 @@
                                 <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
                             </ul> -->
                             <div class="text">
-                                <h2>Taking Action For Benefits Of Education</h2>
+                                <h2></h2>
                                 <p>Eabore etsu dolore magn aliqua enim veniam quis nostrud exercitas reprehenderit voluptate sed bvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
                                 <h5>Eabore dolore magn aliqua enim veniam quis nostrud exercitas reprehenderit sint esse cillum dolore fugiat nulla pariatur excepteur sint.</h5>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elitm sed do eiusmod tempor incididunt labore ets magna aliquatenim minim veniam quis nostrud exercitation ullamco laboris nisut aliquip ex ea commod Duis aute irure dolorn reprehenderit voluptate velit esse. Excepteur sint uda occaecat cupidatat non pro sunt culpa qui officia deserunt mollit anim id est laborum sed utm pers piciatis unde omnis iste dolor nat ipsum diu enimery sed ipsum voluptatem.</p>

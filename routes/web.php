@@ -34,7 +34,7 @@ Auth::routes();
 // Route::get('/home', [SiteController::class, 'home'])->name('home')->middleware('auth');
 
 //->middleware('auth','isAdmin')
-Route::prefix('/admin')->name('admin.')->group(function(){
+Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function(){
     Route::get('/dashboard',function () {
         return view('admin.dashboard');
     })->name('dashboard');
@@ -45,7 +45,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
     Route::resource('/student-enquiry',StudentEnquiryController::class);
-   
+    
 
 });
 

@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 class SiteController extends Controller
 {
     public function index() {
+
         return view('frontend.home');
     }
     public function scholarship() {
         return view('frontend.scholarship');
     }
     public function courses() {
-        return view('frontend.courses');
+        $courses=Course::all();
+        return view('frontend.courses',compact('courses'));
     }
     public function colleges() {
         return view('frontend.colleges');

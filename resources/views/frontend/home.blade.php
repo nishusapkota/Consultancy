@@ -7,6 +7,7 @@
     <!-- banner-section -->
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
+            
             <div class="slide-item first-slide">
                 <div class="image-layer" style="background-image:{{asset('frontend/images/banner/banner-1.jpg')}}"></div>
                 <div class="auto-container">
@@ -45,7 +46,7 @@
                     </div>
             </div>
 
-            <div class="slide-item last-slide">
+            {{-- <div class="slide-item last-slide">
                 <div class="image-layer" style="background-image:{{asset('frontend/images/banner/banner-3.jpg')}}"></div>
                 <div class="auto-container">
                     <div class="content-box last-slide-content">
@@ -57,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
