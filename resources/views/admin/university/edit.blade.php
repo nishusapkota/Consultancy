@@ -25,9 +25,9 @@
           @csrf
           @method('PUT')
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $university->name }}">
-            @error('name')
+            <label for="uname">University Name</label>
+            <input type="text" name="uname" id="uname" class="form-control @error('uname') is-invalid @enderror" value="{{ $university->uname }}">
+            @error('uname')
             <small class="form-text text-danger">
               {{ $message }}
             </small>
@@ -94,6 +94,54 @@
             </small>
             @enderror
           </div>
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $university->user->name }}">
+            @error('name')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
+            @enderror
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $university->user->email }}">
+            @error('email')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="username">UserName</label>
+            <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ $university->user->username }}">
+            @error('username')
+            <small class="form-text text-danger">
+              {{ $message }}</small>
+            @enderror
+          </div> 
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
+            @error('password')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="password_confirmation">Confirm Password</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}">
+            @error('password_confirmation')
+            <small class="form-text text-danger">
+              {{ $message }}
+            </small>
+            @enderror
+          </div> 
 
          
           <div class="form-group">

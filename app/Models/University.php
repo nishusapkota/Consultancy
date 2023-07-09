@@ -11,7 +11,7 @@ class University extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'name',
+        'uname',
         'address',
         'image',
         'details',
@@ -23,7 +23,7 @@ class University extends Model
     function enquiries(){
         return $this->hasMany(StudentEnquiry::class);
     }
-    function users(){
-        return $this->hasMany(User::class);
+    function user(){
+        return $this->hasOne(User::class);
     }
 }

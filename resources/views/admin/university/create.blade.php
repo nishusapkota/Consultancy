@@ -25,9 +25,9 @@
           @endif
           @csrf
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
-            @error('name')
+            <label for="uname">University Name</label>
+            <input type="text" name="uname" id="uname" class="form-control @error('uname') is-invalid @enderror" value="{{ old('uname') }}">
+            @error('uname')
             <small class="form-text text-danger">
               {{ $message }}</small>
             @enderror
@@ -53,20 +53,16 @@
 
           <div class="form-group">
             <label for="course_id">Course</label>
-
             <div class="row d-flex mt-100">
                 <div class="col-md-6">
                     <select id="choices-multiple-remove-button" name="course_id[]"placeholder="Select course" multiple>
                         @foreach ($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
                         @endforeach
-
                     </select>
                 </div>
             </div>
-
-
-            @error('university_id')
+            @error('course_id')
                 <small class="form-text text-danger">
                     {{ $message }}
                 </small>

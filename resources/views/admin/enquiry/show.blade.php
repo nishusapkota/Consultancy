@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <th>University</th>
-                    <td>{{$enquiry->university->name}}</td>
+                    <td>{{$enquiry->university->uname}}</td>
                 </tr>
 
             </table>

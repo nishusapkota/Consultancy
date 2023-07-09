@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Level;
 use App\Models\Course;
+use App\Models\University;
 use Illuminate\Http\Request;
 use App\Models\CourseCategory;
 use App\Http\Controllers\Controller;
-use App\Models\University;
 
 class CourseController extends Controller
 {
@@ -30,7 +31,8 @@ class CourseController extends Controller
     {
         $categories = CourseCategory::all();
         $universities = University::all();
-        return view('admin.course.create', compact('categories', 'universities'));
+        $levels=Level::all();
+        return view('admin.course.create', compact('categories', 'universities','levels'));
     }
 
     /**
@@ -48,7 +50,9 @@ class CourseController extends Controller
             'image' => 'required|image|mimes:jpeg,png,gif',
             'status' => 'boolean|nullable',
             'university_id' => 'nullable|array',
-            'university_id.*' => 'exists:universities,id'
+            'university_id.*' => 'exists:universities,id',
+            'level_id' => 'nullable|array',
+            'level_id.*' => 'exists:levels,id'
         ]);
 
         if ($request->hasFile('image')) {
@@ -67,6 +71,9 @@ class CourseController extends Controller
        
         if (isset($data['university_id'])) {
             $course->universities()->attach($data['university_id']);
+        }
+        if (isset($data['level_id'])) {
+            $course->levels()->attach($data['level_id']);
         }
         return redirect()->route('admin.courses.index')->with('success', 'Course created successfully.');
     }
@@ -95,11 +102,12 @@ class CourseController extends Controller
          $course=Course::with('universities')->find($id);
         $categories = CourseCategory::all();
         $universities = University::all();
+        $levels=Level::all();
         // $selectedUni=collect($course->universities)->map(function($uni){
         //     return $uni->id;
         // });
         // dd($selectedUni);
-        return view('admin.course.edit', compact('course', 'categories', 'universities'));
+        return view('admin.course.edit', compact('course', 'categories', 'universities','levels'));
     }
 
     /**
@@ -118,7 +126,9 @@ class CourseController extends Controller
             'description' => 'required',
             'status' => 'nullable|boolean',
             'university_id' => 'array',
-            'university_id.*' => 'exists:universities,id'
+            'university_id.*' => 'exists:universities,id',
+            'level_id' => 'nullable|array',
+            'level_id.*' => 'exists:levels,id'
         ]);
         if ($request->hasFile('image')) {
             unlink(public_path($course->image));
@@ -134,6 +144,7 @@ class CourseController extends Controller
             'status' => $request->status ? 1 : 0,
         ]);
         $course->universities()->sync($request->university_id);
+        $course->levels()->sync($request->course_id);
         return redirect()->route('admin.courses.index')->with('success', 'Course updated successfully');
     }
 
@@ -149,6 +160,7 @@ class CourseController extends Controller
             unlink(public_path($course->image));
         }
         $course->universities()->detach();
+        $course->levels()->detach();
         $course->delete();
         return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully');
     }

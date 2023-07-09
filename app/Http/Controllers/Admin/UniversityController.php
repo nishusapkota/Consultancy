@@ -41,8 +41,8 @@ class UniversityController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:universities,name',
+        $data=$request->validate([
+            'uname' => 'required|unique:universities,uname',
             'address' => 'required',
             'image' => 'required|image|mimes:png,jpg',
             'details' => 'required',
@@ -60,7 +60,7 @@ class UniversityController extends Controller
         $img_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('university'), $img_name);
         $university = University::create([
-            'name' => $request->name,
+            'uname' => $request->uname,
             'address' => $request->address,
             'image' => 'university/' . $img_name,
             'details' => $request->details,
@@ -105,8 +105,7 @@ class UniversityController extends Controller
     {
         $university = University::with('courses')->find($id);
         $courses=Course::all();
-        $user=User::where('university_id',$university->id)->first();
-        return view('admin.university.edit', compact('courses','university','user'));
+        return view('admin.university.edit', compact('courses','university',));
     }
 
     /**
@@ -119,30 +118,37 @@ class UniversityController extends Controller
     public function update(Request $request, University $university)
     {
         $request->validate([
-            'name' => 'required|unique:universities,name,' . $university->id,
+            'uname' => 'required|unique:universities,uname,' . $university->id,
             'address' => 'required',
             'image' => 'image|mimes:png,jpg',
             'details' => 'required',
             'status' => 'boolean|nullable',
             'course_id' => 'array',
             'course_id.*' => 'exists:courses,id',
-
-            
+        
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $university->user->id,
+            'username' => 'required',
+            'password' => 'confirmed',
         ]);
-
         if ($request->hasFile('image')) {
             unlink(public_path($university->image));
             $image = $request->file('image');
             $img_name = $image->getClientOriginalName();
             $image->move(public_path('university'), $img_name);
         }
-
         $university->update([
-            'name' => $request->name,
+            'uname' => $request->uname,
             'address' => $request->address,
             'image' => $request->hasfile('image') ? 'university/' . $img_name : $university->image,
             'details' => $request->details,
-            'status' => $request->status
+            'status' => $request->status ? '1' :'0'
+        ]);
+        $university->user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'username'=>$request->username,
+            'password'=>Hash::make($request->password),
         ]);
         $university->courses()->sync($request->course_id);
         return redirect()->route('admin.university.index')->with('success', 'university updated successfully');

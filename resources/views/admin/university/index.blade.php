@@ -39,7 +39,7 @@
             @foreach ($universities as $university)
             <tr>
               <td>{{$university->id}}</td>
-              <td>{{$university->name}}</td>
+              <td>{{$university->uname}}</td>
               <td>{{$university->address}}</td>
               <td>
                 <div style="width: 100px; height: 100px; overflow: hidden;">

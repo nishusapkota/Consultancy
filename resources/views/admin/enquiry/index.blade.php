@@ -44,7 +44,7 @@
                             <td>{{$enquiry->address}}</td>
                             <td>{{$enquiry->level->name}}</td>
                             <td>{{$enquiry->course->name}}</td>
-                            <td>{{$enquiry->university->name}}</td>
+                            <td>{{$enquiry->university->uname}}</td>
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('admin.student-enquiry.show',$enquiry)}}"><i class="fas fa-eye"></i>Show</a>

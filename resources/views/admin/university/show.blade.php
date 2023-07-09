@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <th>Name</th>
-            <td>{{$university->name}}</td>
+            <td>{{$university->uname}}</td>
           </tr>
           <tr>
             <th>Address</th>

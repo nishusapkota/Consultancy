@@ -37,21 +37,36 @@
         </div>
 
         <div class="form-group">
-            <label for="course_id">Courses</label>
-            <div class="checkbox-list">
-                @foreach ($courses as $course)
-                <div class="checkbox">
-                    <input type="checkbox" name="course_id[]" value="{{ $course->id }}" id="course_{{ $course->id }}" {{ in_array($course->id, $level->courses->pluck('id')->toArray()) ? 'checked' : '' }}>
-                    <label for="course_{{ $course->id }}">{{ $course->name }}</label>
+            <label for="course_id">Course</label>
+            {{-- @dd($course-universities) --}}
+            <div class="row d-flex mt-100">
+                <div class="col-md-6">
+                    <select id="choices-multiple-remove-button" name="course_id[]" placeholder="Select course" multiple>
+                        @foreach ($courses as $course)
+                            <option value="{{ $course->id }}" 
+  
+                              @foreach ($level->courses as $item)
+                              {{-- @dd($item->id===$university->id) --}}
+                                  @if ($item->id===$course->id)
+                                  selected
+                                  @endif
+                              @endforeach
+                              
+                              >
+                                {{ $course->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                @endforeach
             </div>
+        
             @error('course_id')
-            <small class="form-text text-danger">
-                {{ $message }}
-            </small>
+                <small class="form-text text-danger">
+                    {{ $message }}
+                </small>
             @enderror
         </div>
+        
 
         <div class="form-group">
             <label for="status">Status</label>

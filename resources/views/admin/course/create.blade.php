@@ -67,20 +67,34 @@
 
                         <div class="form-group">
                             <label for="university_id">University</label>
-
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
                                     <select id="choices-multiple-remove-button" name="university_id[]"placeholder="Select university" multiple>
                                         @foreach ($universities as $university)
-                                            <option value="{{ $university->id }}">{{ $university->name }}</option>
+                                            <option value="{{ $university->id }}">{{ $university->uname }}</option>
                                         @endforeach
-
                                     </select>
                                 </div>
                             </div>
-
-
                             @error('university_id')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="level_id">Level</label>
+                            <div class="row d-flex mt-100">
+                                <div class="col-md-6">
+                                    <select id="choices-multiple-remove-button" name="university_id[]"placeholder="Select level" multiple>
+                                        @foreach ($levels as $level)
+                                            <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            @error('level_id')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>

@@ -47,7 +47,7 @@ class LevelController extends Controller
         ]);
        $level= Level::create([
             'name' => $request->name,
-            'status' => $request->status
+            'status' => $request->status ? '1' :'0'                                                                                                                                                                                                                 
         ]);
         
         $level->courses()->attach($request->course_id);

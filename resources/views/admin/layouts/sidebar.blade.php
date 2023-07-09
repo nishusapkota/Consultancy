@@ -9,6 +9,29 @@
       </a>
     </li>
     <li class="nav-item">
+      <a href="#" class="nav-link {{ (request()->is('admin/slider*')) ? 'active' : '' }}">
+        <i class="nav-icon far fa-envelope"></i>
+        <p>
+          Sliders
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item ">
+          <a href="{{route('admin.home.index')}}" class="nav-link {{ (request()->is('admin/slider/home*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Home Slider</p>
+          </a>
+        </li>
+        {{-- <li class="nav-item">
+          <a href="{{Route('admin.courses.index')}}" class="nav-link {{ (request()->is('admin/courses*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Course</p>
+          </a>
+        </li> --}}
+      </ul>
+    </li>
+    <li class="nav-item">
       <a href="#" class="nav-link {{ (request()->is('admin/course*')) ? 'active' : '' }}">
         <i class="nav-icon far fa-envelope"></i>
         <p>
@@ -31,12 +54,7 @@
         </li>
       </ul>
     </li>
-    <li class="nav-item">
-      <a href="{{route('admin.user.index')}}" class="nav-link {{ (request()->is('admin/user*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Users</p>
-      </a>
-    </li>
+   
     <li class="nav-item">
       <a href="{{route('admin.university.index')}}" class="nav-link {{ (request()->is('admin/university*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>

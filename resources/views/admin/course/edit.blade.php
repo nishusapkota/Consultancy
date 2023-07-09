@@ -83,7 +83,7 @@
                             @endforeach
                             
                             >
-                              {{ $university->name }}
+                              {{ $university->uname }}
                           </option>
                       @endforeach
                   </select>
@@ -97,6 +97,37 @@
           @enderror
       </div>
       
+      
+      <div class="form-group">
+        <label for="level_id">Level</label>
+        {{-- @dd($course-universities) --}}
+        <div class="row d-flex mt-100">
+            <div class="col-md-6">
+                <select id="choices-multiple-remove-button" name="level_id[]" placeholder="Select level" multiple>
+                    @foreach ($levels as $level)
+                        <option value="{{ $level->id }}" 
+
+                          @foreach ($course->levels as $item)
+                          {{-- @dd($item->id===$university->id) --}}
+                              @if ($item->id===$level->id)
+                              selected
+                              @endif
+                          @endforeach
+                          
+                          >
+                            {{ $level->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    
+        @error('level_id')
+            <small class="form-text text-danger">
+                {{ $message }}
+            </small>
+        @enderror
+    </div>
       
           <div class="form-group">
                         <label for="status">Status</label>

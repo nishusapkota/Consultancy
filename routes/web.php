@@ -4,10 +4,12 @@ use App\Models\CourseCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\Admin\HomeSlider;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
@@ -34,16 +36,16 @@ Auth::routes();
 //->middleware('auth','isAdmin')
 Route::prefix('/admin')->name('admin.')->group(function(){
     Route::get('/dashboard',function () {
-        
         return view('admin.dashboard');
     })->name('dashboard');
+    Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
     Route::resource('/student-enquiry',StudentEnquiryController::class);
-    Route::resource('/user',UserController::class);
+   
 
 });
 

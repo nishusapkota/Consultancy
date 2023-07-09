@@ -80,7 +80,7 @@
         <select name="university_id" class="form-control">
             <option>select Level-------</option>
             @foreach ($universities as $university)
-                <option value="{{ $university->id }}">{{ $university->name }}</option>
+                <option value="{{ $university->id }}">{{ $university->uname }}</option>
             @endforeach
         </select>
     </div>
