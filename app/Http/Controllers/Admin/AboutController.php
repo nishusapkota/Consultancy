@@ -146,10 +146,12 @@ class AboutController extends Controller
         }
     
     }
-    function edit_image($id){
-        $images=AboutImage::where('about_id',$id)->get();
-        dd($images);
+    function edit_image(About $about){
+        $images=$about->images();
+        // dd($images);
+        return view('admin.about.edit_image',compact('images','about'));
     }
+
 
 
     /**

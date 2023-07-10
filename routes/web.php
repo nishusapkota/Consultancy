@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
+use App\Http\Controllers\Admin\ScholarshipController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
 
@@ -34,13 +35,14 @@ Auth::routes();
 
 // Route::get('/home', [SiteController::class, 'home'])->name('home')->middleware('auth');
 
-//->middleware('auth','isAdmin')
-Route::prefix('/admin')->name('admin.')->group(function(){
+//
+Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(function(){
     Route::get('/dashboard',function () {
         return view('admin.dashboard');
     })->name('dashboard');
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
+    Route::resource('/scholarship',ScholarshipController::class);
     Route::resource('/about',AboutController::class);
     Route::get('/about/edit-image/{id}',[AboutController::class,'edit_image'])->name('about.edit_image');
     Route::resource('/course-category',CourseCategoryController::class);

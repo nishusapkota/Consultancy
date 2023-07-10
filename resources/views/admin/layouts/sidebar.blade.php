@@ -76,6 +76,13 @@
     </li>
 
     <li class="nav-item">
+      <a href="{{ route('admin.scholarship.index')}}" class="nav-link {{ (request()->is('admin/scholarship*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Scholarships</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
       <a href="{{route('admin.level.index')}}" class="nav-link {{ (request()->is('admin/level*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
         <p>Level</p>
