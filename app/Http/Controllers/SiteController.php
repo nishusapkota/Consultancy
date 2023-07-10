@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\About;
+use App\Models\AboutImage;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\HomeSlider;
@@ -17,10 +19,13 @@ class SiteController extends Controller
         //     $q->limit(3);
         // }])->get();
     $courses=Course::with('category','levels')->get();
+    $about=About::first();
         $universities=University::all();
         $blogs=Blog::all();
+        $images=AboutImage::all();
+        // dd($images);
         $homeSlider=HomeSlider::all();
-        return view('frontend.home',compact('universities','courses','blogs','homeSlider'));
+        return view('frontend.home',compact('universities','images','courses','blogs','homeSlider','about'));
     }
     public function scholarship() {
         return view('frontend.scholarship');

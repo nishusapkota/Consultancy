@@ -7,6 +7,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\HomeSlider;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\HomeSliderController;
@@ -40,6 +41,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     })->name('dashboard');
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
+    Route::resource('/about',AboutController::class);
+    Route::get('/about/edit-image/{id}',[AboutController::class,'edit_image'])->name('about.edit_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
     Route::resource('/level',LevelController::class);

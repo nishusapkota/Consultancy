@@ -7,10 +7,10 @@
     <!-- banner-section -->
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
-            @foreach ($homeSlider as $Slider)
-                @if ($Slider->extension == 'png,jpg,jpeg')
+            
+               
                     <div class="slide-item first-slide">
-                        <div class="image-layer" style="background-image: url('{{ asset($Slider->file) }}')"></div>
+                        <div class="image-layer" style="background-image: url('{{asset('frontend/images/banner/banner-3.jpg')}}')"></div>
                         <div class="auto-container">
                             <div class="content-box first-slide-content">
                                 <h5>get on the right way</h5>
@@ -23,11 +23,11 @@
                             </div>
                         </div>
                     </div>
-                @elseif ($Slider->extension == 'mp4')
+               
                     <div class="video-slide-item">
                         <section class="main-banner" id="top" data-section="section1">
                             <video autoplay muted loop id="bg-video">
-                                <source src="{{ asset($Slider->file) }}" type="video/mp4" />
+                                <source src="{{asset('frontend/images/banner/banner-3.jpg')}}" type="video/mp4" />
                             </video>
                             <div class="video-overlay header-text">
                                 <div class="video-slider-container">
@@ -42,8 +42,7 @@
                             </div>
                         </section>
                     </div>
-                @endif
-                <!--
+               
                 <div class="slide-item last-slide">
                     <div class="image-layer" style="background-image: url('{{ asset('frontend/images/banner/banner-3.jpg') }}')"></div>
                     <div class="auto-container">
@@ -57,8 +56,7 @@
                         </div>
                     </div>
                 </div>
-                -->
-            @endforeach
+           
         </div>
     </section>
     
@@ -71,25 +69,16 @@
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="banner-carousel owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
-                        <div class="custom-slide-item">
-                            <div class="image-layer"
-                                style="background: url({{ asset('frontend/images/gallery/project-2.jpg') }})">
-                            </div>
-                        </div>
+                        
+@foreach ($images as $image)
 
-                        <div class="custom-slide-item">
-                            <div class="image-layer"
-                                style="background-image: url({{ asset('frontend/images/gallery/project-1.jpg') }})">
-
-                            </div>
-                        </div>
-
-                        <div class="custom-slide-item">
-                            <div class="image-layer"
-                                style="background-image: url({{ asset('frontend/images/gallery/project-17.jpg') }})">
-
-                            </div>
-                        </div>
+<div class="custom-slide-item">
+    <div class="image-layer"
+        style="background: url('{{asset($image->image)}}')">
+    </div>
+</div>
+@endforeach
+                        
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
@@ -100,12 +89,7 @@
                                 <h2>Why study in India ?</h2>
                             </div>
                             <div class="text">
-                                <p>The Indian education system began with ancient scriptures thousands of years ago. It has
-                                    now transformed into modern-day education imparted in the finest institutions. The
-                                    network of 42,000+ colleges and 1000+ universities has aided India to become an
-                                    attractive education hub for international students. The same richness of Indian higher
-                                    education needed due focus and led to the birth of the idea of the Study in India
-                                    program.</p>
+                                <p>{{$about->description}}</p>
                             </div>
                             <div class="btn-box">
                                 <a href="{{ route('index') }}" class="theme-btn style-one">Admit Now</a>

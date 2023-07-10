@@ -61,6 +61,13 @@
         <p>Universities</p>
       </a>
     </li>
+    
+    <li class="nav-item">
+      <a href="{{route('admin.about.index')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>About</p>
+      </a>
+    </li>
     <li class="nav-item">
       <a href="{{ route('admin.blog.index')}}" class="nav-link {{ (request()->is('admin/blog*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
