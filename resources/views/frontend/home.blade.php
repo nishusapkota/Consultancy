@@ -7,59 +7,69 @@
     <!-- banner-section -->
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
+            @foreach ($homeSlider as $item)
+             
             
-               
-                    <div class="slide-item first-slide">
-                        <div class="image-layer" style="background-image: url('{{asset('frontend/images/banner/banner-3.jpg')}}')"></div>
-                        <div class="auto-container">
-                            <div class="content-box first-slide-content">
-                                <h5>get on the right way</h5>
-                                <h1>Slider 1 title information<br />here</h1>
-                                <div class="btn-box">
-                                    <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
-                                    <p class="slider-text slider-content">Anything more information on slider one is kept here</p>
-                                    <a href="{{ route('index') }}" class="theme-btn style-one">Admit Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               
-                    <div class="video-slide-item">
-                        <section class="main-banner" id="top" data-section="section1">
-                            <video autoplay muted loop id="bg-video">
-                                <source src="{{asset('frontend/images/banner/banner-3.jpg')}}" type="video/mp4" />
-                            </video>
-                            <div class="video-overlay header-text">
-                                <div class="video-slider-container">
-                                    <div class="video-slider-content">
-                                        <h1 class="video-content-title">Slider 2 title information <br />here</h1>
-                                        <p class="slider-text slider-content">Anything more information on slider two is kept here</p>
-                                        <div class="btn-box">
-                                            <a href="{{ route('index') }}" class="theme-btn style-one">Apply Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-               
-                <div class="slide-item last-slide">
-                    <div class="image-layer" style="background-image: url('{{ asset('frontend/images/banner/banner-3.jpg') }}')"></div>
-                    <div class="auto-container">
-                        <div class="content-box last-slide-content">
-                            <h5>get on the right way</h5>
-                            <h1>Slider 3 title information<br> here</h1>
-                            <p class="slider-text slider-content">Anything more information on slider one is kept here</p>
-                            <div class="btn-box">
-                                <a href="{{ route('index') }}" class="theme-btn style-one mr-10">Admit Now</a>
-                            </div>
+            @if ($item->extension=='jpg'||$item->extension=='JPG'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='PNG'||$item->extension=='JPEG')
+                
+            <div class="slide-item ">
+                <div class="image-layer" style="background-image: url('{{ asset($item->file) }}')">
+                </div>
+                <div class="auto-container">
+                    <div class="content-box ">
+                        <h5>{{$item->sub_heading}}</h5>
+                        <h1>{{$item->title}}</h1>
+                        <div class="btn-box">
+                            <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
+                            <p class="slider-text slider-content">{{$item->description}}</p>
+                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a>
                         </div>
                     </div>
                 </div>
-           
+            </div>
+            @endif
+            @if ($item->extension=='mp4'||$item->extension=='MP4'||$item->extension=='MOV'||$item->extension=='movs')
+                
+            <div class="video-slide-item">
+                <section class="main-banner" id="top" data-section="section1">
+                    <video autoplay muted loop id="bg-video">
+                        <source src="{{ asset($item->file) }}" type="video/mp4" />
+                    </video>
+                    <div class="video-overlay header-text">
+                        <div class="video-slider-container">
+                            <div class="video-slider-content">
+                                <h5>{{$item->sub_heading}}</h5>
+                                <h1 class="video-content-title">{{$item->title}}</h1>
+                                <p class="slider-text slider-content">{{$item->description}}
+                                </p>
+                                <div class="btn-box">
+                                    <a href="{{ route('apply') }}" class="theme-btn style-one">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            @endif
+        @endforeach 
+            {{-- <div class="slide-item">
+                <div class="image-layer"
+                    style="background-image: url('{{ asset('frontend/images/banner/banner-3.jpg') }}')"></div>
+                <div class="auto-container">
+                    <div class="content-box ">
+                        <h5>get on the right way</h5>
+                        <h1>Slider 3 title information<br> here</h1>
+                        <p class="slider-text slider-content">Anything more information on slider one is kept here</p>
+                        <div class="btn-box">
+                            <a href="{{ route('index') }}" class="theme-btn style-one mr-10">Admit Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
         </div>
     </section>
-    
+
     <!-- banner-section end -->
 
 
@@ -67,21 +77,19 @@
     <section class="about-section bg-color-1">
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-12">
                     <div class="banner-carousel owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
-                        
-@foreach ($images as $image)
 
-<div class="custom-slide-item">
-    <div class="image-layer"
-        style="background: url('{{asset($image->image)}}')">
-    </div>
-</div>
-@endforeach
-                        
+                        @foreach ($images as $image)
+                            <div class="custom-slide-item">
+                                <div class="image-layer" style="background: url('{{ asset($image->image) }}')">
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                <div class="col-12 content-column">
                     <div id="content_block_one">
                         <div class="content-box">
                             <div class="sec-title left">
@@ -89,9 +97,9 @@
                                 <h2>Why study in India ?</h2>
                             </div>
                             <div class="text">
-                                <p>{{$about->description}}</p>
+                                <p>{{ $about ? $about->description : null }}</p>
                             </div>
-                            <div class="btn-box">
+                            <div class="btn-box d-flex justify-content-center flex-nowrap">
                                 <a href="{{ route('index') }}" class="theme-btn style-one">Admit Now</a>
                             </div>
                         </div>
@@ -115,40 +123,39 @@
             </div>
             <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
                 @foreach ($universities as $university)
-                <div class="uni-container">
-                    <div class="news-block-one">
-                        {{-- route('college-detail', Crypt::encrypt($university->id)) --}}
-                        <div class="rounded inner-div">
-                            <figure class="image-box"><a
-                                    href="{{route('college-detail', Crypt::encrypt($university->id))}}"><img
-                                        src="{{ asset($university->image) }}" class="uni-image"
-                                        alt=""></a></figure>
-                            <div class="lower-content uni-lower-content">
-                                {{-- <ul class="post-info">
+                    <div class="uni-container">
+                        <div class="news-block-one">
+                            {{-- route('college-detail', Crypt::encrypt($university->id)) --}}
+                            <div class="rounded inner-div">
+                                <figure class="image-box"><a
+                                        href="{{ route('college-detail', Crypt::encrypt($university->id)) }}"><img
+                                            src="{{ asset($university->image) }}" class="uni-image" alt=""></a>
+                                </figure>
+                                <div class="lower-content uni-lower-content">
+                                    {{-- <ul class="post-info">
                                     <li>ESTD. 1997</li>
                                 </ul> --}}
-                                <h3 class="uni-title-main"><a
-                                        href="{{route('college-detail', Crypt::encrypt($university->id))}}"
-                                        class="uni--title">{{$university->uname}}</a></h3>
-                                <div class="link view-course"><a
-                                        href="{{route('courses')}}"><i
-                                            class="fas fa-arrow-right uni-icon"></i><span>View all Courses and
-                                            Fees</span></a></div>
+                                    <h3 class="uni-title-main"><a
+                                            href="{{ route('college-detail', Crypt::encrypt($university->id)) }}"
+                                            class="uni--title">{{ $university->uname }}</a></h3>
+                                    <div class="link view-course"><a href="{{ route('courses') }}"><i
+                                                class="fas fa-arrow-right uni-icon "></i><span>View all Courses and
+                                                Fees</span></a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
-                
 
-                
+
+
 
             </div>
 
 
 
             <div class="btn-box d-flex align-items-center justify-content-center mt-4">
-                <a href="{{route('college')}}" class="theme-btn style-one mb-4">View all</a>
+                <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
             </div>
         </div>
     </section>
@@ -170,36 +177,35 @@
             </div>
             <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
                 @foreach ($courses as $course)
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset($course->image) }}"
-                                alt=""></figure>
-                        <div class="lower-content">
-                            <div class="content-box">
-                                <h3 class="course-title"><a href="{{ route('index') }}">{{$course->name}}</a></h3>
-                                <span class="designation">
-                                    @forelse ($course->levels as $level)
-                                    @if ($loop->last)
-                                    {{$level->name}}
-                                    @endif
-                                        {{$level->name}},
-                                    @empty
-                                        
-                                    @endforelse
-                                </span>
-                            </div>
-                            <div class="ovellay-box">
-                                <a href="{{ route('course-detail',Crypt::encrypt($course->id)) }}" class="theme-btn style-one">View Details</a>
+                    <div class="team-block-one">
+                        <div class="inner-box">
+                            <figure class="image-box"><img src="{{ asset($course->image) }}" alt=""></figure>
+                            <div class="lower-content">
+                                <div class="content-box">
+                                    <h3 class="course-title"><a href="{{ route('index') }}">{{ $course->name }}</a></h3>
+                                    <span class="designation">
+                                        @forelse ($course->levels as $level)
+                                            @if ($loop->last)
+                                                {{ $level->name }}
+                                            @endif
+                                            {{ $level->name }},
+                                        @empty
+                                        @endforelse
+                                    </span>
+                                </div>
+                                <div class="ovellay-box">
+                                    <a href="{{ route('course-detail', Crypt::encrypt($course->id)) }}"
+                                        class="theme-btn style-one">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
-               
-                
-                
-                
-                
+
+
+
+
+
 
             </div>
         </div>
@@ -223,8 +229,8 @@
                         <div class="lower-content">
                             <div class="inner">
                                 <h3>Scholarship Title</h3>
-                                <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p>
+                                {{-- <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
+                                    sed incidunt.</p> --}}
                                 <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
                                         More</span></a>
                             </div>
@@ -317,36 +323,39 @@
             <div class="sec-title centred">
                 <h5>Read the blogs</h5>
                 <h2>Blog</h2>
-                <p class="blog-text">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu
-                    Nullam arcu liquam here was consequat.</p>
+                {{-- <p class="blog-text">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu
+                    Nullam arcu liquam here was consequat.</p> --}}
             </div>
             <div class="row clearfix">
                 @foreach ($blogs as $blog)
-                <div class="col-lg-4 col-md-6 col-sm-12 news-block">
-                    <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="00ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <figure class="image-box"><a href="{{ route('blog-detail',Crypt::encrypt($blog->id)) }}"><img
-                                        src="{{ asset($blog->image) }}" alt=""></a></figure>
-                            <div class="lower-content">
-                                {{-- <ul class="post-info">
+                    <div class="col-lg-4 col-md-6 col-sm-12 news-block">
+                        <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="00ms"
+                            data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <figure class="image-box"><a
+                                        href="{{ route('blog-detail', Crypt::encrypt($blog->id)) }}"><img
+                                            src="{{ asset($blog->image) }}" alt=""></a></figure>
+                                <div class="lower-content">
+                                    {{-- <ul class="post-info">
                                     <li>August 25, 2028</li>
                                 </ul> --}}
-                                <h3><a href="{{ route('blog-detail',Crypt::encrypt($blog->id)) }}">{{$blog->title}}</a></h3>
-                                <p>{{$blog->short_description}}</p>
-                                <div class="link"><a href="{{ route('blog-detail',Crypt::encrypt($blog->id)) }}"><i
-                                            class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                                    <h3><a
+                                            href="{{ route('blog-detail', Crypt::encrypt($blog->id)) }}">{{ $blog->title }}</a>
+                                    </h3>
+                                    <p>{{ $blog->short_description }}</p>
+                                    <div class="link"><a href="{{ route('blog-detail', Crypt::encrypt($blog->id)) }}"><i
+                                                class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
-                
-               
+
+
 
             </div>
             <div class="btn-box blog-door">
-                <a href="{{route('blog')}}" class="theme-btn style-one">Load More</a>
+                <a href="{{ route('blog') }}" class="theme-btn style-one">Load More</a>
             </div>
         </div>
     </section>

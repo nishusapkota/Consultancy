@@ -23,13 +23,13 @@
         <div class="auto-container">
             <div class="title-box">
                 <div class="row clearfix">
-                    <div class="col-lg-6 col-md-6 col-sm-12 title-column">
+                    <div class="col-md-6 col-sm-12 title-column">
                         <div class="sec-title right">
                             <h5>What we provides</h5>
                             <h2>Get Exceptional <br />Education For Knowledge</h2>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 text-column">
+                    <div class="col-md-6 col-sm-12 text-column">
                         <div class="text">
                             <p>
                                 Tempor incididunt ut labore et dolore magna aliquat enim
@@ -136,7 +136,7 @@
     <!-- service-section end -->
 
     <!-- form-section -->
-    <section class="support-section service-page-1">
+    <section class="support-section service-page-1 mt-5">
         <div class="auto-container">
             <div class="inner-container">
                 <div class="row clearfix">

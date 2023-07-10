@@ -54,8 +54,8 @@ class HomeSliderController extends Controller
         }
         HomeSlider::create([
             'title' => $request->title,
-            'description' => $request->description ?: null,
-            'sub_heading' => $request->sub_heading ?: null,
+            'description' => $request->description,
+            'sub_heading' => $request->sub_heading,
             'file' => $ext == 'mp4' ? 'slider/video/' . $file_name : 'slider/image/' . $file_name,
             'extension' => $ext
         ]);
@@ -92,9 +92,42 @@ class HomeSliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HomeSlider $slider)
+    public function update(Request $request, $id)
     {
-        return "hello";
+        $request->validate([
+            'title' => 'required',
+            'sub_heading' => 'nullable',
+            'description' => 'nullable|max:100',
+            'file' => 'nullable|mimes:png,jpg,jpeg,mp4,mov,mkv',
+        ]);
+        $slider=HomeSlider::find($id);
+        if (!$slider) {
+            return redirect()->back()->with('error', 'Slider Not Found');
+        }
+        if ($request->hasFile('file')) {
+            unlink(public_path($slider->file));
+            $file_name = time() . '_' . $request->file('file')->getClientOriginalName();
+            $ext = $request->file('file')->getClientOriginalExtension();
+            $request->file('file')->move(public_path('slider'), $file_name);
+
+            $data=[
+                'title' => $request->title,
+                'description' => $request->description,
+                'sub_heading' => $request->sub_heading,
+                'file' => 'slider/' . $file_name,
+                'extension' => $ext
+            ];
+        }else {
+            $data=[
+                'title' => $request->title,
+                'description' => $request->description,
+                'sub_heading' => $request->sub_heading ,
+            ];
+        }
+        
+        $slider->update($data);
+
+        return redirect()->route('admin.home.index')->with('success', 'Slider Has Been Updated created successfully');
     }
 
     /**
