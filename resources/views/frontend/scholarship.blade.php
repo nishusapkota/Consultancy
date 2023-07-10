@@ -122,13 +122,13 @@
                 <div class="news-block-one">
                 
                     <div class="">
-                        <figure class="image-box"><a href="{{route('college-detail')}}"><img src="{{asset('frontend/images/University/bangalore.jpeg')}}" class="uni-image" alt=""></a></figure>
+                        <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/University/bangalore.jpeg')}}" class="uni-image" alt=""></a></figure>
                         <div class="lower-content uni-lower-content">
                             <ul class="post-info">
                                 <li>ESTD. 1997</li>
                             </ul>
-                            <h3 class="uni-title-main"><a href="{{route('college-detail')}}" class="uni--title">Bangalore Technological Institute</a></h3>
-                            <div class="link view-course"><a href="{{route('college-detail')}}"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
+                            <h3 class="uni-title-main"><a href="#" class="uni--title">Bangalore Technological Institute</a></h3>
+                            <div class="link view-course"><a href="#"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -137,13 +137,13 @@
             <div class="uni-container">
                 <div class="news-block-one">
                     <div class="">
-                        <figure class="image-box"><a href="{{route('college-detail')}}"><img src="{{asset('frontend/images/University/gurunanak.jpeg')}}" class="uni-image" alt=""></a></figure>
+                        <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/University/gurunanak.jpeg')}}" class="uni-image" alt=""></a></figure>
                         <div class="lower-content uni-lower-content">
                             <ul class="post-info">
                                 <li>ESTD. 1997</li>
                             </ul>
-                            <h3 class="uni-title-main"><a href="{{route('college-detail')}}" class="uni--title">Guru Nanak Institutions</a></h3>
-                            <div class="link view-course"><a href="{{route('college-detail')}}"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
+                            <h3 class="uni-title-main"><a href="#" class="uni--title">Guru Nanak Institutions</a></h3>
+                            <div class="link view-course"><a href="#"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -153,13 +153,13 @@
                 <div class="news-block-one inner-uni">
 
                     <div class="rounded inner-div">
-                        <figure class="image-box"><a href="{{route('college-detail')}}"><img src="{{asset('frontend/images/University/Anna.jpeg')}}" alt="" class="uni-image"></a></figure>
+                        <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/University/Anna.jpeg')}}" alt="" class="uni-image"></a></figure>
                         <div class="lower-content uni-lower-content">
                             <ul class="post-info">
                                 <li>ESTD. 1978</li>
                             </ul>
-                            <h3 class="uni-title-main"><a href="{{route('college-detail')}}"  class="uni--title">Anna University</a></h3>
-                            <div class="link view-course"><a href="{{route('college-detail')}}.html"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
+                            <h3 class="uni-title-main"><a href="#"  class="uni--title">Anna University</a></h3>
+                            <div class="link view-course"><a href="#.html"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -169,13 +169,13 @@
                 <div class="news-block-one">
                 
                     <div class="">
-                        <figure class="image-box"><a href="{{route('college-detail')}}"><img src="{{asset('frontend/images/University/Ambedkar.jpeg')}}" class="uni-image" alt=""></a></figure>
+                        <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/University/Ambedkar.jpeg')}}" class="uni-image" alt=""></a></figure>
                         <div class="lower-content uni-lower-content">
                             <ul class="post-info">
                                 <li>ESTD. 1979</li>
                             </ul>
-                            <h3 class="uni-title-main"><a href="{{route('college-detail')}}" class="uni--title">Dr. Amberdkar Institue of Technology</a></h3>
-                            <div class="link view-course"><a href="{{route('college-detail')}}"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
+                            <h3 class="uni-title-main"><a href="#" class="uni--title">Dr. Amberdkar Institue of Technology</a></h3>
+                            <div class="link view-course"><a href="#"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -210,11 +210,11 @@
                     <figure class="image-box"><img src="{{asset('frontend/images/courses/B.E E&C.jpg')}}" alt=""></figure>
                     <div class="lower-content">
                         <div class="content-box">
-                            <h3 class="course-title"><a href="{{route('course-detail')}}">Bachelor of Engineering in Electronics and Communication </a></h3>
+                            <h3 class="course-title"><a href="#">Bachelor of Engineering in Electronics and Communication </a></h3>
                             <span class="designation">(B.E. E&C)</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{route('course-detail')}}" class="theme-btn style-one">View Details</a>
+                            <a href="#" class="theme-btn style-one">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -224,11 +224,11 @@
                     <figure class="image-box"><img src="{{asset('frontend/images/courses/BBA.jpg')}}" alt=""></figure>
                     <div class="lower-content">
                         <div class="content-box">
-                            <h3 class="course-title"><a href="{{route('course-detail')}}">Bachelors in Business Administration</a></h3>
+                            <h3 class="course-title"><a href="#">Bachelors in Business Administration</a></h3>
                             <span class="designation">(BBA)</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{route('course-detail')}}" class="theme-btn style-one">View Details</a>
+                            <a href="#" class="theme-btn style-one">View Details</a>
                            
                         </div>
                     </div>
@@ -239,11 +239,11 @@
                     <figure class="image-box"><img src="{{asset('frontend/images/courses/MBA.jpg')}}" alt=""></figure>
                     <div class="lower-content">
                         <div class="content-box">
-                            <h3 class="course-title"><a href="{{route('course-detail')}}">Master in Business Administration</a></h3>
+                            <h3 class="course-title"><a href="#">Master in Business Administration</a></h3>
                             <span class="designation">(MBA)</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{route('course-detail')}}" class="theme-btn style-one">View Details</a>
+                            <a href="#" class="theme-btn style-one">View Details</a>
                             
                         </div>
                     </div>
@@ -254,11 +254,11 @@
                     <figure class="image-box"><img src="{{asset('frontend/images/courses/BBA.jpg')}}" alt=""></figure>
                     <div class="lower-content">
                         <div class="content-box">
-                            <h3 class="course-title"><a href="{{route('course-detail')}}">Master of Science in Information Technology</a></h3>
+                            <h3 class="course-title"><a href="#">Master of Science in Information Technology</a></h3>
                             <span class="designation">(MSIT)</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{route('course-detail')}}" class="theme-btn style-one">View Details</a>
+                            <a href="#" class="theme-btn style-one">View Details</a>
                             
                         </div>
                     </div>
@@ -269,11 +269,11 @@
                     <figure class="image-box"><img src="{{asset('frontend/images/courses/DBA.jpg')}}" alt=""></figure>
                     <div class="lower-content">
                         <div class="content-box">
-                            <h3 class="course-title"><a href="{{route('course-detail')}}">Doctorate of Business Administration</a></h3>
+                            <h3 class="course-title"><a href="#">Doctorate of Business Administration</a></h3>
                             <span class="designation">(DBA)</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{route('course-detail')}}" class="theme-btn style-one">View Details</a>
+                            <a href="#" class="theme-btn style-one">View Details</a>
                            
                         </div>
                     </div>
@@ -387,14 +387,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 news-block">
                     <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image-box"><a href="{{route('blog-detail')}}"><img src="{{asset('frontend/images/blogs/first.jpg')}}" alt=""></a></figure>
+                            <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/blogs/first.jpg')}}" alt=""></a></figure>
                             <div class="lower-content">
                                 <ul class="post-info">
                                     <li>August 25, 2028</li>
                                 </ul>
-                                <h3><a href="{{route('blog-detail')}}">Some say education is the process of gaining information is nation.</a></h3>
+                                <h3><a href="#">Some say education is the process of gaining information is nation.</a></h3>
                                 <p>Exea conse quat duis irurey dolor sed reprehen derit volupta velit cilum lorem incididunt labore sed magna exceptur aliqua.</p>
-                                <div class="link"><a href="{{route('blog-detail')}}"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                                <div class="link"><a href="#"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
                             </div>
                         </div>
                     </div>
@@ -402,14 +402,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 news-block">
                     <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image-box"><a href="{{route('blog-detail')}}"><img src="{{asset('frontend/images/blogs/second.jpg')}}" alt=""></a></figure>
+                            <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/blogs/second.jpg')}}" alt=""></a></figure>
                             <div class="lower-content">
                                 <ul class="post-info">
                                     <li>August 25, 2018</li>
                                 </ul>
-                                <h3><a href="{{route('blog-detail')}}">Education gives us a knowledge of the world around us and changes</a></h3>
+                                <h3><a href="#">Education gives us a knowledge of the world around us and changes</a></h3>
                                 <p>Exea conse quat duis irurey dolor sed reprehen derit volupta velit cilum lorem incididunt labore sed magna exceptur aliqua.</p>
-                                <div class="link"><a href="{{route('blog-detail')}}"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                                <div class="link"><a href="#"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
                             </div>
                         </div>
                     </div>
@@ -417,14 +417,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 news-block">
                     <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image-box"><a href="{{route('blog-detail')}}"><img src="{{asset('frontend/images/blogs/third.jpg')}}" alt=""></a></figure>
+                            <figure class="image-box"><a href="#"><img src="{{asset('frontend/images/blogs/third.jpg')}}" alt=""></a></figure>
                             <div class="lower-content">
                                 <ul class="post-info">
                                     <li>August 25, 2018</li>
                                 </ul>
-                                <h3><a href="{{route('blog-detail')}}">One thing I wish I can do is, to provide education for all child left behind</a></h3>
+                                <h3><a href="#">One thing I wish I can do is, to provide education for all child left behind</a></h3>
                                 <p>Exea conse quat duis irurey dolor sed reprehen derit volupta velit cilum lorem incididunt labore sed magna exceptur aliqua.</p>
-                                <div class="link"><a href="{{route('blog-detail')}}"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                                <div class="link"><a href="#"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
                             </div>
                         </div>
                     </div>
