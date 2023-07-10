@@ -38,10 +38,12 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $data = $request->validate([
             'title' => 'required',
             'short_description' => 'required',
             'body' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
             'extra' => 'required',
             'status' => 'nullable|boolean'
         ]);
@@ -51,9 +53,15 @@ class BlogController extends Controller
             $slug = Str::slug($request->title) . '-' . $counter;
             $counter++;
         }
+        if ($request->hasFile('image')) {
+            $img_name = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('blog'), $img_name);
+        }
+
         Blog::create([
             'title' => $request->title,
             'slug' => $slug,
+            'image'=>'blog/'.$img_name,
             'short_description' => $request->short_description,
             'body' => $request->body,
             'extra' => $request->extra,
@@ -97,6 +105,7 @@ class BlogController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'short_description' => 'required',
+            'image'=>'nullable',
             'body' => 'required',
             'extra' => 'required',
             'status' => 'nullable|boolean'
@@ -107,9 +116,16 @@ class BlogController extends Controller
             $slug = Str::slug($request->title) . '-' . $counter;
             $counter++;
         }
+        if ($request->hasFile('image')) {
+            unlink(public_path($blog->image));
+            $image = $request->file('image');
+            $img_name = $image->getClientOriginalName();
+            $image->move(public_path('blog'), $img_name);
+        }
         $blog->update([
             'title' => $request->title,
             'slug' => $slug,
+            'image' => $request->hasfile('image') ? 'blog/' . $img_name : $blog->image,
             'short_description' => $request->short_description,
             'body' => $request->body,
             'extra' => $request->extra,

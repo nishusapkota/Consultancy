@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <!--Page Title-->
-    <section class="page-title centred" style="background-image: {{ asset('frontend/images/background/page-title-2.jpg') }}">
+    <section class="page-title centred" style="background-image:  {{asset('frontend/images/background/page-title-3.jpg')}}}">
         <div class="auto-container">
             <div class="content-box clearfix">
                 <h1>Our Provided Course</h1>
@@ -57,28 +57,14 @@
                             </header>
                             <div class="filter-content collapse" id="collapseExample2">
                                 <div class="card-body">
+                                    @foreach ($levels as $level)
                                     <label class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadio"
-                                            value="bachelor" />
-                                        <span class="form-check-label"> Bachelor </span>
-                                    </label>
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadio" value="master" />
-                                        <span class="form-check-label"> Masters </span>
-                                    </label>
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadio"
-                                            value="doctorate" />
-                                        <span class="form-check-label">
-                                            Doctorate
-                                        </span>
-                                    </label>
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadio" value="phd" />
-                                        <span class="form-check-label">
-                                            PhD
-                                        </span>
-                                    </label>
+                                            value="{{$level->id}}" />
+                                        <span class="form-check-label"> {{$level->name}} </span>
+                                    </label> 
+                                        @endforeach
+                                 
                                 </div>
                                 <!-- card-body.// -->
                             </div>
@@ -95,31 +81,18 @@
                             <div class="filter-content collapse" id="collapseExample">
                                 <div class="card-body">
                                     <form>
+                                        @foreach ($courses as $course)
                                         <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="bba" />
-                                            <span class="form-check-label"> BBA </span>
+                                            <input class="form-check-input" type="checkbox" value="{{$course->id}}" />
+                                            <span class="form-check-label">{{$course->name}}</span>
                                         </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="mba" />
-                                            <span class="form-check-label"> MBA </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="msit" />
-                                            <span class="form-check-label"> MSIT </span>
-                                        </label>
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="dba" />
-                                            <span class="form-check-label"> DBA </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="be" />
-                                            <span class="form-check-label"> BE E&C </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <!-- form-check.// -->
+                                        @endforeach
+                                        
+                                        
+                                        
+                                        
+                                        
+    
                                     </form>
                                 </div>
                                 <!-- card-body.// -->
@@ -137,99 +110,25 @@
               <div class="team-block-one">
                 <div class="inner-box">
                     <figure class="image-box">
-                        <img src="{{ asset('$course->image') }}" alt="" />
+                        <img src="{{ asset($course->image) }}" alt="" />
                     </figure>
                     <div class="lower-content">
                         <div class="content-box">
                             <h3 class="course-title">
-                                <a href="{{ route('course-detail',) }}">Bachelor of Engineering in Electronics and
-                                    Communication
+                                <a href="{{ route('course-detail', Crypt::encrypt($course->id)) }}">{{$course->name}}
                                 </a>
                             </h3>
-                            <span class="designation">(B.E. E&C)</span>
+                            <span class="designation">({{$course->category->name}})</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{ route('course-detail') }}" class="theme-btn style-one">View Details</a>
+                            <a href="{{ route('course-detail', Crypt::encrypt($course->id)) }}" class="theme-btn style-one">View Details</a>
                         </div>
                     </div>
                 </div>
             </div>
               @endforeach
                 
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="{{ asset('frontend/images/courses/BBA.jpg') }}" alt="" />
-                        </figure>
-                        <div class="lower-content">
-                            <div class="content-box">
-                                <h3 class="course-title">
-                                    <a href="{{ route('course-detail') }}">Bachelors in Business Administration</a>
-                                </h3>
-                                <span class="designation">(BBA)</span>
-                            </div>
-                            <div class="ovellay-box">
-                                <a href="{{ route('course-detail') }}" class="theme-btn style-one">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="{{ asset('frontend/images/courses/MBA.jpg') }}" alt="" />
-                        </figure>
-                        <div class="lower-content">
-                            <div class="content-box">
-                                <h3 class="course-title">
-                                    <a href="{{ route('course-detail') }}">Master in Business Administration</a>
-                                </h3>
-                                <span class="designation">(MBA)</span>
-                            </div>
-                            <div class="ovellay-box">
-                                <a href="{{ route('course-detail') }}" class="theme-btn style-one">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="{{ asset('frontend/images/courses/BBA.jpg') }}" alt="" />
-                        </figure>
-                        <div class="lower-content">
-                            <div class="content-box">
-                                <h3 class="course-title">
-                                    <a href="{{ route('course-detail') }}">Master of Science in Information Technology</a>
-                                </h3>
-                                <span class="designation">(MSIT)</span>
-                            </div>
-                            <div class="ovellay-box">
-                                <a href="{{ route('course-detail') }}" class="theme-btn style-one">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="{{ asset('frontend/images/courses/B.E E&C.jpg') }}" alt="" />
-                        </figure>
-                        <div class="lower-content">
-                            <div class="content-box">
-                                <h3 class="course-title">
-                                    <a href="{{ route('course-detail') }}">Bachelor of Engineering in Electronics and
-                                        Communication
-                                    </a>
-                                </h3>
-                                <span class="designation">(B.E. E&C)</span>
-                            </div>
-                            <div class="ovellay-box">
-                                <a href="{{ route('course-detail') }}" class="theme-btn style-one">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
             </div>
         </div>
@@ -265,19 +164,20 @@
                                 <div class="form-group">
                                     <select>
                                         <option selected disabled>Select Level</option>
-                                        <option>Bachelor</option>
-                                        <option>Masters</option>
-                                        <option>Doctorate</option>
-                                        <option>PhD</option>
+                                        @foreach ($levels as $level)
+                                        <option value="{{$level->id}}">{{$level->name}}</option>
+                                        @endforeach
+                                        
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <select>
                                         <option selected disabled>Select Course</option>
-                                        <option>BBA</option>
-                                        <option>MBA</option>
-                                        <option>DBA</option>
-                                        <option>MSIT</option>
+                                        @foreach ($courses as $course)
+                                        <option value="{{$course->id}}">{{$course->name}}</option>
+                                        @endforeach
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">

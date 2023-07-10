@@ -1,4 +1,11 @@
 @extends('admin.layout')
+@push('style')
+    <style>
+        .ck-content{
+            height: 500px;
+        }
+    </style>
+@endpush
 @section('content')
 <section class="content">
   <div class="container-fluid">
@@ -16,7 +23,7 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.blog.store') }}">
+        <form method="post" action="{{ route('admin.blog.store') }}" enctype="multipart/form-data">
         @if($errors->any())
             <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
@@ -42,14 +49,25 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="body">Body</label>
-            <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror" rows="4"></textarea>
+            <label for="body"> Body</label>
+            <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror"
+                rows="4"></textarea>
             @error('body')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
+                <small class="form-text text-danger">
+                    {{ $message }}
+                </small>
             @enderror
-          </div>
+              </div>
+
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" name="image" id="image"
+                    class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
+                @error('image')
+                    <small class="form-text text-danger">
+                        {{ $message }}</small>
+                @enderror
+            </div>
           <div class="form-group">
             <label for="extra">Extra</label>
             <textarea name="extra" id="extra" class="form-control @error('extra')is-invalid @enderror" rows="4"></textarea>
@@ -80,4 +98,15 @@
 
   </div>
 </section>
+@endsection
+@section('scripts')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#body' ) )
+            .catch( error => {
+                console.error( error );
+            } );// Increase the number of rows
+var textareaElement = document.querySelector('#body');
+textareaElement.setAttribute('rows', '500');
+    </script>
 @endsection

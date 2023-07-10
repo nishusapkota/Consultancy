@@ -28,7 +28,7 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
     <div class="col-12content-side">
       <div class="blog-details-content">
         <figure class="image-box">
-          <img src="{{asset('frontend/images/news/news-20.jpg')}}" alt="" />
+          <img src="{{asset($blog->image)}}" alt="" />
         </figure>
         <div class="inner-box">
           <ul class="post-info clearfix">
@@ -38,37 +38,7 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
             </li>
           </ul>
           <div class="text">
-            <h2>Taking Action For Benefits Of Education</h2>
-            <p>
-              Eabore etsu dolore magn aliqua enim veniam quis nostrud
-              exercitas reprehenderit voluptate sed bvelit esse cillum
-              dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non.
-            </p>
-            <h5>
-              Eabore dolore magn aliqua enim veniam quis nostrud exercitas
-              reprehenderit sint esse cillum dolore fugiat nulla pariatur
-              excepteur sint.
-            </h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elitm
-              sed do eiusmod tempor incididunt labore ets magna
-              aliquatenim minim veniam quis nostrud exercitation ullamco
-              laboris nisut aliquip ex ea commod Duis aute irure dolorn
-              reprehenderit voluptate velit esse. Excepteur sint uda
-              occaecat cupidatat non pro sunt culpa qui officia deserunt
-              mollit anim id est laborum sed utm pers piciatis unde omnis
-              iste dolor nat ipsum diu enimery sed ipsum voluptatem.
-            </p>
-            <h3>How to become a top conference speaker?</h3>
-            <p>
-              Magna aliquatenim minim veniam quis nostrud
-              <span>exercitation ullamco laboris nisut</span> aliquip exa
-              commod Duis aute irure dolorn reprehenderit voluptate velit
-              es. Excepteur sint uda occaecat cupidatat non proid sunt
-              culpa qui officia deserunt mollit anim id est laborum sed
-              utms.
-            </p>
+            {!!$blog->body!!}
           </div>
           <div class="two-column">
             <div class="row clearfix">

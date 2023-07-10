@@ -46,7 +46,7 @@
                   <img src="{{ asset($university->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
                 </div>
               </td>
-              <td>{{$university->details}}</td>
+              <td>{!!$university->details!!}</td>
               <td>{{$university->status}}</td>
               <td>
 

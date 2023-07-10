@@ -1,4 +1,11 @@
 @extends('admin.layout')
+@push('style')
+    <style>
+        .ck-content{
+            height: 500px;
+        }
+    </style>
+@endpush
 @section('content')
 <section class="content">
   <div class="container-fluid">
@@ -145,4 +152,15 @@
 
   </div>
 </section>
+@endsection
+@section('scripts')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#details' ) )
+            .catch( error => {
+                console.error( error );
+            } );// Increase the number of rows
+var textareaElement = document.querySelector('#details');
+textareaElement.setAttribute('rows', '500');
+    </script>
 @endsection

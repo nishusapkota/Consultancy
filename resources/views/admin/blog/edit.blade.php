@@ -1,4 +1,11 @@
 @extends('admin.layout')
+@push('style')
+    <style>
+        .ck-content{
+            height: 500px;
+        }
+    </style>
+@endpush
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -16,7 +23,7 @@
             </div>
 
             <div class="card-body">
-                <form method="post" action="{{ route('admin.blog.update',$blog) }}">
+                <form method="post" action="{{ route('admin.blog.update',$blog) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     @if($errors->any())
@@ -45,12 +52,23 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="body">Body</label>
-                        <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror" rows="4">{{$blog->body}}</textarea>
+                        <label for="body"> Body</label>
+                        <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror"
+                            rows="4">{!!$blog->body!!}</textarea>
                         @error('body')
-                        <small class="form-text text-danger">
-                            {{ $message }}
-                        </small>
+                            <small class="form-text text-danger">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                          </div>
+
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" name="image" id="image"
+                            class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
+                        @error('image')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -83,4 +101,15 @@
 
     </div>
 </section>
+@endsection
+@section('scripts')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#body' ) )
+            .catch( error => {
+                console.error( error );
+            } );// Increase the number of rows
+var textareaElement = document.querySelector('#body');
+textareaElement.setAttribute('rows', '500');
+    </script>
 @endsection

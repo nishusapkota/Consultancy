@@ -12,6 +12,7 @@ class Blog extends Model
         'title',
         'slug',
         'short_description',
+        'image',
         'body',
         'extra',
         'status'
