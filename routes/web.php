@@ -12,9 +12,13 @@ use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
+
 use App\Http\Controllers\Admin\ScholarshipController;
+use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
+use App\Http\Controllers\University\RequestCourseController;
+
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
@@ -47,6 +51,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::get('/about/edit-image/{id}',[AboutController::class,'edit_image'])->name('about.edit_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
+    Route::resource('/request/course',CourseRequestController::class);
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
     Route::resource('/student-enquiry',StudentEnquiryController::class);
@@ -56,10 +61,13 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
 
 
 
-Route::prefix('/university')->middleware('auth','isUniversity')->name('university.')->group(function(){
+Route::prefix('/university/request')->middleware('auth','isUniversity')->name('university.')->group(function(){
     Route::get('/home',function () {
         return view('university.home');
     })->name('home');
+
+    
+    Route::resource('/courses',RequestCourseController::class);
 });
 
 

@@ -42,10 +42,13 @@ class SiteController extends Controller
         return view('frontend.colleges',compact('universities'));
     }
     public function blog() {
-        return view('frontend.blog');
+        $blogs=Blog::all();
+        return view('frontend.blog',compact('blogs'));
     }
     public function blogDetail($id) {
+        // dd(Crypt::decrypt($id));
         $blog=Blog::find(Crypt::decrypt($id));
+        // dd($blog);
         return view('frontend.blog-details',compact('blog'));
     }
     
