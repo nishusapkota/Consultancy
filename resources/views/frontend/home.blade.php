@@ -77,7 +77,7 @@
     <section class="about-section bg-color-1">
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-12">
+                <div class="col-md-6 col-12">
                     <div class="banner-carousel owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
 
                         @foreach ($images as $image)
@@ -89,7 +89,7 @@
 
                     </div>
                 </div>
-                <div class="col-12 content-column">
+                <div class="col-md-6 col-12 content-column">
                     <div id="content_block_one">
                         <div class="content-box">
                             <div class="sec-title left">
