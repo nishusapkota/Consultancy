@@ -18,8 +18,8 @@ class SiteController extends Controller
         // $courses=Course::with(['category','levels'=>function($q){
         //     $q->limit(3);
         // }])->get();
-    $courses=Course::with('category','levels')->get();
-    $about=About::first();
+        $courses=Course::with('category','levels')->get();
+        $about=About::first();
         $universities=University::all();
         $blogs=Blog::all();
         $images=AboutImage::all();

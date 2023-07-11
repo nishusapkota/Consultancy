@@ -56,4 +56,11 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
 
 
 
+Route::prefix('/university')->middleware('auth','isUniversity')->name('university.')->group(function(){
+    Route::get('/home',function () {
+        return view('university.home');
+    })->name('home');
+});
+
+
 

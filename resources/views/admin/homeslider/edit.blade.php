@@ -33,7 +33,15 @@
                           {{ $message }}</small>
                         @enderror
                       </div>
-                      
+                      <div class="form-group">
+                        <label for="sub_heading"> Sub Heading</label>
+                        <input type="text" name="sub_heading" id="sub_heading" class="form-control @error('sub_heading')is-invalid @enderror" value="{{ $slider->sub_heading }}">
+                        @error('sub_heading')
+                        <small class="form-text text-danger">
+                          {{ $message }}
+                        </small>
+                        @enderror
+                      </div>
                       <div class="form-group">
                         <label for="description"> Description</label>
                         <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$slider->description}}</textarea>

@@ -53,7 +53,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
         else{
-            return "you have no access to this page";
+            return redirect()->route('university.home');;
         }
             
 
