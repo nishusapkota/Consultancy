@@ -93,7 +93,7 @@
                     <div id="content_block_one">
                         <div class="content-box">
                             <div class="sec-title left">
-                                <h5>About Spell</h5>
+                                <h5>About Study India</h5>
                                 <h2>Why study in India ?</h2>
                             </div>
                             <div class="text">
@@ -127,20 +127,18 @@
                         <div class="news-block-one">
                             {{-- route('college-detail', Crypt::encrypt($university->id)) --}}
                             <div class="rounded inner-div">
-                                <figure class="image-box"><a
-                                        href="{{ route('college-detail', Crypt::encrypt($university->id)) }}"><img
-                                            src="{{ asset($university->image) }}" class="uni-image" alt=""></a>
+                                <figure class="image-box"><img
+                                            src="{{ asset($university->image) }}" class="uni-image" alt="">
                                 </figure>
                                 <div class="lower-content uni-lower-content">
                                     {{-- <ul class="post-info">
                                     <li>ESTD. 1997</li>
                                 </ul> --}}
-                                    <h3 class="uni-title-main"><a
-                                            href="{{ route('college-detail', Crypt::encrypt($university->id)) }}"
-                                            class="uni--title">{{ $university->uname }}</a></h3>
-                                    <div class="link view-course"><a href="{{ route('courses') }}"><i
-                                                class="fas fa-arrow-right uni-icon "></i><span>View all Courses and
-                                                Fees</span></a></div>
+                                    <h3 class="uni-title-main">{{ $university->uname }}</h3>
+                                    <div class="link view-course"><a
+                                        href="{{ route('college-detail',$university->uname) }}"
+                                        class="uni--title"><i
+                                                class="fas fa-arrow-right uni-icon "></i><span>View Details</span></a></div>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +167,7 @@
             <div class="upper-box clearfix">
                 <div class="sec-title style-two pull-left">
                     <h5>Courses</h5>
-                    <h2>Our Provided Courses</h2>
+                    <h2>Our  Courses</h2>
                 </div>
                 <div class="btn-box pull-right">
                     <a href="{{ route('courses') }}"><i class="fas fa-user"></i>view all courses</a>
@@ -194,7 +192,7 @@
                                     </span>
                                 </div>
                                 <div class="ovellay-box">
-                                    <a href="{{ route('course-detail', Crypt::encrypt($course->id)) }}"
+                                    <a href="{{ route('course-detail', $course->name) }}"
                                         class="theme-btn style-one">View Details</a>
                                 </div>
                             </div>
@@ -333,17 +331,16 @@
                             data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <figure class="image-box"><a
-                                        href="{{ route('blog-detail', Crypt::encrypt($blog->id)) }}"><img
+                                        href="{{ route('blog-detail', $blog->title) }}"><img
                                             src="{{ asset($blog->image) }}" alt=""></a></figure>
                                 <div class="lower-content">
                                     {{-- <ul class="post-info">
                                     <li>August 25, 2028</li>
                                 </ul> --}}
-                                    <h3><a
-                                            href="{{ route('blog-detail', Crypt::encrypt($blog->id)) }}">{{ $blog->title }}</a>
+                                    <h3>{{ $blog->title }}
                                     </h3>
                                     <p>{{ $blog->short_description }}</p>
-                                    <div class="link"><a href="{{ route('blog-detail', Crypt::encrypt($blog->id)) }}"><i
+                                    <div class="link"><a href="{{ route('blog-detail',$blog->title) }}"><i
                                                 class="fas fa-arrow-right"></i><span>Read More</span></a></div>
                                 </div>
                             </div>

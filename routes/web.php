@@ -22,11 +22,11 @@ use App\Http\Controllers\University\RequestCourseController;
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
-Route::get('/course-details/{id}',[SiteController::class, 'courseDetail'])->name('course-detail');
-Route::get('/scholarship',[SiteController::class, 'scholarship'])->name('scholarship');
+Route::get('/course-details/{name}',[SiteController::class, 'courseDetail'])->name('course-detail');
+Route::get('/scholarships',[SiteController::class, 'scholarship'])->name('scholarship');
 
 Route::get('/colleges',[SiteController::class, 'colleges'])->name('college');
-Route::get('/college-details/{id}',[SiteController::class, 'collegeDetail'])->name('college-detail');
+Route::get('/college-details/{uname}',[SiteController::class, 'collegeDetail'])->name('college-detail');
 
 Route::get('/blogs',[SiteController::class, 'blog'])->name('blog');
 Route::get('/blog-details/{id}',[SiteController::class, 'blogDetail'])->name('blog-detail');

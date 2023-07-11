@@ -40,7 +40,7 @@ class BlogController extends Controller
     {
         //dd($request->all());
         $data = $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:blogs,title',
             'short_description' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg',
@@ -103,7 +103,7 @@ class BlogController extends Controller
     public function update(Request $request,Blog $blog)
     {
         $data = $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:blogs,title,'.$blog->id,
             'short_description' => 'required',
             'image'=>'nullable',
             'body' => 'required',

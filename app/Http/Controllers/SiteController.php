@@ -32,9 +32,9 @@ class SiteController extends Controller
     }
     public function courses() {
         $courses=Course::all();
-    
-        $levels=Level::with('courses')->get();
-        return view('frontend.courses',compact('courses','levels'));
+        $universities=University::get(['id','uname']);
+        $levels=Level::get(['id','name']);
+        return view('frontend.courses',compact('courses','levels','universities'));
     }
     public function colleges() {
         $universities=University::all();
@@ -45,9 +45,9 @@ class SiteController extends Controller
         $blogs=Blog::all();
         return view('frontend.blog',compact('blogs'));
     }
-    public function blogDetail($id) {
+    public function blogDetail($title) {
         // dd(Crypt::decrypt($id));
-        $blog=Blog::find(Crypt::decrypt($id));
+        $blog=Blog::where('title',$title)->first();
         // dd($blog);
         return view('frontend.blog-details',compact('blog'));
     }
@@ -58,17 +58,23 @@ class SiteController extends Controller
     public function applyNow() {
         return view('frontend.applyNow');
     }
-    public function courseDetail($id) {
-        $courses=Course::all();
-        $levels=Level::with('courses')->get();
-        $course=Course::find(Crypt::decrypt($id));
+    public function courseDetail($name) {
+        $course=Course::where('name',$name)->first();
+        $university=University::whereHas('courses',function($q)use($course){
+            $q->where('courses.id',$course->id);
+        })->get(['id','uname']);
+        $levels=Level::get(['id','name']);
         // dd($course);
-        return view('frontend.course-details',compact('course','courses','levels'));
+        return view('frontend.course-details',compact('course','university','levels'));
     }
-    public function collegeDetail($id) {
+    public function collegeDetail($name) {
        
-        $college=University::find(Crypt::decrypt($id));
-        return view('frontend.college-details',compact('college'));
+        $college=University::where('uname',$name)->first();
+        $courses=Course::whereHas('universities',function($q)use($college){
+            $q->where('universities.id',$college->id);
+        })->get(['id','name']);
+        $levels=Level::get(['id','name']);
+        return view('frontend.college-details',compact('college','courses','levels'));
     }
 
     // public Function home() {

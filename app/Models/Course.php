@@ -19,7 +19,7 @@ class Course extends Model
         'status'
     ];
     function category(){
-        return $this->belongsTo('\App\Models\CourseCategory','cat_id');
+        return $this->belongsTo(CourseCategory::class,'cat_id');
     }
     function levels(){
         return $this->belongsToMany(Level::class,'course_levels','course_id','level_id');

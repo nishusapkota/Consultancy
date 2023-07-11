@@ -42,25 +42,25 @@ class LoginController extends Controller
         
         $input=$request->all();
         $this->validate($request,[
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required'
+        ],[
+            'email'=>'Please Enter Valid Email Address.'
         ]);
         if(auth()->attempt(array(
             'email' => $input['email'],
             'password' => $input['password']
-        ))){
-        if(auth()->user()->role=='admin'){
-            return redirect()->route('admin.dashboard');
-        }
-        else{
-            return redirect()->route('university.home');;
-        }
-            
-
-
+        )))
+        {
+            if(auth()->user()->role=='admin'){
+                return redirect()->route('admin.dashboard');
+            }
+            else{
+                return redirect()->route('university.home');;
+            }
         }else {
-            # code...
-            return redirect()->back();
+            return redirect()->back()->withErrors(['error' => 'Incorrect Password']);
+ 
         }
         
     }

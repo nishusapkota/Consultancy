@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" name="image" id="image"
-                                class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">
+                                class="form-control @error('image') is-invalid @enderror">
                             @error('image')
                                 <small class="form-text text-danger">
                                     {{ $message }}</small>

@@ -44,16 +44,16 @@
                              --}}
                              {!!$course->description!!}
                             </div>
-                            <div class="two-column">
+                            {{-- <div class="two-column">
                                 <div class="row clearfix">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 image-column">
+                                    <div class="col-md-6 col-sm-12 image-column">
                                         <figure class="image-box"><img src="{{asset($course->image)}}" alt=""></figure>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 image-column">
+                                    <div class="col-md-6 col-sm-12 image-column">
                                         <figure class="image-box"><img src="{{asset($course->image)}}" alt=""></figure>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                     
                         </div>
                 
@@ -74,8 +74,9 @@
                             <div class="form-group">
                               <input type="tel" placeholder="Phone" />
                             </div>
+                            <input type="course_id" placeholder="Email address" value="{{$course->id}}" hidden/>
                             <div class="form-group">
-                              <select>
+                              <select name="level_id">
                                 <option selected disabled>Select Level</option>
                                 @foreach ($levels as $level)
                                 <option value="{{$level->id}}">{{$level->name}}</option>
@@ -83,10 +84,10 @@
                               </select>
                             </div>
                             <div class="form-group">
-                              <select>
-                                <option selected disabled>Select Course</option>
-                                @foreach ($courses as $course)
-                                <option value="{{$course->id}}">{{$course->name}}</option>
+                              <select name="university_id">
+                                <option selected disabled>Select University</option>
+                                @foreach ($university as $course)
+                                <option value="{{$course->id}}">{{$course->uname}}</option>
                                 @endforeach
                               </select>
                             </div>

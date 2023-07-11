@@ -32,9 +32,9 @@
                             <ul class="post-info">
                                 {{-- <li>August 25, 2028</li> --}}
                             </ul>
-                            <h3><a href="{{route('blog-detail',Crypt::encrypt($blog->id))}}">{{$blog->title}}</a></h3>
+                            <h3>{{$blog->title}}</h3>
                             <p>{{$blog->short_description}}</p>
-                            <div class="link"><a href="{{route('blog-detail',Crypt::encrypt($blog->id))}}"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                            <div class="link"><a href="{{route('blog-detail',$blog->title)}}"><i class="fas fa-arrow-right"></i><span>Read More</span></a></div>
                         </div>
                     </div>
                 </div>

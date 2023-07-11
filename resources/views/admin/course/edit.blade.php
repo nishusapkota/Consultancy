@@ -16,14 +16,15 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{ route('admin.courses.update',$course) }}">
+        <form method="post" action="{{ route('admin.courses.update',$course) }}" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
         @if($errors->any())
             <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
               {{$errors->first()}}</div>
             @endif
-          @csrf
-          @method('PUT')
+          
           <div class="form-group">
             <label for="name"> Course</label>
             <input type="name" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{$course->name}}">
@@ -149,4 +150,15 @@
 
   </div>
 </section>
+@endsection
+@section('scripts')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );// Increase the number of rows
+var textareaElement = document.querySelector('#description');
+textareaElement.setAttribute('rows', '500');
+    </script>
 @endsection

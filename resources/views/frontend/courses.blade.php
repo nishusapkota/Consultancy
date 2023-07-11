@@ -8,11 +8,11 @@
     <section class="page-title centred" style="background-image:  {{asset('frontend/images/background/page-title-3.jpg')}}}">
         <div class="auto-container">
             <div class="content-box clearfix">
-                <h1>Our Provided Course</h1>
-                <ul class="bread-crumb clearfix">
+                <h1>Our  Courses</h1>
+                {{-- <ul class="bread-crumb clearfix">
                     <li><a href="{{ route('courses') }}">Home</a></li>
                     <li>Courses</li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </section>
@@ -20,7 +20,7 @@
 
     <!-- service-section -->
     <section class="service-section">
-        <div class="auto-container">
+        {{-- <div class="auto-container">
             <div class="title-box">
                 <div class="row clearfix">
                     <div class="col-md-6 col-sm-12 title-column">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="custom-component">
             <div class="filter-component">
@@ -48,6 +48,27 @@
                     <h1 class="filter-title">Filter</h1>
 
                     <div class="card">
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample">
+                                    <h6 class="title">University</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse" id="collapseExample3">
+                                <div class="card-body">
+                                    @foreach ($universities as $level)
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadio"
+                                            value="{{$level->id}}" />
+                                        <span class="form-check-label"> {{$level->uname}} </span>
+                                    </label> 
+                                        @endforeach
+                                 
+                                </div>
+                                <!-- card-body.// -->
+                            </div>
+                        </article>
                         <article class="card-group-item">
                             <header class="card-header">
                                 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button"
@@ -98,6 +119,9 @@
                                 <!-- card-body.// -->
                             </div>
                         </article>
+                        <button type="button" class="theme-btn style-one" id="filterBtrn">
+                            Filter
+                        </button>
                         <!-- card-group-item.// -->
                     </div>
                     <!-- card.// -->
@@ -107,6 +131,7 @@
 
             <div class="course-component">
               @foreach ($courses as $course )
+              {{-- @dd($course) --}}
               <div class="team-block-one">
                 <div class="inner-box">
                     <figure class="image-box">
@@ -115,13 +140,13 @@
                     <div class="lower-content">
                         <div class="content-box">
                             <h3 class="course-title">
-                                <a href="{{ route('course-detail', Crypt::encrypt($course->id)) }}">{{$course->name}}
-                                </a>
+                               {{$course->name}}
+                                
                             </h3>
                             <span class="designation">({{$course->category->name}})</span>
                         </div>
                         <div class="ovellay-box">
-                            <a href="{{ route('course-detail', Crypt::encrypt($course->id)) }}" class="theme-btn style-one">View Details</a>
+                            <a href="{{ route('course-detail',$course->name) }}" class="theme-btn style-one">View Details</a>
                         </div>
                     </div>
                 </div>

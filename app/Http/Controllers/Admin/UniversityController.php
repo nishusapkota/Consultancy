@@ -103,6 +103,7 @@ class UniversityController extends Controller
      */
     public function edit($id)
     {
+        
         $university = University::with('courses')->find($id);
         $courses=Course::all();
         return view('admin.university.edit', compact('courses','university',));

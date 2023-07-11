@@ -43,8 +43,9 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        
         $data = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:courses,name' ,
             'cat_id' => 'required|exists:course_categories,id',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,gif',
@@ -120,9 +121,9 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $data = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:courses,name,' . $course->id,
             'cat_id' => 'required|exists:course_categories,id',
-            'image' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,gif',
             'description' => 'required',
             'status' => 'nullable|boolean',
             'university_id' => 'array',
@@ -130,6 +131,7 @@ class CourseController extends Controller
             'level_id' => 'nullable|array',
             'level_id.*' => 'exists:levels,id'
         ]);
+        // dd($request->hasfile('image') ? 1 : 0,$request->all());
         if ($request->hasFile('image')) {
             unlink(public_path($course->image));
             $image = $request->file('image');
