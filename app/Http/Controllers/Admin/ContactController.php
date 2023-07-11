@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -14,7 +15,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -24,7 +25,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.contact.create');
     }
 
     /**
@@ -35,7 +36,37 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+       $data= $request->validate([
+            'title'=>'required',
+            'short_description'=>'required',
+            'address'=>'required',
+            'phone.*'=> 'required|array',
+            'email.*'=> 'required|email|unique:contacts,email',
+           
+        ]);
+        
+        $contact=Contact::first();
+        if ($contact) {
+            $contact->update([
+                'title' => $request->title,
+                'short_description'=>$request->short_description,
+                'address'=>$request->address,
+                'phone'=>json_encode($request->phone),
+                'email'=>json_encode($request->email)
+            ]);
+            return redirect()->route('admin.contact.index')->with('success','contact updated successfully');
+
+        }else{
+            Contact::create([
+                'title' => $request->title,
+                'short_description'=>$request->short_description,
+                'address'=>$request->address,
+                'phone'=>json_encode($request->phone),
+                'email'=>json_encode($request->email)
+            ]);
+            return redirect()->route('admin.contact.index')->with('success','contact created successfully');
+        }
     }
 
     /**
