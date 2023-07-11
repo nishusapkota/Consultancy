@@ -39,7 +39,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function login(Request $request){
-        // dd($request->all());
+        
         $input=$request->all();
         $this->validate($request,[
             'email' => 'required|email',
@@ -49,7 +49,15 @@ class LoginController extends Controller
             'email' => $input['email'],
             'password' => $input['password']
         ))){
+        if(auth()->user()->role=='admin'){
             return redirect()->route('admin.dashboard');
+        }
+        else{
+            return redirect()->route('university.home');;
+        }
+            
+
+
         }else {
             # code...
             return redirect()->back();
