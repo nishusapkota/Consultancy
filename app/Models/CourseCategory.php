@@ -13,4 +13,7 @@ class CourseCategory extends Model
     function courses(){
         return $this->hasMany('\App\Models\Course');
     }
+    function req_courses(){
+        return $this->hasMany(RequestCourse::class);
+    }
 }

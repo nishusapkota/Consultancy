@@ -52,6 +52,12 @@
             <p>Course</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{route('admin.course.index')}}" class="nav-link {{ (request()->is('admin/request/course*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Request Course</p>
+          </a>
+        </li>
       </ul>
     </li>
    
