@@ -45,6 +45,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/scholarship',ScholarshipController::class);
     Route::resource('/about',AboutController::class);
     Route::get('/about/edit-image/{id}',[AboutController::class,'edit_image'])->name('about.edit_image');
+    Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
     Route::resource('/level',LevelController::class);

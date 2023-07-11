@@ -20,7 +20,8 @@ class AboutController extends Controller
     public function index()
     {
         $abouts = About::all();
-        return view('admin.about.index', compact('abouts'));
+        $canAdd=$abouts->isEmpty()?1:0;
+        return view('admin.about.index', compact('abouts','canAdd'));
     }
 
     /**
@@ -146,10 +147,50 @@ class AboutController extends Controller
         }
     
     }
-    function edit_image(About $about){
-        $images=$about->images();
-        // dd($images);
-        return view('admin.about.edit_image',compact('images','about'));
+    function edit_image($id){
+        $about= About::with('images')->find($id);
+        $images=$about->images;
+        // dd($images,$about);
+        return view('admin.about.edit_image',compact('images'));
+    }
+    function update_image(Request $request){
+        // dd($request->all());
+        $aboutImages=About::with('images')->first();
+        if ($aboutImages->images->count()<3) {
+            $request->validate([
+                'images'=>'required|array|size:3',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for images
+            ]);
+            AboutImage::truncate();
+            foreach ($request->file('images') as $key=>$image) {
+                $img_name = time() . '_' . $request->file('images')[$key]->getClientOriginalName();
+                $request->file('images')[$key]->move(public_path('aboutImages'), $img_name);
+                AboutImage::create([
+                    'about_id'=> $aboutImages->id,
+                    'image'=>'aboutImages/'.$img_name,
+                ]);
+            }
+            
+        } else {
+            $request->validate([
+                'images'=>'required|array',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for images
+            ]);
+          foreach ($aboutImages->images as $key => $img) {
+            if (isset($request->images[$key])) {
+                // dd($request->file('images')[$key]);
+                unlink(public_path($img->image));
+                $image = $request->file('images')[$key];
+                $img_name = $image->getClientOriginalName();
+                $image->move(public_path('aboutImages'), $img_name);
+                $img->update([
+                    'image'=>'aboutImages/'.$img_name
+                ]);
+            }
+          }
+        }
+        
+        return redirect()->back()->with('success','About Images updated successfully.');
     }
 
 
