@@ -10,9 +10,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HomeSliderController;
-use App\Http\Controllers\Admin\UniversityController;
 
+use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\ScholarshipController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
@@ -56,8 +57,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
     Route::resource('/student-enquiry',StudentEnquiryController::class);
-    
-
+    Route::resource('/contact',ContactController::class);
 });
 
 
