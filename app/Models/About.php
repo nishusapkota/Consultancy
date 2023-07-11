@@ -13,6 +13,6 @@ class About extends Model
         'description'
     ];
     public function images(){
-        return $this->hasMany(About::class);
+        return $this->hasMany(AboutImage::class,'about_id');
     }
 }
