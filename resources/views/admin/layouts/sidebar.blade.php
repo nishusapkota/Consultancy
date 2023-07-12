@@ -23,6 +23,12 @@
             <p>Home Slider</p>
           </a>
         </li>
+        <li class="nav-item ">
+          <a href="{{route('admin.footer.edit-logo')}}" class="nav-link {{ (request()->is('admin/footer/edit-logo')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Footer Logo</p>
+          </a>
+        </li>
         {{-- <li class="nav-item">
           <a href="{{Route('admin.courses.index')}}" class="nav-link {{ (request()->is('admin/courses*')) ? 'active' : '' }}">
             <i class="far fa-circle nav-icon"></i>
@@ -74,6 +80,20 @@
         <p>About</p>
       </a>
     </li>
+
+    <li class="nav-item">
+      <a href="{{route('admin.footer.edit')}}" class="nav-link {{ (request()->is('admin/footer*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Footer</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{route('admin.contact.edit')}}" class="nav-link {{ (request()->is('admin/contact*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Contact</p>
+      </a>
+    </li>
+
     <li class="nav-item">
       <a href="{{ route('admin.blog.index')}}" class="nav-link {{ (request()->is('admin/blog*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>

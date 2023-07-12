@@ -18,13 +18,13 @@
 </section>
 <!--End Page Title-->
 
-
+{{-- @dd($contact) --}}
 <!-- contact-information -->
 <section class="contact-information centred">
     <div class="auto-container">
         <div class="sec-title right">
-            <h5>focused with work</h5>
-            <h2>We’re Global Management Consulting Firm <br />To Help With Financial Business</h2>
+            <h5>{{$contact[0]->title}}</h5>
+            <h2>{{$contact[0]->short_description}}</h2>
         </div>
         <div class="row clearfix">
             <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -32,7 +32,7 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="far fa-map"></i></div>
                         <h3>Office Location</h3>
-                        <p>838 Andy Street Lane, Baneshowr<br />Kathmandu - Nepal</p>
+                        <p>{{$contact[0]->address}}</p>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="fas fa-phone"></i></div>
                         <h3>Calling Support</h3>
-                        <p>24/7 Line  <a href="tel:101005200369">(+977) 9841111111</a></p>
+                        <p>24/7 Line  <a href="">(+977) 9841111111</a></p>
                         <p>Toll Free  <a href="tel:080098765">(+977) 9841111111</a></p>
                     </div>
                 </div>

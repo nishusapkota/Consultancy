@@ -28,14 +28,14 @@
     <div class="news-block-one inner-uni">
 
         <div class="rounded inner-div">
-            <figure class="image-box"><a href="{{route('college-detail',$university->uname)}}"><img src="{{asset('frontend/images/University/manavrachna.png')}}" alt="" class="uni-image"></a></figure>
+            <figure class="image-box"><a href="{{route('college-detail',$university->uname)}}"><img src="{{asset($university->image)}}" alt="" class="uni-image"></a></figure>
             <div class="lower-content uni-lower-content">
                 <ul class="post-info">
                     {{-- <li>ESTD. 1997</li> --}}
                 </ul>
-                <h3 class="uni-title-main"><a href="{{route('college-detail', $university->uname)}}"  class="uni--title">Manav Rachna International Institute of Research And Studies</a></h3>
+                <h3 class="uni-title-main"><a href="{{route('college-detail', $university->uname)}}"  class="uni--title">{{$university->uname}}</a></h3>
                 <!-- <p>Exea conse quat duis irurey dolor sed reprehen derit volupta velit cilum lorem incididunt labore sed magna exceptur aliqua.</p> -->
-                <div class="link view-course"><a href="{{route('college-detail',$university->uname)}}"><i class="fas fa-arrow-right uni-icon"></i><span>View all Courses and Fees</span></a></div>
+                <div class="link view-course"><a href="{{route('college-detail',$university->uname)}}"><i class="fas fa-arrow-right uni-icon"></i><span>View detail</span></a></div>
             </div>
         </div>
     </div>

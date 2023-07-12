@@ -12,9 +12,9 @@
             {{-- <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    Edit contact</h3>
+                    Edit footer</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.contact.index')}}">
+                    <a class="btn btn-primary" href="{{route('admin.footer.index')}}">
                         <i class="fas fa-arrow-circle-left mr-2"></i>
                         Go Back
                     </a>
@@ -22,7 +22,7 @@
             </div> --}}
 
             <div class="card-body">
-                <form method="post" action="{{ route('admin.contact.update') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.footer.update') }}" enctype="multipart/form-data">
                     @csrf
                     @if($errors->any())
                     <div class="alert alert-danger">
@@ -30,15 +30,6 @@
                         {{$errors->first()}}
                     </div>
                     @endif
-                    <div class="form-group">
-                      <label for="title">Title</label>
-                      <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ $data['title'] }}">
-                      @error('title')
-                      <small class="form-text text-danger">
-                        {{ $message }}</small>
-                      @enderror
-                    </div>
-
                     <div class="form-group">
                         <label for="address">Address</label>
                         <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ $data['address'] }}">
@@ -48,51 +39,33 @@
                         @enderror
                       </div>
                       <div class="form-group">
-                        <label for="email_primary">Email1</label>
-                        <input type="text" name="email_primary" id="email_primary" class="form-control @error('email_primary') is-invalid @enderror" value="{{$data['email_primary'] }}">
-                        @error('email_primary')
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{$data['address'] }}">
+                        @error('email')
                         <small class="form-text text-danger">
                           {{ $message }}</small>
                         @enderror
                       </div>
                       <div class="form-group">
-                        <label for="email_secondary">Email2</label>
-                        <input type="text" name="email_secondary" id="email_secondary" class="form-control @error('email_secondary') is-invalid @enderror" value="{{$data['email_secondary'] }}">
-                        @error('email_secondary')
-                        <small class="form-text text-danger">
-                          {{ $message }}</small>
-                        @enderror
-                      </div>
-
-                      <div class="form-group">
-                        <label for="phone_primary">Phone1</label>
-                        <input type="text" name="phone_primary" id="phone_primary" class="form-control @error('phone_primary') is-invalid @enderror" value="{{$data['phone_primary'] }}">
-                        @error('phone_primary')
-                        <small class="form-text text-danger">
-                          {{ $message }}</small>
-                        @enderror
-                      </div>
-
-                      <div class="form-group">
-                        <label for="phone_secondary">Phone1</label>
-                        <input type="text" name="phone_secondary" id="phone_secondary" class="form-control @error('phone_secondary') is-invalid @enderror" value="{{$data['phone_secondary'] }}">
-                        @error('phone_secondary')
+                        <label for="phone">Phone</label>
+                        <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{$data['address'] }}">
+                        @error('phone')
                         <small class="form-text text-danger">
                           {{ $message }}</small>
                         @enderror
                       </div>
                       
                       <div class="form-group">
-                        <label for="short_description">Description</label>
-                        <textarea name="short_description" id="short_description" class="form-control @error('short_description')is-invalid @enderror" rows="4">{{$data['short_description']}}</textarea>
-                        @error('short_description')
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$data['address']}}</textarea>
+                        @error('description')
                         <small class="form-text text-danger">
                           {{ $message }}
                         </small>
                         @enderror
                       </div>
                     
-                    
+                     
                    
 
                     

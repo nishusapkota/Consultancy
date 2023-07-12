@@ -108,13 +108,19 @@ class HomeSliderController extends Controller
             unlink(public_path($slider->file));
             $file_name = time() . '_' . $request->file('file')->getClientOriginalName();
             $ext = $request->file('file')->getClientOriginalExtension();
-            $request->file('file')->move(public_path('slider'), $file_name);
+            
+
+        if ($ext == 'mp4') {
+            $request->file('file')->move(public_path('slider/video'), $file_name);
+        } else {
+            $request->file('file')->move(public_path('slider/image'), $file_name);
+        }
 
             $data=[
                 'title' => $request->title,
                 'description' => $request->description,
                 'sub_heading' => $request->sub_heading,
-                'file' => 'slider/' . $file_name,
+                'file' => $ext == 'mp4' ? 'slider/video/' . $file_name : 'slider/image/' . $file_name,
                 'extension' => $ext
             ];
         }else {
@@ -127,7 +133,7 @@ class HomeSliderController extends Controller
         
         $slider->update($data);
 
-        return redirect()->route('admin.home.index')->with('success', 'Slider Has Been Updated created successfully');
+        return redirect()->route('admin.home.index')->with('success', 'Slider Has Been Updated successfully');
     }
 
     /**

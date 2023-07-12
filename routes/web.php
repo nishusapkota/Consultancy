@@ -10,9 +10,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\HomeSliderController;
 
+use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\ScholarshipController;
 use App\Http\Controllers\Admin\CourseRequestController;
@@ -58,6 +59,12 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/university',UniversityController::class);
     Route::resource('/student-enquiry',StudentEnquiryController::class);
     Route::resource('/contact',ContactController::class);
+    Route::get('/footer-edit',[FooterController::class,'edit'])->name('footer.edit');
+    Route::post('/footer-update',[FooterController::class,'store'])->name('footer.update');
+    Route::get('/footer-edit-logo',[FooterController::class,'editLogo'])->name('footer.edit-logo');
+    Route::post('/footer-update-logo',[FooterController::class,'storeLogo'])->name('footer.update-logo');
+    Route::get('/contact-edit',[ContactController::class,'edit'])->name('contact.edit');
+    Route::post('/contact-update',[ContactController::class,'store'])->name('contact.update');
 });
 
 
