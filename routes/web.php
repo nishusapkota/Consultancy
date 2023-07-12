@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ScholarshipController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\University\RequestCourseController;
 
 
@@ -34,6 +35,7 @@ Route::get('/blog-details/{id}',[SiteController::class, 'blogDetail'])->name('bl
 
 Route::get('/contacts',[SiteController::class, 'contact'])->name('contact');
 Route::get('/apply',[SiteController::class, 'applyNow'])->name('apply');
+Route::post('/student-enquiries',[SiteController::class, 'studentEnquiry'])->name('enquiry.post');
 
 
 Auth::routes();
@@ -69,6 +71,14 @@ Route::prefix('/university/request')->middleware('auth','isUniversity')->name('u
 
     
     Route::resource('/courses',RequestCourseController::class);
+});
+
+Route::get('get-level-list',[FilterController::class,'levels'])->name('level.lists');
+Route::get('get-university-list',[FilterController::class,'universitys'])->name('university.lists');
+Route::get('get-course-list',[FilterController::class,'courses'])->name('course.lists');
+Route::get('migrate246820',function(){
+    \Artisan::call('migrate');
+    return 'migrated successfully';
 });
 
 

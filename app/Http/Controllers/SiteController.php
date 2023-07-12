@@ -8,6 +8,7 @@ use App\Models\AboutImage;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\HomeSlider;
+use App\Models\StudentEnquiry;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -30,11 +31,36 @@ class SiteController extends Controller
     public function scholarship() {
         return view('frontend.scholarship');
     }
-    public function courses() {
-        $courses=Course::all();
+    public function courses(Request $request) {
+    
+        $reData=$request->all();
+        $courses=Course::
+                    when($request->exists('university_id')&&!is_null($request->university_id),function($q)use($request){
+                        $q->whereHas('universities',function($query)use($request){
+                            $query->whereIn('universities.id',$request->university_id);
+                        });
+                    })
+                    ->when($request->exists('level_id')&&!is_null($request->level_id),function($q)use($request){
+                        $q->whereHas('levels',function($query)use($request){
+                            $query->whereIn('levels.id',$request->level_id);
+                        });
+                    })
+                    ->get();
         $universities=University::get(['id','uname']);
         $levels=Level::get(['id','name']);
-        return view('frontend.courses',compact('courses','levels','universities'));
+        if ( empty($reData)) {
+            $inputs=[
+                'university_id'=>[],
+                'level_id'=>[],
+            ];
+        }else {
+            $inputs=[
+                'university_id'=>$request->university_id?$request->university_id:[],
+                'level_id'=>$request->level_id?$request->level_id:[],
+            ];
+        }
+        // dd($inputs);
+        return view('frontend.courses',compact('courses','levels','universities','inputs'));
     }
     public function colleges() {
         $universities=University::all();
@@ -84,4 +110,30 @@ class SiteController extends Controller
     //     }
     //     return view('home');
     // }
+    public function studentEnquiry(Request $request)
+    {
+        // dd($request->all());
+        $data = $request->validate([
+            'name' => 'required',
+            'contact' => 'required',
+            'email'=>'required|email',
+            'address' => 'required',
+            'level_id' => 'required|exists:levels,id',
+            'course_id' => 'required|exists:courses,id',
+            'university_id' => 'required|exists:universities,id',
+            'message' => 'nullable|string'
+        ]);
+
+        StudentEnquiry::create([
+            'name' => $request->name,
+            'contact' => $request->contact,
+            'email'=>$request->email,
+            'address' => $request->address,
+            'level_id' => $request->level_id,
+            'course_id' => $request->course_id,
+            'university_id' => $request->university_id,
+            'message' => $request->message,
+        ]);
+        return redirect()->back()->with('success','Your Enquiry Has Been  Submitted Successfully');
+    }
 }

@@ -3,6 +3,16 @@
 @section('header')
     @include('frontend.layouts.headers.otherPageHeader')
 @endsection
+@push('style')
+    <style>
+        .card-header{
+            background: #0275d8;
+        }
+        .card-header h6{
+            color: white;
+        }
+    </style>
+@endpush
 @section('content')
     <!--Page Title-->
     <section class="page-title centred" style="background-image:  {{asset('frontend/images/background/page-title-3.jpg')}}}">
@@ -46,84 +56,91 @@
             <div class="filter-component">
                 <div class="container-lg filter-container">
                     <h1 class="filter-title">Filter</h1>
+                    <form action="{{route('courses')}}" method="get">
 
-                    <div class="card">
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample">
-                                    <h6 class="title">University</h6>
+                        <div class="card">
+                            <article class="card-group-item">
+                                <a class="btn px-0" data-toggle="collapse" href="#collapseExample3" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" style="width:100%;">
+                                <header class="card-header">
+                                        <h6 class="title">University</h6>
+                                    </header>
                                 </a>
-                            </header>
-                            <div class="filter-content collapse" id="collapseExample3">
-                                <div class="card-body">
-                                    @foreach ($universities as $level)
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadio"
-                                            value="{{$level->id}}" />
-                                        <span class="form-check-label"> {{$level->uname}} </span>
-                                    </label> 
-                                        @endforeach
-                                 
-                                </div>
-                                <!-- card-body.// -->
-                            </div>
-                        </article>
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample">
-                                    <h6 class="title">Level</h6>
-                                </a>
-                            </header>
-                            <div class="filter-content collapse" id="collapseExample2">
-                                <div class="card-body">
-                                    @foreach ($levels as $level)
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadio"
-                                            value="{{$level->id}}" />
-                                        <span class="form-check-label"> {{$level->name}} </span>
-                                    </label> 
-                                        @endforeach
-                                 
-                                </div>
-                                <!-- card-body.// -->
-                            </div>
-                        </article>
-                        <!-- card-group-item.// -->
-
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample">
-                                    <h6 class="title">Courses</h6>
-                                </a>
-                            </header>
-                            <div class="filter-content collapse" id="collapseExample">
-                                <div class="card-body">
-                                    <form>
-                                        @foreach ($courses as $course)
+                                <div class="filter-content collapse" id="collapseExample3">
+                                    <div class="card-body">
+                                        @foreach ($universities as $level)
+                                        {{-- @dd(in_array($level->id,$inputs['university_id'])) --}}
                                         <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{$course->id}}" />
-                                            <span class="form-check-label">{{$course->name}}</span>
-                                        </label>
-                                        @endforeach
-                                        
-                                        
-                                        
-                                        
-                                        
-    
-                                    </form>
+                                            <input class="form-check-input" type="checkbox" name="university_id[]" @if (in_array($level->id,$inputs['university_id']))
+                                            checked
+                                            @endif
+                                                value="{{$level->id}}" />
+                                            <span class="form-check-label"> {{$level->uname}} </span>
+                                        </label> 
+                                            @endforeach
+                                     
+                                    </div>
+                                    <!-- card-body.// -->
                                 </div>
-                                <!-- card-body.// -->
-                            </div>
-                        </article>
-                        <button type="button" class="theme-btn style-one" id="filterBtrn">
-                            Filter
-                        </button>
-                        <!-- card-group-item.// -->
-                    </div>
+                            </article>
+                            <article class="card-group-item">
+                                <a class="btn px-0" data-toggle="collapse" href="#collapseExample2" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" style="width:100%;">
+                                <header class="card-header">
+                                        <h6 class="title">Level</h6>
+                                    </header>
+                                </a>
+                                <div class="filter-content collapse" id="collapseExample2">
+                                    <div class="card-body">
+                                        @foreach ($levels as $level)
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="level_id[]"
+                                                value="{{$level->id}}"  @if (in_array($level->id,$inputs['level_id']))
+                                                checked
+                                                @endif/>
+                                            <span class="form-check-label"> {{$level->name}} </span>
+                                        </label> 
+                                            @endforeach
+                                     
+                                    </div>
+                                    <!-- card-body.// -->
+                                </div>
+                            </article>
+                            <!-- card-group-item.// -->
+    
+                            {{-- <article class="card-group-item">
+                                <a class="btn px-0" data-toggle="collapse" href="#collapseExample" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" style="width:100%;">
+                                <header class="card-header">
+                                        <h6 class="title">Courses</h6>
+                                    </header>
+                                </a>
+                                <div class="filter-content collapse" id="collapseExample">
+                                    <div class="card-body">
+                                        <form>
+                                            @foreach ($courses as $course)
+                                            <label class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{$course->id}}" />
+                                                <span class="form-check-label">{{$course->name}}</span>
+                                            </label>
+                                            @endforeach
+                                            
+                                            
+                                            
+                                            
+                                            
+        
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </article> --}}
+                            <button type="submit " class="theme-btn style-one" id="filterBtrn">
+                                Filter
+                            </button>
+                            <!-- card-group-item.// -->
+                        </div>
+                    </form>
                     <!-- card.// -->
 
                 </div>
@@ -161,7 +178,7 @@
     <!-- service-section end -->
 
     <!-- form-section -->
-    <section class="support-section service-page-1 mt-5">
+    {{-- <section class="support-section service-page-1 mt-5">
         <div class="auto-container">
             <div class="inner-container">
                 <div class="row clearfix">
@@ -187,8 +204,8 @@
                                     <input type="tel" placeholder="Phone" />
                                 </div>
                                 <div class="form-group">
-                                    <select>
-                                        <option selected disabled>Select Level</option>
+                                    <select name="level_id" id="level_id" required> 
+                                        <option selected value="" >Select Level</option>
                                         @foreach ($levels as $level)
                                         <option value="{{$level->id}}">{{$level->name}}</option>
                                         @endforeach
@@ -197,8 +214,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select>
-                                        <option selected disabled>Select Course</option>
+                                    <select name="course_id" id="level_id" required>
+                                        <option selected value="" >Select Course</option>
                                         @foreach ($courses as $course)
                                         <option value="{{$course->id}}">{{$course->name}}</option>
                                         @endforeach
@@ -241,6 +258,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 @endsection
+@push('script')
+    
+@endpush

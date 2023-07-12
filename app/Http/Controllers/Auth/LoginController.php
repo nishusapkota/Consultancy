@@ -56,7 +56,7 @@ class LoginController extends Controller
                 return redirect()->route('admin.dashboard');
             }
             else{
-                return redirect()->route('university.home');;
+                return redirect()->route('university.courses.index');;
             }
         }else {
             return redirect()->back()->withErrors(['error' => 'Incorrect Password']);

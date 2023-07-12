@@ -29,7 +29,7 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
       <div class="blog-details-content">
         <figure class="image-box">
           <img
-            src="{{asset('frontend/images/University/MS.jpeg')}}"
+            src="{{asset($college->image)}}"
             class="mb-4"
             alt=""
           />

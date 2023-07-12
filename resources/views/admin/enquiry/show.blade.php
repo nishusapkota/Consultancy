@@ -50,6 +50,10 @@
                     <th>University</th>
                     <td>{{$enquiry->university->uname}}</td>
                 </tr>
+                <tr>
+                    <th>Message</th>
+                    <td>{{$enquiry->message}}</td>
+                </tr>
 
             </table>
               
