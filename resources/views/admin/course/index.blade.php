@@ -39,7 +39,11 @@
                         <tr>
                             <td>{{$course->id}}</td>
                             <td>{{$course->name}}</td>
-                            <td>{{$course->category->name}}</td>
+                            <td>@if(isset($course->category))
+                                {{$course->category->name}}
+                                @else
+                                No category
+                                @endif</td>
                             <td>
                                 <div style="width: 100px; height: 100px; overflow: hidden;">
                                     <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">

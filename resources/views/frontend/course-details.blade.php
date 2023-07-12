@@ -28,10 +28,22 @@
 
     <!-- sidebar-page-container -->
     <section class="sidebar-page-container details-content">
-        <div class="fluid-container px-5">
+        <div class="auto-container px-3 px-xxl-5">
             <div class="row clearfix">
-                <div class="col-lg-7 col-md-12 col-sm-12 content-side">
+                <div class="col-lg-8 col-md-12 col-sm-12 content-side">
                     <div class="blog-details-content">
+                        <div class="custom-class">
+                            <h2>{{ $course->name }}</h2>
+
+                            <h3>
+                              @if ($course->level_id)
+                                        {{ $course->levels->name }} ,  
+                                @endif
+                                @if ($course->cat_id)
+                                        {{ $course->category->name }}   
+                                @endif
+                            </h3>
+                        </div>
                         <figure class="image-box">
                             <img src="{{ asset($course->image) }}" class="mb-4" alt="">
                             <!-- <span class="category">business</span> -->
@@ -48,7 +60,7 @@
                                 <h3>How to become a top conference speaker?</h3>
                                 <p>Magna aliquatenim minim veniam quis nostrud <span>exercitation ullamco laboris nisut</span> aliquip exa commod Duis aute irure dolorn reprehenderit voluptate velit es. Excepteur sint uda occaecat cupidatat non proid sunt culpa qui officia deserunt mollit anim id est laborum sed utms.</p>
                              --}}
-                                {!! $course->description !!}
+                             {!!$course->description!!}
                             </div>
                             {{-- <div class="two-column">
                                 <div class="row clearfix">
@@ -60,110 +72,64 @@
                                     </div>
                                 </div>
                             </div> --}}
-
+                    
                         </div>
 
                     </div>
                 </div>
-
+               
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <div>
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
-                        <form action="{{ route('enquiry.post') }}" method="post">
-                            @csrf
+
+                        <form>
                             <div class="form-group">
-                                <input type="text" placeholder="Your Name" name="name"
-                                    @error('name')is-invalid @enderror" />
+                              <input type="text" placeholder="Your Name" />
                             </div>
-                            @error('name')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
                             <div class="form-group">
-                                <input type="email" placeholder="Email address" name="email"
-                                    @error('email')is-invalid @enderror" />
+                              <input type="email" placeholder="Email address" />
                             </div>
-                            @error('email')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
                             <div class="form-group">
-                                <input type="tel" placeholder="Phone" name="contact"
-                                    @error('contact')is-invalid @enderror" />
+                              <input type="tel" placeholder="Phone" />
                             </div>
-                            @error('contact')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
+                            <input type="course_id" placeholder="Email address" value="{{$course->id}}" hidden/>
                             <div class="form-group">
-                                <input type="tel" placeholder="Address" name="address"
-                                    @error('address')is-invalid @enderror" />
+                              <select name="level_id">
+                                <option selected disabled>Select Level</option>
+                                @foreach ($levels as $level)
+                                <option value="{{$level->id}}">{{$level->name}}</option>
+                                @endforeach
+                              </select>
                             </div>
-                            @error('address')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                            <input name="course_id" value="{{ $course->id }}" hidden />
                             <div class="form-group">
-                                <select name="level_id" @error('level_id')is-invalid @enderror">
-                                    <option selected disabled>Select Level</option>
-                                    @foreach ($levels as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
-                                    @endforeach
-                                </select>
+                              <select name="university_id">
+                                <option selected disabled>Select University</option>
+                                @foreach ($university as $course)
+                                <option value="{{$course->id}}">{{$course->uname}}</option>
+                                @endforeach
+                              </select>
                             </div>
-                            @error('level_id')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
                             <div class="form-group">
-                                <select name="university_id" @error('university_id')is-invalid @enderror">
-                                    <option selected disabled>Select University</option>
-                                    @foreach ($university as $course)
-                                        <option value="{{ $course->id }}">{{ $course->uname }}</option>
-                                    @endforeach
-                                </select>
+                              <textarea placeholder="Message"></textarea>
                             </div>
-                            @error('university_id')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                            <div class="form-group">
-                                <textarea placeholder="Message" @error('university_id')is-invalid @enderror" name="message"></textarea>
-                            </div>
-                            @error('message')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
                             <div class="form-group message-btn">
-                                <button type="submit" class="theme-btn style-one">
-                                    Submit
-                                </button>
+                              <button type="submit" class="theme-btn style-one">
+                                Submit
+                              </button>
                             </div>
-                        </form>
+                          </form>
                     </div>
                 </div>
             </div>
 
         </div>
+              </div>
+
+        </div>
+        </div>
+
+       
     </section>
     <!-- sidebar-page-container end -->
 
 @endsection
-@push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        @if (Session::has('success'))
-            toastr.success('{{ Session::get('success') }}')
-        @endif
-    </script>
-@endpush

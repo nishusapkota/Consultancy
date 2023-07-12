@@ -34,7 +34,7 @@
           
           <div class="form-group">
             <label for="sub_heading"> Sub Heading</label>
-            <input type="text" name="dsub_heading" id="sub_heading" class="form-control @error('sub_heading')is-invalid @enderror">
+            <input type="text" name="sub_heading" id="sub_heading" class="form-control @error('sub_heading')is-invalid @enderror">
             @error('sub_heading')
             <small class="form-text text-danger">
               {{ $message }}

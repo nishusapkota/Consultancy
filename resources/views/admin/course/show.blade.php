@@ -37,7 +37,14 @@
                 </tr>
                 <tr>
                     <th>Category</th>
-                    <td>{{$course->category->name}}</td>
+                    <td>
+                        @if(isset($course->category))
+                        {{$course->category->name}}
+                        @else
+                        No category
+                        @endif
+
+                    </td>
                 </tr>
                 <tr>
                     <th>Status</th>

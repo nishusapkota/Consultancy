@@ -3,6 +3,13 @@
 @section('header')
     @include('frontend.layouts.headers.homePageHeader')
 @endsection
+@push('style')
+    <style>
+        .aboutSLiderCss .owl-nav{
+            display: none;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- banner-section -->
     <section class="banner-section">
@@ -78,10 +85,10 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-md-6 col-12">
-                    <div class="banner-carousel owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
+                    <div class="banner-carousel aboutSLiderCss owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
 
                         @foreach ($images as $image)
-                            <div class="custom-slide-item">
+                            <div class="custom-slide-item ">
                                 <div class="image-layer" style="background: url('{{ asset($image->image) }}')">
                                 </div>
                             </div>

@@ -37,7 +37,7 @@
           <div class="form-group">
                 <label for="cat_id">Category</label>
                 <select name="cat_id" class="form-control">
-                    <option>select Category-------</option>
+                    <option clsss selected disabled>select Category-------</option>
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}" {{$course->cat_id ==$category->id ? 'selected':''}} >
                         {{$category->name}}

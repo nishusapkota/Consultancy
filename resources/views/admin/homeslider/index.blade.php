@@ -25,7 +25,7 @@
                     <table class="table table-bordered">
                         <thead class="bg-primary">
                             <tr>
-                                <th>ID</th>
+                                <th>S.N.</th>
                                 <th>Title</th>
                                 <th>Sub Heading</th>
                                 <th>Description</th>
@@ -36,10 +36,10 @@
                         </thead>
                         <tbody>
                         
-                            @foreach ($sliders as $slider)
+                            @foreach ($sliders as $key=>$slider)
                            
                                 <tr>
-                                    <td>{{ $slider->id }}</td>
+                                    <td>{{ $loop->index +1 }}</td>
                                     <td>{{ $slider->title }}</td>
                                     <td>{{ $slider->sub_heading  ?: 'null'}}</td>
                                     <td>{{ $slider->description  ?: 'null'}}</td>

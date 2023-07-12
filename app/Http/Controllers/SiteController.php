@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\About;
-use App\Models\AboutImage;
 use App\Models\Level;
 use App\Models\Course;
+use App\Models\Contact;
+use App\Models\AboutImage;
 use App\Models\HomeSlider;
 use App\Models\StudentEnquiry;
 use App\Models\University;
@@ -24,9 +25,9 @@ class SiteController extends Controller
         $universities=University::all();
         $blogs=Blog::all();
         $images=AboutImage::all();
-        // dd($images);
+        $contact=Contact::all();
         $homeSlider=HomeSlider::all();
-        return view('frontend.home',compact('universities','images','courses','blogs','homeSlider','about'));
+        return view('frontend.home',compact('universities','images','courses','blogs','homeSlider','about','contact'));
     }
     public function scholarship() {
         return view('frontend.scholarship');
@@ -79,7 +80,9 @@ class SiteController extends Controller
     }
     
     public function contact() {
-        return view('frontend.contact');
+        $contact=Contact::first()->get();
+        // dd($contact);
+        return view('frontend.contact',compact('contact'));
     }
     public function applyNow() {
         return view('frontend.applyNow');
@@ -93,12 +96,12 @@ class SiteController extends Controller
         // dd($course);
         return view('frontend.course-details',compact('course','university','levels'));
     }
+    
     public function collegeDetail($name) {
-       
         $college=University::where('uname',$name)->first();
         $courses=Course::whereHas('universities',function($q)use($college){
             $q->where('universities.id',$college->id);
-        })->get(['id','name']);
+        })->get();
         $levels=Level::get(['id','name']);
         return view('frontend.college-details',compact('college','courses','levels'));
     }

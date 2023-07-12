@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="cat_id">Category</label>
                             <select name="cat_id" class="form-control">
-                                <option>select Category-------</option>
+                                <option selected disabled>select Category-------</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -94,7 +94,7 @@
                             <label for="level_id">Level</label>
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
-                                    <select id="choices-multiple-remove-button" name="university_id[]"placeholder="Select level" multiple>
+                                    <select id="choices-multiple-remove-button" name="level_id[]"placeholder="Select level" multiple>
                                         @foreach ($levels as $level)
                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
                                         @endforeach

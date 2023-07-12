@@ -52,7 +52,7 @@ class UniversityController extends Controller
             
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'username' => 'required',
+            'username' => 'nullable',
             'password' => 'required|confirmed',
             
         ]);
@@ -64,7 +64,7 @@ class UniversityController extends Controller
             'address' => $request->address,
             'image' => 'university/' . $img_name,
             'details' => $request->details,
-            'status' => $request->status ? 1 : 0
+            'status' => $request->status ? '1' : '0'
         ]);
 
         if (isset($data['course_id'])) {
@@ -74,7 +74,7 @@ class UniversityController extends Controller
         User::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'username'=>$request->username,
+            'username'=>$request->username ?: "null",
             'password'=>Hash::make($request->password),
             'role'=>'university',
             'university_id'=>$university->id
