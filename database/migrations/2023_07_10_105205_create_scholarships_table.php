@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('image');
-            $table->unsignedBigInteger('university_')
+            $table->unsignedBigInteger('university_id');
+            $table->foreign('university_id')->references('id')->on('universities');
             $table->timestamps();
         });
     }

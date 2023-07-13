@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('university.layout.master')
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -8,7 +8,7 @@
         font-weight:bold">
                    Show scholarship</h3>
                 <div class="card-tools">
-                <a class="btn btn-primary" href="{{route('admin.scholarship.index')}}">
+                <a class="btn btn-primary" href="{{route('university.scholarship.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>

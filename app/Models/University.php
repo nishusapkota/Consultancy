@@ -26,4 +26,7 @@ class University extends Model
     function user(){
         return $this->hasOne(User::class);
     }
+    function scholarship(){
+        return $this->hasOne(Scholarship::class);
+    }
 }

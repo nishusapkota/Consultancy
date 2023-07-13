@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\University;
 
-
-use App\Models\University;
 use App\Models\Scholarship;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\University;
 use Illuminate\Support\Facades\Auth;
 
 class ScholarshipController extends Controller
@@ -20,10 +18,8 @@ class ScholarshipController extends Controller
     public function index()
     {
         $scholarships = Scholarship::all();
-        return view('admin.scholarship.index', compact('scholarships'));
+        return view('university.scholarship.index', compact('scholarships'));
     }
-    
-
 
     /**
      * Show the form for creating a new resource.
@@ -32,10 +28,8 @@ class ScholarshipController extends Controller
      */
     public function create()
     {
-        $universities = University::all();
-        return view('admin.scholarship.create', compact('universities'));
+        return view('university.scholarship.create');
     }
-   
 
     /**
      * Store a newly created resource in storage.
@@ -49,7 +43,6 @@ class ScholarshipController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'university_id' => 'required|exists:universities,id',
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
         if ($request->hasFile('image')) {
@@ -60,14 +53,11 @@ class ScholarshipController extends Controller
         Scholarship::create([
             'title' => $request->title,
             'image' => 'scholarship/' . $img_name,
-            'university_id' => $request->university_id,
+            'university_id' => Auth::user()->university_id,
             'description' => $request->description
         ]);
-        return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship created successfully');
+        return redirect()->route('university.scholarship.index')->with('success', 'Scholarship created successfully');
     }
-
-    
-    
 
     /**
      * Display the specified resource.
@@ -77,9 +67,8 @@ class ScholarshipController extends Controller
      */
     public function show(Scholarship $scholarship)
     {
-        return view('admin.scholarship.show', compact('scholarship'));
+        return view('university.scholarship.show', compact('scholarship'));
     }
-    
 
     /**
      * Show the form for editing the specified resource.
@@ -87,13 +76,10 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Scholarship $scholarship)
     {
-        $scholarship = Scholarship::findOrFail($id);
-        $universities = University::all();
-        return view('admin.scholarship.edit', compact('scholarship', 'universities'));
+        return view('university.scholarship.edit', compact('scholarship'));
     }
-    
 
     /**
      * Update the specified resource in storage.
@@ -102,13 +88,12 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Scholarship $scholarship)
+    public function update(Request $request,Scholarship $scholarship)
     {
         $data = $request->validate([
             'title' => 'required',
             'image' => 'nullable',
-            'description' => 'required',
-            'university_id' => 'required|exists:universities,id'
+            'description' => 'required'
         ]);
         if ($request->hasFile('image')) {
             unlink(public_path($scholarship->image));
@@ -120,13 +105,11 @@ class ScholarshipController extends Controller
             'title' => $request->title,
             'image' => $request->hasfile('image') ? 'scholarship/' . $img_name : $scholarship->image,
             'description' => $request->description,
+            'university_id' => Auth::user()->university_id
+
         ]);
-        return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship updated successfully');
+        return redirect()->route('university.scholarship.index')->with('success', 'Scholarship updated successfully');
     }
-
-    
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -140,7 +123,6 @@ class ScholarshipController extends Controller
             unlink(public_path($scholarship->image));
         }
         $scholarship->delete();
-        return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship deleted successfully');
+        return redirect()->route('university.scholarship.index')->with('success', 'Scholarship deleted successfully');
     }
-    
 }
