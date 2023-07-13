@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('student_enquiries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('contact');
+            $table->string('phone');
             $table->string('email');
-            $table->string('address');
             $table->unsignedBigInteger('level_id');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
-            $table->unsignedBigInteger('university_id');
-            $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
+            // $table->unsignedBigInteger('university_id');
+            // $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->text('message');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class IsUniversity
         if(auth()->user()->role=='university'){
             return $next($request);
         }
-        return redirect()->back();
+        return redirect()->route('index');
        
     }
 }

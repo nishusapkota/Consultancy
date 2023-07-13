@@ -12,22 +12,17 @@ class StudentEnquiry extends Model
     use HasFactory;
     protected $fillable=[
         'name',
-        'contact',
+        'phone',
         'email',
-        'address',
         'level_id',
-        'university_id',
+        'message',
         'course_id'
     ];
     public function level()
     {
         return $this->belongsTo(\App\Models\Level::class);
     }
-    
-public function university(){
-    return $this->belongsTo('\App\Models\University');
-}
 public function course(){
-    return $this->belongsTo('\App\Models\Course');
+    return $this->belongsTo(Course::class);
 }
 }

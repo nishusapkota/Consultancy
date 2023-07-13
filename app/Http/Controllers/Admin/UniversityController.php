@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UniversityController extends Controller
@@ -22,6 +23,26 @@ class UniversityController extends Controller
         return view('admin.university.index', compact('universities'));
     }
 
+    public function universityDashboard() {
+        $uid=Auth::user()->university_id;
+        $university=University::with('user')->find($uid);
+        // $courses=Course::all();
+        //  dd($university);
+        return view('university.home',compact('university'));
+    }
+    public function universityUpdate(Request $request,University $university)
+        {
+            // dd($request->details);
+            // dd($university);
+            $request->validate([
+                'details' => 'required',
+            ]);
+            $university->update([
+                'details' => $request->details,    
+            ]);
+            return redirect()->route('university.home')->with('success', 'university updated successfully');
+        }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -129,7 +150,7 @@ class UniversityController extends Controller
         
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $university->user->id,
-            'username' => 'required',
+            'username' => 'nullable',
             'password' => 'confirmed',
         ]);
         if ($request->hasFile('image')) {
@@ -148,7 +169,7 @@ class UniversityController extends Controller
         $university->user->update([
             'name'=>$request->name,
             'email'=>$request->email,
-            'username'=>$request->username,
+            'username'=>$request->username ?: "null",
             'password'=>Hash::make($request->password),
         ]);
         $university->courses()->sync($request->course_id);

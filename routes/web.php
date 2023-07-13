@@ -5,21 +5,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\HomeSlider;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\FooterController;
-use App\Http\Controllers\Admin\ContactController;
 
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\ScholarshipController;
+use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
-use App\Http\Controllers\FilterController;
 use App\Http\Controllers\University\RequestCourseController;
 
 
@@ -36,7 +38,7 @@ Route::get('/blog-details/{id}',[SiteController::class, 'blogDetail'])->name('bl
 
 Route::get('/contacts',[SiteController::class, 'contact'])->name('contact');
 Route::get('/apply',[SiteController::class, 'applyNow'])->name('apply');
-Route::post('/student-enquiries',[SiteController::class, 'studentEnquiry'])->name('enquiry.post');
+ Route::post('/student-enquiries',[SiteController::class, 'studentEnquiry'])->name('enquiry.post');
 
 
 Auth::routes();
@@ -46,6 +48,7 @@ Auth::routes();
 //
 Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(function(){
     Route::get('/dashboard',function () {
+        dd('hgbh');
         return view('admin.dashboard');
     })->name('dashboard');
     Route::resource('/slider/home',HomeSliderController::class);
@@ -59,8 +62,16 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/request/course',CourseRequestController::class);
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
-    Route::resource('/student-enquiry',StudentEnquiryController::class);
-    Route::resource('/contact',ContactController::class);
+
+    
+    // Route::post('/student-enquiry',StudentEnquiryController::class);
+    Route::post('/student-enquiry',[EnquiryController::class,'storeStudentEnquiry'])->name('student-enquiry.store');
+    Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('student-enquiry.index');
+    Route::get('/student-enquiry/{id}',[EnquiryController::class,'showStudentEnquiry'])->name('student-enquiry.show');
+    Route::delete('/student-enquiry/{id}',[EnquiryController::class,'deleteStudentEnquiry'])->name('student-enquiry.delete');
+
+
+    // Route::resource('/contact',ContactController::class);
     Route::get('/footer-edit',[FooterController::class,'edit'])->name('footer.edit');
     Route::post('/footer-update',[FooterController::class,'store'])->name('footer.update');
     Route::get('/footer-edit-logo',[FooterController::class,'editLogo'])->name('footer.edit-logo');
@@ -71,13 +82,11 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
 
 
 
-Route::prefix('/university/request')->middleware('auth','isUniversity')->name('university.')->group(function(){
-    Route::get('/home',function () {
-        return view('university.home');
-    })->name('home');
-
-    
+Route::prefix('/university/request')->middleware('auth','isUniversity')->name('university.')->group(function(){ 
+    Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');  
+    Route::post('/home/{university}',[UniversityController::class,'universityUpdate'])->name('university.update');  
     Route::resource('/courses',RequestCourseController::class);
+   
 });
 
 Route::get('get-level-list',[FilterController::class,'levels'])->name('level.lists');
