@@ -51,7 +51,7 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="far fa-envelope-open"></i></div>
                         <h3>Email Information</h3>
-                        <p><a href="mailto:{{$contact?$contact->email_primary:null}}">{{$contact?$contact->email_primary:null}}</a><br /><a href="mailto:r{{$contact?$contact->email_secondary:null}}">r{{$contact?$contact->email_secondary:null}}</a></p>
+                        <p><a href="mailto:{{$contact?$contact->email_primary:null}}">{{$contact?$contact->email_primary:null}}</a><br /><a href="mailto:{{$contact?$contact->email_secondary:null}}">{{$contact?$contact->email_secondary:null}}</a></p>
                     </div>
                 </div>
             </div>

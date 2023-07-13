@@ -172,13 +172,11 @@
     <section class="team-section">
         <div class="auto-container">
             <div class="upper-box clearfix">
-                <div class="sec-title style-two pull-left">
+                <div class="sec-title style-two centred">
                     <h5>Courses</h5>
                     <h2>Our  Courses</h2>
                 </div>
-                <div class="btn-box pull-right">
-                    <a href="{{ route('courses') }}"><i class="fas fa-user"></i>view all courses</a>
-                </div>
+                
             </div>
             <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
                 @foreach ($courses as $course)
@@ -213,6 +211,9 @@
 
 
             </div>
+        </div>
+        <div class="btn-box d-flex align-items-center justify-content-center mt-4">
+            <a href="{{ route('courses') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </section>
     <!-- courses-section end -->
@@ -359,7 +360,7 @@
 
             </div>
             <div class="btn-box blog-door">
-                <a href="{{ route('blog') }}" class="theme-btn style-one">Load More</a>
+                <a href="{{ route('blog') }}" class="theme-btn style-one">Read More</a>
             </div>
         </div>
     </section>
