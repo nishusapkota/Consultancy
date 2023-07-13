@@ -17,8 +17,18 @@ class SocialMediaSeeder extends Seeder
     {
         SocialMedia::create([
             'name'=>'facebook',
-            'link'=>'https://www.facebook.com/'
+            'link'=>'https://www.facebook.com/',
         ]);
+        SocialMedia::create([
+            'name'=>'google',
+            'link'=>'https://www.google.com/'
+        ]);
+
+        SocialMedia::create([
+            'name'=>'pinterest',
+            'link'=>'https://www.pinterest.com/'
+        ]);
+
         SocialMedia::create([
             'name'=>'youtube',
             'link'=>'https://www.youtube.com/'

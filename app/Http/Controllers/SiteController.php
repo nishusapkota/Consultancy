@@ -6,13 +6,14 @@ use App\Models\Blog;
 use App\Models\About;
 use App\Models\Level;
 use App\Models\Course;
+use App\Models\Footer;
 use App\Models\Contact;
 use App\Models\AboutImage;
 use App\Models\HomeSlider;
-use App\Models\Scholarship;
-use App\Models\StudentEnquiry;
 use App\Models\University;
+use App\Models\Scholarship;
 use Illuminate\Http\Request;
+use App\Models\StudentEnquiry;
 use Illuminate\Support\Facades\Crypt;
 
 class SiteController extends Controller
@@ -21,6 +22,7 @@ class SiteController extends Controller
         // $courses=Course::with(['category','levels'=>function($q){
         //     $q->limit(3);
         // }])->get();
+        
         $courses=Course::with('category','levels')->get();
         $scholarships=Scholarship::with('university')->get();
         $about=About::first();

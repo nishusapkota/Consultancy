@@ -40,11 +40,7 @@ class SocialMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $socialmedia=SocialMedia::find($id);
-        return view('admin.social-media.show',compact('socialmedia'));
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -70,11 +66,13 @@ class SocialMediaController extends Controller
         $socialmedia=SocialMedia::find($id);
         $request->validate([
             'name'=>'required',
-            'link'=>'required'
+            'link'=>'required',
         ]);
         $socialmedia->update([
             'name'=>$request->name,
-            'link'=>$request->link
+            'link'=>$request->link,
+            'status'=> $request->status ? '1' :'0'
+
         ]);
         return redirect()->route('admin.social-media.index')->with('success','record updated successfully');
 
@@ -86,10 +84,5 @@ class SocialMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $socialmedia=SocialMedia::find($id);
-        $socialmedia->delete();
-        return redirect()->route('admin.social-media.index')->with('success','deleted successfully');
-    }
+    
 }

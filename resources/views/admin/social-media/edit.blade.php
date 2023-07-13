@@ -51,6 +51,14 @@
                             {{ $message }}</small>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <div class="form-check">
+                            <input type="checkbox" name="status" id="status" value="1" class="form-check-input" {{$socialmedia->status =='1' ? 'checked' : ''}}>
+                            <label class="form-check-label" for="status">Available</label>
+                        </div>
+                    </div>
                     
                    
                     

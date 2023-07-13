@@ -25,7 +25,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Link</th>
-                           
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
 
@@ -36,17 +36,13 @@
                             <td>{{$socialmedia->id}}</td>
                             <td>{{$socialmedia->name}}</td>
                             <td>{{$socialmedia->link}}</td>
-                            
+                            <td>
+                              
+                            </td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.social-media.show', $socialmedia->id)}}"><i class="fas fa-eye"></i>Show</a>
                                 <a class="btn btn-warning" href="{{route('admin.social-media.edit', $socialmedia->id)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.social-media.destroy',$socialmedia->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">
-                                        <i class="fas fa-trash"></i>Delete</button>
-                                </form>
+                                
 
                             </td>
                         </tr>

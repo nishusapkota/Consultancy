@@ -122,14 +122,17 @@
     <section class="university-section">
         <div class="university-container">
             <div class="sec-title centred">
-                <h2>Our University</h2>
+                <h2>University/Colleges</h2>
                 <div class="sec-text">
                     <p class="blog-text" style="max-width:100%">Let us know your interest and we will find you the right
                         institution</p>
                 </div>
             </div>
             <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+                
                 @foreach ($universities as $university)
+
+            
                     <div class="uni-container">
                         <div class="news-block-one">
                             {{-- route('college-detail', Crypt::encrypt($university->id)) --}}

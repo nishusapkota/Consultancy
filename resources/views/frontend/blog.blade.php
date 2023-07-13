@@ -8,10 +8,10 @@
  <section class="page-title style-two centred" style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}});">
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>Latest News</h1>
+            <h1>Blog</h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{route('index')}}">Home</a></li>
-                <li>Blog Grid</li>
+                <li>Blogs</li>
             </ul>
         </div>
     </div>
