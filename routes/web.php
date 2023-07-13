@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
 use App\Http\Controllers\University\ScholarshipController;
 use App\Http\Controllers\University\RequestCourseController;
@@ -49,10 +50,11 @@ Auth::routes();
 
 //
 Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(function(){
+
     Route::get('/dashboard',function () {
-       
         return view('admin.dashboard');
     })->name('dashboard');
+
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
     Route::resource('/scholarship',ScholarshipController::class);
@@ -64,7 +66,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/request/course',CourseRequestController::class);
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
-
+    Route::resource('/social-media',SocialMediaController::class);
     
     // Route::post('/student-enquiry',StudentEnquiryController::class);
     Route::post('/student-enquiry',[EnquiryController::class,'storeStudentEnquiry'])->name('student-enquiry.store');
@@ -88,9 +90,7 @@ Route::prefix('/university')->middleware('auth','isUniversity')->name('universit
     Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');  
     Route::post('/home/{university}',[UniversityController::class,'universityUpdate'])->name('university.update');  
     Route::resource('/courses',RequestCourseController::class);
-    Route::resource('/scholarship',ScholarshipController::class);
-    
-    
+    Route::resource('/scholarship',ScholarshipController::class);    
 });
 
 
