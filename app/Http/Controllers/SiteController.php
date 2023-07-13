@@ -80,7 +80,7 @@ class SiteController extends Controller
     }
     
     public function contact() {
-        $contact=Contact::first()->get();
+        $contact=Contact::first();
         // dd($contact);
         return view('frontend.contact',compact('contact'));
     }

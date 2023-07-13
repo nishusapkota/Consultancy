@@ -3,7 +3,7 @@
         <div class="auto-container">
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset('frontend/images/TempLogo.png')}}" alt=""></a></figure>
+                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset('frontend/images/main-logo.png')}}" alt="" width="150" height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <div class="mobile-nav-toggler">
@@ -50,7 +50,7 @@
         <div class="auto-container">
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="{{route('index')}}"><img src="frontend/images/TempLogo.png" alt=""></a></figure>
+                    <figure class="logo"><a href="{{route('index')}}"><img src="frontend/images/main-logo.png" alt="" width="150" height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <nav class="main-menu clearfix">
@@ -67,7 +67,7 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
     
     <nav class="menu-box">
-        <div class="nav-logo"><a href="{{route('index')}}"><img src="frontend/images/TempLogo.png" alt="" title=""></a></div>
+        <div class="nav-logo"><a href="{{route('index')}}"><img src="frontend/images/main-logo.png" alt="" title="" width="150" height="48"></a></div>
         <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
         <div class="contact-info">
             <h4>Contact Info</h4>

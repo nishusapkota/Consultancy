@@ -23,8 +23,8 @@
 <section class="contact-information centred">
     <div class="auto-container">
         <div class="sec-title right">
-            <h5>{{$contact[0]->title}}</h5>
-            <h2>{{$contact[0]->short_description}}</h2>
+            <h5>{{$contact?$contact->title:null}}</h5>
+            <h2>{{$contact?$contact->short_description:null}}</h2>
         </div>
         <div class="row clearfix">
             <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -32,7 +32,7 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="far fa-map"></i></div>
                         <h3>Office Location</h3>
-                        <p>{{$contact[0]->address}}</p>
+                        <p>{{$contact?$contact->address:null}}</p>
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="fas fa-phone"></i></div>
                         <h3>Calling Support</h3>
-                        <p>24/7 Line  <a href="">(+977) 9841111111</a></p>
-                        <p>Toll Free  <a href="tel:080098765">(+977) 9841111111</a></p>
+                        <p> <a href="tel:{{$contact?$contact->phone_primary:null}}">{{$contact?$contact->phone_primary:null}}</a></p>
+                        <p><a href="tel:{{$contact?$contact->phone_secondary:null}}">{{$contact?$contact->phone_secondary:null}}</a></p>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="inner-box">
                         <div class="icon-box"><i class="far fa-envelope-open"></i></div>
                         <h3>Email Information</h3>
-                        <p><a href="mailto:support@my-domain.com">support@my-domain.com</a><br /><a href="mailto:reply@example.org">reply@example.org</a></p>
+                        <p><a href="mailto:{{$contact?$contact->email_primary:null}}">{{$contact?$contact->email_primary:null}}</a><br /><a href="mailto:r{{$contact?$contact->email_secondary:null}}">r{{$contact?$contact->email_secondary:null}}</a></p>
                     </div>
                 </div>
             </div>
