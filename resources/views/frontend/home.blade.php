@@ -228,96 +228,24 @@
                 <div class="btn-box pull-right"><a href="{{ route('scholarship') }}">View More Scholarships</a></div>
             </div>
             <div class="two-column-carousel owl-carousel owl-theme owl-nav-none">
+                @foreach ($scholarships as $scholarship)
                 <div class="project-block-three">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('frontend/images/gallery/project-17.jpg') }}"
+                        <figure class="image-box"><img src="{{ asset($scholarship->image) }}"
                                 alt=""></figure>
                         <div class="lower-content">
                             <div class="inner">
-                                <h3>Scholarship Title</h3>
-                                {{-- <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p> --}}
-                                <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
+                                <h3>{{$scholarship->title}}</h3>
+                                <p>{{$scholarship->description}}</p> 
+                                <a href="{{ route('scholarship-detail',$scholarship->title) }}"><i class="fas fa-arrow-right"></i><span>Read
                                         More</span></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="project-block-three">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('frontend/images/gallery/project-18.jpg') }}"
-                                alt=""></figure>
-                        <div class="lower-content">
-                            <div class="inner">
-                                <h3>Scholarship Title</h3>
-                                <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p>
-                                <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
-                                        More</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-block-three">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('frontend/images/gallery/project-17.jpg') }}"
-                                alt=""></figure>
-                        <div class="lower-content">
-                            <div class="inner">
-                                <h3>Scholarship Title</h3>
-                                <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p>
-                                <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
-                                        More</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-block-three">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('frontend/images/gallery/project-18.jpg') }}"
-                                alt=""></figure>
-                        <div class="lower-content">
-                            <div class="inner">
-                                <h3>Scholarship Title</h3>
-                                <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p>
-                                <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
-                                        More</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-block-three">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="assets/images/gallery/project-17.jpg" alt="">
-                        </figure>
-                        <div class="lower-content">
-                            <div class="inner">
-                                <h3>Scholarship Title</h3>
-                                <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p>
-                                <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
-                                        More</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-block-three">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('frontend/images/gallery/project-18.jpg') }}"
-                                alt=""></figure>
-                        <div class="lower-content">
-                            <div class="inner">
-                                <h3>Scholarship Title</h3>
-                                <p>Acepteur sintas haecat sed non sed dui proident sunt sed ipsum tempor adipisicing elit
-                                    sed incidunt.</p>
-                                <a href="{{ route('scholarship') }}"><i class="fas fa-arrow-right"></i><span>Read
-                                        More</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                
+                
             </div>
         </div>
     </section>

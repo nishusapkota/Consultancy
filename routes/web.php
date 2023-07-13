@@ -29,6 +29,8 @@ Route::get('/',[SiteController::class, 'index'])->name('index');
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
 Route::get('/course-details/{name}',[SiteController::class, 'courseDetail'])->name('course-detail');
 Route::get('/scholarships',[SiteController::class, 'scholarship'])->name('scholarship');
+Route::get('/scholarship-details/{title}',[SiteController::class, 'scholarshipDetail'])->name('scholarship-detail');
+
 
 Route::get('/colleges',[SiteController::class, 'colleges'])->name('college');
 Route::get('/college-details/{uname}',[SiteController::class, 'collegeDetail'])->name('college-detail');

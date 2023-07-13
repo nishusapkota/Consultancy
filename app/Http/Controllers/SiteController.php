@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Contact;
 use App\Models\AboutImage;
 use App\Models\HomeSlider;
+use App\Models\Scholarship;
 use App\Models\StudentEnquiry;
 use App\Models\University;
 use Illuminate\Http\Request;
@@ -21,16 +22,18 @@ class SiteController extends Controller
         //     $q->limit(3);
         // }])->get();
         $courses=Course::with('category','levels')->get();
+        $scholarships=Scholarship::with('university')->get();
         $about=About::first();
         $universities=University::all();
         $blogs=Blog::all();
         $images=AboutImage::all();
         $contact=Contact::all();
         $homeSlider=HomeSlider::all();
-        return view('frontend.home',compact('universities','images','courses','blogs','homeSlider','about','contact'));
+        return view('frontend.home',compact('universities','images','courses','blogs','homeSlider','about','contact','scholarships'));
     }
     public function scholarship() {
-        return view('frontend.scholarship');
+        $scholarships=Scholarship::all();
+        return view('frontend.scholarship',compact('scholarships'));
     }
     public function courses(Request $request) {
     
@@ -96,6 +99,12 @@ class SiteController extends Controller
         // dd($course);
         return view('frontend.course-details',compact('course','university','levels'));
     }
+
+    public function scholarshipDetail($title) {
+        $scholarship=Scholarship::where('title',$title)->first();
+        return view('frontend.scholarship-details',compact('scholarship'));
+    }
+
     
     public function collegeDetail($name) {
         $college=University::where('uname',$name)->first();
