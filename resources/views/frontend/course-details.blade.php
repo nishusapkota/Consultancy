@@ -36,11 +36,11 @@
                             <h2>{{ $course->name }}</h2>
 
                             <h3>
-                              @if ($course->level_id)
-                                        {{ $course->levels->name }} ,  
+                                @if ($course->level_id)
+                                    {{ $course->levels->name }} ,
                                 @endif
                                 @if ($course->cat_id)
-                                        {{ $course->category->name }}   
+                                    {{ $course->category->name }}
                                 @endif
                             </h3>
                         </div>
@@ -50,8 +50,8 @@
                         </figure>
                         <div class="inner-box">
                             <!-- <ul class="post-info clearfix">
-                                        <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
-                                    </ul> -->
+                                            <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
+                                        </ul> -->
                             <div class="text">
                                 {{-- <h2></h2>
                                 <p>Eabore etsu dolore magn aliqua enim veniam quis nostrud exercitas reprehenderit voluptate sed bvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
@@ -60,7 +60,7 @@
                                 <h3>How to become a top conference speaker?</h3>
                                 <p>Magna aliquatenim minim veniam quis nostrud <span>exercitation ullamco laboris nisut</span> aliquip exa commod Duis aute irure dolorn reprehenderit voluptate velit es. Excepteur sint uda occaecat cupidatat non proid sunt culpa qui officia deserunt mollit anim id est laborum sed utms.</p>
                              --}}
-                             {!!$course->description!!}
+                                {!! $course->description !!}
                             </div>
                             {{-- <div class="two-column">
                                 <div class="row clearfix">
@@ -72,64 +72,106 @@
                                     </div>
                                 </div>
                             </div> --}}
-                    
+
                         </div>
 
                     </div>
                 </div>
-               
+
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div>
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
 
-                        <form>
+                        <form method="post" action="{{route('enquiry.post')}}">
+                            @csrf
                             <div class="form-group">
-                              <input type="text" placeholder="Your Name" />
+                                <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror"" required/>
+                                @error('name')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                              <input type="email" placeholder="Email address" />
+                                <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror"" required/>
+                                @error('email')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                              <input type="tel" placeholder="Phone" />
+                                <input type="tel" placeholder="Phone"name="contact"  class="@error('contact') is-invalid @enderror" required/>
+                                @error('contact')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
-                            <input type="course_id" placeholder="Email address" value="{{$course->id}}" hidden/>
                             <div class="form-group">
-                              <select name="level_id">
+                                <input type="tel" placeholder="Address"name="address"  class="@error('address') is-invalid @enderror" required/>
+                                @error('address')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <input name="course_id" placeholder="Email address" value="{{$course->id}}" hidden/>
+                            <div class="form-group">
+                              <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
                                 <option selected disabled>Select Level</option>
                                 @foreach ($levels as $level)
                                 <option value="{{$level->id}}">{{$level->name}}</option>
                                 @endforeach
                               </select>
+                              @error('level_id')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                              <select name="university_id">
-                                <option selected disabled>Select University</option>
+                              <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
+                                <option selected value="">Select University</option>
                                 @foreach ($university as $course)
                                 <option value="{{$course->id}}">{{$course->uname}}</option>
                                 @endforeach
                               </select>
+                              @error('university_id')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                              <textarea placeholder="Message"></textarea>
+                                <textarea placeholder="Message" name="message" class="@error('name') is-invalid @enderror"" required></textarea>
+                                @error('message')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group message-btn">
-                              <button type="submit" class="theme-btn style-one">
-                                Submit
-                              </button>
+                                <button type="submit" class="theme-btn style-one">
+                                    Submit
+                                </button>
                             </div>
-                          </form>
+                        </form>
                     </div>
                 </div>
             </div>
 
         </div>
-              </div>
+        </div>
 
         </div>
         </div>
 
-       
+
     </section>
     <!-- sidebar-page-container end -->
 
 @endsection
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        @if(Session::has('success'))
+           //  toastr.info("Have fun storming the castle!")
+            toastr.success('{{ Session::get('success') }}')
+            @endif
+
+    </script>
+@endpush

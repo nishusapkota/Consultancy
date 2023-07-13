@@ -3,6 +3,11 @@
 @section('header')
     @include('frontend.layouts.headers.otherPageHeader')
 @endsection
+@push('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
     <!--Page Title-->
     <section class="page-title style-three centred"
@@ -49,35 +54,67 @@
                     <div>
                         <h3 class="mb-4 mt-3">Fill Out Your Form</h3>
 
-                        <form>
+                        <form method="post" action="{{route('enquiry.post')}}">
+                            @csrf
                             <div class="form-group">
-                                <input type="text" placeholder="Your Name" />
+                                <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror"" required/>
+                                @error('name')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Email address" />
+                                <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror"" required/>
+                                @error('email')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <input type="tel" placeholder="Phone" />
+                                <input type="tel" placeholder="Phone"name="contact"  class="@error('contact') is-invalid @enderror" required/>
+                                @error('contact')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
-                            <input name="university_id" type="text" value="{{ $college->id }}" hidden />
                             <div class="form-group">
-                                <select>
-                                    <option selected disabled>Select Level</option>
-                                    @foreach ($courses as $course)
+                                <input type="tel" placeholder="Address"name="address"  class="@error('address') is-invalid @enderror" required/>
+                                @error('address')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <input name="university_id" type="text" value="{{ $college->id }}" hidden required />
+                            <div class="form-group">
+                                <select name="level_id" class="@error('level_id') is-invalid @enderror" required >
+                                    <option selected value="">Select Level</option>
+                                    @foreach ($levels as $course)
                                         <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('level_id')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <select>
-                                    <option selected disabled>Select Course</option>
-                                    @foreach ($levels as $level)
+                                <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
+                                    <option selected value="" >Select Course</option>
+                                    @foreach ($courses as $level)
                                         <option value="{{ $level->id }}">{{ $level->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('course_id')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <textarea placeholder="Message"></textarea>
+                                <textarea placeholder="Message" name="message" class="@error('name') is-invalid @enderror"" required></textarea>
+                                @error('message')
+                                    <small class="form-text text-danger">
+                                        {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group message-btn">
                                 <button type="submit" class="theme-btn style-one">
@@ -135,3 +172,12 @@
     </section>
     <!-- main-content-container end -->
 @endsection
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        @if(Session::has('success'))
+            toastr.success('{{ Session::get('success') }}')
+            @endif
+
+    </script>
+@endpush

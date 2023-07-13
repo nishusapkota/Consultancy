@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('scholarships', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->longText('description');
-            $table->string('image');
-            
-            $table->timestamps();
+        Schema::table('scholarships', function (Blueprint $table) {
+            $table->unsignedBigInteger('university_id');
+            $table->foreign('university_id')->references('id')->on('universities');
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scholarships');
+        Schema::table('scholarships', function (Blueprint $table) {
+            //
+        });
     }
 };

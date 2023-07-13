@@ -104,7 +104,11 @@ class SiteController extends Controller
 
     public function scholarshipDetail($title) {
         $scholarship=Scholarship::where('title',$title)->first();
-        return view('frontend.scholarship-details',compact('scholarship'));
+        $courses=Course::whereHas('universities',function($q)use($scholarship){
+            $q->where('universities.id',$scholarship->university_id);
+        })->get();
+        $levels=Level::get(['id','name']);
+        return view('frontend.scholarship-details',compact('scholarship','courses','levels'));
     }
 
     
@@ -126,7 +130,7 @@ class SiteController extends Controller
     // }
     public function studentEnquiry(Request $request)
     {
-        // dd($request->all());
+        
         $data = $request->validate([
             'name' => 'required',
             'contact' => 'required',
@@ -137,7 +141,7 @@ class SiteController extends Controller
             'university_id' => 'required|exists:universities,id',
             'message' => 'nullable|string'
         ]);
-
+        // dd($request->all());
         StudentEnquiry::create([
             'name' => $request->name,
             'contact' => $request->contact,

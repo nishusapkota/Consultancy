@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
 use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
 use App\Http\Controllers\University\ScholarshipController;
@@ -57,7 +58,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
 
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
-    Route::resource('/scholarship',ScholarshipController::class);
+    Route::resource('/scholarship',AdminScholarshipController::class);
     Route::resource('/about',AboutController::class);
     Route::get('/about/edit-image/{id}',[AboutController::class,'edit_image'])->name('about.edit_image');
     Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
@@ -101,10 +102,7 @@ Route::get('migrate246820',function(){
     \Artisan::call('migrate');
     return 'migrated successfully';
 });
-Route::get('migrate246822',function(){
-    \Artisan::call('migrate --path=database/migrations/2023_07_12_094021_create_contacts_table.php');
-    return 'migrated successfully';
-});
+
 
 
 
