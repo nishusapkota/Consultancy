@@ -56,11 +56,11 @@
                             </div>
                             <div class="socialLink">
                                 <ul class="list clearfix">
-                                    <li><i class="fab fa-facebook-f socio-icon"></i> <a href="{{route('index')}}">Facebook</a></li>
-                                    <li><i class="fab fa-twitter socio-icon"></i> <a href="{{route('index')}}">Twitter</a> </li>
-                                    <li><i class="fab fa-instagram socio-icon"> </i> <a href="{{route('index')}}">Instagram</a></li>
-                                    <li><i class="fab fa-linkedin-in socio-icon"></i> <a href="{{route('index')}}">LinkedIn</a></li>
-                                    <li><i class="fab fa-pinterest-p socio-icon"></i> <a href="{{route('index')}}">Pinterest</a></li>
+                                    <li><i class="fab fa-facebook-f socio-icon"></i> <a href="">Facebook</a></li>
+                                    <li><i class="fab fa-twitter socio-icon"></i> <a href="">Twitter</a> </li>
+                                    <li><i class="fab fa-instagram socio-icon"> </i> <a href="">Instagram</a></li>
+                                    <li><i class="fab fa-linkedin-in socio-icon"></i> <a href="">LinkedIn</a></li>
+                                    <li><i class="fab fa-pinterest-p socio-icon"></i> <a href="">Pinterest</a></li>
                                 </ul>
                             </div>
                         </div>

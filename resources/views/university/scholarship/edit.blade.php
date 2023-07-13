@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('university.layout.master')
 @push('style')
     <style>
         .ck-content{
@@ -15,7 +15,7 @@
         font-weight:bold">
                     Edit scholarship</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.scholarship.index')}}">
+                    <a class="btn btn-primary" href="{{route('university.scholarship.index')}}">
                         <i class="fas fa-arrow-circle-left mr-2"></i>
                         Go Back
                     </a>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="card-body">
-                <form method="post" action="{{ route('admin.scholarship.update',$scholarship) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('university.scholarship.update',$scholarship) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     @if($errors->any())
@@ -63,16 +63,6 @@
                         @enderror
                           </div>
 
-                          
-                          <div class="form-group">
-                            <label for="university_id">University</label>
-                            <select name="university_id" class="form-control">
-                                <option selected disabled>select University-------</option>
-                                @foreach ($universities as $university)
-                                    <option value="{{ $university->id }}" {{$scholarship->university_id ==$university->id ? 'selected':''}}>{{ $university->uname }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                     
 
                     <button class="btn btn-primary">

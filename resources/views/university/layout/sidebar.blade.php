@@ -1,7 +1,7 @@
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <li class="nav-item menu-open">
-      <a href="{{route('university.home')}}" class="nav-link {{ (request()->is('university/request/home')) ? 'active' : '' }}">
+      <a href="{{route('university.home')}}" class="nav-link {{ (request()->is('university/home')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
           Dashboard
@@ -29,9 +29,16 @@
     </li> --}}
    
     <li class="nav-item">
-      <a href="{{route('university.courses.index')}}" class="nav-link {{ (request()->is('university/request/courses*')) ? 'active' : '' }}">
+      <a href="{{route('university.courses.index')}}" class="nav-link {{ (request()->is('university/courses*')) ? 'active' : '' }}">
         <i class="far fa-circle nav-icon"></i>
         <p>Request Course</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{route('university.scholarship.index')}}" class="nav-link {{ (request()->is('university/scholarship*')) ? 'active' : '' }}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Scholarship</p>
       </a>
     </li>
 

@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('university.layout.master')
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -8,7 +8,7 @@
         font-weight:bold">
                     scholarships</h3>
                 <div class="card-tools">
-                    <a class="btn btn-primary" href="{{route('admin.scholarship.create')}}">
+                    <a class="btn btn-primary" href="{{route('university.scholarship.create')}}">
                         <i class="fas fa-plus circle-left mr-2"></i>
                         Add scholarship
                     </a>
@@ -49,9 +49,9 @@
                             <td>{!!$scholarship->description!!}</td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.scholarship.show',$scholarship)}}"><i class="fas fa-eye"></i>Show</a>
-                                <a class="btn btn-warning" href="{{route('admin.scholarship.edit',$scholarship)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.scholarship.destroy',$scholarship)}}" method="post">
+                                <a class="btn btn-secondary" href="{{route('university.scholarship.show',$scholarship)}}"><i class="fas fa-eye"></i>Show</a>
+                                <a class="btn btn-warning" href="{{route('university.scholarship.edit',$scholarship)}}"><i class="fas fa-edit"></i>Edit</a>
+                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('university.scholarship.destroy',$scholarship)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">

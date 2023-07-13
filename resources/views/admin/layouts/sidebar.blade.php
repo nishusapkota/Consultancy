@@ -109,6 +109,13 @@
     </li>
 
     <li class="nav-item">
+      <a href="{{ route('admin.social-media.index')}}" class="nav-link {{ (request()->is('admin/social-media*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Social Media</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
       <a href="{{route('admin.level.index')}}" class="nav-link {{ (request()->is('admin/level*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
         <p>Level</p>

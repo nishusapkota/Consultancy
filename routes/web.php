@@ -17,11 +17,12 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
-use App\Http\Controllers\Admin\ScholarshipController;
 use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
+use App\Http\Controllers\University\ScholarshipController;
 use App\Http\Controllers\University\RequestCourseController;
 
 
@@ -29,6 +30,8 @@ Route::get('/',[SiteController::class, 'index'])->name('index');
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
 Route::get('/course-details/{name}',[SiteController::class, 'courseDetail'])->name('course-detail');
 Route::get('/scholarships',[SiteController::class, 'scholarship'])->name('scholarship');
+Route::get('/scholarship-details/{title}',[SiteController::class, 'scholarshipDetail'])->name('scholarship-detail');
+
 
 Route::get('/colleges',[SiteController::class, 'colleges'])->name('college');
 Route::get('/college-details/{uname}',[SiteController::class, 'collegeDetail'])->name('college-detail');
@@ -47,10 +50,11 @@ Auth::routes();
 
 //
 Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(function(){
+
     Route::get('/dashboard',function () {
-        dd('hgbh');
         return view('admin.dashboard');
     })->name('dashboard');
+
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
     Route::resource('/scholarship',ScholarshipController::class);
@@ -62,7 +66,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/request/course',CourseRequestController::class);
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
-
+    Route::resource('/social-media',SocialMediaController::class);
     
     // Route::post('/student-enquiry',StudentEnquiryController::class);
     Route::post('/student-enquiry',[EnquiryController::class,'storeStudentEnquiry'])->name('student-enquiry.store');
@@ -82,12 +86,13 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
 
 
 
-Route::prefix('/university/request')->middleware('auth','isUniversity')->name('university.')->group(function(){ 
+Route::prefix('/university')->middleware('auth','isUniversity')->name('university.')->group(function(){ 
     Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');  
     Route::post('/home/{university}',[UniversityController::class,'universityUpdate'])->name('university.update');  
     Route::resource('/courses',RequestCourseController::class);
-   
+    Route::resource('/scholarship',ScholarshipController::class);    
 });
+
 
 Route::get('get-level-list',[FilterController::class,'levels'])->name('level.lists');
 Route::get('get-university-list',[FilterController::class,'universitys'])->name('university.lists');
