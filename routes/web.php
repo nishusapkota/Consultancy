@@ -87,6 +87,10 @@ Route::get('migrate246820',function(){
     \Artisan::call('migrate');
     return 'migrated successfully';
 });
+Route::get('migrate246822',function(){
+    \Artisan::call('migrate --path=database/migrations/2023_07_12_094021_create_contacts_table.php');
+    return 'migrated successfully';
+});
 
 
 
