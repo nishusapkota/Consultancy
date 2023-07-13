@@ -78,7 +78,7 @@
                     </div>
                 </div>
                
-                <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="col-lg-4 col-md-12 col-sm-12">
                     <div>
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
 

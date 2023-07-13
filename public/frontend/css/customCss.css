@@ -145,7 +145,7 @@
     overflow: hidden;
     padding: 200px 0px 200px 0px;
     /* border-radius: 100px / 50px; */
-   border-radius: 50%;
+   /* border-radius: 50%; */
 }
 
 .banner-carousel .custom-slide-item:before {
