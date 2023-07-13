@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\StudentEnquiry;
 
-class StudentEnquiryController extends Controller
+class EnquiryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexStudent()
     {
         $enquiries = StudentEnquiry::with('level', 'university', 'course')->get();
         return view('admin.enquiry.index',compact('enquiries'));
