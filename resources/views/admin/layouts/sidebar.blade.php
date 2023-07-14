@@ -24,7 +24,7 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a href="{{route('admin.footer.edit-logo')}}" class="nav-link {{ (request()->is('admin/footer/edit-logo')) ? 'active' : '' }}">
+          <a href="{{route('admin.footer.edit-logo')}}" class="nav-link {{ (request()->is('admin/footer-edit-logo')) ? 'active' : '' }}">
             <i class="far fa-circle nav-icon"></i>
             <p>Footer Logo</p>
           </a>
@@ -82,7 +82,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.footer.edit')}}" class="nav-link {{ (request()->is('admin/footer*')) ? 'active' : '' }}">
+      <a href="{{route('admin.footer.edit')}}" class="nav-link {{ (request()->is('admin/footer-edit')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
         <p>Footer</p>
       </a>
@@ -123,7 +123,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{route('admin.student-enquiry.index')}}" class="nav-link {{ (request()->is('admin/student-enquiry*')) ? 'active' : '' }}">
+      <a href="{{route('admin.indexStudentEnquiry')}}" class="nav-link {{ (request()->is('admin/student-enquiry*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
         <p>Student Enquiry</p>
       </a>

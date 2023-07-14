@@ -26,36 +26,26 @@
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
-                            <th>Address</th>
+                          
                             <th>University</th>
                             <th>Course</th>
                             <th>Level</th>
-                            <th>Action</th>
+                            
                         </tr>
 
                     </thead>
                     <tbody>
                         @foreach ($enquiries as $enquiry )
                         <tr>
-                            <td>{{$enquiry->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$enquiry->name}}</td>
                             <td>{{$enquiry->contact}}</td>
                             <td>{{$enquiry->email}}</td>
-                            <td>{{$enquiry->address}}</td>
+                            
                             <td>{{$enquiry->level->name}}</td>
                             <td>{{$enquiry->course->name}}</td>
                             <td>{{$enquiry->university->uname}}</td>
-                            <td>
-
-                                <a class="btn btn-secondary" href="{{route('admin.student-enquiry.show',$enquiry)}}"><i class="fas fa-eye"></i>Show</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.student-enquiry.destroy',$enquiry)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">
-                                        <i class="fas fa-trash"></i>Delete</button>
-                                </form>
-
-                            </td>
+                           
                         </tr>
 
                         @endforeach

@@ -67,13 +67,16 @@ class SocialMediaController extends Controller
         $request->validate([
             'name'=>'required',
             'link'=>'required',
+            'status'=>'boolean|nullable'
         ]);
+        
         $socialmedia->update([
             'name'=>$request->name,
             'link'=>$request->link,
-            'status'=> $request->status ? '1' :'0'
+            'status'=> $request->status ? 1 : 0
 
         ]);
+        // dd($request->all());
         return redirect()->route('admin.social-media.index')->with('success','record updated successfully');
 
     }

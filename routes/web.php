@@ -69,8 +69,10 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/university',UniversityController::class);
     Route::resource('/social-media',SocialMediaController::class);
     
-    Route::post('/student-enquiry',[EnquiryController::class,'storeStudentEnquiry']);
-    Route::post('/general-enquiry',[EnquiryController::class,'storeGeneralEnquiry']);
+    
+    Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('indexStudentEnquiry');
+    Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry']);
+    
 
     // Route::resource('/contact',ContactController::class);
     Route::get('/footer-edit',[FooterController::class,'edit'])->name('footer.edit');

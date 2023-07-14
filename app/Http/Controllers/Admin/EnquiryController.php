@@ -16,10 +16,16 @@ class EnquiryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexStudent()
+    public function indexStudentEnquiry()
     {
         $enquiries = StudentEnquiry::with('level', 'university', 'course')->get();
         return view('admin.enquiry.index',compact('enquiries'));
+    }
+
+    public function indexGeneralEnquiry()
+    {
+        // $enquiries = StudentEnquiry::with('level', 'university', 'course')->get();
+        // return view('admin.enquiry.index',compact('enquiries'));
     }
 
     /**
@@ -35,21 +41,7 @@ class EnquiryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-       $data= $request->validate([
-            'name'=>'required',
-            'contact'=>'required',
-            'email'=>'required',
-            'address'=>'required',
-            'course_id'=>'required|exists:courses,id',
-            'level_id'=>'required|exists:levels,id',
-            'university_id'=>'required|exists:universities,id'
-        ]);
-        StudentEnquiry::create($data);
-        return redirect()->route('admin.student-enquiry.index');
-    }
-
+    
     /**
      * Display the specified resource.
      *

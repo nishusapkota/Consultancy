@@ -36,7 +36,7 @@
                     <tbody>
                         @foreach ($reqCourses as $course)
                         <tr>
-                            <td>{{$course->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$course->name}}</td>
                             <td>{{$course->category->name}}</td>
                             <td>{{$course->university->uname}}</td>

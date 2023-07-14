@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('link');
-            $table->boolean('status')->default('0');
+            $table->boolean('status')->default('0')->nullable();
             $table->timestamps();
         });
     }

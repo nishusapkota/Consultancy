@@ -38,7 +38,7 @@
                     <tbody>
                         @foreach ($scholarships as $scholarship )
                         <tr>
-                            <td>{{$scholarship->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$scholarship->title}}</td>
                             <td>
                                 <div style="width: 100px; height: 100px; overflow: hidden;">

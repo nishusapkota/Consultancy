@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <th>Body</th>
-                    <td>{{$blog->body}}</td>
+                    <td>{!!$blog->body!!}</td>
                 </tr>
                 <tr>
                     <th>Extra</th>

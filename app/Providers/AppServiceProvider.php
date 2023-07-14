@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Footer;
+use App\Models\SocialMedia;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,9 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function ($view) {
+        view()->composer(['frontend/layouts/headers/homePageHeader',
+        'frontend/layouts/headers/otherPageHeader',
+        'frontend/layouts/footer'], function ($view) {
             $footer=Footer::first();
-            $view->with('footer',$footer);
+            $socialMedias=SocialMedia::where('status','1')->get();
+            $view->with('footer',$footer)->with('socialMedias', $socialMedias);;
         });
     }
 }

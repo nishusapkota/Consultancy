@@ -33,11 +33,15 @@
                     <tbody>
                         @foreach ($socialmedias as $socialmedia )
                         <tr>
-                            <td>{{$socialmedia->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$socialmedia->name}}</td>
                             <td>{{$socialmedia->link}}</td>
                             <td>
-                              
+                              @if($socialmedia->status =='1')
+                                Available
+                              @else
+                              Not Available
+                              @endif
                             </td>
                             <td>
 

@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach ($courses as $course)
                         <tr>
-                            <td>{{$course->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$course->name}}</td>
                             <td>@if(isset($course->category))
                                 {{$course->category->name}}
