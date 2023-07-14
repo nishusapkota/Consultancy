@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('email');
-            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
-            // $table->unsignedBigInteger('university_id');
-            // $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('university_id')->nullable();
+         $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
+            $table->unsignedBigInteger('course_id')->nullable();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->text('message');
             $table->timestamps();

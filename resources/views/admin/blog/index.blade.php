@@ -29,7 +29,7 @@
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Short Description</th>
-                            <th>Body</th>
+                           
                             <th>Extra</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -39,13 +39,20 @@
                     <tbody>
                         @foreach ($blogs as $blog )
                         <tr>
-                            <td>{{$blog->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$blog->title}}</td>
                             <td>{{$blog->slug}}</td>
                             <td>{{$blog->short_description}}</td>
-                            <td>{{$blog->body}}</td>
+                            
                             <td>{{$blog->extra}}</td>
-                            <td>{{$blog->status}}</td>
+                            {{-- <td>{{$blog->status?'<span class="badge badge-primary">'.$blog->status.'</span>':'<span class="badge badge-primary">'.$blog->status.'</span>'}}</td> --}}
+                            <td>
+                            @if ($blog->status==1)
+                            <span class="badge badge-primary">Active</span>
+                            @else
+                            <span class="badge badge-danger">Inactive</span>
+                            @endif
+                        </td>
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('admin.blog.show',$blog)}}"><i class="fas fa-eye"></i>Show</a>

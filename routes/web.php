@@ -69,12 +69,10 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/university',UniversityController::class);
     Route::resource('/social-media',SocialMediaController::class);
     
-    // Route::post('/student-enquiry',StudentEnquiryController::class);
-    Route::post('/student-enquiry',[EnquiryController::class,'storeStudentEnquiry'])->name('student-enquiry.store');
-    Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('student-enquiry.index');
-    Route::get('/student-enquiry/{id}',[EnquiryController::class,'showStudentEnquiry'])->name('student-enquiry.show');
-    Route::delete('/student-enquiry/{id}',[EnquiryController::class,'deleteStudentEnquiry'])->name('student-enquiry.delete');
-
+    
+    Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('indexStudentEnquiry');
+    Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry']);
+    
 
     // Route::resource('/contact',ContactController::class);
     Route::get('/footer-edit',[FooterController::class,'edit'])->name('footer.edit');

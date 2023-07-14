@@ -38,7 +38,7 @@
           <tbody>
             @foreach ($universities as $university)
             <tr>
-              <td>{{$university->id}}</td>
+              <td>{{$loop->index+1}}</td>
               <td>{{$university->uname}}</td>
               <td>{{$university->address}}</td>
               <td>

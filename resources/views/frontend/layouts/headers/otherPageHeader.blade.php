@@ -3,8 +3,8 @@
             <div class="auto-container">
                 <div class="top-inner clearfix">
                     <ul class="info top-left pull-left">
-                        <li><i class="fas fa-map-marker-alt"></i>838 Andy Street, Madison, NJ 08003</li>
-                        <li><i class="fas fa-headphones"></i>Support <a href="tel:01005200369">0100 5200 369</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>{{$footer->address}}</li>
+                        <li><i class="fas fa-headphones"></i>Support <a href="tel:{{$footer->phone}}">{{$footer->phone}}</a></li>
                     </ul>
                     <div class="top-right pull-right">
                         <ul class="social-links clearfix">
@@ -23,7 +23,7 @@
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
                     <figure class="logo">
-                        <a href="{{route('index')}}"><img src="{{asset('frontend/images/main-logo.png')}}" alt="" width="150" height="50"></a></figure>
+                        <a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt="" width="150" height="50"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <div class="mobile-nav-toggler">
@@ -71,7 +71,7 @@
         <div class="auto-container">
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="{{route('index')}}"><img src="frontend/images/main-logo.png" alt="" width="150" height="50"></a></figure>
+                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt="" width="150" height="50"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <nav class="main-menu clearfix">
@@ -88,23 +88,26 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
     
     <nav class="menu-box">
-        <div class="nav-logo"><a href="{{route('index')}}"><img src="frontend/images/main-logo.png" alt="" title="" width="150" height="50"></a></div>
+        <div class="nav-logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt="" title="" width="150" height="50"></a></div>
         <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>Baneshwor, Kathmandu, Nepal</li>
-                <li><a href="tel:+8801682648101">+(977) 9841111111</a></li>
-                <li><a href="mailto:info@example.com">info@example.com</a></li>
+                <li>{{$footer->address}}</li>
+                <li><a href="tel:{{$footer->phone}}">+(977) {{$footer->phone}}</a></li>
+                <li><a href="mailto:{{$footer->email}}">{{$footer->email}}</a></li>
             </ul>
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href=""><span class="fab fa-twitter"></span></a></li>
+                @foreach($socialMedias as $socialMedia)
+                <li><a href="{{$socialMedia->link}}"><span class="fab fa-{{$socialMedia->name}}"></span></a></li>
+                @endforeach
+                {{-- <li><a href=""><span class="fab fa-twitter"></span></a></li>
                 <li><a href=""><span class="fab fa-facebook-square"></span></a></li>
                 <li><a href=""><span class="fab fa-pinterest-p"></span></a></li>
                 <li><a href=""><span class="fab fa-instagram"></span></a></li>
-                <li><a href=""><span class="fab fa-youtube"></span></a></li>
+                <li><a href=""><span class="fab fa-youtube"></span></a></li> --}}
             </ul>
         </div>
     </nav>

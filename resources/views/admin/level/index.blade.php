@@ -35,7 +35,7 @@
                     <tbody>
                         @foreach ($levels as $level )
                         <tr>
-                            <td>{{$level->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$level->name}}</td>
                             <td>{{$level->status}}</td>
                             <td>

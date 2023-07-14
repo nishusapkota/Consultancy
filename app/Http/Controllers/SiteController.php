@@ -133,23 +133,21 @@ class SiteController extends Controller
         
         $data = $request->validate([
             'name' => 'required',
-            'contact' => 'required',
+            'phone' => 'required',
             'email'=>'required|email',
-            'address' => 'required',
-            'level_id' => 'required|exists:levels,id',
-            'course_id' => 'required|exists:courses,id',
-            'university_id' => 'required|exists:universities,id',
-            'message' => 'nullable|string'
+            'level_id' => 'nullable|exists:levels,id',
+            'course_id' => 'nullable|exists:courses,id',
+            'university_id' => 'nullable|exists:universities,id',
+            'message' => 'required|string'
         ]);
         // dd($request->all());
         StudentEnquiry::create([
             'name' => $request->name,
-            'contact' => $request->contact,
+            'phone' => $request->phone,
             'email'=>$request->email,
-            'address' => $request->address,
-            'level_id' => $request->level_id,
-            'course_id' => $request->course_id,
-            'university_id' => $request->university_id,
+            'level_id' => isset($request->level_id) ? $request->level_id :'null',
+            'course_id' => isset($request->course_id) ? $request->course_id :'null',
+            'university_id' => isset($request->university_id) ? $request->university_id :'null',
             'message' => $request->message,
         ]);
         return redirect()->back()->with('success','Your Enquiry Has Been  Submitted Successfully');
