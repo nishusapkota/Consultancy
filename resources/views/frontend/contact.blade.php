@@ -26,13 +26,14 @@
             <h5>{{$contact?$contact->title:null}}</h5>
             <h2>{{$contact?$contact->short_description:null}}</h2>
         </div>
-        <div class="row clearfix">
+        <div class="row clearfix mb-3">
             <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
                         <div class="icon-box"><i class="far fa-map"></i></div>
                         <h3>Office Location</h3>
                         <p>{{$contact?$contact->address:null}}</p>
+                        <p style="visibility: hidden">sdfihikjsdf </p>
                     </div>
                 </div>
             </div>
