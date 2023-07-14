@@ -27,14 +27,7 @@ class EnquiryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $levels=Level::all();
-        $universities=University::all();
-        $courses=Course::all();
-        return view('admin.enquiry.create',compact('levels','universities','courses'));
-        
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -63,12 +56,7 @@ class EnquiryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $enquiry = StudentEnquiry::with('level', 'university', 'course')->find($id);
-        // dd($enquiry->level);
-        return view('admin.enquiry.show', compact('enquiry'));
-    }
+    
     
 
     /**
@@ -77,10 +65,7 @@ class EnquiryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -89,10 +74,7 @@ class EnquiryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -100,10 +82,5 @@ class EnquiryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StudentEnquiry $enquiry)
-    {
-        $enquiry->delete();
-        return redirect()->route('admin.student-enquiry.destroy',$enquiry)->with('success','record deleted successfully');
-        
-    }
+    
 }

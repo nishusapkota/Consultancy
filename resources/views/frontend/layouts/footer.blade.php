@@ -19,14 +19,14 @@
 
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column first-content">
                         <div class="footer-widget logo-widget">
-                            <figure class="footer-logo"><a href="{{route('index')}}"><img src="{{asset('frontend/images/TempLogo.png')}}" alt=""></a></figure>
+                            <figure class="footer-logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt=""></a></figure>
                             <div class="text">
-                                <p>Tempor incididunt ut labore eut dolore veniam quis nostrud exercitation ullamc consequat. Duis aute irure.</p>
+                                <p>{{$footer->description}}</p>
                             </div>
                             <ul class="info-list clearfix">
-                                <li><i class="fas fa-map-marker-alt"></i>Baneshowr, Kathmandu, Nepal</li>
-                                <li><i class="fas fa-envelope"></i>Email <a href="mailto:support@my-domain.com">support@my-domain.com</a></li>
-                                <li><i class="fas fa-headphones"></i>Support <a href="tel:01005200369">(+977) 9841000000</a></li>
+                                <li><i class="fas fa-map-marker-alt"></i>{{$footer->address}}</li>
+                                <li><i class="fas fa-envelope"></i>Email <a href="mailto:{{$footer->email}}">{{$footer->email}}</a></li>
+                                <li><i class="fas fa-headphones"></i>Support <a href="tel:{{$footer->phone}}">(+977){{$footer->phone}}</a></li>
                             </ul>
                         </div>
                     </div>
