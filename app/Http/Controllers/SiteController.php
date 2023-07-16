@@ -71,7 +71,7 @@ class SiteController extends Controller
     }
     public function colleges() {
         $universities=University::where('status','1')->get();
-        
+        // dd($universities);
         return view('frontend.colleges',compact('universities'));
     }
     public function blog() {
@@ -119,7 +119,8 @@ class SiteController extends Controller
             $q->where('universities.id',$college->id)->where('status','1');
         })->get();
         $levels=Level::where('status','1')->get(['id','name']);
-        return view('frontend.college-details',compact('college','courses','levels'));
+        $scholarships=Scholarship::where('university_id',$college->id)->get();
+        return view('frontend.college-details',compact('college','courses','levels','scholarships'));
     }
 
     // public Function home() {

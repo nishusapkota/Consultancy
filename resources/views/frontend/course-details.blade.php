@@ -129,7 +129,11 @@
                               <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
                                 <option selected value="">Select University</option>
                                 @foreach ($university as $course)
-                                <option value="{{$course->id}}">{{$course->uname}}</option>
+                                <option value="{{$course->id}}"
+                                    @if ($uni_id && !is_null($uni_id))
+                                    selected
+                                    @endif
+                                    >{{$course->uname}}</option>
                                 @endforeach
                               </select>
                               @error('university_id')

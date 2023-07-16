@@ -11,11 +11,8 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
 >
 <div class="auto-container">
   <div class="content-box clearfix">
-    <h1>Latest News</h1>
-    <ul class="bread-crumb clearfix">
-      <li><a href="{{route('index')}}">Home</a></li>
-      <li>Blog Details</li>
-    </ul>
+    <h1>{{$blog->title}}</h1>
+    
   </div>
 </div>
 </section>
@@ -27,6 +24,10 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
   <div class="row clearfix">
     <div class="col-12content-side">
       <div class="blog-details-content">
+        <div class="sec-title style-two pull-left">
+                        
+          <h2>{{$blog->title}}</h2>
+      </div>
         <figure class="image-box">
           <img src="{{asset($blog->image)}}" alt="" />
         </figure>

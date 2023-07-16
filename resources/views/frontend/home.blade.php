@@ -224,11 +224,10 @@
     <section class="project-style-four bg-color-1">
         <div class="auto-container">
             <div class="title-inner clearfix">
-                <div class="sec-title style-four right pull-left">
-                    <h5>our scholarship scheme</h5>
-                    <h2>Institue Scholarship</h2>
+                <div class="sec-title style-four right centred">
+                    <h5>our scholarships</h5>
+                    <h2>Scholarship/Offers</h2>
                 </div>
-                <div class="btn-box pull-right"><a href="{{ route('scholarship') }}">View More Scholarships</a></div>
             </div>
             <div class="two-column-carousel owl-carousel owl-theme owl-nav-none">
                 @foreach ($scholarships as $scholarship)
@@ -239,7 +238,7 @@
                         <div class="lower-content">
                             <div class="inner">
                                 <h3>{{$scholarship->title}}</h3>
-                                <p>{!!$scholarship->description!!}</p> 
+                                <p>{{$scholarship->university->uname}}</p> 
                                 <a href="{{ route('scholarship-detail',$scholarship->title) }}"><i class="fas fa-arrow-right"></i><span>Read
                                         More</span></a>
                             </div>
@@ -250,6 +249,9 @@
                 
                 
             </div>
+        </div>
+        <div class="btn-box d-flex align-items-center justify-content-center mt-4">
+            <a href="{{ route('scholarship') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </section>
     <!-- scholarship-section end -->

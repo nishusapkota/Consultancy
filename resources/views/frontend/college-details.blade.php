@@ -25,7 +25,7 @@
     <!--End Page Title-->
 
     <!-- main0-content-container -->
-    <section class="sidebar-page-container details-content">
+    <section class="sidebar-page-container details-content pb-0">
         <div class="auto-container px-lg-3 px-md-2 px-0">
             <div class="row clearfix">
                 <div class="col-lg-7 col-md-12 col-sm-12 content-side">
@@ -128,11 +128,11 @@
             </div>
         </div>
     </section>
-    <section class="team-section">
+    <section class="team-section ">
         <div class="auto-container px-lg-3 px-md-2 px-0">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 content-side">
-                    <div class="upper-box clearfix">
+                    <div class="upper-box clearfix ">
                         <div class="sec-title style-two pull-left">
                             <h2>Our Courses</h2>
                         </div>
@@ -148,14 +148,14 @@
                                     <div class="lower-content">
                                         <div class="content-box">
                                             <h3 class="course-title"><a
-                                                    href="{{ route('course-detail',$course->name) }}">{{ $course->name }}</a>
+                                                    href="{{ route('course-detail',['name'=>$course->name,'university'=>$college->uname]) }}">{{ $course->name }}</a>
                                             </h3>
                                             <span class="designation">(
                                                 {{ $course->category->name }}
                                                 )</span>
                                         </div>
                                         <div class="ovellay-box">
-                                            <a href="{{ route('course-detail',$course->name) }}"
+                                            <a href="{{ route('course-detail-from-uni',['name'=>$course->name,'university'=>$college->uname]) }}"
                                                 class="theme-btn style-one">View Details</a>
                                         </div>
                                     </div>
@@ -170,6 +170,48 @@
             </div>
         </div>
     </section>
+    @if (!$scholarships->isEmpty())
+        
+    <section class="team-section pt-0">
+        <div class="auto-container px-lg-3 px-md-2 px-0">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 content-side">
+                    <div class="upper-box clearfix mb-0">
+                        <div class="sec-title style-two pull-left">
+                            <h2>Scholarships/Offers</h2>
+                        </div>
+
+                    </div>
+                    <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+                        {{-- @dd($courses) --}}
+                        @foreach ($scholarships as $course)
+                            <div class="team-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><img src="{{ asset($course->image) }}" alt="">
+                                    </figure>
+                                    <div class="lower-content">
+                                        <div class="content-box">
+                                            <h3 class="course-title"><a
+                                                    href="{{ route('course-detail',$course->title) }}">{{ $course->title }}</a>
+                                            </h3>
+                                        </div>
+                                        <div class="ovellay-box">
+                                            <a href="{{ route('scholarship-detail',$course->title) }}"
+                                                class="theme-btn style-one">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
     <!-- main-content-container end -->
 @endsection
 @push('scripts')

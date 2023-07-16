@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ContactEnquiry;
 use App\Models\StudentEnquiry;
 
 class EnquiryController extends Controller
@@ -24,55 +25,20 @@ class EnquiryController extends Controller
 
     public function indexGeneralEnquiry()
     {
-        // $enquiries = StudentEnquiry::with('level', 'university', 'course')->get();
-        // return view('admin.enquiry.index',compact('enquiries'));
+        $enquiries = ContactEnquiry::get();
+        return view('admin.enquiry.contactEnquiry',compact('enquiries'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function deleteGeneralEnquiry($id)
+    {
+        $enquiries = ContactEnquiry::find($id);
+            $enquiries->delete();
+            return redirect()->back()->with('success','Deleted successfully');
+    }
+    function deleteindexGeneralEnquiry($id)  {
+        $enquiries = StudentEnquiry::find($id);
+        $enquiries->delete();
+        return redirect()->back()->with('success','Deleted successfully');
+    }
     
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     
 }

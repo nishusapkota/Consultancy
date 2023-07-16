@@ -30,6 +30,7 @@ use App\Http\Controllers\University\RequestCourseController;
 Route::get('/',[SiteController::class, 'index'])->name('index');
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
 Route::get('/course-details/{name}',[SiteController::class, 'courseDetail'])->name('course-detail');
+Route::get('/course-details-from-univeristy',[SiteController::class, 'courseDetailFromUni'])->name('course-detail-from-uni');
 Route::get('/scholarships',[SiteController::class, 'scholarship'])->name('scholarship');
 Route::get('/scholarship-details/{title}',[SiteController::class, 'scholarshipDetail'])->name('scholarship-detail');
 
@@ -43,6 +44,7 @@ Route::get('/blog-details/{id}',[SiteController::class, 'blogDetail'])->name('bl
 Route::get('/contacts',[SiteController::class, 'contact'])->name('contact');
 Route::get('/apply',[SiteController::class, 'applyNow'])->name('apply');
  Route::post('/student-enquiries',[SiteController::class, 'studentEnquiry'])->name('enquiry.post');
+ Route::post('/general-enquiries',[SiteController::class, 'generalEnquiry'])->name('general.enquiry.post');
 
 
 Auth::routes();
@@ -71,7 +73,9 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     
     
     Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('indexStudentEnquiry');
-    Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry']);
+    Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry'])->name('generalEnquiry');
+    Route::delete('/delete-student-enquiry/{id}',[EnquiryController::class,'deleteindexGeneralEnquiry'])->name('delete.studentEnquiry');
+    Route::delete('/delete-general-enquiry/{id}',[EnquiryController::class,'deleteGeneralEnquiry'])->name('delete.generalEnquiry');
     
 
     // Route::resource('/contact',ContactController::class);

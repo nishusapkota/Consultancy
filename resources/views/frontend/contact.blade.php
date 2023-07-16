@@ -3,6 +3,11 @@
 @section('header')
     @include('frontend.layouts.headers.otherPageHeader')
 @endsection
+@push('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
 <!--Page Title-->
 <section class="page-title centred" style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}};">
@@ -26,13 +31,14 @@
             <h5>{{$contact?$contact->title:null}}</h5>
             <h2>{{$contact?$contact->short_description:null}}</h2>
         </div>
-        <div class="row clearfix">
+        <div class="row clearfix mb-3">
             <div class="col-lg-4 col-md-6 col-sm-12 single-column">
                 <div class="single-item wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
                         <div class="icon-box"><i class="far fa-map"></i></div>
                         <h3>Office Location</h3>
                         <p>{{$contact?$contact->address:null}}</p>
+                        <p style="visibility: hidden">sdfihikjsdf </p>
                     </div>
                 </div>
             </div>
@@ -74,22 +80,23 @@
                 <h2>Drop Us a Line</h2>
                 <p>If you have any queries related to our service <br />Please feel free to contact us.</p>
             </div>
-            <form method="post" action="http://azim.commonsupport.com/Fionca/sendemail.php" id="contact-form" class="default-form"> 
+            <form method="post" action="{{route('general.enquiry.post')}}"" > 
+                @csrf
                 <div class="row clearfix">
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="text" name="username" placeholder="Your Name" required="">
+                        <input type="text" name="name" placeholder="Your Name" required="" max="250">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="email" name="email" placeholder="Email address" required="">
+                        <input type="email" name="email" placeholder="Email address" required="" max="250">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="text" name="phone" placeholder="Phone" required="">
+                        <input type="text" name="phone" placeholder="Phone" required="" max="250">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="text" name="subject" placeholder="Subject" required="">
+                        <input type="text" name="subject" placeholder="Subject" required="" max="250">
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                        <textarea name="message" placeholder="Message"></textarea>
+                        <textarea name="message" placeholder="Message" max="100"></textarea>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
                         <button class="theme-btn style-one" type="submit" name="submit-form">Send Query</button>
@@ -103,3 +110,13 @@
 
 
 @endsection
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        @if(Session::has('success'))
+           //  toastr.info("Have fun storming the castle!")
+            toastr.success('{{ Session::get('success') }}')
+            @endif
+
+    </script>
+@endpush
