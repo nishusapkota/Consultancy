@@ -37,7 +37,13 @@
                         <tr>
                             <td>{{$loop->index+1}}</td>
                             <td>{{$level->name}}</td>
-                            <td>{{$level->status}}</td>
+                            <td>
+                                @if ($level->status==1)
+                                <span class="badge badge-primary">Active</span>
+                                @else
+                                <span class="badge badge-danger">Inactive</span>
+                                @endif
+                            </td>
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('admin.level.show',$level)}}"><i class="fas fa-eye"></i>Show</a>

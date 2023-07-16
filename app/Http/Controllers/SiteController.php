@@ -23,11 +23,12 @@ class SiteController extends Controller
         //     $q->limit(3);
         // }])->get();
         
-        $courses=Course::with('category','levels')->get();
+        $courses=Course::with('category','levels')->where('status','1')->get();
         $scholarships=Scholarship::with('university')->get();
         $about=About::first();
-        $universities=University::all();
-        $blogs=Blog::all();
+        $universities=University::where('status','1')->get();
+        // dd($universities);
+        $blogs=Blog::where('status','1')->get();
         $images=AboutImage::all();
         $contact=Contact::all();
         $homeSlider=HomeSlider::all();
@@ -52,8 +53,8 @@ class SiteController extends Controller
                         });
                     })
                     ->get();
-        $universities=University::get(['id','uname']);
-        $levels=Level::get(['id','name']);
+        $universities=University::where('status','1')->get(['id','uname']);
+        $levels=Level::where('status','1')->get(['id','name']);
         if ( empty($reData)) {
             $inputs=[
                 'university_id'=>[],
@@ -69,17 +70,17 @@ class SiteController extends Controller
         return view('frontend.courses',compact('courses','levels','universities','inputs'));
     }
     public function colleges() {
-        $universities=University::all();
+        $universities=University::where('status','1')->get();
         
         return view('frontend.colleges',compact('universities'));
     }
     public function blog() {
-        $blogs=Blog::all();
+        $blogs=Blog::where('status','1')->get();
         return view('frontend.blog',compact('blogs'));
     }
     public function blogDetail($title) {
         // dd(Crypt::decrypt($id));
-        $blog=Blog::where('title',$title)->first();
+        $blog=Blog::where('title',$title)->where('status','1')->first();
         // dd($blog);
         return view('frontend.blog-details',compact('blog'));
     }
@@ -93,11 +94,11 @@ class SiteController extends Controller
         return view('frontend.applyNow');
     }
     public function courseDetail($name) {
-        $course=Course::where('name',$name)->first();
+        $course=Course::where('name',$name)->where('status','1')->first();
         $university=University::whereHas('courses',function($q)use($course){
-            $q->where('courses.id',$course->id);
+            $q->where('courses.id',$course->id)->where('status','1');
         })->get(['id','uname']);
-        $levels=Level::get(['id','name']);
+        $levels=Level::where('status','1')->get(['id','name']);
         // dd($course);
         return view('frontend.course-details',compact('course','university','levels'));
     }
@@ -105,19 +106,19 @@ class SiteController extends Controller
     public function scholarshipDetail($title) {
         $scholarship=Scholarship::where('title',$title)->first();
         $courses=Course::whereHas('universities',function($q)use($scholarship){
-            $q->where('universities.id',$scholarship->university_id);
+            $q->where('universities.id',$scholarship->university_id)->where('status','1');
         })->get();
-        $levels=Level::get(['id','name']);
+        $levels=Level::where('status','1')->get(['id','name']);
         return view('frontend.scholarship-details',compact('scholarship','courses','levels'));
     }
 
     
     public function collegeDetail($name) {
-        $college=University::where('uname',$name)->first();
+        $college=University::where('uname',$name)->where('status','1')->first();
         $courses=Course::whereHas('universities',function($q)use($college){
-            $q->where('universities.id',$college->id);
+            $q->where('universities.id',$college->id)->where('status','1');
         })->get();
-        $levels=Level::get(['id','name']);
+        $levels=Level::where('status','1')->get(['id','name']);
         return view('frontend.college-details',compact('college','courses','levels'));
     }
 

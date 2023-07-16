@@ -8,11 +8,14 @@
                     </ul>
                     <div class="top-right pull-right">
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
+                            @foreach($socialMedias as $socialMedia)
+                            <li><a href="{{$socialMedia->link}}"><span class="fab fa-{{$socialMedia->name}}"></span></a></li>
+                            @endforeach
+                            {{-- <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
                             <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
                             <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="index.html"><i class="fab fa-instagram"></i></a></li> --}}
                         </ul>
                     </div>
                 </div>

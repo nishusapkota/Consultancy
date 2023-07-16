@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td>{{$course->description}}</td>
+                    <td>{!!$course->description!!}</td>
                 </tr>
                 <tr>
                     <th>Category</th>
@@ -41,14 +41,19 @@
                         @if(isset($course->category))
                         {{$course->category->name}}
                         @else
-                        No category
+                        Category not assigned
                         @endif
 
                     </td>
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td>{{$course->status}}</td>
+                    <td>
+                        @if ($course->status==1)
+                        <span class="badge badge-primary">Active</span>
+                        @else
+                        <span class="badge badge-danger">Inactive</span>
+                        @endif
                 </tr>
 
             </table>

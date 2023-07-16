@@ -39,6 +39,18 @@
                     <th>Category</th>
                     <td>{{$course->category->name}}</td>
                 </tr>
+
+                <tr>
+                    <th>Status</th>
+
+                <td>
+                    @if ($course->status==1)
+                    <span class="badge badge-primary">Active</span>
+                    @else
+                    <span class="badge badge-danger">Inactive</span>
+                    @endif
+                </td>
+            </tr>
                 
 
             </table>

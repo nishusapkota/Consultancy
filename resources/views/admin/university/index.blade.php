@@ -29,7 +29,7 @@
               <th>Name</th>
               <th>Address</th>
               <th>Image</th>
-              <th>Detail</th>
+              
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -46,8 +46,14 @@
                   <img src="{{ asset($university->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
                 </div>
               </td>
-              <td>{!!$university->details!!}</td>
-              <td>{{$university->status}}</td>
+              
+              <td>
+                @if ($university->status==1)
+                <span class="badge badge-primary">Active</span>
+                @else
+                <span class="badge badge-danger">Inactive</span>
+                @endif
+            </td>
               <td>
 
                 <a class="btn btn-secondary" href="{{route('admin.university.show',$university)}}"><i class="fas fa-eye"></i>Show</a>

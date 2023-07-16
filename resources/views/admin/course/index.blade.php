@@ -49,7 +49,13 @@
                                     <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
                                   </div> 
                             </td>
-                            <td>{{$course->status}}</td>
+                            <td>
+                                @if ($course->status==1)
+                                <span class="badge badge-primary">Active</span>
+                                @else
+                                <span class="badge badge-danger">Inactive</span>
+                                @endif
+                            </td>
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('admin.courses.show',$course)}}"><i class="fas fa-eye"></i>Show</a>

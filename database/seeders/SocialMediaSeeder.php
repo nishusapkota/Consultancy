@@ -16,16 +16,16 @@ class SocialMediaSeeder extends Seeder
     public function run()
     {
         SocialMedia::create([
-            'name'=>'facebook',
+            'name'=>'facebook-f',
             'link'=>'https://www.facebook.com/',
         ]);
         SocialMedia::create([
-            'name'=>'google',
+            'name'=>'google-plus-g',
             'link'=>'https://www.google.com/'
         ]);
 
         SocialMedia::create([
-            'name'=>'pinterest',
+            'name'=>'pinterest-p',
             'link'=>'https://www.pinterest.com/'
         ]);
 
@@ -38,7 +38,7 @@ class SocialMediaSeeder extends Seeder
             'link'=>'https://www.tiktok.com/'
         ]);
         SocialMedia::create([
-            'name'=>'linkedin',
+            'name'=>'linkedin-in',
             'link'=>'https://www.linkedin.com/'
         ]);
         SocialMedia::create([

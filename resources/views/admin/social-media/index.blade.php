@@ -37,11 +37,11 @@
                             <td>{{$socialmedia->name}}</td>
                             <td>{{$socialmedia->link}}</td>
                             <td>
-                              @if($socialmedia->status =='1')
-                                Available
-                              @else
-                              Not Available
-                              @endif
+                                @if ($socialmedia->status==1)
+                                <span class="badge badge-primary">Active</span>
+                                @else
+                                <span class="badge badge-danger">Inactive</span>
+                                @endif
                             </td>
                             <td>
 

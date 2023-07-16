@@ -239,7 +239,7 @@
                         <div class="lower-content">
                             <div class="inner">
                                 <h3>{{$scholarship->title}}</h3>
-                                <p>{{$scholarship->description}}</p> 
+                                <p>{!!$scholarship->description!!}</p> 
                                 <a href="{{ route('scholarship-detail',$scholarship->title) }}"><i class="fas fa-arrow-right"></i><span>Read
                                         More</span></a>
                             </div>

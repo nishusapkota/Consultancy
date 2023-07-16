@@ -6,9 +6,9 @@
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-          Show Level</h3>
+          Show University</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
+          <a class="btn btn-primary" href="{{route('admin.university.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -39,11 +39,17 @@
           </tr>
           <tr>
             <th>Details</th>
-            <td>{{$university->details}}</td>
+            <td>{!!$university->details!!}</td>
           </tr>
           <tr>
             <th>Status</th>
-            <td>{{$university->status}}</td>
+            <td>
+              @if ($university->status==1)
+              <span class="badge badge-primary">Active</span>
+              @else
+              <span class="badge badge-danger">Inactive</span>
+              @endif
+          </td>
           </tr>
 
         </table>

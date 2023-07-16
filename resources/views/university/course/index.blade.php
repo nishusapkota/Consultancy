@@ -46,6 +46,13 @@
                                     <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
                                   </div> 
                             </td>
+                            <td>
+                                @if ($course->status==1)
+                                <span class="badge badge-primary">Active</span>
+                                @else
+                                <span class="badge badge-danger">Inactive</span>
+                                @endif
+                            </td>
                            
                             <td>
 
