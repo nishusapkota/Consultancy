@@ -29,4 +29,8 @@ class University extends Model
     function scholarship(){
         return $this->hasOne(Scholarship::class);
     }
+    function universityImages(){
+        return $this->hasMany(UniversityImage::class);
+    }
+
 }

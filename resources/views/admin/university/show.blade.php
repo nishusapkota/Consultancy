@@ -29,14 +29,7 @@
             <th>Address</th>
             <td>{{$university->address}}</td>
           </tr>
-          <tr>
-            <th>Image</th>
-            <td>
-              <div style="width: 100px; height: 100px; overflow: hidden;">
-                <img src="{{ asset($university->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
-              </div>
-            </td>
-          </tr>
+         
           <tr>
             <th>Details</th>
             <td>{!!$university->details!!}</td>

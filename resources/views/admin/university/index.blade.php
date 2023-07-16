@@ -28,8 +28,6 @@
               <th>ID</th>
               <th>Name</th>
               <th>Address</th>
-              <th>Image</th>
-              
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -41,13 +39,7 @@
               <td>{{$loop->index+1}}</td>
               <td>{{$university->uname}}</td>
               <td>{{$university->address}}</td>
-              <td>
-                <div style="width: 100px; height: 100px; overflow: hidden;">
-                  <img src="{{ asset($university->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
-                </div>
-              </td>
-              
-              <td>
+             <td>
                 @if ($university->status==1)
                 <span class="badge badge-primary">Active</span>
                 @else
@@ -64,6 +56,8 @@
                   <button class="btn btn-danger">
                     <i class="fas fa-trash"></i>Delete</button>
                 </form>
+                
+                   <a class="btn btn-warning" href="{{route('admin.university.index_image',$university->id)}}">Images</a>    
 
               </td>
             </tr>

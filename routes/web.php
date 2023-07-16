@@ -69,6 +69,13 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::resource('/request/course',CourseRequestController::class);
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
+
+    Route::get('/university/{id}/image',[UniversityController::class,'index_image'])->name('university.index_image');
+    Route::get('/university/{id}/add-image',[UniversityController::class,'create_image'])->name('university.create_image');
+    Route::post('/university/{id}/add-image',[UniversityController::class,'store_image'])->name('university.store_image');
+    Route::get('/university/edit-image/{id}',[UniversityController::class,'edit_image'])->name('university.edit_image');
+    Route::post('/university/edit-image/{id}',[UniversityController::class,'update_image'])->name('university.update_image');
+    
     Route::resource('/social-media',SocialMediaController::class);
     
     

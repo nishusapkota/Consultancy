@@ -14,6 +14,7 @@ use App\Models\University;
 use App\Models\Scholarship;
 use Illuminate\Http\Request;
 use App\Models\StudentEnquiry;
+use App\Models\UniversityImage;
 use Illuminate\Support\Facades\Crypt;
 
 class SiteController extends Controller
@@ -118,9 +119,11 @@ class SiteController extends Controller
         $courses=Course::whereHas('universities',function($q)use($college){
             $q->where('universities.id',$college->id)->where('status','1');
         })->get();
+        $images=UniversityImage::where('university_id',$college->id)->get();
+        // dd($images);
         $levels=Level::where('status','1')->get(['id','name']);
         $scholarships=Scholarship::where('university_id',$college->id)->get();
-        return view('frontend.college-details',compact('college','courses','levels','scholarships'));
+        return view('frontend.college-details',compact('college','images','courses','levels','scholarships'));
     }
 
     // public Function home() {

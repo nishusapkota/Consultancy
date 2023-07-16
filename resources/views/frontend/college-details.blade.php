@@ -10,16 +10,31 @@
 @endpush
 @section('content')
     <!--Page Title-->
-    <section class="page-title style-three centred"
-        style="background-image: {{ asset('frontend/images/background/page-title-5.jpg') }}">
-        <div class="auto-container">
-            <div class="content-box clearfix">
-                <h1>{{ $college->uname }}</h1>
-                {{-- <ul class="bread-crumb clearfix">
-      <li><a href="index.html">Home</a></li>
-      <li>College Details</li>
-    </ul> --}}
+    <section class="banner-section">
+        <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
+            @foreach ($images as $image)
+            
+            
+            <div class="slide-item ">
+                <div class="image-layer" style="background-image: url('{{ asset($image->image) }}')">
+                </div>
+                <div class="auto-container">
+                    <div class="content-box ">
+                        {{-- <h5>{{$->sub_heading}}</h5> --}}
+                        <h1></h1>
+                        <div class="btn-box">
+                            <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
+                            {{-- <p class="slider-text slider-content">{{$ite->description}}</p>
+                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
+           
+           
+        @endforeach 
+            
+
         </div>
     </section>
     <!--End Page Title-->
@@ -30,15 +45,16 @@
             <div class="row clearfix">
                 <div class="col-lg-7 col-md-12 col-sm-12 content-side">
                     <div class="blog-details-content">
-                        <div class="sec-title style-two pull-left">
+                        {!! $college->details !!}
+                        {{-- <div class="sec-title style-two pull-left">
                         
-                            <h2>{{$college->uname}}</h2>
-                        </div>
-                        <figure class="image-box">
+                            <h2>About Us</h2>  
+                        </div> --}}
+                        {{-- <figure class="image-box">
                             <img src="{{ asset($college->image) }}" class="mb-4" alt="" />
                             <!-- <span class="category">business</span> -->
-                        </figure>
-                        <div class="inner-box">
+                        </figure> --}}
+                        {{-- <div class="inner-box">
                             <!-- <ul class="post-info clearfix">
                                   <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
                               </ul> -->
@@ -46,7 +62,7 @@
                                 {!! $college->details !!}
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
@@ -57,14 +73,14 @@
                         <form method="post" action="{{route('enquiry.post')}}">
                             @csrf
                             <div class="form-group">
-                                <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror"" required/>
+                                <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror" required/>
                                 @error('name')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror"" required/>
+                                <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror" required/>
                                 @error('email')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
@@ -128,6 +144,7 @@
             </div>
         </div>
     </section>
+
     <section class="team-section ">
         <div class="auto-container px-lg-3 px-md-2 px-0">
             <div class="row clearfix">
