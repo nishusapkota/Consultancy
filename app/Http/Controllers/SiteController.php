@@ -11,6 +11,7 @@ use App\Models\Contact;
 use App\Models\AboutImage;
 use App\Models\HomeSlider;
 use App\Models\University;
+use App\Models\Certificate;
 use App\Models\Scholarship;
 use Illuminate\Http\Request;
 use App\Models\StudentEnquiry;
@@ -131,9 +132,11 @@ class SiteController extends Controller
         })->get();
         $images = UniversityImage::where('university_id', $college->id)->get();
         // dd($images);
+        $certificates = Certificate::where('university_id', $college->id)->get();
+        // dd($certificates);
         $levels = Level::where('status', '1')->get(['id', 'name']);
         $scholarships = Scholarship::where('university_id', $college->id)->get();
-        return view('frontend.college-details', compact('college', 'images', 'courses', 'levels', 'scholarships'));
+        return view('frontend.college-details', compact('college','certificates','images', 'courses', 'levels', 'scholarships'));
     }
 
     // public Function home() {
