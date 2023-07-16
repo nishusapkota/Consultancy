@@ -128,6 +128,12 @@
         <p>Student Enquiry</p>
       </a>
     </li>
+    <li class="nav-item">
+      <a href="{{route('admin.generalEnquiry')}}" class="nav-link {{ (request()->is('admin/general-enquiry')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>General Enquiry</p>
+      </a>
+    </li>
 
 
   </ul>

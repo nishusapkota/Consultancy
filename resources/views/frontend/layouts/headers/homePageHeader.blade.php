@@ -3,8 +3,8 @@
             <div class="auto-container">
                 <div class="top-inner clearfix">
                     <ul class="info top-left pull-left">
-                        <li><i class="fas fa-map-marker-alt"></i>{{$footer->address}}</li>
-                        <li><i class="fas fa-headphones"></i>Support <a href="tel:{{$footer->phone}}">{{$footer->phone}}</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>{{$footer?$footer->address:null}}</li>
+                        <li><i class="fas fa-headphones"></i>Support <a href="tel:{{$footer?$footer->phone:null}}">{{$footer?$footer->phone:null}}</a></li>
                     </ul>
                     <div class="top-right pull-right">
                         <ul class="social-links clearfix">
@@ -22,7 +22,7 @@
         <div class="auto-container">
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt="" width="150" height="48"></a></figure>
+                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset($footer?$footer->image:null)}}" alt="" width="150" height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <div class="mobile-nav-toggler">
@@ -69,7 +69,7 @@
         <div class="auto-container">
             <div class="outer-box clearfix">
                 <div class="logo-box pull-left">
-                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt="" width="150" height="48"></a></figure>
+                    <figure class="logo"><a href="{{route('index')}}"><img src="{{asset($footer?$footer->image:null)}}" alt="" width="150" height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <nav class="main-menu clearfix">
@@ -86,14 +86,14 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
     
     <nav class="menu-box">
-        <div class="nav-logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt="" title="" width="150" height="48"></a></div>
+        <div class="nav-logo"><a href="{{route('index')}}"><img src="{{asset($footer?$footer->image:null)}}" alt="" title="" width="150" height="48"></a></div>
         <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>{{$footer->address}}</li>
-                <li><a href="tel:{{$footer->phone}}">+(977) {{$footer->phone}}</a></li>
-                <li><a href="mailto:{{$footer->email}}">{{$footer->email}}</a></li>
+                <li>{{$footer?$footer->address:null}}</li>
+                <li><a href="tel:{{$footer?$footer->phone:null}}">+(977) {{$footer?$footer->phone:null}}</a></li>
+                <li><a href="mailto:{{$footer?$footer->email:null}}">{{$footer?$footer->email:null}}</a></li>
             </ul>
         </div>
         <div class="social-links">

@@ -18,6 +18,8 @@ class StudentEnquiry extends Model
         'message',
         'course_id',
         'university_id',
+        'contact',
+        'address'
     ];
     public function level()
     {

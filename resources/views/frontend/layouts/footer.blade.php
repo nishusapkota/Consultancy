@@ -19,14 +19,14 @@
 
                     <div class="col-lg-3 col-md-6 col-sm-12 footer-column first-content">
                         <div class="footer-widget logo-widget">
-                            <figure class="footer-logo"><a href="{{route('index')}}"><img src="{{asset($footer->image)}}" alt=""></a></figure>
+                            <figure class="footer-logo"><a href="{{route('index')}}"><img src="{{asset($footer?$footer->image:null)}}" alt=""></a></figure>
                             <div class="text">
-                                <p>{{$footer->description}}</p>
+                                <p>{{$footer?$footer->description:null}}</p>
                             </div>
                             <ul class="info-list clearfix">
-                                <li><i class="fas fa-map-marker-alt"></i>{{$footer->address}}</li>
-                                <li><i class="fas fa-envelope"></i>Email <a href="mailto:{{$footer->email}}">{{$footer->email}}</a></li>
-                                <li><i class="fas fa-headphones"></i>Support <a href="tel:{{$footer->phone}}">(+977){{$footer->phone}}</a></li>
+                                <li><i class="fas fa-map-marker-alt"></i>{{$footer?$footer->address:null}}</li>
+                                <li><i class="fas fa-envelope"></i>Email <a href="mailto:{{$footer?$footer->email:null}}">{{$footer?$footer->email:null}}</a></li>
+                                <li><i class="fas fa-headphones"></i>Support <a href="tel:{{$footer?$footer->phone:null}}">(+977){{$footer?$footer->phone:null}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -56,15 +56,15 @@
                             </div>
                             <div class="socialLink">
                                 <ul class="list clearfix">
-                                    @foreach($socialMedias as $socialMedia)
+                                    {{-- @foreach($socialMedias as $socialMedia)
                                    
                                         <li><i class="fab fa-{{$socialMedia->name}} socio-icon"></i> <a href="{{$socialMedia->link}}">{{$socialMedia->link}}</a></li>
-                                        @endforeach
-                                    {{-- <li><i class="fab fa-facebook-f socio-icon"></i> <a href="">Facebook</a></li>
+                                        @endforeach --}}
+                                    <li><i class="fab fa-facebook-f socio-icon"></i> <a href="">Facebook</a></li>
                                     <li><i class="fab fa-twitter socio-icon"></i> <a href="">Twitter</a> </li>
                                     <li><i class="fab fa-instagram socio-icon"> </i> <a href="">Instagram</a></li>
                                     <li><i class="fab fa-linkedin-in socio-icon"></i> <a href="">LinkedIn</a></li>
-                                    <li><i class="fab fa-pinterest-p socio-icon"></i> <a href="">Pinterest</a></li> --}}
+                                    <li><i class="fab fa-pinterest-p socio-icon"></i> <a href="">Pinterest</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    enquiries</h3>
+                    General Enquiries</h3>
                 <div class="card-tools">
                     
                 </div>
@@ -22,14 +22,13 @@
                 <table class="table table-bordered">
                     <thead class="bg-primary">
                         <tr>
-                            <th>ID</th>
+                            <th>S.N.</th>
                             <th>Name</th>
-                            <th>Contact</th>
+                            <th>Phone</th>
                             <th>Email</th>
+                            <th>Subject</th>
                           
-                            <th>University</th>
-                            <th>Course</th>
-                            <th>Level</th>
+                            <th>Message</th>
                             <th>Action</th>
                             
                         </tr>
@@ -40,17 +39,16 @@
                         <tr>
                             <td>{{$loop->index+1}}</td>
                             <td>{{$enquiry->name}}</td>
-                            <td>{{$enquiry->contact}}</td>
+                            <td>{{$enquiry->phone}}</td>
                             <td>{{$enquiry->email}}</td>
                             
-                            <td>{{$enquiry->level->name}}</td>
-                            <td>{{$enquiry->course->name}}</td>
-                            <td>{{$enquiry->university->uname}}</td>
+                            <td>{{$enquiry->subject}}</td>
+                            <td>{{$enquiry->message}}</td>
                             <td>
 
                                 {{-- <a class="btn btn-secondary" href="{{route('admin.course.show',$course)}}"><i class="fas fa-eye"></i>Show</a>
                                 <a class="btn btn-warning" href="{{route('admin.course.edit',$course)}}"><i class="fas fa-edit"></i>Edit</a> --}}
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.delete.studentEnquiry',$enquiry)}}" method="post">
+                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.delete.generalEnquiry',$enquiry)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">

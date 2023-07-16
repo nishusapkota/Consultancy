@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Footer;
 use App\Models\Contact;
 use App\Models\AboutImage;
+use App\Models\ContactEnquiry;
 use App\Models\HomeSlider;
 use App\Models\University;
 use App\Models\Scholarship;
@@ -101,7 +102,18 @@ class SiteController extends Controller
         // dd($course);
         return view('frontend.course-details',compact('course','university','levels'));
     }
-
+    public function courseDetailFromUni(Request $request) {
+        // dd($request->all());
+        $course=Course::where('name',$request->name)->first();
+        $university=University::whereHas('courses',function($q)use($course){
+            $q->where('courses.id',$course->id);
+        })->get(['id','uname']);
+        $levels=Level::get(['id','name']);
+        // dd($course);
+        $getUni=University::where('uname',$request->university)->first();
+        $uni_id=$getUni->id;
+        return view('frontend.course-details',compact('course','university','levels','uni_id'));
+    }
     public function scholarshipDetail($title) {
         $scholarship=Scholarship::where('title',$title)->first();
         $courses=Course::whereHas('universities',function($q)use($scholarship){
@@ -118,7 +130,8 @@ class SiteController extends Controller
             $q->where('universities.id',$college->id);
         })->get();
         $levels=Level::get(['id','name']);
-        return view('frontend.college-details',compact('college','courses','levels'));
+        $scholarships=Scholarship::where('university_id',$college->id)->get();
+        return view('frontend.college-details',compact('college','courses','levels','scholarships'));
     }
 
     // public Function home() {
@@ -130,24 +143,46 @@ class SiteController extends Controller
     // }
     public function studentEnquiry(Request $request)
     {
-        
+        // dd($request->all());
         $data = $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'contact' => 'required',
+            'address' => 'required',
             'email'=>'required|email',
             'level_id' => 'nullable|exists:levels,id',
             'course_id' => 'nullable|exists:courses,id',
             'university_id' => 'nullable|exists:universities,id',
             'message' => 'required|string'
         ]);
-        // dd($request->all());
+        
         StudentEnquiry::create([
             'name' => $request->name,
-            'phone' => $request->phone,
+            'contact' => $request->contact,
+            'address' => $request->address,
             'email'=>$request->email,
             'level_id' => isset($request->level_id) ? $request->level_id :'null',
             'course_id' => isset($request->course_id) ? $request->course_id :'null',
             'university_id' => isset($request->university_id) ? $request->university_id :'null',
+            'message' => $request->message,
+        ]);
+        return redirect()->back()->with('success','Your Enquiry Has Been  Submitted Successfully');
+    }
+    public function generalEnquiry(Request $request)
+    {
+        
+        $data = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email'=>'required|email',
+            'subject' => 'required',
+            'message' => 'required|string'
+        ]);
+        // dd($request->all());
+        ContactEnquiry::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email'=>$request->email,
+            'subject'=>$request->subject,
             'message' => $request->message,
         ]);
         return redirect()->back()->with('success','Your Enquiry Has Been  Submitted Successfully');
