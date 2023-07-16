@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\University;
+use App\Models\Certificate;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\UniversityImage;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -194,33 +195,35 @@ class UniversityController extends Controller
         return redirect()->route('admin.university.index')->with('success', 'record deleted successfully');
     }
 
-public function index_image($id){
-    $university = University::with('universityImages')->find($id);
-    $images = $university->universityImages;
-    return view('admin.university.image-index', compact('images', 'university'));
-    
-}
-public function create_image($id){
-    $university = University::find($id);
-    return view('admin.university.create_image',compact('university'));
-}
-public function store_image($id, Request $request)
+    public function index_image($id)
+    {
+        $university = University::with('universityImages')->find($id);
+        $images = $university->universityImages;
+        return view('admin.university.image-index', compact('images', 'university'));
+    }
+    public function create_image($id)
+    {
+        $university = University::find($id);
+        return view('admin.university.create_image', compact('university'));
+    }
+    public function store_image($id, Request $request)
     {
         $request->validate([
-            'image'=>'required|image|mimes:png,jpg'
+            'image' => 'required|image|mimes:png,jpg'
         ]);
         $img_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('university'), $img_name);  
+        $request->file('image')->move(public_path('university'), $img_name);
         UniversityImage::create([
-            'image'=>'university/'.$img_name,
-            'university_id'=>$id
+            'image' => 'university/' . $img_name,
+            'university_id' => $id
         ]);
-        return redirect()->route('admin.university.index_image',$id)->with('success','Image created successfully');
+        return redirect()->route('admin.university.index_image', $id)->with('success', 'Image created successfully');
     }
-public function edit_image($id) {
-    $uni_image = UniversityImage::find($id);
-    return view('admin.university.edit_image',compact('uni_image'));
-}
+    public function edit_image($id)
+    {
+        $uni_image = UniversityImage::find($id);
+        return view('admin.university.edit_image', compact('uni_image'));
+    }
     public function update_image(Request $request, $id)
     {
         $uni_image = UniversityImage::find($id);
@@ -237,8 +240,64 @@ public function edit_image($id) {
             $uni_image->update([
                 'image' => 'university/' . $img_name
             ]);
-            return redirect()->route('admin.university.index_image',$uni_image->university->id)->with('success','Image updated successfully');
+            return redirect()->route('admin.university.index_image', $uni_image->university->id)->with('success', 'Image updated successfully');
         }
-        
     }
+
+    
+
+
+
+
+    //certificate
+    public function index_certificate($id)
+    {
+        $university = University::with('certificates')->find($id);
+        $certificates = $university->certificates;
+        return view('admin.university.index_certificate', compact('certificates', 'university'));
+    }
+    public function create_certificate($id)
+    {
+        $university = University::find($id);
+        return view('admin.university.create_certificate', compact('university'));
+    }
+    public function store_certificate($id, Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:png,jpg'
+        ]);
+        $img_name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('certificate'), $img_name);
+        Certificate::create([
+            'image' => 'certificate/' . $img_name,
+            'university_id' => $id
+        ]);
+        return redirect()->route('admin.university.index_certificate', $id)->with('success', 'Certificate created successfully');
+    }
+    public function edit_certificate($id)
+    {
+        $certificate= Certificate::find($id);
+        return view('admin.university.edit_certificate', compact('certificate'));
+    }
+    public function update_certificate(Request $request, $id)
+    {
+        $certificate = Certificate::find($id);
+        $request->validate([
+            'image' => 'nullable|image|mimes:png,jpg'
+        ]);
+        if ($request->hasFile('image')) {
+            if ($certificate->image && file_exists(public_path($certificate->image))) {
+                unlink(public_path($certificate->image));
+            }
+            $image = $request->file('image');
+            $img_name = $image->getClientOriginalName();
+            $image->move(public_path('certificate'), $img_name);
+            $certificate->update([
+                'image' => 'certificate/' . $img_name
+            ]);
+            return redirect()->route('admin.university.index_certificate', $certificate->university->id)->with('success', 'Certificate Image updated successfully');
+        }
+    }
+
+
 }

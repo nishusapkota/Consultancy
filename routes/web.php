@@ -76,6 +76,16 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::get('/university/edit-image/{id}',[UniversityController::class,'edit_image'])->name('university.edit_image');
     Route::post('/university/edit-image/{id}',[UniversityController::class,'update_image'])->name('university.update_image');
     
+    Route::get('/university/{id}/certificate',[UniversityController::class,'index_certificate'])->name('university.index_certificate');
+    Route::get('/university/{id}/add-certificate',[UniversityController::class,'create_certificate'])->name('university.create_certificate');
+    Route::post('/university/{id}/add-certificate',[UniversityController::class,'store_certificate'])->name('university.store_certificate');
+    Route::get('/university/edit-certificate/{id}',[UniversityController::class,'edit_certificate'])->name('university.edit_certificate');
+    Route::post('/university/edit-certificate/{id}',[UniversityController::class,'update_certificate'])->name('university.update_certificate');
+    
+
+
+
+
     Route::resource('/social-media',SocialMediaController::class);
     
     

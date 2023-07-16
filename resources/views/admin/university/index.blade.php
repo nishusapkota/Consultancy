@@ -57,7 +57,8 @@
                     <i class="fas fa-trash"></i>Delete</button>
                 </form>
                 
-                   <a class="btn btn-warning" href="{{route('admin.university.index_image',$university->id)}}">Images</a>    
+                   <a class="btn btn-primary" href="{{route('admin.university.index_image',$university->id)}}">Slider</a>    
+                   <a class="btn btn-success" href="{{route('admin.university.index_certificate',$university->id)}}">Cerficate</a>    
 
               </td>
             </tr>

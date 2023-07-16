@@ -6,9 +6,9 @@
     <div class="card">
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;font-weight:bold">
-          Edit University Image</h3>
+          Edit Certificate Image</h3>
         <div class="card-tools">
-          <a class="btn btn-primary" href="{{route('admin.university.index_image',$uni_image->university->id)}}">
+          <a class="btn btn-primary" href="{{route('admin.university.index_certificate',$certificate->university->id)}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="card-body">
-        <form method="post" action="{{route('admin.university.update_image',$uni_image->id)}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('admin.university.update_certificate',$certificate->id)}}" enctype="multipart/form-data">
           @if($errors->any())
           <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
@@ -29,7 +29,7 @@
 
           
           <div style="width: 100px; height: 100px; overflow: hidden;">
-            <img src="{{ asset($uni_image->image) }}" alt="University Image"
+            <img src="{{ asset($certificate->image) }}" alt="Certificate Image"
                 style="width: 100%; height: auto; object-fit: cover;">
         </div>
           <div class="form-group">

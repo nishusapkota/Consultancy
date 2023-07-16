@@ -127,16 +127,16 @@
                             </div>
                             <div class="form-group">
                               <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
-                                <option selected value="">Select University</option>
-                                @foreach ($university as $course)
-                                <option value="{{$course->id}}"
-                                    @if ($uni_id && !is_null($uni_id))
+                                <option selected disabled>Select University</option>
+                                @foreach ($university as $uni)
+                                <option value="{{$uni->id}}"
+                                    @if ($uni->id && !is_null($uni->id))
                                     selected
                                     @endif
-                                    >{{$course->uname}}</option>
+                                    >{{$uni->uname}}</option>
                                 @endforeach
                               </select>
-                              @error('university_id')
+                              @error('uni->id')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror
