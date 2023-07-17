@@ -21,7 +21,7 @@ class RequestCourse extends Model
         return $this->belongsTo(CourseCategory::class,'cat_id');
     }
     function levels(){
-        return $this->belongsToMany(Level::class);
+        return $this->belongsTo(Level::class);
     }
     function university(){
         return $this->belongsTo(University::class);

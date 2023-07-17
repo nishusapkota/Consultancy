@@ -59,7 +59,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('admin.course.index')}}" class="nav-link {{ (request()->is('admin/request/course*')) ? 'active' : '' }}">
+          <a href="{{route('admin.uni-requested-course.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-course')) ? 'active' : '' }}">
             <i class="far fa-circle nav-icon"></i>
             <p>Request Course</p>
           </a>
@@ -67,12 +67,32 @@
       </ul>
     </li>
    
+
     <li class="nav-item">
-      <a href="{{route('admin.university.index')}}" class="nav-link {{ (request()->is('admin/university*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Universities</p>
+      <a href="#" class="nav-link {{ (request()->is('admin/uni-requested-university')||request()->is('admin/uni-requested-university*')) ? 'active' : '' }}">
+        <i class="nav-icon far fa-envelope"></i>
+        <p>
+          University
+          <i class="fas fa-angle-left right"></i>
+        </p>
       </a>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+          <a href="{{route('admin.university.index')}}" class="nav-link {{ (request()->is('admin/university*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Universities</p>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a href="{{route('admin.uni-requested-university.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-university*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Request University</p>
+          </a>
+        </li>
+      </ul>
     </li>
+    
     
     <li class="nav-item">
       <a href="{{route('admin.about.index')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">

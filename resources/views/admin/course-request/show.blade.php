@@ -40,6 +40,14 @@
                     <td>{{$course->category->name}}</td>
                 </tr>
                 <tr>
+                    <th>Universiity</th>
+                    <td>{{$course->university}}</td>
+                </tr>
+                <tr>
+                    <th>Level</th>
+                    <td>{{$course->category->name}}</td>
+                </tr>
+                <tr>
                     <th>Status</th>
                     <td>{{$course->status}}</td>
                 </tr>

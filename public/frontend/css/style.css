@@ -5498,7 +5498,11 @@ h4 a{
 
 .team-section{
   position: relative;
-  padding: 95px 0px;
+  /* padding:95px 0px; */
+  padding-top: 95px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .team-block-one .inner-box{
@@ -9936,7 +9940,6 @@ h4 a{
   display: block;
   margin-bottom: 180px;
 }
-
 .project-block-three .inner-box .image-box{
   position: relative;
   display: block;

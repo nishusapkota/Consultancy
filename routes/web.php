@@ -17,14 +17,15 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
+use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
-use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
-use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
 use App\Http\Controllers\University\ScholarshipController;
+use App\Http\Controllers\Admin\UniversityRequestController;
 use App\Http\Controllers\University\RequestCourseController;
+use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
 
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
@@ -66,7 +67,14 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
-    Route::resource('/request/course',CourseRequestController::class);
+    Route::resource('/uni-requested-course',CourseRequestController::class);
+
+    // Route::resource('/uni-requested-university',UniversityRequestController::class);
+    Route::get('/uni-requested-university',[UniversityRequestController::class,'index'])->name('uni-requested-university.index');
+    Route::delete('/uni-requested-university/{id}',[UniversityRequestController::class,'destroy'])->name('uni-requested-university.destroy');
+    Route::get('/uni-requested-university/{id}',[UniversityRequestController::class,'update'])->name('uni-requested-university.update');
+
+
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
 

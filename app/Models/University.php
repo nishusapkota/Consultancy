@@ -35,5 +35,8 @@ class University extends Model
     function certificates(){
         return $this->hasMany(Certificate::class);
     }
+    function requestUniversity(){
+        return $this->hasOne(RequestUniversityDesc::class);
+    }
 
 }

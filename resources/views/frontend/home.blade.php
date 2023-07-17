@@ -73,7 +73,7 @@
 
                         @foreach ($images as $image)
                             <div class="custom-slide-item ">
-                                <div class="image-layer" style="background: url('{{ asset($image->image) }}')">
+                                <div class="custom-image-layer" style="background: url('{{ asset($image->image) }}')">
                                 </div>
                             </div>
                         @endforeach
@@ -101,9 +101,47 @@
     </section>
 
     <!-- about-section end -->
+    <section class="team-section">
+        <div class="auto-container">
+            <div class="sec-title centred">
+                <h2>University/Colleges</h2>
+                <div class="sec-text">
+                    <p class="blog-text" style="max-width:100%">Let us know your interest and we will find you the right institution</p>
+                </div>
+            </div>
+            <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+                @foreach ($universities as $university)
+            <div class="uni-container">
+                <div class="news-block-one inner-uni">
+
+                    <div class="rounded inner-div">
+                        <figure class="image-box"><img src="{{ asset($university->universityImages->first->image->image) }}" alt="" class="uni-image"></figure>
+                        <div class="lower-content uni-lower-content">
+                            <h3 class="uni-title-main">{{ $university->uname }}</h3>
+                            <div class="link view-course"><a
+                                href="{{ route('college-detail',$university->uname) }}"
+                                class="uni--title"><i
+                                        class="fas fa-arrow-right uni-icon "></i><span>View Details</span></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           @endforeach
+      </div>
+        </div>
+        <div class="btn-box d-flex align-items-center justify-content-center mt-4">
+            <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
+        </div>
+    </section>
+
+
+
+
+
+
 
  <!--University section-->
- <section class="university-section">
+ {{-- <section class="university-section">
     <div class="university-container">
         <div class="sec-title centred">
             <h2>University/Colleges</h2>
@@ -128,7 +166,6 @@
                     </div>
                 </div>
             </div>
-
            @endforeach
             
         </div>
@@ -136,59 +173,8 @@
             <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </div>
-</section>
+</section> --}}
 <!--University section end-->
-
-
-
-
-
-    <!--University section-->
-    {{-- <section class="university-section">
-        <div class="university-container">
-            <div class="sec-title centred">
-                <h2>University/Colleges</h2>
-                <div class="sec-text">
-                    <p class="blog-text" style="max-width:100%">Let us know your interest and we will find you the right
-                        institution</p>
-                </div>
-            </div>
-            <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
-                
-                @foreach ($universities as $university)
-
-            
-                    <div class="uni-container">
-                        <div class="news-block-one">
-                            <div class="rounded inner-div">
-                                <figure class="image-box"><img
-                                            src="{{ asset($university->image) }}" class="uni-image" alt="">
-                                </figure>
-                                <div class="lower-content uni-lower-content">
-                                   
-                                    <h3 class="uni-title-main">{{ $university->uname }}</h3>
-                                    <div class="link view-course"><a
-                                        href="{{ route('college-detail',$university->uname) }}"
-                                        class="uni--title"><i
-                                                class="fas fa-arrow-right uni-icon "></i><span>View Details</span></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-
-
-
-            </div>
-
-            <div class="btn-box d-flex align-items-center justify-content-center mt-4">
-                <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
-            </div>
-        </div>
-    </section> --}}
-    <!--University section end-->
-
 
 
     <!-- courses-section -->
@@ -198,10 +184,9 @@
                 <div class="sec-title style-two centred">
                     <h5>Courses</h5>
                     <h2>Our Courses</h2>
-                </div>
-                
+                </div>  
             </div>
-            <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+            <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one courses">
                 @foreach ($courses as $course)
                     <div class="team-block-one">
                         <div class="inner-box">
@@ -228,11 +213,6 @@
                     </div>
                 @endforeach
 
-
-
-
-
-
             </div>
         </div>
         <div class="btn-box d-flex align-items-center justify-content-center mt-4">
@@ -240,6 +220,8 @@
         </div>
     </section>
     <!-- courses-section end -->
+
+
     <!-- scholarship-section -->
     <section class="project-style-four bg-color-1">
         <div class="auto-container">
@@ -249,9 +231,9 @@
                     <h2>Scholarship/Offers</h2>
                 </div>
             </div>
-            <div class="two-column-carousel owl-carousel owl-theme owl-nav-none">
+            <div class="two-column-carousel owl-carousel owl-theme owl-nav-none scholarship">
                 @foreach ($scholarships as $scholarship)
-                <div class="project-block-three">
+                <div class="project-block-three  ">
                     <div class="inner-box">
                         <figure class="image-box"><img src="{{ asset($scholarship->image) }}"
                                 alt=""></figure>

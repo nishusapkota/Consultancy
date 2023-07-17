@@ -11,6 +11,7 @@ use App\Models\UniversityImage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\RequestUniversityDesc;
 
 class UniversityController extends Controller
 {
@@ -33,17 +34,19 @@ class UniversityController extends Controller
         //  dd($university);
         return view('university.home', compact('university'));
     }
-    public function universityUpdate(Request $request, University $university)
+    public function universityUpdate(Request $request)
     {
         // dd($request->details);
         // dd($university);
         $request->validate([
             'details' => 'required',
         ]);
-        $university->update([
-            'details' => $request->details,
-        ]);
-        return redirect()->route('university.home')->with('success', 'university updated successfully');
+    //    $university->id=Auth::user()->university_id;
+       RequestUniversityDesc::create([
+        'details'=>$request->details,
+        'university_id'=>Auth::user()->university_id
+       ]);
+        return redirect()->route('university.home')->with('success', 'Change requested successfully');
     }
 
     /**
@@ -68,7 +71,7 @@ class UniversityController extends Controller
         $data = $request->validate([
             'uname' => 'required|unique:universities,uname',
             'address' => 'required',
-
+            'image'=>'required|image|mimes:png,jpg',
             'details' => 'required',
             'status' => 'boolean|nullable',
             'course_id' => 'nullable|array',
@@ -191,9 +194,9 @@ class UniversityController extends Controller
      */
     public function destroy(University $university)
     {
-        // if ($university->image && file_exists(public_path($university->image))) {
-        //     unlink(public_path($university->image));
-        // }
+        if ($university->image && file_exists(public_path($university->image))) {
+             unlink(public_path($university->image));
+        }
         $university->delete();
         return redirect()->route('admin.university.index')->with('success', 'record deleted successfully');
     }
