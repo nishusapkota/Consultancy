@@ -3,9 +3,14 @@
 @section('header')
     @include('frontend.layouts.headers.otherPageHeader')
 @endsection
+@push('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
 <!--Page Title-->
-<section class="page-title centred" style="background-image: {{asset('frontend/images/background/page-title-2.jpg')}};">
+<section class="page-title style-two centred" style="background-image: {{asset('frontend/images/background/page-title-2.jpg')}};">
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1>Apply Now</h1>
@@ -35,43 +40,90 @@
                     </p>
                   </div>
   
-                  <form>
+                  <form method="post" action="{{route('enquiry.post')}}">
+                    @foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach.
+                    @csrf
                     <div class="form-group">
-                      <input type="text" placeholder="Your Name" />
+                        <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror" required/>
+                        @error('name')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group">
-                      <input type="email" placeholder="Email address" />
+                        <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror" required/>
+                        @error('email')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group">
-                      <input type="tel" placeholder="Phone" />
+                        <input type="tel" placeholder="Phone"name="contact"  class="@error('contact') is-invalid @enderror" required/>
+                        @error('contact')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group">
-                      <select>
-                        <option selected disabled>Select Level</option>
-                        <option>Bachelor</option>
-                        <option>Masters</option>
-                        <option>Doctorate</option>
-                        <option>PhD</option>
+                        <input type="tel" placeholder="Address"name="address"  class="@error('address') is-invalid @enderror" required/>
+                        @error('address')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                      <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
+                        <option selected disabled>Select University</option>
+                        @foreach ($university as $uni)
+                        <option value="{{$uni->id}}"
+                            
+                            >{{$uni->uname}}</option>
+                        @endforeach
                       </select>
+                      @error('university_id')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group">
-                      <select>
-                        <option selected disabled>Select Course</option>
-                        <option>BBA</option>
-                        <option>MBA</option>
-                        <option>DBA</option>
-                        <option>MSIT</option>
-                      </select>
+                        <select name="level_id" class="@error('level_id') is-invalid @enderror" required >
+                            <option selected value="">Select Level</option>
+                            @foreach ($levels as $course)
+                                <option value="{{ $course->id }}">{{ $course->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('level_id')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group">
-                      <textarea placeholder="Message"></textarea>
+                        <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
+                            <option selected value="" >Select Course</option>
+                            @foreach ($courses as $level)
+                                <option value="{{ $level->id }}">{{ $level->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('course_id')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Message" name="message" class="@error('name') is-invalid @enderror"" required></textarea>
+                        @error('message')
+                            <small class="form-text text-danger">
+                                {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group message-btn">
-                      <button type="submit" class="theme-btn style-one">
-                        Submit
-                      </button>
+                        <button type="submit" class="theme-btn style-one">
+                            Submit
+                        </button>
                     </div>
-                  </form>
+                </form>
                 </div>
               </div>
               <div class="col-lg-5 col-md-6 col-sm-12 info-column">
@@ -104,3 +156,13 @@
       </section>
       <!-- support-section end -->
 @endsection
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        @if(Session::has('success'))
+           //  toastr.info("Have fun storming the castle!")
+            toastr.success('{{ Session::get('success') }}')
+            @endif
+
+    </script>
+@endpush

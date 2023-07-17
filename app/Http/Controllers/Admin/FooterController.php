@@ -138,6 +138,7 @@ class footerController extends Controller
             'description '=>$footer?$footer->description :null,
             'email'=>$footer?$footer->email:null,
             'phone'=>$footer?$footer->phone:null,
+            'description'=>$footer?$footer->description:null,
         ];
         return view('admin.footer.edit', compact('data'));
     }

@@ -80,14 +80,15 @@ class UniversityController extends Controller
             'password' => 'required|confirmed',
 
         ]);
-
+        $img_name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('university'), $img_name);
         // $img_name = $request->file('image')->getClientOriginalName();
         // $request->file('image')->move(public_path('university'), $img_name);
         // 'image' => 'university/' . $img_name,
         $university = University::create([
             'uname' => $request->uname,
             'address' => $request->address,
-
+            'image' => 'university/' . $img_name,
             'details' => $request->details,
             'status' => $request->status ? '1' : '0'
         ]);
@@ -157,16 +158,18 @@ class UniversityController extends Controller
             'username' => 'nullable',
             'password' => 'confirmed',
         ]);
-        // if ($request->hasFile('image')) {
-        //     unlink(public_path($university->image));
-        //     $image = $request->file('image');
-        //     $img_name = $image->getClientOriginalName();
-        //     $image->move(public_path('university'), $img_name);
-        // }
+        if ($request->hasFile('image')) {
+            if ($university->image) {
+                unlink(public_path($university->image));
+            }
+            $image = $request->file('image');
+            $img_name = $image->getClientOriginalName();
+            $image->move(public_path('university'), $img_name);
+        }
         $university->update([
             'uname' => $request->uname,
             'address' => $request->address,
-            // 'image' => $request->hasfile('image') ? 'university/' . $img_name : $university->image,
+            'image' => $request->hasfile('image') ? 'university/' . $img_name : $university->image,
             'details' => $request->details,
             'status' => $request->status ? '1' : '0'
         ]);
