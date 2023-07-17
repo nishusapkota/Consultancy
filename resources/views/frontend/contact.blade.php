@@ -10,7 +10,7 @@
 @endpush
 @section('content')
 <!--Page Title-->
-<section class="page-title centred" style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}};">
+<section class="page-title style-two centred" style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}};">
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1>Contact Us</h1>

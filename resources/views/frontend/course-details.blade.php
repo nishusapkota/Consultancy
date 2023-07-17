@@ -11,7 +11,7 @@
 @section('content')
 
     <!--Page Title-->
-    <section class="page-title style-three centred"
+    <section class="page-title style-two centred"
         style="background-image: {{ asset('frontend/images/background/page-title-5.jpg') }};">
         <div class="auto-container">
             <div class="content-box clearfix">
@@ -48,7 +48,7 @@
                             <img src="{{ asset($course->image) }}" class="mb-4" alt="">
                             <!-- <span class="category">business</span> -->
                         </figure>
-                        <div class="inner-box">
+                        <div class="inner-box" style="border-style: none">
                             <!-- <ul class="post-info clearfix">
                                             <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
                                         </ul> -->
@@ -81,7 +81,9 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div>
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
-
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach.
                         <form method="post" action="{{route('enquiry.post')}}">
                             @csrf
                             <div class="form-group">
@@ -136,7 +138,7 @@
                                     >{{$uni->uname}}</option>
                                 @endforeach
                               </select>
-                              @error('uni->id')
+                              @error('university_id')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror

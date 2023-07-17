@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 <!--Page Title-->
-<section class="page-title centred" style="background-image: {{asset('frontend/images/background/page-title-3.jpg')}};">
+<section class="page-title style-two centred" style="background-image: {{asset('frontend/images/background/page-title-3.jpg')}};">
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1>LIST OF TOP UNIVERSITIES IN INDIA</h1>

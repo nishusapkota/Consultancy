@@ -40,7 +40,7 @@
                       </div>
                       <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{$data['address'] }}">
+                        <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{$data['email'] }}">
                         @error('email')
                         <small class="form-text text-danger">
                           {{ $message }}</small>
@@ -48,7 +48,7 @@
                       </div>
                       <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{$data['address'] }}">
+                        <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{$data['phone'] }}">
                         @error('phone')
                         <small class="form-text text-danger">
                           {{ $message }}</small>
@@ -57,7 +57,7 @@
                       
                       <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$data['address']}}</textarea>
+                        <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$data['description']}}</textarea>
                         @error('description')
                         <small class="form-text text-danger">
                           {{ $message }}

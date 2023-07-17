@@ -11,7 +11,7 @@
 @section('content')
 
     <!--Page Title-->
-    <section class="page-title style-three centred"
+    <section class="page-title style-two centred"
         style="background-image: {{ asset('frontend/images/background/page-title-5.jpg') }};">
         <div class="auto-container">
             <div class="content-box clearfix">
@@ -41,7 +41,7 @@
                             <img src="{{ asset($scholarship->image) }}" class="mb-4" alt="">
                             <!-- <span class="category">business</span> -->
                         </figure>
-                        <div class="inner-box">
+                        <div class="inner-box" style="border-style: none">
                             <!-- <ul class="post-info clearfix">
                                             <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
                                         </ul> -->

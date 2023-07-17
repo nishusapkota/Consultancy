@@ -4,9 +4,10 @@
     @include('frontend.layouts.headers.otherPageHeader')
 @endsection
 @section('content')
+
 <!--Page Title-->
 <section
-class="page-title style-three centred"
+class="page-title style-two centred"
 style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}}"
 >
 <div class="auto-container">
@@ -31,7 +32,7 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
         <figure class="image-box">
           <img src="{{asset($blog->image)}}" alt="" />
         </figure>
-        <div class="inner-box">
+        <div class="inner-box" style="border-style: none">
           
           <div class="text">
             {!!$blog->body!!}
