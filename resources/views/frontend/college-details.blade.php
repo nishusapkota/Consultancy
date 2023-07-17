@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('title', 'Home')
+
 @section('header')
     @include('frontend.layouts.headers.otherPageHeader')
 @endsection
@@ -187,37 +188,31 @@
             </div>
         </div>
     </section>
-
-    <section class="team-section ">
-        <div class="auto-container px-lg-3 px-md-2 px-0">
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 content-side">
-                    <div class="upper-box clearfix ">
-                        <div class="sec-title style-two pull-left">
-                            <h2>Certificates</h2>
-                        </div>
-
+<section class="team-section">
+    <div class="auto-container px-lg-3 px-md-2 px-0">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 content-side">
+                <div class="upper-box clearfix">
+                    <div class="sec-title style-two pull-left">
+                        <h2>Certificates</h2>
                     </div>
-                    <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
-                        
-                        @foreach ($certificates as $certificate)
-                            <div class="team-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><img src="{{ asset($certificate->image) }}" alt="">
-                                    </figure>
-                                    
-                                    </div>
-                                </div>
+                </div>
+                <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+                    @foreach ($certificates as $certificate)
+                        <div class="team-block-one">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img class="rounded-circle" src="{{ asset($certificate->image) }}" alt="">
+                                </figure>
                             </div>
-                        @endforeach
-
-
-
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     
     @if (!$scholarships->isEmpty())
     <section class="team-section pt-0">

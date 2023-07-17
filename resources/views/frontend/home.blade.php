@@ -15,8 +15,6 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             @foreach ($homeSlider as $item)
-             
-            
             @if ($item->extension=='jpg'||$item->extension=='JPG'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='PNG'||$item->extension=='JPEG')
                 
             <div class="slide-item ">
@@ -59,21 +57,7 @@
             </div>
             @endif
         @endforeach 
-            {{-- <div class="slide-item">
-                <div class="image-layer"
-                    style="background-image: url('{{ asset('frontend/images/banner/banner-3.jpg') }}')"></div>
-                <div class="auto-container">
-                    <div class="content-box ">
-                        <h5>get on the right way</h5>
-                        <h1>Slider 3 title information<br> here</h1>
-                        <p class="slider-text slider-content">Anything more information on slider one is kept here</p>
-                        <div class="btn-box">
-                            <a href="{{ route('index') }}" class="theme-btn style-one mr-10">Admit Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
+           
         </div>
     </section>
 
@@ -118,8 +102,49 @@
 
     <!-- about-section end -->
 
+ <!--University section-->
+ <section class="university-section">
+    <div class="university-container">
+        <div class="sec-title centred">
+            <h2>University/Colleges</h2>
+            <div class="sec-text">
+                <p class="blog-text" style="max-width:100%">Let us know your interest and we will find you the right institution</p>
+            </div>
+        </div>
+        <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+            @foreach ($universities as $university)
+            <div class="uni-container">
+                <div class="news-block-one inner-uni">
+
+                    <div class="rounded inner-div">
+                        <figure class="image-box"><a href="college-details.html"><img src="{{ asset($university->universityImages->first->image->image) }}" alt="" class="uni-image"></a></figure>
+                        <div class="lower-content uni-lower-content">
+                            <h3 class="uni-title-main">{{ $university->uname }}</h3>
+                            <div class="link view-course"><a
+                                href="{{ route('college-detail',$university->uname) }}"
+                                class="uni--title"><i
+                                        class="fas fa-arrow-right uni-icon "></i><span>View Details</span></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           @endforeach
+            
+        </div>
+        <div class="btn-box d-flex align-items-center justify-content-center mt-4">
+            <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
+        </div>
+    </div>
+</section>
+<!--University section end-->
+
+
+
+
+
     <!--University section-->
-    <section class="university-section">
+    {{-- <section class="university-section">
         <div class="university-container">
             <div class="sec-title centred">
                 <h2>University/Colleges</h2>
@@ -135,15 +160,12 @@
             
                     <div class="uni-container">
                         <div class="news-block-one">
-                            {{-- route('college-detail', Crypt::encrypt($university->id)) --}}
                             <div class="rounded inner-div">
                                 <figure class="image-box"><img
                                             src="{{ asset($university->image) }}" class="uni-image" alt="">
                                 </figure>
                                 <div class="lower-content uni-lower-content">
-                                    {{-- <ul class="post-info">
-                                    <li>ESTD. 1997</li>
-                                </ul> --}}
+                                   
                                     <h3 class="uni-title-main">{{ $university->uname }}</h3>
                                     <div class="link view-course"><a
                                         href="{{ route('college-detail',$university->uname) }}"
@@ -160,13 +182,11 @@
 
             </div>
 
-
-
             <div class="btn-box d-flex align-items-center justify-content-center mt-4">
                 <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--University section end-->
 
 
@@ -177,7 +197,7 @@
             <div class="upper-box clearfix">
                 <div class="sec-title style-two centred">
                     <h5>Courses</h5>
-                    <h2>Our  Courses</h2>
+                    <h2>Our Courses</h2>
                 </div>
                 
             </div>
@@ -281,8 +301,8 @@
                                     <h3>{{ $blog->title }}
                                     </h3>
                                     <p>{{ $blog->short_description }}</p>
-                                    <div class="link"><a href="{{ route('blog-detail',$blog->title) }}"><i
-                                                class="fas fa-arrow-right"></i><span>Read More</span></a></div>
+                                    <div class="link"><a href="{{ route('blog-detail',$blog->title) }}"><i class="fas fa-arrow-right">
+                                        </i><span>Read More</span></a></div>
                                 </div>
                             </div>
                         </div>

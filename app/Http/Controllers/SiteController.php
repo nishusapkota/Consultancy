@@ -22,10 +22,6 @@ class SiteController extends Controller
 {
     public function index()
     {
-        // $courses=Course::with(['category','levels'=>function($q){
-        //     $q->limit(3);
-        // }])->get();
-
         $courses = Course::with('category', 'levels')->where('status', '1')->get();
         $scholarships = Scholarship::with('university')->get();
         $about = About::first();
@@ -37,11 +33,16 @@ class SiteController extends Controller
         $homeSlider = HomeSlider::all();
         return view('frontend.home', compact('universities', 'images', 'courses', 'blogs', 'homeSlider', 'about', 'contact', 'scholarships'));
     }
+
+
     public function scholarship()
     {
         $scholarships = Scholarship::all();
         return view('frontend.scholarship', compact('scholarships'));
     }
+
+
+
     public function courses(Request $request)
     {
         $reData = $request->all();
@@ -72,17 +73,25 @@ class SiteController extends Controller
         // dd($inputs);
         return view('frontend.courses', compact('courses', 'levels', 'universities', 'inputs'));
     }
+
+
+
     public function colleges()
     {
         $universities = University::where('status', '1')->get();
-        // dd($universities);
+    //  dd($universities->universityImages->first->image->image);
         return view('frontend.colleges', compact('universities'));
     }
+
+
+
     public function blog()
     {
         $blogs = Blog::where('status', '1')->get();
         return view('frontend.blog', compact('blogs'));
     }
+
+
     public function blogDetail($title)
     {
         // dd(Crypt::decrypt($id));
@@ -91,16 +100,22 @@ class SiteController extends Controller
         return view('frontend.blog-details', compact('blog'));
     }
 
+
+
     public function contact()
     {
         $contact = Contact::first();
         // dd($contact);
         return view('frontend.contact', compact('contact'));
     }
+
+
     public function applyNow()
     {
         return view('frontend.applyNow');
     }
+
+
     public function courseDetail($name)
     {
         $course = Course::where('name', $name)->first();
@@ -112,6 +127,7 @@ class SiteController extends Controller
         // dd($course);
         return view('frontend.course-details', compact('course', 'university', 'levels'));
     }
+
 
     public function scholarshipDetail($title)
     {
@@ -139,16 +155,9 @@ class SiteController extends Controller
         return view('frontend.college-details', compact('college','certificates','images', 'courses', 'levels', 'scholarships'));
     }
 
-    // public Function home() {
-    //     if(auth()->user()->role == 'admin'){
-    //     //     // return redirect('/admin');
-    //        return view('admin.dashboard');
-    //     }
-    //     return view('home');
-    // }
+   
     public function studentEnquiry(Request $request)
     {
-
         $data = $request->validate([
             'name' => 'required',
             'phone' => 'required',
