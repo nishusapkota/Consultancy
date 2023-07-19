@@ -69,7 +69,7 @@
    
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ (request()->is('admin/uni-requested-university')||request()->is('admin/uni-requested-university*')) ? 'active' : '' }}">
+      <a href="#" class="nav-link {{ (request()->is('admin/uni-requested-university')||request()->is('admin/uni-requested-university*')||request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
         <i class="nav-icon far fa-envelope"></i>
         <p>
           University
@@ -88,6 +88,13 @@
           <a href="{{route('admin.uni-requested-university.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-university*')) ? 'active' : '' }}">
             <i class="far fa-circle nav-icon"></i>
             <p>Request University</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{route('admin.uni-requested-certificate.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Request Certificates</p>
           </a>
         </li>
       </ul>

@@ -5,15 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RequestUniversityDesc extends Model
+class RequestCertificate extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'email',
-        'address',
-        'uname',
         'image',
-        'details',
         'university_id'
     ];
     public function university(){

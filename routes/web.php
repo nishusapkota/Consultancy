@@ -23,8 +23,10 @@ use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
+use App\Http\Controllers\University\CertificateController;
 use App\Http\Controllers\University\ScholarshipController;
 use App\Http\Controllers\Admin\UniversityRequestController;
+use App\Http\Controllers\Admin\CertificateRequestController;
 use App\Http\Controllers\Admin\ScholarshipRequestController;
 use App\Http\Controllers\University\RequestCourseController;
 use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
@@ -93,6 +95,11 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::delete('/uni-requested-university/{id}',[UniversityRequestController::class,'destroy'])->name('uni-requested-university.destroy');
     Route::get('/uni-requested-university/{id}',[UniversityRequestController::class,'update'])->name('uni-requested-university.update');
 
+ // Route::resource('/uni-requested-university',UniversityRequestController::class);
+ Route::get('/uni-requested-certificate',[CertificateRequestController::class,'index'])->name('uni-requested-certificate.index');
+ Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
+ Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
+
 
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);
@@ -137,7 +144,20 @@ Route::prefix('/university')->middleware('auth','isUniversity')->name('universit
     Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');  
     Route::post('/home/{university}',[UniversityController::class,'universityUpdate'])->name('university.update');  
     Route::resource('/courses',RequestCourseController::class);
-    Route::resource('/scholarship',ScholarshipController::class);    
+    Route::resource('/scholarship',ScholarshipController::class);  
+    
+    Route::get('/certificate-image',[CertificateController::class,'index'])->name('certificate.index');
+    Route::delete('/certificate-image/{id}',[CertificateController::class,'delete'])->name('certificate.delete');
+    Route::get('/request-certificate-image',[CertificateController::class,'requestIndex'])->name('request-certificate.index');
+    Route::get('/request-certificate-image/create',[CertificateController::class,'requestCreate'])->name('request-certificate.create');
+    Route::post('/request-certificate-image',[CertificateController::class,'requestStore'])->name('request-certificate.store');
+    Route::get('/request-certificate-image/{id}/edit',[CertificateController::class,'requestEdit'])->name('request-certificate.edit');
+    Route::put('/request-certificate-image/{id}/update',[CertificateController::class,'requestUpdate'])->name('request-certificate.update');
+    Route::delete('/request-certificate-image/{id}',[CertificateController::class,'requestDelete'])->name('request-certificate.delete');
+
+
+
+
 });
 
 

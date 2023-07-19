@@ -47,11 +47,17 @@
                             <td>{{$blog->extra}}</td>
                             {{-- <td>{{$blog->status?'<span class="badge badge-primary">'.$blog->status.'</span>':'<span class="badge badge-primary">'.$blog->status.'</span>'}}</td> --}}
                             <td>
-                            @if ($blog->status==1)
+                                {{-- <input type="checkbox" class="toogle-class" data-id={{$blog->id}}
+                                data-onstyle="success" data-offstyle="danger" data-toogle="toogle" data-on="Active"
+                                data-off="Inactive" {{$blog->status ? 'checked' : ''}}> --}}
+
+
+
+                        @if ($blog->status==1)
                             <span class="badge badge-primary">Active</span>
                             @else
                             <span class="badge badge-danger">Inactive</span>
-                            @endif
+                            @endif 
                         </td>
                             <td>
 
@@ -79,5 +85,30 @@
 
 
     </div>
+
+    {{-- <script>
+        $(document).ready(function(){
+
+            $(function(){
+                $('.toogle-class').change(function(){
+                    var status=$(this).prop('checked')==true ? 1 :0;
+                    var blog_id=$(this).data('id');
+                    $.ajax({
+                        type:"GET",
+                        dataType:"json",
+                        url:'/changeStatus',
+                        data:{
+                            'status':status,
+                            'blog_id':blog_id
+                        },
+                        success:function(data){
+                            console.log('Success')
+                        }
+                    })
+                });
+            })
+        });
+        
+    </script> --}}
 </section>
 @endsection

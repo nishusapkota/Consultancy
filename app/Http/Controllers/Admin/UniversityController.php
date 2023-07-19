@@ -32,7 +32,7 @@ class UniversityController extends Controller
         $university = University::with('user')->find($uid);
         // $courses=Course::all();
         //  dd($university);
-        return view('university.home', compact('university'));
+        return view('university.dashboard', compact('university'));
     }
     public function universityUpdate(Request $request)
     {
