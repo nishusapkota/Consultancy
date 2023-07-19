@@ -26,6 +26,7 @@ class UniversityController extends Controller
         return view('admin.university.index', compact('universities'));
     }
 
+
     public function universityDashboard()
     {
         $uid = Auth::user()->university_id;
@@ -34,19 +35,63 @@ class UniversityController extends Controller
         //  dd($university);
         return view('university.dashboard', compact('university'));
     }
-    public function universityUpdate(Request $request)
+    public function universityCreate()
     {
-        // dd($request->details);
-        // dd($university);
-        $request->validate([
-            'details' => 'required',
-        ]);
-    //    $university->id=Auth::user()->university_id;
-       RequestUniversityDesc::create([
-        'details'=>$request->details,
-        'university_id'=>Auth::user()->university_id
-       ]);
-        return redirect()->route('university.home')->with('success', 'Change requested successfully');
+        $uid = Auth::user()->university_id;
+        $university = RequestUniversityDesc::where('university_id', $uid)->first();
+    //  dd($university);
+        return view('university.request-university-details', compact('university','uid'));
+    }
+    public function universityUpdate(Request $request, $uid)
+    {
+        // $request->validate([
+        //     'details' => 'required',
+        //     'address' => 'required',
+        //     'uname' => 'required',
+        //     'image' => 'nullable',
+        //     'email' => 'required|email|unique:users,email,except,$reqUniversity->email',
+        // ]);
+        // dd($request->all());
+        $reqUniversity = RequestUniversityDesc::where('university_id', $uid)->first();
+        if ($reqUniversity) {
+            if ($request->hasFile('image')) {
+
+                if ($reqUniversity->image && file_exists(public_path($reqUniversity->image))) {
+                    unlink(public_path($reqUniversity->image));
+                }
+                $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('university/'), $img_name);
+            }
+            $reqUniversity->update([
+                'email' => $request->email,
+                'address' => $request->address,
+                'uname' => $request->uname,
+                'details' => $request->details,
+                'image' => $request->hasfile('image') ? 'university/' . $img_name : $reqUniversity->image,
+                'university_id'=>Auth::user()->university_id
+
+            ]);
+
+            return redirect()->back()->with('success', 'Request for University detail updated');
+        }
+
+        else{
+            if ($request->hasFile('image')) {
+                $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('university/'), $img_name);
+            }
+            RequestUniversityDesc::create([
+                'email' => $request->email,
+                'address' => $request->address,
+                'uname' => $request->uname,
+                'details' => $request->details,
+                'image' =>  'university/' . $img_name,
+                'university_id'=>Auth::user()->university_id
+
+            ]);
+
+            return redirect()->back()->with('success', 'Request for University detail updated');
+        }
     }
 
     /**
@@ -71,7 +116,7 @@ class UniversityController extends Controller
         $data = $request->validate([
             'uname' => 'required|unique:universities,uname',
             'address' => 'required',
-            'image'=>'required|image|mimes:png,jpg',
+            'image' => 'required|image|mimes:png,jpg',
             'details' => 'required',
             'status' => 'boolean|nullable',
             'course_id' => 'nullable|array',
@@ -195,7 +240,7 @@ class UniversityController extends Controller
     public function destroy(University $university)
     {
         if ($university->image && file_exists(public_path($university->image))) {
-             unlink(public_path($university->image));
+            unlink(public_path($university->image));
         }
         $university->delete();
         return redirect()->route('admin.university.index')->with('success', 'record deleted successfully');
@@ -250,7 +295,7 @@ class UniversityController extends Controller
         }
     }
 
-    
+
 
 
 
@@ -282,7 +327,7 @@ class UniversityController extends Controller
     }
     public function edit_certificate($id)
     {
-        $certificate= Certificate::find($id);
+        $certificate = Certificate::find($id);
         return view('admin.university.edit_certificate', compact('certificate'));
     }
     public function update_certificate(Request $request, $id)
@@ -304,6 +349,4 @@ class UniversityController extends Controller
             return redirect()->route('admin.university.index_certificate', $certificate->university->id)->with('success', 'Certificate Image updated successfully');
         }
     }
-
-
 }

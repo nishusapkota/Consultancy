@@ -92,6 +92,7 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
 
     // Route::resource('/uni-requested-university',UniversityRequestController::class);
     Route::get('/uni-requested-university',[UniversityRequestController::class,'index'])->name('uni-requested-university.index');
+    Route::get('/uni-requested-university/{id}/show',[UniversityRequestController::class,'show'])->name('uni-requested-university.show');
     Route::delete('/uni-requested-university/{id}',[UniversityRequestController::class,'destroy'])->name('uni-requested-university.destroy');
     Route::get('/uni-requested-university/{id}',[UniversityRequestController::class,'update'])->name('uni-requested-university.update');
 
@@ -141,8 +142,9 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
 
 
 Route::prefix('/university')->middleware('auth','isUniversity')->name('university.')->group(function(){ 
-    Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');  
-    Route::post('/home/{university}',[UniversityController::class,'universityUpdate'])->name('university.update');  
+    Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');
+    Route::get('/university-details',[UniversityController::class,'universityCreate'])->name('uni-request.create');
+    Route::post('/university-details/{u_id}',[UniversityController::class,'universityUpdate'])->name('uni-request.update');  
     Route::resource('/courses',RequestCourseController::class);
     Route::resource('/scholarship',ScholarshipController::class);  
     
