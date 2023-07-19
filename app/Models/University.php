@@ -38,5 +38,8 @@ class University extends Model
     function requestUniversity(){
         return $this->hasOne(RequestUniversityDesc::class);
     }
+    function req_courses(){
+        return $this->hasMany(RequestCourse::class);
+    }
 
 }

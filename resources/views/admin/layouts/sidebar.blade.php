@@ -38,7 +38,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link {{ (request()->is('admin/course*')) ? 'active' : '' }}">
+      <a href="#" class="nav-link {{ (request()->is('admin/course*')||request()->is('admin/uni-requested-course*')) ? 'active' : '' }}">
         <i class="nav-icon far fa-envelope"></i>
         <p>
           Courses
@@ -92,8 +92,14 @@
         </li>
       </ul>
     </li>
-    
-    
+
+    <li class="nav-item">
+      <a href="{{ route('admin.scholarship.index')}}" class="nav-link {{ (request()->is('admin/scholarship*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Scholarships</p>
+      </a>
+    </li>
+
     <li class="nav-item">
       <a href="{{route('admin.about.index')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
@@ -121,12 +127,7 @@
       </a>
     </li>
 
-    <li class="nav-item">
-      <a href="{{ route('admin.scholarship.index')}}" class="nav-link {{ (request()->is('admin/scholarship*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
-        <p>Scholarships</p>
-      </a>
-    </li>
+    
 
     <li class="nav-item">
       <a href="{{ route('admin.social-media.index')}}" class="nav-link {{ (request()->is('admin/social-media*')) ? 'active' : '' }}">

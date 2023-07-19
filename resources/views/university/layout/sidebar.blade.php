@@ -38,7 +38,7 @@
     <li class="nav-item">
       <a href="{{route('university.scholarship.index')}}" class="nav-link {{ (request()->is('university/scholarship*')) ? 'active' : '' }}">
         <i class="far fa-circle nav-icon"></i>
-        <p>Scholarship</p>
+        <p>Request Scholarship</p>
       </a>
     </li>
 

@@ -13,7 +13,7 @@
                 <div class="card-header bg-secondary">
                     <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                        Add New Courses</h3>
+                        Request New Course</h3>
                     <div class="card-tools">
                         <a class="btn btn-primary" href="{{ route('university.courses.index') }}">
                             <i class="fas fa-arrow-circle-left mr-2"></i>
@@ -78,7 +78,7 @@
                             <label for="level_id">Level</label>
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
-                                    <select id="choices-multiple-remove-button" name="university_id[]"placeholder="Select level" multiple>
+                                    <select id="choices-multiple-remove-button" name="level_id[]"placeholder="Select level" multiple>
                                         @foreach ($levels as $level)
                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
                                         @endforeach

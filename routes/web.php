@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Scholarship;
 use App\Models\CourseCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -11,8 +12,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CourseController;
-use App\Http\Controllers\Admin\FooterController;
 
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\HomeSliderController;
@@ -24,9 +25,9 @@ use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\StudentEnquiryController;
 use App\Http\Controllers\University\ScholarshipController;
 use App\Http\Controllers\Admin\UniversityRequestController;
+use App\Http\Controllers\Admin\ScholarshipRequestController;
 use App\Http\Controllers\University\RequestCourseController;
 use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
-
 
 Route::get('/',[SiteController::class, 'index'])->name('index');
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
@@ -61,13 +62,31 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
 
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
-    Route::resource('/scholarship',AdminScholarshipController::class);
     Route::resource('/about',AboutController::class);
     Route::get('/about/edit-image/{id}',[AboutController::class,'edit_image'])->name('about.edit_image');
     Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
-    Route::resource('/uni-requested-course',CourseRequestController::class);
+
+    //Route::resource('/scholarship',AdminScholarshipController::class);
+    Route::get('/scholarship',[\App\Http\Controllers\Admin\ScholarshipController::class,'index'])->name('scholarship.index');
+    Route::delete('/scholarship/{id}',[\App\Http\Controllers\Admin\ScholarshipController::class,'destroy'])->name('scholarship.destroy');
+    Route::get('/scholarship/{id}',[\App\Http\Controllers\Admin\ScholarshipController::class,'update'])->name('scholarship.update');
+    Route::get('/scholarship/{id}/show',[\App\Http\Controllers\Admin\ScholarshipController::class,'show'])->name('scholarship.show');
+
+
+    //Route::resource('/uni-requested-course',CourseRequestController::class);
+    Route::get('/uni-requested-course',[CourseRequestController::class,'index'])->name('uni-requested-course.index');
+    Route::delete('/uni-requested-course/{id}',[CourseRequestController::class,'destroy'])->name('uni-requested-course.destroy');
+    Route::get('/uni-requested-course/{id}',[CourseRequestController::class,'update'])->name('uni-requested-course.update');
+    Route::get('/uni-requested-course/{id}/show',[CourseRequestController::class,'show'])->name('uni-requested-course.show');
+
+
+Route::get('/uni-requested-scholarship',[\App\Http\Controllers\University\ScholarshipController::class,'index'])->name('uni-requested-scholarship.index');
+Route::delete('/uni-requested-scholarship/{id}',[\App\Http\Controllers\University\ScholarshipController::class,'destroy'])->name('uni-requested-scholarship.destroy');
+Route::get('/uni-requested-scholarship/{id}',[\App\Http\Controllers\University\ScholarshipController::class,'update'])->name('uni-requested-scholarship.update');
+Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\University\ScholarshipController::class,'show'])->name('uni-requested-scholarship.show');
+
 
     // Route::resource('/uni-requested-university',UniversityRequestController::class);
     Route::get('/uni-requested-university',[UniversityRequestController::class,'index'])->name('uni-requested-university.index');
