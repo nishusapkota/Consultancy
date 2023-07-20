@@ -6,12 +6,15 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\University;
 use App\Models\Certificate;
+use App\Models\Scholarship;
 use Illuminate\Http\Request;
 use App\Models\UniversityImage;
+use App\Models\CourseUniversity;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\RequestUniversityDesc;
+use App\Models\StudentEnquiry;
 
 class UniversityController extends Controller
 {
@@ -31,9 +34,12 @@ class UniversityController extends Controller
     {
         $uid = Auth::user()->university_id;
         $university = University::with('user')->find($uid);
-        // $courses=Course::all();
+
+        $course_count=CourseUniversity::where('university_id',$uid)->count();
+        $scholarship_count=Scholarship::where('university_id',$uid)->count();
+        $certificate_count=Certificate::where('university_id',$uid)->count();
         //  dd($university);
-        return view('university.dashboard', compact('university'));
+        return view('university.dashboard', compact('university','course_count','scholarship_count','certificate_count'));
     }
     public function universityCreate()
     {

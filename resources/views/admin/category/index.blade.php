@@ -38,12 +38,11 @@
                             <td>{{$category->name}}</td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.course-category.show',$category)}}"><i class="fas fa-eye"></i>Show</a>
                                 <a class="btn btn-warning" href="{{route('admin.course-category.edit',$category)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.course-category.destroy',$category)}}" method="post">
+                                <form class="d-inline" action="{{route('admin.course-category.destroy',$category)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                         <i class="fas fa-trash"></i>Delete</button>
                                 </form>
 
@@ -64,3 +63,28 @@
     </div>
 </section>
 @endsection
+
+@section('scripts')
+<script type="text/javascript">
+ 
+     $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Are you sure you want to delete this record?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+  
+</script>
+@endsection
+  

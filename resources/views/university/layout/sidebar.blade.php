@@ -30,14 +30,14 @@
    
     <li class="nav-item">
       <a href="{{route('university.courses.index')}}" class="nav-link {{ (request()->is('university/courses*')) ? 'active' : '' }}">
-        <i class="far fa-circle nav-icon"></i>
+        <i class="nav-icon fa fa-book" aria-hidden="true"></i>
         <p>Request Course</p>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="{{route('university.scholarship.index')}}" class="nav-link {{ (request()->is('university/scholarship*')) ? 'active' : '' }}">
-        <i class="far fa-circle nav-icon"></i>
+        <i class="nav-icon fa fa-graduation-cap" aria-hidden="true"></i>
         <p>Request Scholarship</p>
       </a>
     </li>
@@ -45,7 +45,7 @@
 
     <li class="nav-item">
       <a href="#" class="nav-link {{ (request()->is('university/certificate-image*')||request()->is('university/request-certificate-image*')) ? 'active' : '' }}">
-        <i class="nav-icon far fa-envelope"></i>
+        <i class="nav-icon fa-solid fa-image" aria-hidden="true"></i>
         <p>
           Certificate
           <i class="fas fa-angle-left right"></i>

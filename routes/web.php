@@ -57,11 +57,7 @@ Auth::routes();
 
 //
 Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(function(){
-
-    Route::get('/dashboard',function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
-
+    Route::get('/dashboard',[SiteController::class,'adminDashboard'])->name('dashboard');
     Route::resource('/slider/home',HomeSliderController::class);
     Route::resource('/blog',BlogController::class);
     Route::resource('/about',AboutController::class);
@@ -100,7 +96,6 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
  Route::get('/uni-requested-certificate',[CertificateRequestController::class,'index'])->name('uni-requested-certificate.index');
  Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
  Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
-
 
     Route::resource('/level',LevelController::class);
     Route::resource('/university',UniversityController::class);

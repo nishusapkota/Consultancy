@@ -115,7 +115,7 @@
                 <div class="news-block-one inner-uni">
 
                     <div class="rounded inner-div">
-                        <figure class="image-box"><img src="{{ asset($university->universityImages->first->image->image) }}" alt="" class="uni-image"></figure>
+                        <figure class="image-box"><img src="{{ asset($university->image) }}" alt="" class="uni-image"></figure>
                         <div class="lower-content uni-lower-content">
                             <h3 class="uni-title-main">{{ $university->uname }}</h3>
                             <div class="link view-course"><a

@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Crypt;
 
 class SiteController extends Controller
 {
+    public function adminDashboard(){
+        $uni_count=University::where('status','1')->count();
+        $scholarship_count=Scholarship::where('status','1')->count();
+        $course_count=Course::where('status','1')->count();
+        $enquiry_count=StudentEnquiry::count();
+        return view('admin.dashboard',compact('uni_count','scholarship_count','course_count','enquiry_count'));
+    }
     public function index()
     {
         $courses = Course::with('category', 'levels')->where('status', '1')->get();

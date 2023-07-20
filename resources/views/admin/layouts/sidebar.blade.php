@@ -10,8 +10,8 @@
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link {{ (request()->is('admin/slider*')) ? 'active' : '' }}">
-        <i class="nav-icon far fa-envelope"></i>
-        <p>
+        <i class="nav-icon fas fa-sliders-h"></i>       
+         <p>
           Sliders
           <i class="fas fa-angle-left right"></i>
         </p>
@@ -29,17 +29,12 @@
             <p>Footer Logo</p>
           </a>
         </li>
-        {{-- <li class="nav-item">
-          <a href="{{Route('admin.courses.index')}}" class="nav-link {{ (request()->is('admin/courses*')) ? 'active' : '' }}">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Course</p>
-          </a>
-        </li> --}}
+       
       </ul>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link {{ (request()->is('admin/course*')||request()->is('admin/uni-requested-course*')) ? 'active' : '' }}">
-        <i class="nav-icon far fa-envelope"></i>
+        <i class="nav-icon fa fa-book" aria-hidden="true"></i>
         <p>
           Courses
           <i class="fas fa-angle-left right"></i>
@@ -70,7 +65,7 @@
 
     <li class="nav-item">
       <a href="#" class="nav-link {{ (request()->is('admin/uni-requested-university')||request()->is('admin/uni-requested-university*')||request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
-        <i class="nav-icon far fa-envelope"></i>
+        <i class="nav-icon fa fa-university" aria-hidden="true"></i>
         <p>
           University
           <i class="fas fa-angle-left right"></i>
@@ -102,14 +97,14 @@
 
     <li class="nav-item">
       <a href="{{ route('admin.scholarship.index')}}" class="nav-link {{ (request()->is('admin/scholarship*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fa fa-graduation-cap" aria-hidden="true"></i>
         <p>Scholarships</p>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="{{route('admin.about.index')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fa fa-info-circle" aria-hidden="true"></i>
         <p>About</p>
       </a>
     </li>
@@ -122,14 +117,14 @@
     </li>
     <li class="nav-item">
       <a href="{{route('admin.contact.edit')}}" class="nav-link {{ (request()->is('admin/contact*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fa fa-address-book" aria-hidden="true"></i>
         <p>Contact</p>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="{{ route('admin.blog.index')}}" class="nav-link {{ (request()->is('admin/blog*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fab fa-blogger"></i>
         <p>Blogs</p>
       </a>
     </li>
@@ -138,27 +133,27 @@
 
     <li class="nav-item">
       <a href="{{ route('admin.social-media.index')}}" class="nav-link {{ (request()->is('admin/social-media*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fas fa-users"></i>
         <p>Social Media</p>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="{{route('admin.level.index')}}" class="nav-link {{ (request()->is('admin/level*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fas fa-user-graduate"></i>
         <p>Level</p>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="{{route('admin.indexStudentEnquiry')}}" class="nav-link {{ (request()->is('admin/student-enquiry*')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fa fa-question-circle" aria-hidden="true"></i>
         <p>Student Enquiry</p>
       </a>
     </li>
     <li class="nav-item">
       <a href="{{route('admin.generalEnquiry')}}" class="nav-link {{ (request()->is('admin/general-enquiry')) ? 'active' : '' }}">
-        <i class="nav-icon fas fa-file"></i>
+        <i class="nav-icon fa fa-question-circle" aria-hidden="true"></i>
         <p>General Enquiry</p>
       </a>
     </li>

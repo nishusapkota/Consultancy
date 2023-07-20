@@ -29,7 +29,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <div class="btn-group show">
-        <button type="button" class="btn btn-info">Action</button>
+        <button type="button" class="btn btn-info circular-btn">Action</button>
         <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
           <span class="sr-only">Toggle Dropdown</span>
         </button>
