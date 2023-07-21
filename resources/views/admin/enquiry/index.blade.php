@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{$loop->index+1}}</td>
                             <td>{{$enquiry->name}}</td>
-                            <td>{{$enquiry->contact}}</td>
+                            <td>{{$enquiry->phone}}</td>
                             <td>{{$enquiry->email}}</td>
                             
                             <td>{{$enquiry->level->name}}</td>

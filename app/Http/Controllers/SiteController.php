@@ -139,12 +139,12 @@ class SiteController extends Controller
     {
         $course = Course::where('name', $name)->first();
         
-        $university = University::whereHas('courses', function ($q) use ($course) {
+        $universities = University::whereHas('courses', function ($q) use ($course) {
             $q->where('courses.id', $course->id);
-        })->get(['id', 'uname']);
+        })->get();
         $levels = Level::where('status', '1')->get(['id', 'name']);
         // dd($course);
-        return view('frontend.course-details', compact('course', 'university', 'levels'));
+        return view('frontend.course-details', compact('course', 'universities', 'levels'));
     }
     public function courseDetailFromUni(Request $request) {
         // dd($request->all());

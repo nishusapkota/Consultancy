@@ -44,8 +44,8 @@
                                     <td>{{ $slider->description  ?: 'null'}}</td>
                                     <td>
 {{-- @dd($slider) --}}
-                                        <a class="btn btn-secondary" href="{{ route('admin.home.show', $slider->id) }}"><i
-                                                class="fas fa-eye"></i>Show</a>
+                                        {{-- <a class="btn btn-secondary" href="{{ route('admin.home.show', $slider->id) }}"><i
+                                                class="fas fa-eye"></i>Show</a> --}}
                                         <a class="btn btn-warning" href="{{ route('admin.home.edit', $slider->id) }}"><i
                                                 class="fas fa-edit"></i>Edit</a>
                                         <form class="d-inline" action="{{ route('admin.home.destroy', $slider) }}" method="post">

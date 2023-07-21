@@ -6,7 +6,7 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    Edit Blog</h3>
+                    Edit Home Slider</h3>
                 <div class="card-tools">
                     <a class="btn btn-primary" href="{{route('admin.home.index')}}">
                         <i class="fas fa-arrow-circle-left mr-2"></i>
@@ -52,14 +52,29 @@
                         @enderror
                       </div>
             
-                      <div class="form-group">
-                        <label for="file">File</label>
-                        <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror">
-                        @error('file')
-                        <small class="form-text text-danger">
-                          {{ $message }}</small>
-                        @enderror
-                      </div>
+                      @if (in_array($slider->extension, ['jpg', 'jpeg', 'png']))
+            <div class="form-group">
+              <label>Current Image</label><br>
+              <img src="{{ asset($slider->file) }}" alt="Current Image" style="max-width: 200px;">
+            </div>
+          @elseif (in_array($slider->extension, ['mp4', 'mov', 'mkv']))
+            <div class="form-group">
+              <label>Current Video</label><br>
+              <video width="320" height="240" controls>
+                <source src="{{ asset($slider->file) }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          @endif
+
+          <div class="form-group">
+            <label for="file">Upload New File</label>
+            <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" value="{{ old('file') }}">
+            @error('file')
+              <small class="form-text text-danger">{{ $message }}</small>
+            @enderror
+          </div>
+                     
                     
                     <button class="btn btn-primary">
                         <i class="fas fa-save mr-2"></i>
