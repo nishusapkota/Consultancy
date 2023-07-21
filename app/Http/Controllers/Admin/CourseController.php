@@ -21,6 +21,14 @@ class CourseController extends Controller
         $courses = Course::all();
         return view('admin.course.index', compact('courses'));
     }
+    public function changeStatus(Request $request)
+{
+    $course = Course::find($request->course_id);
+    $course->status = $request->status;
+    $course->save();
+    return redirect()->back()->with('success','Status upadated successfully');
+}
+
 
     /**
      * Show the form for creating a new resource.

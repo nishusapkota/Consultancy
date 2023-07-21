@@ -47,6 +47,7 @@ Route::get('/blog-details/{id}',[SiteController::class, 'blogDetail'])->name('bl
 
 Route::get('/contacts',[SiteController::class, 'contact'])->name('contact');
 Route::get('/apply',[SiteController::class, 'applyNow'])->name('apply');
+Route::get('/admit',[SiteController::class, 'admit'])->name('admit');
  Route::post('/student-enquiries',[SiteController::class, 'studentEnquiry'])->name('enquiry.post');
  Route::post('/general-enquiries',[SiteController::class, 'generalEnquiry'])->name('general.enquiry.post');
 
@@ -65,6 +66,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
+    Route::get('/changeStatus',[CourseController::class,'changeStatus'])->name('courseStatusChange');
 
     //Route::resource('/scholarship',AdminScholarshipController::class);
     Route::get('/scholarship',[\App\Http\Controllers\Admin\ScholarshipController::class,'index'])->name('scholarship.index');
@@ -133,9 +135,6 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::get('/contact-edit',[ContactController::class,'edit'])->name('contact.edit');
     Route::post('/contact-update',[ContactController::class,'store'])->name('contact.update');
 });
-
-
-
 Route::prefix('/university')->middleware('auth','isUniversity')->name('university.')->group(function(){ 
     Route::get('/home',[UniversityController::class,'universityDashboard'])->name('home');
     Route::get('/university-details',[UniversityController::class,'universityCreate'])->name('uni-request.create');

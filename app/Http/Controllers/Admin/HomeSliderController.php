@@ -47,7 +47,7 @@ class HomeSliderController extends Controller
         $file_name = $request->file('file')->getClientOriginalName();
         $ext = $request->file('file')->getClientOriginalExtension();
 
-        if ($ext == 'mp4') {
+        if ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') {
             $request->file('file')->move(public_path('slider/video'), $file_name);
         } else {
             $request->file('file')->move(public_path('slider/image'), $file_name);
@@ -56,7 +56,7 @@ class HomeSliderController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'sub_heading' => $request->sub_heading,
-            'file' => $ext == 'mp4' ? 'slider/video/' . $file_name : 'slider/image/' . $file_name,
+            'file' => ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') ? 'slider/video/' . $file_name : 'slider/image/' . $file_name,
             'extension' => $ext
         ]);
 
@@ -110,7 +110,7 @@ class HomeSliderController extends Controller
             $ext = $request->file('file')->getClientOriginalExtension();
             
 
-        if ($ext == 'mp4') {
+        if ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') {
             $request->file('file')->move(public_path('slider/video'), $file_name);
         } else {
             $request->file('file')->move(public_path('slider/image'), $file_name);
@@ -120,7 +120,7 @@ class HomeSliderController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'sub_heading' => $request->sub_heading,
-                'file' => $ext == 'mp4' ? 'slider/video/' . $file_name : 'slider/image/' . $file_name,
+                'file' => ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv')? 'slider/video/' . $file_name : 'slider/image/' . $file_name,
                 'extension' => $ext
             ];
         }else {

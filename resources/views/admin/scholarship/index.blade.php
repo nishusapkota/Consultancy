@@ -60,8 +60,7 @@
                                                 class="fas fa-eye"></i>Show</a>
                                          <a href="{{route('admin.scholarship.update',$scholarship->id)}}"><button class="btn btn-success">
                                                     <i class="fas fa-save"></i>Approve</button></a> 
-                                        <form class="d-inline" onclick="return confirm('Are you sure to delete this?')"
-                                            action="{{ route('admin.scholarship.destroy', $scholarship) }}" method="post">
+                                        <form class="d-inline" action="{{ route('admin.scholarship.destroy', $scholarship) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>

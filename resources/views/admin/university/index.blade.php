@@ -50,7 +50,7 @@
 
                 <a class="btn btn-secondary" href="{{route('admin.university.show',$university)}}"><i class="fas fa-eye"></i>Show</a>
                 <a class="btn btn-warning" href="{{route('admin.university.edit',$university)}}"><i class="fas fa-edit"></i>Edit</a>
-                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.university.destroy',$university)}}" method="post">
+                <form class="d-inline" action="{{route('admin.university.destroy',$university)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>

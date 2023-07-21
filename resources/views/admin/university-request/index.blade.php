@@ -46,8 +46,7 @@
                                         <a href="{{ route('admin.uni-requested-university.update', $reqChange->id) }}"><button
                                                 class="btn btn-success">
                                                 <i class="fas fa-save"></i>Approve</button></a>
-                                        <form class="d-inline" onclick="return confirm('Are you sure to disapprove this?')"
-                                            action="{{ route('admin.uni-requested-university.destroy', $reqChange) }}"
+                                        <form class="d-inline" action="{{ route('admin.uni-requested-university.destroy', $reqChange) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')

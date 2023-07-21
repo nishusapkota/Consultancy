@@ -80,23 +80,43 @@
                 <h2>Drop Us a Line</h2>
                 <p>If you have any queries related to our service <br />Please feel free to contact us.</p>
             </div>
-            <form method="post" action="{{route('general.enquiry.post')}}"" > 
+            <form method="post" action="{{route('general.enquiry.post')}}"> 
                 @csrf
                 <div class="row clearfix">
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="text" name="name" placeholder="Your Name" required="" max="250">
+                        <input type="text" name="name" placeholder="Your Name" class="@error('name')is-invalid @enderror" required max="250">
+                        @error('name')
+                        <small class="form-text text-danger">
+                            {{ $message }}</small>
+                    @enderror
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="email" name="email" placeholder="Email address" required="" max="250">
+                        <input type="email" name="email" placeholder="Email address" required max="250">
+                        @error('email')
+                        <small class="form-text text-danger">
+                            {{ $message }}</small>
+                    @enderror
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="text" name="phone" placeholder="Phone" required="" max="250">
+                        <input type="tel" name="phone" placeholder="Phone" class="@error('phone') is-invalid @enderror" pattern="^[0-9\-\+\(\)\s]+$" required max="10">
+                        @error('phone')
+                        <small class="form-text text-danger">
+                            {{ $message }}</small>
+                    @enderror
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input type="text" name="subject" placeholder="Subject" required="" max="250">
+                        <input type="text" name="subject" placeholder="Subject" class="@error('subject') is-invalid @enderror" required max="250">
+                        @error('subject')
+                        <small class="form-text text-danger">
+                            {{ $message }}</small>
+                    @enderror
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                        <textarea name="message" placeholder="Message" max="100"></textarea>
+                        <textarea name="message" placeholder="Message" max="100" class="@error('message') is-invalid @enderror" required></textarea>
+                        @error('message')
+                                        <small class="form-text text-danger">
+                                            {{ $message }}</small>
+                                    @enderror
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
                         <button class="theme-btn style-one" type="submit" name="submit-form">Send Query</button>

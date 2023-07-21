@@ -29,7 +29,6 @@
                                 <th>Title</th>
                                 <th>Sub Heading</th>
                                 <th>Description</th>
-                                <th>File</th>
                                 <th>Action</th>
                             </tr>
 
@@ -44,19 +43,12 @@
                                     <td>{{ $slider->sub_heading  ?: 'null'}}</td>
                                     <td>{{ $slider->description  ?: 'null'}}</td>
                                     <td>
-                                       
-                                        {{-- <div style="width: 100px; height: 100px; overflow: hidden;">
-                                    <img src="{{ asset($slider->image) }}" alt="Slider Image" style="width: 100%; height: auto; object-fit: cover;">
-                                  </div>  --}}
-                                    </td>
-                                    <td>
 {{-- @dd($slider) --}}
                                         <a class="btn btn-secondary" href="{{ route('admin.home.show', $slider->id) }}"><i
                                                 class="fas fa-eye"></i>Show</a>
                                         <a class="btn btn-warning" href="{{ route('admin.home.edit', $slider->id) }}"><i
                                                 class="fas fa-edit"></i>Edit</a>
-                                        <form class="d-inline" onclick="return confirm('Are you sure to delete this?')"
-                                            action="{{ route('admin.home.destroy', $slider) }}" method="post">
+                                        <form class="d-inline" action="{{ route('admin.home.destroy', $slider) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>

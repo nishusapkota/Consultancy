@@ -27,28 +27,28 @@
                         <div class="btn-box">
                             <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
                             <p class="slider-text slider-content">{{$item->description}}</p>
-                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a>
+                            <a href="{{ route('admit') }}" class="theme-btn style-one">Admit Now</a>
                         </div>
                     </div>
                 </div>
             </div>
             @endif
-            @if ($item->extension=='mp4'||$item->extension=='MP4'||$item->extension=='MOV'||$item->extension=='movs')
+            @if ($item->extension=='mp4'||$item->extension=='mkv'||$item->extension=='mov')
                 
             <div class="video-slide-item">
                 <section class="main-banner" id="top" data-section="section1">
                     <video autoplay muted loop id="bg-video">
-                        <source src="{{ asset($item->file) }}" type="video/mp4" />
+                        <source src="{{ asset($item->file) }}" type="video/{{ $item->extension }}" />
                     </video>
                     <div class="video-overlay header-text">
                         <div class="video-slider-container">
                             <div class="video-slider-content">
-                                <h5>{{$item->sub_heading}}</h5>
+                                <h5 style="color: white;">{{$item->sub_heading}}</h5>
                                 <h1 class="video-content-title">{{$item->title}}</h1>
                                 <p class="slider-text slider-content">{{$item->description}}
                                 </p>
                                 <div class="btn-box">
-                                    <a href="{{ route('apply') }}" class="theme-btn style-one">Apply Now</a>
+                                    <a href="{{ route('admit') }}" class="theme-btn style-one">Apply Now</a>
                                 </div>
                             </div>
                         </div>

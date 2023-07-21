@@ -43,10 +43,10 @@
                              <a class="btn btn-secondary" href="{{route('admin.uni-requested-course.show',$course->id)}}"><i class="fas fa-eye"></i>Show</a>
                              <a href="{{route('admin.uni-requested-course.update',$course->id)}}"><button class="btn btn-success">
                                 <i class="fas fa-save"></i>Approve</button></a> 
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.uni-requested-course.destroy',$course->id)}}" method="post">
+                                <form class="d-inline" action="{{route('admin.uni-requested-course.destroy',$course->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'">
+                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                         <i class="fas fa-trash"></i>Disapprove</button>
                                 </form>
 

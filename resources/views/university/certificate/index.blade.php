@@ -44,7 +44,7 @@
                            
                             <td>
 
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('university.certificate.delete',$certificate->id)}}" method="post">
+                                <form class="d-inline" action="{{route('university.certificate.delete',$certificate->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>

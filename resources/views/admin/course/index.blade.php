@@ -49,21 +49,18 @@
                                     <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
                                   </div> 
                             </td>
-                            <td>
-                                @if ($course->status==1)
-                                <span class="badge badge-primary">Active</span>
-                                @else
-                                <span class="badge badge-danger">Inactive</span>
-                                @endif
-                            </td>
+                            <td> 
+                                <input data-id="{{$course->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $course->status ? 'checked' : '' }}> 
+                             </td>
+
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('admin.courses.show',$course)}}"><i class="fas fa-eye"></i>Show</a>
                                 <a class="btn btn-warning" href="{{route('admin.courses.edit',$course)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.courses.destroy',$course)}}" method="post">
+                                <form class="d-inline" action="{{route('admin.courses.destroy',$course)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'">
+                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                         <i class="fas fa-trash"></i>Delete</button>
                                 </form>
 
@@ -86,7 +83,7 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
- 
+
      $('.show_confirm').click(function(event) {
           var form =  $(this).closest("form");
           var name = $(this).data("name");
@@ -104,6 +101,23 @@
             }
           });
       });
+
+      $(function() { 
+           $('.toggle-class').change(function() { 
+           var status = $(this).prop('checked') == true ? 1 : 0;  
+           var course_id = $(this).data('id');  
+           $.ajax({ 
+    
+               type: "GET", 
+               dataType: "json", 
+               url: '/changeStatus', 
+               data: {'status': status, 'course_id': course_id}, 
+               success: function(data){ 
+               console.log(data.success) 
+            } 
+         }); 
+      }) 
+   }); 
   
 </script>
 @endsection

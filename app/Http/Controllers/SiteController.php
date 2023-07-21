@@ -126,6 +126,14 @@ class SiteController extends Controller
         return view('frontend.applyNow',compact('courses','university','levels'));
     }
 
+    public function admit()
+    {
+        $courses=Course::get(['id','name']);
+        $university=University::get(['id','uname']);
+        $levels=Level::get(['id','name']);
+        return view('frontend.admit',compact('courses','university','levels'));
+    }
+
 
     public function courseDetail($name)
     {
@@ -179,7 +187,7 @@ class SiteController extends Controller
    
     public function studentEnquiry(Request $request)
     {
-        $data = $request->validate([
+         $request->validate([
             'name' => 'required',
             'phone' => 'required',
             'email' => 'required|email',
