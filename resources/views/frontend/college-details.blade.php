@@ -15,17 +15,29 @@
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             @foreach ($images as $image)
                 <div class="slide-item " style="height: 20px;">
+                    @if (in_array($image->ext, ['jpg', 'jpeg', 'png']))
                     <div class="image-layer" style="background-image: url('{{ asset($image->image) }}')">
+                        <!-- Show the image -->
+                        <img src="{{ asset($image->image) }}" alt="Current Image" style="max-width: 100%; max-height: 300px;">
                     </div>
+                @elseif (in_array($image->ext, ['mp4', 'mov', 'mkv']))
+                    <div class="image-layer">
+                        <!-- Show the video -->
+                        <video autoplay muted loop width="100%" height="490">
+                            <source src="{{ asset($image->image) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                @endif
                     <div class="auto-container">
                         <div class="content-box ">
                             {{-- <h5></h5> --}}
                             <h1>{{ $college->uname }}</h1>
-                            <div class="btn-box">
+                            {{-- <div class="btn-box">
                                 <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
                                 {{-- <p class="slider-text slider-content">{{$ite->description}}</p>
-                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a> --}}
-                            </div>
+                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a> 
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -40,26 +52,10 @@
     <section class="sidebar-page-container details-content pb-0">
         <div class="auto-container px-lg-3 px-md-2 px-0">
             <div class="row clearfix">
-                <div class="col-lg-7 col-md-12 col-sm-12 content-side ml-3 ml-sm-0"">
+                <div class="col-lg-7 col-md-12 col-sm-12 content-side ml-3 ml-sm-0">
                     <div class="blog-details-content">
                         {!! $college->details !!}
-                        {{-- <div class="sec-title style-two pull-left">
                         
-                            <h2>About Us</h2>  
-                        </div> --}}
-                        {{-- <figure class="image-box">
-                            <img src="{{ asset($college->image) }}" class="mb-4" alt="" />
-                            <!-- <span class="category">business</span> -->
-                        </figure> --}}
-                        {{-- <div class="inner-box">
-                            <!-- <ul class="post-info clearfix">
-                                  <li><i class="far fa-user"></i><a href="blog-classic.html">Admin</a></li>
-                              </ul> -->
-                            <div class="text">
-                                {!! $college->details !!}
-                            </div>
-
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">

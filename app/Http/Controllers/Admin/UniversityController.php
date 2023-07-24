@@ -127,18 +127,13 @@ class UniversityController extends Controller
             'status' => 'boolean|nullable',
             'course_id' => 'nullable|array',
             'course_id.*' => 'exists:courses,id',
-
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'username' => 'nullable',
             'password' => 'required|confirmed',
-
         ]);
         $img_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('university'), $img_name);
-        // $img_name = $request->file('image')->getClientOriginalName();
-        // $request->file('image')->move(public_path('university'), $img_name);
-        // 'image' => 'university/' . $img_name,
+        $request->file('image')->move(public_path('university'), $img_name);       
         $university = University::create([
             'uname' => $request->uname,
             'address' => $request->address,
@@ -265,13 +260,21 @@ class UniversityController extends Controller
     }
     public function store_image($id, Request $request)
     {
+    //    dd($request->all());
         $request->validate([
-            'image' => 'required|image|mimes:png,jpg'
+            'image' =>'required|mimes:png,jpg,jpeg,mp4,mov,mkv',
+
         ]);
-        $img_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('university'), $img_name);
+        $file_name = time()."_".$request->file('image')->getClientOriginalName();
+        $ext = $request->file('image')->getClientOriginalExtension();
+        if ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') {
+            $request->file('image')->move(public_path('university/video'), $file_name);
+        } else {
+            $request->file('image')->move(public_path('university/image'), $file_name);
+        }
         UniversityImage::create([
-            'image' => 'university/' . $img_name,
+            'image' => ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') ? 'university/video/' . $file_name : 'university/image/' . $file_name,
+            'ext' => $ext,
             'university_id' => $id
         ]);
         return redirect()->route('admin.university.index_image', $id)->with('success', 'Image created successfully');
@@ -285,21 +288,28 @@ class UniversityController extends Controller
     {
         $uni_image = UniversityImage::find($id);
         $request->validate([
-            'image' => 'nullable|image|mimes:png,jpg'
+            'image' => 'nullable|image|mimes:png,jpg,jpeg,mp4,mov,mkv'
         ]);
         if ($request->hasFile('image')) {
-            if ($uni_image->image && file_exists(public_path($uni_image->image))) {
-                unlink(public_path($uni_image->image));
-            }
-            $image = $request->file('image');
-            $img_name = $image->getClientOriginalName();
-            $image->move(public_path('university'), $img_name);
-            $uni_image->update([
-                'image' => 'university/' . $img_name
-            ]);
-            return redirect()->route('admin.university.index_image', $uni_image->university->id)->with('success', 'Image updated successfully');
+            unlink(public_path($uni_image->file));
+            $file_name = time() . '_' . $request->file('file')->getClientOriginalName();
+            $ext = $request->file('image')->getClientOriginalExtension();
+            
+
+        if ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') {
+            $request->file('image')->move(public_path('university/video'), $file_name);
+        } else {
+            $request->file('image')->move(public_path('university/image'), $file_name);
         }
-    }
+
+            $data=[
+                'image' => ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv')? 'university/video/' . $file_name : 'university/image/' . $file_name,
+                'ext' => $ext
+            ];
+            $uni_image->update($data);
+            return redirect()->route('admin.university.index_image', $uni_image->university->id)->with('success', 'Image updated successfully');    
+        }
+        }
 
 
 

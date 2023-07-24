@@ -35,14 +35,14 @@
                         <div class="custom-class">
                             <h2>{{ $course->name }}</h2>
 
-                            <h3>
+                            {{-- <h3>
                                 @if ($course->level_id)
                                     {{ $course->levels->name }} ,
                                 @endif
                                 @if ($course->cat_id)
                                     {{ $course->category->name }}
                                 @endif
-                            </h3>
+                            </h3> --}}
                         </div>
                         <figure class="image-box">
                             <img src="{{ asset($course->image) }}" class="mb-4" alt="">
@@ -74,6 +74,16 @@
                             </div> --}}
 
                         </div>
+                        
+                            <h4>
+                                @if ($course->level_id)
+                                    {{ $course->levels->name }} ,
+                                @endif
+                                @if ($course->cat_id)
+                                    {{ $course->category->name }}
+                                @endif
+                            </h4>
+                        
 
                     </div>
                 </div>

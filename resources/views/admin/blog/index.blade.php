@@ -2,10 +2,11 @@
 
 
 @push('style')
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" integrity="sha512-F636MAkMAhtTplahL9F6KmTfxTmYcAcjcCkyu0f0voT3N/6vzAuJ4Num55a0gEJ+hRLHhdz3vDvZpf6kqgEa5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css" integrity="sha512-9tISBnhZjiw7MV4a1gbemtB9tmPcoJ7ahj8QWIc0daBCdvlKjEA48oLlo6zALYm3037tPYYulT0YQyJIJJoyMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 @endpush
 
 
@@ -57,8 +58,8 @@
                             <td>{{$blog->extra}}</td>
                             {{-- <td>{{$blog->status?'<span class="badge badge-primary">'.$blog->status.'</span>':'<span class="badge badge-primary">'.$blog->status.'</span>'}}</td> --}}
                             <td>
-                                <input data-id="{{$blog->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $blog->status ? 'checked' : '' }}>
-
+                                {{-- <input data-id="{{$blog->id}}" class="toggle_Button" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $blog->status ? 'checked' : '' }}> --}}
+                                <input type="checkbox" id="toggleButton">
 
                         {{-- @if ($blog->status==1)
                             <span class="badge badge-primary">Active</span>
@@ -103,29 +104,38 @@
 
 @section('scripts')
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function() {
+    // Find the toggle button element by its ID
+    const toggleButton = $('#toggle_Button');
+    // Handle the click event on the toggle button
+    toggleButton.on('click', function() {
+        console.log("fhjfhjf");
+      
+    });
+  });
 
-$(function(){
-    $('.toogle-class').change(function(){
+$('.toggle-class').click(function(){
+    console.log("hello");
         var status=$(this).prop('checked')==true ? 1 :0;
         var blog_id=$(this).data('id');
+        var token = "{{ csrf_token() }}";
         $.ajax({
-            type:"GET",
+            type:"POST",
             dataType:"json",
             url: '{{ route("admin.courseStatusChange") }}',
             data:{
+                '_token':token,
                 'status':status,
                 'blog_id':blog_id
             },
             success:function(data){
                 console.log('Success')
             }
-        })
+        });
     });
-})
-});
- 
+
      $('.show_confirm').click(function(event) {
+        console.log("hello");
           var form =  $(this).closest("form");
           var name = $(this).data("name");
           event.preventDefault();

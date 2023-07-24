@@ -66,7 +66,7 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
-    Route::get('/changeStatus',[CourseController::class,'changeStatus'])->name('courseStatusChange');
+    Route::post('/changeStatus',[CourseController::class,'changeStatus'])->name('courseStatusChange');
 
     //Route::resource('/scholarship',AdminScholarshipController::class);
     Route::get('/scholarship',[\App\Http\Controllers\Admin\ScholarshipController::class,'index'])->name('scholarship.index');
@@ -113,13 +113,8 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::post('/university/{id}/add-certificate',[UniversityController::class,'store_certificate'])->name('university.store_certificate');
     Route::get('/university/edit-certificate/{id}',[UniversityController::class,'edit_certificate'])->name('university.edit_certificate');
     Route::post('/university/edit-certificate/{id}',[UniversityController::class,'update_certificate'])->name('university.update_certificate');
-    
-
-
-
 
     Route::resource('/social-media',SocialMediaController::class);
-    
     
     Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('indexStudentEnquiry');
     Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry'])->name('generalEnquiry');
@@ -150,12 +145,7 @@ Route::prefix('/university')->middleware('auth','isUniversity')->name('universit
     Route::get('/request-certificate-image/{id}/edit',[CertificateController::class,'requestEdit'])->name('request-certificate.edit');
     Route::put('/request-certificate-image/{id}/update',[CertificateController::class,'requestUpdate'])->name('request-certificate.update');
     Route::delete('/request-certificate-image/{id}',[CertificateController::class,'requestDelete'])->name('request-certificate.delete');
-
-
-
-
 });
-
 
 Route::get('get-level-list',[FilterController::class,'levels'])->name('level.lists');
 Route::get('get-university-list',[FilterController::class,'universitys'])->name('university.lists');

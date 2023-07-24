@@ -28,10 +28,20 @@
           
 
           
-          <div style="width: 100px; height: 100px; overflow: hidden;">
-            <img src="{{ asset($uni_image->image) }}" alt="University Image"
-                style="width: 100%; height: auto; object-fit: cover;">
-        </div>
+          @if (in_array($uni_image->ext, ['jpg', 'jpeg', 'png']))
+            <div class="form-group">
+              <label>Current Image</label><br>
+              <img src="{{ asset($uni_image->image) }}" alt="Current Image" style="max-width: 200px;">
+            </div>
+          @elseif (in_array($uni_image->ext, ['mp4', 'mov', 'mkv']))
+            <div class="form-group">
+              <label>Current Video</label><br>
+              <video width="320" height="240" controls>
+                <source src="{{ asset($uni_image->image) }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          @endif
           <div class="form-group">
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">

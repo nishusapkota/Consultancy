@@ -15,7 +15,7 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             @foreach ($homeSlider as $item)
-            @if ($item->extension=='jpg'||$item->extension=='JPG'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='PNG'||$item->extension=='JPEG')
+            @if ($item->extension=='jpg'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='JPEG')
                 
             <div class="slide-item ">
                 <div class="image-layer" style="background-image: url('{{ asset($item->file) }}')">
