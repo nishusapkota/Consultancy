@@ -101,8 +101,8 @@
     </section>
 
     <!-- about-section end -->
-    <section class="team-section">
-        <div class="auto-container">
+    <section class="university-section">
+        <div class="university-container">
             <div class="sec-title centred">
                 <h2>University/Colleges</h2>
                 <div class="sec-text">
@@ -112,7 +112,7 @@
             <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
                 @foreach ($universities as $university)
             <div class="uni-container">
-                <div class="news-block-one inner-uni">
+                <div class="news-block-one">
 
                     <div class="rounded inner-div">
                         <figure class="image-box"><img src="{{ asset($university->image) }}" alt="" class="uni-image"></figure>
@@ -129,6 +129,7 @@
            @endforeach
       </div>
         </div>
+
         <div class="btn-box d-flex align-items-center justify-content-center mt-4">
             <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
@@ -226,14 +227,14 @@
     <section class="project-style-four bg-color-1">
         <div class="auto-container">
             <div class="title-inner clearfix">
-                <div class="sec-title style-four right centred">
+                <div class="sec-title style-four right pull-center">
                     <h5>our scholarships</h5>
                     <h2>Scholarship/Offers</h2>
                 </div>
             </div>
             <div class="two-column-carousel owl-carousel owl-theme owl-nav-none scholarship">
                 @foreach ($scholarships as $scholarship)
-                <div class="project-block-three  ">
+                <div class="project-block-three">
                     <div class="inner-box">
                         <figure class="image-box"><img src="{{ asset($scholarship->image) }}"
                                 alt=""></figure>
@@ -261,7 +262,7 @@
     <!-- blog-section -->
     <section class="news-section bg-color-1">
         <div class="auto-container">
-            <div class="sec-title centred">
+            <div class="sec-title style-four right pull-centre">
                 <h5>Read the blogs</h5>
                 <h2>Blog</h2>
                 {{-- <p class="blog-text">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu
