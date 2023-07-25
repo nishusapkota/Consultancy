@@ -33,7 +33,7 @@
 
                     </thead>
                     <tbody>
-                        @foreach ($reqChanges as $reqChange)
+                        @forelse($reqChanges as $reqChange)
                         <tr>
                             <td>{{$loop->index+1}}</td>
                             <td>{{$reqChange->university->uname}}</td>
@@ -58,8 +58,10 @@
 
                             </td>
                         </tr>
-
-                        @endforeach
+                            
+                        @empty
+                            <tr>No data</tr>
+                        @endforelse
 
                     </tbody>
 

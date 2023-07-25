@@ -115,7 +115,7 @@
                 <div class="news-block-one inner-uni">
 
                     <div class="rounded inner-div">
-                        <figure class="image-box"><img src="{{ asset($university->universityImages->first->image->image) }}" alt="" class="uni-image"></figure>
+                        <figure class="image-box"><img src="{{ asset($university->image) }}" alt="" class="uni-image"></figure>
                         <div class="lower-content uni-lower-content">
                             <h3 class="uni-title-main">{{ $university->uname }}</h3>
                             <div class="link view-course"><a
@@ -226,8 +226,8 @@
     <section class="project-style-four bg-color-1">
         <div class="auto-container">
             <div class="title-inner clearfix">
-                <div class="sec-title style-four right centred">
-                    <h5>our scholarships</h5>
+                <div class="sec-title  right centred">
+                    <h5>scholarships</h5>
                     <h2>Scholarship/Offers</h2>
                 </div>
             </div>
@@ -259,7 +259,7 @@
     <!-- scholarship-section end -->
 
     <!-- blog-section -->
-    <section class="news-section bg-color-1">
+    <section class="news-section bg-color-1  pt-0">
         <div class="auto-container">
             <div class="sec-title centred">
                 <h5>Read the blogs</h5>

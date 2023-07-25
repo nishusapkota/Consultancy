@@ -23,6 +23,7 @@ class UniversityController extends Controller
     public function index()
     {
         $universities = University::with('courses')->get();
+        // dd($universities);
         return view('admin.university.index', compact('universities'));
     }
 
@@ -247,6 +248,19 @@ class UniversityController extends Controller
                 'image' => 'university/' . $img_name
             ]);
             return redirect()->route('admin.university.index_image', $uni_image->university->id)->with('success', 'Image updated successfully');
+        }
+    }
+    public function changeStatus( $id)
+    {
+        $university = University::find($id);
+        if ($university->status==1) {
+            $university->update([
+                'status'=>0
+            ]);
+        }else {
+            $university->update([
+                'status'=>1
+            ]);
         }
     }
 

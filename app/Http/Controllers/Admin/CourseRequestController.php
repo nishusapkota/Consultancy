@@ -19,8 +19,13 @@ public function show($id)  {
         return view('admin.course-request.show',compact('course'));
     }
 
-    function destroy(RequestCourse $course)  {
-        $course->delete();
-        return view('admin.course-request.index')->with('success','Deleted successfully');
+    function destroy($id)  {
+        $details=RequestCourse::find($id);
+        if (!$details) {
+            return redirect()->back()->with('error', 'No Such Request found');
+        }
+
+        $details->delete();
+        return redirect()->back()->with('success', 'Request Disapproved');
     }
 }

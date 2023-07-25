@@ -29,7 +29,7 @@
 
         <div class="rounded inner-div">
             <figure class="image-box"><a href="{{route('college-detail',$university->uname)}}">
-            <img src="{{asset($university->universityImages)}}" alt="" class="uni-image"></a></figure>
+            <img src="{{asset($university->image)}}" alt="" class="uni-image"></a></figure>
             <div class="lower-content uni-lower-content">
                 <ul class="post-info">
                     {{-- <li>ESTD. 1997</li> --}}

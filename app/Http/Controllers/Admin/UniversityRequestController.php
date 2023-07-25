@@ -39,9 +39,16 @@ class UniversityRequestController extends Controller
     }
 
 
-    public function destroy(RequestUniversityDesc $reqChange)
+    public function destroy($id)
     {
-        $reqChange->delete();
-        return view('admin.university-request.index')->with('success', 'Request Disapproved');
+        
+        $details=RequestUniversityDesc::find($id);
+        if (!$details) {
+            return redirect()->back()->with('error', 'No Such Reqwuest foud');
+        }
+
+        $details->delete();
+        return redirect()->back()->with('success', 'Request Disapproved');
+        // return view('admin.university-request.index')->with('success', 'Request Disapproved');
     }
 }

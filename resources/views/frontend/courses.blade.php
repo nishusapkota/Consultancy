@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="course-component">
+            <div class="course-component" style="margin-top: 4%;">
               @foreach ($courses as $course )
               {{-- @dd($course) --}}
               <div class="team-block-one">
