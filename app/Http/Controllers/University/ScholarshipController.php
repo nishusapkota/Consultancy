@@ -54,7 +54,8 @@ class ScholarshipController extends Controller
             'title' => $request->title,
             'image' => 'scholarship/' . $img_name,
             'university_id' => Auth::user()->university_id,
-            'description' => $request->description
+            'description' => $request->description,
+            'status'=>'0'
         ]);
         return redirect()->route('university.scholarship.index')->with('success', 'Scholarship created successfully');
     }
@@ -105,7 +106,8 @@ class ScholarshipController extends Controller
             'title' => $request->title,
             'image' => $request->hasfile('image') ? 'scholarship/' . $img_name : $scholarship->image,
             'description' => $request->description,
-            'university_id' => Auth::user()->university_id
+            'university_id' => Auth::user()->university_id,
+            'status'=>'0'
 
         ]);
         return redirect()->route('university.scholarship.index')->with('success', 'Scholarship updated successfully');

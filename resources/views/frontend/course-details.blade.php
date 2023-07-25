@@ -35,14 +35,14 @@
                         <div class="custom-class">
                             <h2>{{ $course->name }}</h2>
 
-                            <h3>
+                            {{-- <h3>
                                 @if ($course->level_id)
                                     {{ $course->levels->name }} ,
                                 @endif
                                 @if ($course->cat_id)
                                     {{ $course->category->name }}
                                 @endif
-                            </h3>
+                            </h3> --}}
                         </div>
                         <figure class="image-box">
                             <img src="{{ asset($course->image) }}" class="mb-4" alt="">
@@ -74,6 +74,16 @@
                             </div> --}}
 
                         </div>
+                        
+                            <h4>
+                                @if ($course->level_id)
+                                    {{ $course->levels->name }} ,
+                                @endif
+                                @if ($course->cat_id)
+                                    {{ $course->category->name }}
+                                @endif
+                            </h4>
+                        
 
                     </div>
                 </div>
@@ -82,7 +92,7 @@
                     <div>
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
                         @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <li class="text-danger">{{ $error }}</li>
                         @endforeach.
                         <form method="post" action="{{route('enquiry.post')}}">
                             @csrf
@@ -101,19 +111,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="tel" placeholder="Phone"name="contact"  class="@error('contact') is-invalid @enderror" required/>
-                                @error('contact')
+                                <input type="tel" placeholder="Phone" name="phone"  class="@error('phone') is-invalid @enderror" required/>
+                                @error('phone')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <input type="tel" placeholder="Address"name="address"  class="@error('address') is-invalid @enderror" required/>
-                                @error('address')
-                                    <small class="form-text text-danger">
-                                        {{ $message }}</small>
-                                @enderror
-                            </div>
+                            
                             <input name="course_id" placeholder="Email address" value="{{$course->id}}" hidden/>
                             <div class="form-group">
                               <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
@@ -130,7 +134,7 @@
                             <div class="form-group">
                               <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
                                 <option selected disabled>Select University</option>
-                                @foreach ($university as $uni)
+                                @foreach ($universities as $uni)
                                 <option value="{{$uni->id}}"
                                     @if ($uni->id && !is_null($uni->id))
                                     selected
@@ -169,7 +173,51 @@
 
     </section>
     <!-- sidebar-page-container end -->
+    @if (!$universities->isEmpty())
+    <section class="team-section py-0">
+        <div class="auto-container px-lg-3 px-md-2 px-0">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 content-side">
+                    <div class="upper-box clearfix ">
+                        <div class="sec-title style-two pull-left">
+                            <h2>College/University</h2>
+                        </div>
 
+                    </div>
+                    <div class="four-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
+                        {{-- @dd($courses) --}}
+                        @foreach ($universities as $university)
+                            <div class="team-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><img src="{{ asset($university->image) }}" alt="">
+                                    </figure>
+                                    <div class="lower-content">
+                                        <div class="content-box">
+                                            <h3 class="course-title"><a
+                                                    href="{{ route('college-detail', $university->uname) }}">{{ $university->uname }}</a>
+                                            </h3>
+                                            {{-- <span class="designation">(
+                                                {{ $->category->name }}
+                                                )</span> --}}
+                                        </div>
+                                        {{-- {{ route('course-d-from-uni', ['name' => $course->name, 'university' => $college->uname]) }} --}}
+                                         <div class="ovellay-box">
+                                            <a href="{{ route('college-detail', $university->uname) }}"
+                                                class="theme-btn style-one">View Details</a>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
 @endsection
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

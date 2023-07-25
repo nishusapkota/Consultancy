@@ -63,7 +63,6 @@ class RequestCourseController extends Controller
             'description' => $data['description'],
             'image' => isset($img_name) ? 'course/' . $img_name : null,
             'university_id' => auth()->user()->university_id,
-
         ]);
        
         if (isset($data['level_id'])) {
@@ -93,8 +92,8 @@ class RequestCourseController extends Controller
      */
     public function edit($id)
     {
-         $course=RequestCourse::with('universities')->find($id);
-        $categories = RequestCourseCategory::all();
+         $course=RequestCourse::with('category')->find($id);
+        $categories = CourseCategory::all();
         $universities = University::all();
         $levels=Level::all();
         // $selectedUni=collect($course->universities)->map(function($uni){
@@ -106,6 +105,8 @@ class RequestCourseController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -118,15 +119,13 @@ class RequestCourseController extends Controller
             'cat_id' => 'required|exists:course_categories,id',
             'image' => 'nullable',
             'description' => 'required',
-            'university_id' => 'array',
-            'university_id.*' => 'exists:universities,id',
             'level_id' => 'nullable|array',
             'level_id.*' => 'exists:levels,id'
         ]);
         if ($request->hasFile('image')) {
             unlink(public_path($course->image));
             $image = $request->file('image');
-            $img_name = $image->getClientOriginalName();
+            $img_name = time()."_".$image->getClientOriginalName();
             $image->move(public_path('course'), $img_name);
         }
         $course->update([
@@ -136,9 +135,9 @@ class RequestCourseController extends Controller
             'description' => $request->description,
            
         ]);
-        $course->universities()->sync($request->university_id);
+       
         $course->levels()->sync($request->course_id);
-        return redirect()->route('university.courses.index')->with('success', 'Course updated successfully');
+        return redirect()->route('university.courses.index')->with('success','CourseRequest updated successfully');
     }
 
     /**
@@ -152,7 +151,6 @@ class RequestCourseController extends Controller
         if ($course->image && file_exists(public_path($course->image))) {
             unlink(public_path($course->image));
         }
-        $course->universities()->detach();
         $course->levels()->detach();
         $course->delete();
         return redirect()->route('university.courses.index')->with('success', 'Course deleted successfully');

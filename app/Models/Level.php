@@ -20,4 +20,9 @@ class Level extends Model
     function enquiries(){
         return $this->hasMany(StudentEnquiry::class);
     }
+    
+    function reqCourses(){
+        return $this->belongsToMany(RequestCourse::class,'level_request_courses','level_id','request_course_id');
+    }
 }
+

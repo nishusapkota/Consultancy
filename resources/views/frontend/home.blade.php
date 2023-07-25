@@ -15,7 +15,7 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             @foreach ($homeSlider as $item)
-            @if ($item->extension=='jpg'||$item->extension=='JPG'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='PNG'||$item->extension=='JPEG')
+            @if ($item->extension=='jpg'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='JPEG')
                 
             <div class="slide-item ">
                 <div class="image-layer" style="background-image: url('{{ asset($item->file) }}')">
@@ -27,28 +27,28 @@
                         <div class="btn-box">
                             <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
                             <p class="slider-text slider-content">{{$item->description}}</p>
-                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a>
+                            <a href="{{ route('admit') }}" class="theme-btn style-one">Admit Now</a>
                         </div>
                     </div>
                 </div>
             </div>
             @endif
-            @if ($item->extension=='mp4'||$item->extension=='MP4'||$item->extension=='MOV'||$item->extension=='movs')
+            @if ($item->extension=='mp4'||$item->extension=='mkv'||$item->extension=='mov')
                 
             <div class="video-slide-item">
                 <section class="main-banner" id="top" data-section="section1">
                     <video autoplay muted loop id="bg-video">
-                        <source src="{{ asset($item->file) }}" type="video/mp4" />
+                        <source src="{{ asset($item->file) }}" type="video/{{ $item->extension }}" />
                     </video>
                     <div class="video-overlay header-text">
                         <div class="video-slider-container">
                             <div class="video-slider-content">
-                                <h5>{{$item->sub_heading}}</h5>
+                                <h5 style="color: white;">{{$item->sub_heading}}</h5>
                                 <h1 class="video-content-title">{{$item->title}}</h1>
                                 <p class="slider-text slider-content">{{$item->description}}
                                 </p>
                                 <div class="btn-box">
-                                    <a href="{{ route('apply') }}" class="theme-btn style-one">Apply Now</a>
+                                    <a href="{{ route('admit') }}" class="theme-btn style-one">Apply Now</a>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                 <p>{{ $about ? $about->description : null }}</p>
                             </div>
                             <div class="btn-box d-flex justify-content-center flex-nowrap">
-                                <a href="{{ route('index') }}" class="theme-btn style-one">Admit Now</a>
+                                <a href="{{ route('admit') }}" class="theme-btn style-one">Admit Now</a>
                             </div>
                         </div>
                     </div>
@@ -101,8 +101,8 @@
     </section>
 
     <!-- about-section end -->
-    <section class="team-section">
-        <div class="auto-container">
+    <section class="university-section">
+        <div class="university-container">
             <div class="sec-title centred">
                 <h2>University/Colleges</h2>
                 <div class="sec-text">
@@ -112,7 +112,7 @@
             <div class="three-item-carousel owl-carousel owl-theme owl-nav-none owl-dot-style-one">
                 @foreach ($universities as $university)
             <div class="uni-container">
-                <div class="news-block-one inner-uni">
+                <div class="news-block-one">
 
                     <div class="rounded inner-div">
                         <figure class="image-box"><img src="{{ asset($university->image) }}" alt="" class="uni-image"></figure>
@@ -129,6 +129,7 @@
            @endforeach
       </div>
         </div>
+
         <div class="btn-box d-flex align-items-center justify-content-center mt-4">
             <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
@@ -233,7 +234,7 @@
             </div>
             <div class="two-column-carousel owl-carousel owl-theme owl-nav-none scholarship">
                 @foreach ($scholarships as $scholarship)
-                <div class="project-block-three  ">
+                <div class="project-block-three">
                     <div class="inner-box">
                         <figure class="image-box"><img src="{{ asset($scholarship->image) }}"
                                 alt=""></figure>
@@ -261,7 +262,7 @@
     <!-- blog-section -->
     <section class="news-section bg-color-1  pt-0">
         <div class="auto-container">
-            <div class="sec-title centred">
+            <div class="sec-title style-four right pull-centre">
                 <h5>Read the blogs</h5>
                 <h2>Blog</h2>
                 {{-- <p class="blog-text">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu

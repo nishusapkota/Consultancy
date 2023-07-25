@@ -41,7 +41,7 @@
           
           <div class="form-group">
             <label for="short_description">Short Description</label>
-            <textarea name="short_description" id="short_description" class="form-control @error('short_description')is-invalid @enderror" rows="4"></textarea>
+            <textarea name="short_description" id="short_description" class="form-control @error('short_description')is-invalid @enderror" rows="4">{{ old('short_description') }}</textarea>
             @error('short_description')
             <small class="form-text text-danger">
               {{ $message }}
@@ -51,7 +51,7 @@
           <div class="form-group">
             <label for="body"> Body</label>
             <textarea name="body" id="body" class="form-control @error('body')is-invalid @enderror"
-                rows="4"></textarea>
+                rows="4">{{ old('body') }}</textarea>
             @error('body')
                 <small class="form-text text-danger">
                     {{ $message }}
@@ -70,7 +70,7 @@
             </div>
           <div class="form-group">
             <label for="extra">Extra</label>
-            <textarea name="extra" id="extra" class="form-control @error('extra')is-invalid @enderror" rows="4"></textarea>
+            <textarea name="extra" id="extra" class="form-control @error('extra')is-invalid @enderror" rows="4">{{ old('extra') }}</textarea>
             @error('extra')
             <small class="form-text text-danger">
               {{ $message }}

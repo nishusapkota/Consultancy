@@ -1,4 +1,14 @@
 @extends('admin.layout')
+
+@push('style')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" integrity="sha512-F636MAkMAhtTplahL9F6KmTfxTmYcAcjcCkyu0f0voT3N/6vzAuJ4Num55a0gEJ+hRLHhdz3vDvZpf6kqgEa5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css" integrity="sha512-9tISBnhZjiw7MV4a1gbemtB9tmPcoJ7ahj8QWIc0daBCdvlKjEA48oLlo6zALYm3037tPYYulT0YQyJIJJoyMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+@endpush
+
+
+
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -49,21 +59,18 @@
                                     <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
                                   </div> 
                             </td>
-                            <td>
-                                @if ($course->status==1)
-                                <span class="badge badge-primary">Active</span>
-                                @else
-                                <span class="badge badge-danger">Inactive</span>
-                                @endif
-                            </td>
+                            <td> 
+                                <input data-id="{{$course->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $course->status ? 'checked' : '' }}> 
+                             </td>
+
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('admin.courses.show',$course)}}"><i class="fas fa-eye"></i>Show</a>
                                 <a class="btn btn-warning" href="{{route('admin.courses.edit',$course)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" onclick="return confirm('Are you sure to delete this?')" action="{{route('admin.courses.destroy',$course)}}" method="post">
+                                <form class="d-inline" action="{{route('admin.courses.destroy',$course)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                         <i class="fas fa-trash"></i>Delete</button>
                                 </form>
 
@@ -84,3 +91,47 @@
     </div>
 </section>
 @endsection
+@section('scripts')
+<script type="text/javascript">
+ $(document).ready(function() {
+
+    $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Are you sure you want to delete this record?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+
+     
+           $('.toggle-class').change(function() { 
+           var status = $(this).prop('checked') == true ? 1 : 0;  
+           var course_id = $(this).data('id');  
+           $.ajax({ 
+    
+               type: "POST", 
+               dataType: "json", 
+               url: '/changeStatus', 
+               data: {'status': status, 'course_id': course_id}, 
+               success: function(data){ 
+               console.log(data.success) 
+            } 
+         }); 
+
+ });
+     
+       }); 
+  
+</script>
+@endsection
+  

@@ -9,7 +9,7 @@
         font-weight:bold">
                         University Images</h3>
                     <div class="card-tools">
-                        <a class="btn btn-primary" href="{{ route('admin.university.create_image',$university->id) }}">
+                        <a class="btn btn-primary" href="{{ route('admin.university.create_image', $university->id) }}">
                             <i class="fas fa-plus circle-left mr-2"></i>
                             Add image
                         </a>
@@ -36,20 +36,30 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>
-                                        <div style="width: 100px; height: 100px; overflow: hidden;">
-                                            <img src="{{ asset($image->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
-                                          </div> 
-                                    </td>
-                                    
-                                    <td>
+                                        
+                                            @if (in_array($image->ext, ['jpg', 'jpeg', 'png']))
+                                                <img src="{{ asset($image->image) }}" alt="Current Image"
+                                                    style="max-width: 200px;">
+                                            @elseif (in_array($image->ext, ['mp4', 'mov', 'mkv']))
+                                                <video width="320" height="240" controls>
+                                                    <source src="{{ asset($image->image) }}" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            @endif
 
                                         
+
+                                    </td>
+
+                                    <td>
+
+
                                         <a class="btn btn-warning"
                                             href="{{ route('admin.university.edit_image', $image->id) }}"><i
                                                 class="fas fa-edit"></i>Edit</a>
-                                        
 
-                                        
+
+
 
 
 

@@ -12,20 +12,52 @@ class UniversityRequestController extends Controller
 {
     public function index()
     {
-        $reqChanges = RequestUniversityDesc::with('university')->get();
-        //  dd($reqChanges->university->uname);
+        $reqChanges = RequestUniversityDesc::all();
+        //  dd($reqChanges);
         return view('admin.university-request.index', compact('reqChanges'));
     }
 
+    public function show($id){
+        $reqUniversity=RequestUniversityDesc::find($id);
+        return view('admin.university-request.show',compact('reqUniversity'));
+    }
     public function update(Request $request,$id){
         
-        DB::beginTransaction();
-        try {
+    //         $reqUniversity=RequestUniversityDesc::find($id);
+    //         $request->validate([
+    //             'email'=>'required|email|unique:users,email,except,',
+    //         ]);
+    //         if($request->hasFile('image')){
+               
+    //     if ($reqUniversity->image && file_exists(public_path($reqUniversity->image))) {
+    //         unlink(public_path($reqUniversity->image));
+    //    }
+    //             $img_name=time()."_".$request->file('image')->getClientOriginalName();
+    //             $request->file('image')->move(public_path('university/'),$img_name);
+    //         }
+    //         $reqUniversity->update([
+    //             'email'=>$request->email,
+    //             'address'=>$request->address,
+    //             'uname'=>$request->uname,
+    //             'details'=>$request->details,
+    //             'image' => $request->hasfile('image') ? 'university/' . $img_name : $reqUniversity->image,
 
+    //         ]);
+          
+    //         return redirect()->back()->with('success','Request for University detail submitted');
+    //     }      
+            DB::beginTransaction();
+        try {
             $details=RequestUniversityDesc::find($id);
             $university=University::where('id',$details->university_id)->first();
             $university->update([
-                'details'=>$details->details
+                'address'=>$details->address,
+                'details'=>$details->details,
+                'uname'=>$details->uname,
+                'image'=>$details->image
+            ]);
+            $university->user->update([
+                'email'=>$details->email
             ]);
             $details->delete();
             DB::commit();
@@ -36,8 +68,9 @@ class UniversityRequestController extends Controller
          } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('admin.uni-requested-university.index')->with('error','Something Went Wrong.Please Try agian');        }
-    }
-
+        
+        
+         }
 
     public function destroy($id)
     {
@@ -51,4 +84,5 @@ class UniversityRequestController extends Controller
         return redirect()->back()->with('success', 'Request Disapproved');
         // return view('admin.university-request.index')->with('success', 'Request Disapproved');
     }
+
 }

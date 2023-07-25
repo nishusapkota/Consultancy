@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Crypt;
 
 class SiteController extends Controller
 {
+    public function adminDashboard(){
+        $uni_count=University::where('status','1')->count();
+        $scholarship_count=Scholarship::where('status','1')->count();
+        $course_count=Course::where('status','1')->count();
+        $enquiry_count=StudentEnquiry::count();
+        return view('admin.dashboard',compact('uni_count','scholarship_count','course_count','enquiry_count'));
+    }
     public function index()
     {
         $courses = Course::with('category', 'levels')->where('status', '1')->get();
@@ -119,17 +126,25 @@ class SiteController extends Controller
         return view('frontend.applyNow',compact('courses','university','levels'));
     }
 
+    public function admit()
+    {
+        $courses=Course::get(['id','name']);
+        $university=University::get(['id','uname']);
+        $levels=Level::get(['id','name']);
+        return view('frontend.admit',compact('courses','university','levels'));
+    }
+
 
     public function courseDetail($name)
     {
         $course = Course::where('name', $name)->first();
         
-        $university = University::whereHas('courses', function ($q) use ($course) {
+        $universities = University::whereHas('courses', function ($q) use ($course) {
             $q->where('courses.id', $course->id);
-        })->get(['id', 'uname']);
+        })->get();
         $levels = Level::where('status', '1')->get(['id', 'name']);
         // dd($course);
-        return view('frontend.course-details', compact('course', 'university', 'levels'));
+        return view('frontend.course-details', compact('course', 'universities', 'levels'));
     }
     public function courseDetailFromUni(Request $request) {
         // dd($request->all());
@@ -172,9 +187,9 @@ class SiteController extends Controller
    
     public function studentEnquiry(Request $request)
     {
-        $data = $request->validate([
+         $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
             'level_id' => 'nullable|exists:levels,id',
             'course_id' => 'nullable|exists:courses,id',
@@ -199,7 +214,7 @@ class SiteController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'subject' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
             'subject' => 'required',
             'message' => 'required|string'

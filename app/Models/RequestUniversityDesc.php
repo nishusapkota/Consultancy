@@ -9,6 +9,10 @@ class RequestUniversityDesc extends Model
 {
     use HasFactory;
     protected $fillable=[
+        'email',
+        'address',
+        'uname',
+        'image',
         'details',
         'university_id'
     ];

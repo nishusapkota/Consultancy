@@ -12,7 +12,8 @@ class Scholarship extends Model
         'title',
         'description',
         'image',
-        'university_id'
+        'university_id',
+        'status'
     ];
     function university(){
        return $this->belongsTo(University::class); 

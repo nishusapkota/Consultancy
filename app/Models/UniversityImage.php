@@ -10,7 +10,8 @@ class UniversityImage extends Model
     use HasFactory;
     protected $fillable=[
         'image',
-        'university_id'
+        'university_id',
+        'ext'
     ];
 
     public function university(){

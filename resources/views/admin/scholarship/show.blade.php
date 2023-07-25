@@ -35,6 +35,17 @@
                     <td>{!!$scholarship->description!!}</td>
                 </tr>
                 <tr>
+                    <th> Status</th>
+                    <td>
+                        @if ($scholarship->status == 1)
+                    <span class="badge badge-primary">Active</span>
+                @else
+                    <span class="badge badge-danger">Inactive</span>
+                @endif
+                    </td>
+                    
+                </tr>
+                <tr>
                     <th>Image</th>
                     <td>
                         <div style="width: 100px; height: 100px; overflow: hidden;">

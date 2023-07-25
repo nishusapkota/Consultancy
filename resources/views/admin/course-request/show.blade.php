@@ -6,9 +6,9 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                   Show Course</h3>
+                   Show Request Course</h3>
                 <div class="card-tools">
-                <a class="btn btn-primary" href="{{route('admin.courses.index')}}">
+                <a class="btn btn-primary" href="{{route('admin.uni-requested-course.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td>{{$course->description}}</td>
+                    <td>{!!$course->description!!}</td>
                 </tr>
                 <tr>
                     <th>Category</th>
@@ -41,16 +41,19 @@
                 </tr>
                 <tr>
                     <th>Universiity</th>
-                    <td>{{$course->university}}</td>
+                    <td>{{$course->university->uname}}</td>
                 </tr>
                 <tr>
                     <th>Level</th>
-                    <td>{{$course->category->name}}</td>
+                     <td>
+                        @forelse ($course->levels as $level)
+                            {{ $level->name}}<br>
+                        @empty
+                            No levels associated with this course.
+                        @endforelse
+                    </td>
                 </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>{{$course->status}}</td>
-                </tr>
+               
 
             </table>
               

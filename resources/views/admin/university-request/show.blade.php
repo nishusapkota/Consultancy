@@ -6,9 +6,9 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                   Show Blog</h3>
+                   Show University Request</h3>
                 <div class="card-tools">
-                <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
+                <a class="btn btn-primary" href="{{route('admin.uni-requested-university.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>
@@ -19,31 +19,35 @@
             <table class="table table-bordered table-condensed" style="width:50%">
                 <tr>
                     <th>ID</th>
-                    <td>{{$blog->id}}</td>
+                    <td>{{$reqUniversity->id}}</td>
                 </tr>
                 <tr>
-                    <th>Title</th>
-                    <td>{{$blog->title}}</td>
+                    <th>Name</th>
+                    <td>{{$reqUniversity->uname}}</td>
                 </tr>
+                
                 <tr>
-                    <th>Slug</th>
-                    <td>{{$blog->slug}}</td>
+                    <th>Address</th>
+                    <td>{{$reqUniversity->address}}</td>
                 </tr>
+
                 <tr>
-                    <th>Short Description</th>
-                    <td>{{$blog->short_description}}</td>
+                    <th>Email</th>
+                    <td>{{$reqUniversity->email}}</td>
                 </tr>
+
                 <tr>
-                    <th>Body</th>
-                    <td>{{$blog->body}}</td>
+                    <th>Image</th>
+                    <td>
+                        <div style="width: 100px; height: 100px; overflow: hidden;">
+                            <img src="{{ asset($reqUniversity->image) }}" alt="University Image" style="width: 100%; height: auto; object-fit: cover;">
+                          </div> 
+                    </td>
                 </tr>
+
                 <tr>
-                    <th>Extra</th>
-                    <td>{{$blog->extra}}</td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>{{$blog->status}}</td>
+                    <th>Details</th>
+                    <td>{!!$reqUniversity->details!!}</td>
                 </tr>
 
             </table>

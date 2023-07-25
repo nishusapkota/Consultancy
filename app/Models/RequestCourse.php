@@ -14,14 +14,13 @@ class RequestCourse extends Model
         'name',
         'description',
         'image',
-        'university_id',
-        'level_id'
+        'university_id'
     ];
     function category(){
         return $this->belongsTo(CourseCategory::class,'cat_id');
     }
     function levels(){
-        return $this->belongsTo(Level::class);
+        return $this->belongsToMany(Level::class,'level_request_courses','request_course_id','level_id');
     }
     function university(){
         return $this->belongsTo(University::class);

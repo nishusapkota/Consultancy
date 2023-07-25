@@ -8,7 +8,7 @@
         font-weight:bold">
                    Show Level</h3>
                 <div class="card-tools">
-                <a class="btn btn-primary" href="{{route('admin.blog.index')}}">
+                <a class="btn btn-primary" href="{{route('admin.level.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
             Go Back
           </a>

@@ -48,10 +48,7 @@ class CourseCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseCategory $course_category)
-    {
-        return view('admin.category.show',compact('course_category'));   
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

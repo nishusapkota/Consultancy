@@ -29,13 +29,16 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <div class="btn-group show">
-        <button type="button" class="btn btn-info">Action</button>
+        <button type="button" class="btn btn-info circular-btn">Action</button>
         <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(67px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
           <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
+          </a>
+          <a class="dropdown-item" href="{{route('university.uni-request.create')}}">
+            {{ __('University Detail') }}
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf

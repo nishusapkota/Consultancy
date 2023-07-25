@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\StudentEnquiry;
+use App\Models\RequestCertificate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -35,8 +36,14 @@ class University extends Model
     function certificates(){
         return $this->hasMany(Certificate::class);
     }
+    function requestCertificates(){
+        return $this->hasMany(RequestCertificate::class);
+    }
     function requestUniversity(){
         return $this->hasOne(RequestUniversityDesc::class);
+    }
+    function req_courses(){
+        return $this->hasMany(RequestCourse::class);
     }
 
 }

@@ -34,7 +34,7 @@
           
           <div class="form-group">
             <label for="sub_heading"> Sub Heading</label>
-            <input type="text" name="sub_heading" id="sub_heading" class="form-control @error('sub_heading')is-invalid @enderror">
+            <input type="text" name="sub_heading" id="sub_heading" class="form-control @error('sub_heading')is-invalid @enderror" value="{{ old('sub_heading') }}">
             @error('sub_heading')
             <small class="form-text text-danger">
               {{ $message }}
@@ -43,7 +43,7 @@
           </div>
           <div class="form-group">
             <label for="description"> Description</label>
-            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4"></textarea>
+            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{ old('description') }}</textarea>
             @error('description')
             <small class="form-text text-danger">
               {{ $message }}
@@ -54,6 +54,7 @@
           <div class="form-group">
             <label for="file">File</label>
             <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" value="{{ old('file') }}">
+            <small class="form-text text-muted">Recommended file formats: png,jpg,jpeg,mp4,mov,mkv,</small>
             @error('file')
             <small class="form-text text-danger">
               {{ $message }}</small>

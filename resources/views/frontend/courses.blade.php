@@ -161,10 +161,12 @@
                                 
                             </h3>
                             <span class="designation">({{$course->category->name}})</span>
+                            <div class="link view-course"><a href="{{ route('course-detail',$course->name) }}"><i class="fas fa-arrow-right uni-icon"></i><span>View detail</span></a></div>
+
                         </div>
-                        <div class="ovellay-box">
+                        {{-- <div class="ovellay-box">
                             <a href="{{ route('course-detail',$course->name) }}" class="theme-btn style-one">View Details</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

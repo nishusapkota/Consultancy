@@ -1,4 +1,11 @@
 @extends('university.layout.master')
+@push('style')
+    <style>
+        .ck-content{
+            height: 500px;
+        }
+    </style>
+@endpush
 @section('content')
 <section class="content">
   <div class="container-fluid">
@@ -6,7 +13,7 @@
       <div class="card-header bg-secondary">
         <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-          Edit Course</h3>
+          Edit Requested Course</h3>
         <div class="card-tools">
           <a class="btn btn-primary" href="{{route('university.courses.index')}}">
             <i class="fas fa-arrow-circle-left mr-2"></i>
@@ -47,7 +54,7 @@
 
             <div class="form-group">
             <label for="description"> Description</label>
-            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$course->description}}
+            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{!!$course->description!!}
             </textarea>
             @error('description')
             <small class="form-text text-danger">
@@ -56,6 +63,11 @@
             @enderror
           </div>
 
+
+          <div class="form-group">
+            <label for="image">Current Image</label><br>
+            <img src="{{ asset($course->image) }}" alt="Current Image" style="max-width: 200px;">
+          </div>
           <div class="form-group">
             <label for="image">Image</label>
             <input type="file" name="image" id="image"
@@ -66,37 +78,6 @@
             @enderror
         </div>
 
-        <div class="form-group">
-          <label for="university_id">University</label>
-          {{-- @dd($course-universities) --}}
-          <div class="row d-flex mt-100">
-              <div class="col-md-6">
-                  <select id="choices-multiple-remove-button" name="university_id[]" placeholder="Select university" multiple>
-                      @foreach ($universities as $university)
-                          <option value="{{ $university->id }}" 
-
-                            @foreach ($course->universities as $item)
-                            {{-- @dd($item->id===$university->id) --}}
-                                @if ($item->id===$university->id)
-                                selected
-                                @endif
-                            @endforeach
-                            
-                            >
-                              {{ $university->uname }}
-                          </option>
-                      @endforeach
-                  </select>
-              </div>
-          </div>
-      
-          @error('university_id')
-              <small class="form-text text-danger">
-                  {{ $message }}
-              </small>
-          @enderror
-      </div>
-      
       
       <div class="form-group">
         <label for="level_id">Level</label>
@@ -133,7 +114,7 @@
 
           <button class="btn btn-primary">
             <i class="fas fa-save mr-2"></i>
-            Save
+            update
           </button>
         </form>
       </div>
@@ -143,4 +124,16 @@
 
   </div>
 </section>
+@endsection
+
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );// Increase the number of rows
+var textareaElement = document.querySelector('#description');
+textareaElement.setAttribute('rows', '300');
+</script>
 @endsection
