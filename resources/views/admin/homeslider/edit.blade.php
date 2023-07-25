@@ -70,6 +70,7 @@
           <div class="form-group">
             <label for="file">Upload New File</label>
             <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" value="{{ old('file') }}">
+            <small class="form-text text-muted">Recommended file formats: png,jpg,jpeg,mp4,mov,mkv,</small>
             @error('file')
               <small class="form-text text-danger">{{ $message }}</small>
             @enderror

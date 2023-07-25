@@ -44,7 +44,7 @@ class HomeSliderController extends Controller
             'description' => 'nullable|max:100',
             'file' => 'required|mimes:png,jpg,jpeg,mp4,mov,mkv',
         ]);
-        $file_name = $request->file('file')->getClientOriginalName();
+        $file_name = time()."_".$request->file('file')->getClientOriginalName();
         $ext = $request->file('file')->getClientOriginalExtension();
 
         if ($ext == 'mp4'||$ext == 'mov'||$ext == 'mkv') {

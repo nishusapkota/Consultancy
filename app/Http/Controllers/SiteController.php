@@ -189,7 +189,7 @@ class SiteController extends Controller
     {
          $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
             'level_id' => 'nullable|exists:levels,id',
             'course_id' => 'nullable|exists:courses,id',
@@ -214,7 +214,7 @@ class SiteController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'subject' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
             'subject' => 'required',
             'message' => 'required|string'

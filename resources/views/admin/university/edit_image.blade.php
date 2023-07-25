@@ -45,6 +45,7 @@
           <div class="form-group">
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+            <small class="form-text text-muted">Recommended file formats: png,jpg,jpeg,mp4,mov,mkv,</small>
             @error('image')
             <small class="form-text text-danger">
               {{ $message }}

@@ -1,4 +1,14 @@
 @extends('admin.layout')
+
+@push('style')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" integrity="sha512-F636MAkMAhtTplahL9F6KmTfxTmYcAcjcCkyu0f0voT3N/6vzAuJ4Num55a0gEJ+hRLHhdz3vDvZpf6kqgEa5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css" integrity="sha512-9tISBnhZjiw7MV4a1gbemtB9tmPcoJ7ahj8QWIc0daBCdvlKjEA48oLlo6zALYm3037tPYYulT0YQyJIJJoyMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+@endpush
+
+
+
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -83,8 +93,9 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
+ $(document).ready(function() {
 
-     $('.show_confirm').click(function(event) {
+    $('.show_confirm').click(function(event) {
           var form =  $(this).closest("form");
           var name = $(this).data("name");
           event.preventDefault();
@@ -102,13 +113,13 @@
           });
       });
 
-      $(function() { 
+     
            $('.toggle-class').change(function() { 
            var status = $(this).prop('checked') == true ? 1 : 0;  
            var course_id = $(this).data('id');  
            $.ajax({ 
     
-               type: "GET", 
+               type: "POST", 
                dataType: "json", 
                url: '/changeStatus', 
                data: {'status': status, 'course_id': course_id}, 
@@ -116,8 +127,10 @@
                console.log(data.success) 
             } 
          }); 
-      }) 
-   }); 
+
+ });
+     
+       }); 
   
 </script>
 @endsection

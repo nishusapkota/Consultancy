@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @push('style')
     <style>
-        .ck-content{
+        .ck-content {
             height: 500px;
         }
     </style>
@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label for="description"> Description</label>
                             <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror"
-                                rows="4"></textarea>
+                                rows="4">{{old('description')}}</textarea>
                             @error('description')
                                 <small class="form-text text-danger">
                                     {{ $message }}
@@ -76,7 +76,8 @@
                             <label for="university_id">University</label>
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
-                                    <select id="choices-multiple-remove-button" name="university_id[]"placeholder="Select university" multiple>
+                                    <select id="choices-multiple-remove-button"
+                                        name="university_id[]"placeholder="Select university" multiple>
                                         @foreach ($universities as $university)
                                             <option value="{{ $university->id }}">{{ $university->uname }}</option>
                                         @endforeach
@@ -94,7 +95,8 @@
                             <label for="level_id">Level</label>
                             <div class="row d-flex mt-100">
                                 <div class="col-md-6">
-                                    <select id="choices-multiple-remove-button" name="level_id[]"placeholder="Select level" multiple>
+                                    <select id="choices-multiple-remove-button" name="level_id[]"placeholder="Select level"
+                                        multiple>
                                         @foreach ($levels as $level)
                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
                                         @endforeach
@@ -129,19 +131,15 @@
 
         </div>
     </section>
-    @endsection
-    @section('scripts')
+@endsection
+@section('scripts')
     <script>
         ClassicEditor
-            .create( document.querySelector( '#description' ) )
-            .catch( error => {
-                console.error( error );
-            } );// Increase the number of rows
-var textareaElement = document.querySelector('#description');
-textareaElement.setAttribute('rows', '500');
+            .create(document.querySelector('#description'))
+            .catch(error => {
+                console.error(error);
+            }); // Increase the number of rows
+        var textareaElement = document.querySelector('#description');
+        textareaElement.setAttribute('rows', '500');
     </script>
 @endsection
-
-    
-   
-   

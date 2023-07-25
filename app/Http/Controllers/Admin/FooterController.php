@@ -51,7 +51,7 @@ class footerController extends Controller
                     
                 }  
                 $image = $request->file('image');
-                    $img_name = $image->getClientOriginalName();
+                    $img_name = time()."_".$image->getClientOriginalName();
                    $image->move(public_path('footer_logo'), $img_name);     
                  }
             $footer->update([
@@ -63,7 +63,7 @@ class footerController extends Controller
         else {
             if ($request->hasFile('image')) { 
                 $image = $request->file('image');
-                    $img_name = $image->getClientOriginalName();
+                    $img_name = time()."_".$image->getClientOriginalName();
                    $image->move(public_path('footer_logo'), $img_name);     
                  }
             Footer::create([

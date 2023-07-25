@@ -122,7 +122,7 @@ class UniversityController extends Controller
         $data = $request->validate([
             'uname' => 'required|unique:universities,uname',
             'address' => 'required',
-            'image' => 'required|image|mimes:png,jpg',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'details' => 'required',
             'status' => 'boolean|nullable',
             'course_id' => 'nullable|array',
@@ -154,11 +154,10 @@ class UniversityController extends Controller
             'role' => 'university',
             'university_id' => $university->id
         ]);
-
-
         return redirect()->route('admin.university.index')->with('success', 'university created successfully');
     }
 
+    
     /**
      * Display the specified resource.
      *
