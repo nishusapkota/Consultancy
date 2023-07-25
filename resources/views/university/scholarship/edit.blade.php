@@ -43,6 +43,10 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="image">Current Image</label><br>
+                        <img src="{{ asset($scholarship->image) }}" alt="Current Image" style="max-width: 200px;">
+                      </div>
+                    <div class="form-group">
                         <label for="image">Image</label>
                         <input type="file" name="image" id="image"
                             class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}">

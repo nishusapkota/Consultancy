@@ -30,7 +30,7 @@
                             
                             <th>Image</th>
                             <th>University</th>
-                            <th>Description</th>
+                           
                             <th>Action</th>
                         </tr>
 
@@ -46,7 +46,7 @@
                                   </div> 
                             </td>
                             <td>{{$scholarship->university->uname}}</td>
-                            <td>{!!$scholarship->description!!}</td>
+                            
                             <td>
 
                                 <a class="btn btn-secondary" href="{{route('university.scholarship.show',$scholarship)}}"><i class="fas fa-eye"></i>Show</a>

@@ -91,7 +91,7 @@
                                 <p>{{ $about ? $about->description : null }}</p>
                             </div>
                             <div class="btn-box d-flex justify-content-center flex-nowrap">
-                                <a href="{{ route('index') }}" class="theme-btn style-one">Admit Now</a>
+                                <a href="{{ route('admit') }}" class="theme-btn style-one">Admit Now</a>
                             </div>
                         </div>
                     </div>

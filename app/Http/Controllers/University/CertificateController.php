@@ -47,26 +47,49 @@ class CertificateController extends Controller
         $certificate= RequestCertificate::find($id);
         return view('university.request-certificate.edit', compact('certificate'));
     }
+    // public function requestUpdate(Request $request, $id)
+    // {
+    //     // dd($request->all());
+    //     $certificate = RequestCertificate::find($id);
+    //     $request->validate([
+    //         'image' => 'nullable'
+    //     ]);
+    //     if ($request->hasFile('image')) {
+    //             unlink(public_path($certificate->image));
+    //             $image = $request->file('image');
+    //             $img_name = time()."_".$image->getClientOriginalName();
+    //             $image->move(public_path('certificate'), $img_name);
+    //             $certificate->update([
+    //                 'image' => 'certificate/' . $img_name
+    //             ]);
+    //             return redirect()->route('university.request-certificate.index')->with('success', 'Certificate Image updated successfully');
+    //         }
+    //        return redirect()->back();
+    //     }
+    
     public function requestUpdate(Request $request, $id)
-    {
-        $certificate = RequestCertificate::find($id);
-        $request->validate([
-            'image' => 'nullable|image|mimes:png,jpg'
-        ]);
-        if ($request->hasFile('image')) {
-            if ($certificate->image && file_exists(public_path($certificate->image))) {
-                unlink(public_path($certificate->image));
-            }
-            $image = $request->file('image');
-            $img_name = time()."_".$image->getClientOriginalName();
-            $image->move(public_path('certificate'), $img_name);
-            $certificate->update([
-                'image' => 'certificate/' . $img_name
-            ]);
-            return redirect()->route('university.request-certificate.index')->with('success', 'Certificate Image updated successfully');
-        }
-    }
+{
+    // dd($certificate->all());
+    // $request->validate([
+    //     'image' => 'image|mimes:png,jpg'
+    // ]);
 
+    // Find the existing certificate record by ID
+    $certificate = RequestCertificate::findOrFail($id);
+ 
+    if ($request->hasFile('image')) {
+        unlink(public_path($certificate->image));
+        // If a new image is uploaded, update the image
+        $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('certificate'), $img_name);
+        $certificate->image = 'certificate/' . $img_name;
+    }
+    $certificate->save();
+
+    return redirect()->route('university.request-certificate.index')->with('success', 'Certificate updated successfully');
+}
+
+    
    public function requestDelete($id) {
     $certificate=RequestCertificate::find($id);
     if ($certificate->image && file_exists(public_path($certificate->image))) {

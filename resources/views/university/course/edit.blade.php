@@ -1,4 +1,11 @@
 @extends('university.layout.master')
+@push('style')
+    <style>
+        .ck-content{
+            height: 500px;
+        }
+    </style>
+@endpush
 @section('content')
 <section class="content">
   <div class="container-fluid">
@@ -47,7 +54,7 @@
 
             <div class="form-group">
             <label for="description"> Description</label>
-            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{{$course->description}}
+            <textarea name="description" id="description" class="form-control @error('description')is-invalid @enderror" rows="4">{!!$course->description!!}
             </textarea>
             @error('description')
             <small class="form-text text-danger">
@@ -56,6 +63,11 @@
             @enderror
           </div>
 
+
+          <div class="form-group">
+            <label for="image">Current Image</label><br>
+            <img src="{{ asset($course->image) }}" alt="Current Image" style="max-width: 200px;">
+          </div>
           <div class="form-group">
             <label for="image">Image</label>
             <input type="file" name="image" id="image"
@@ -112,4 +124,16 @@
 
   </div>
 </section>
+@endsection
+
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );// Increase the number of rows
+var textareaElement = document.querySelector('#description');
+textareaElement.setAttribute('rows', '300');
+</script>
 @endsection

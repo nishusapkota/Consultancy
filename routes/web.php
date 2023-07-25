@@ -143,7 +143,7 @@ Route::prefix('/university')->middleware('auth','isUniversity')->name('universit
     Route::get('/request-certificate-image/create',[CertificateController::class,'requestCreate'])->name('request-certificate.create');
     Route::post('/request-certificate-image',[CertificateController::class,'requestStore'])->name('request-certificate.store');
     Route::get('/request-certificate-image/{id}/edit',[CertificateController::class,'requestEdit'])->name('request-certificate.edit');
-    Route::put('/request-certificate-image/{id}/update',[CertificateController::class,'requestUpdate'])->name('request-certificate.update');
+    Route::post('/request-certificate-image/{id}/update',[CertificateController::class,'requestUpdate'])->name('request-certificate.update');
     Route::delete('/request-certificate-image/{id}',[CertificateController::class,'requestDelete'])->name('request-certificate.delete');
 });
 

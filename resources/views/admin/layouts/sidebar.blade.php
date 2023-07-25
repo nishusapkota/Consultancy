@@ -64,7 +64,7 @@
    
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ (request()->is('admin/uni-requested-university')||request()->is('admin/uni-requested-university*')||request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
+      <a href="#" class="nav-link {{ (request()->is('admin/university*')||request()->is('admin/uni-requested-university*')||request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
         <i class="nav-icon fa fa-university" aria-hidden="true"></i>
         <p>
           University

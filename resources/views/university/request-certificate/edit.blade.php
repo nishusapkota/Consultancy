@@ -16,28 +16,28 @@
       </div>
 
       <div class="card-body">
-        <form method="put" action="{{route('university.request-certificate.update',$certificate->id)}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('university.request-certificate.update',$certificate->id)}}" enctype="multipart/form-data">
           @if($errors->any())
           <div class="alert alert-danger">
             <button class="close" data-dismiss="alert">X</button>
             {{ $errors->first() }}
           </div>
           @endif  
-          {{-- @method('PUT')     --}}
+          {{-- @method('PUT')    --}}
           @csrf
           <div style="width: 100px; height: 100px; overflow: hidden;">
             <img src="{{ asset($certificate->image) }}" alt="Certificate Image"
                 style="width: 100%; height: auto; object-fit: cover;">
         </div>
-          <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
-            @error('image')
-            <small class="form-text text-danger">
-              {{ $message }}
-            </small>
-            @enderror
-          </div>
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+          @error('image')
+          <small class="form-text text-danger">
+            {{ $message }}
+          </small>
+          @enderror
+        </div>
 
          
 

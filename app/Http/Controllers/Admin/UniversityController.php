@@ -290,8 +290,8 @@ class UniversityController extends Controller
             'image' => 'nullable|image|mimes:png,jpg,jpeg,mp4,mov,mkv'
         ]);
         if ($request->hasFile('image')) {
-            unlink(public_path($uni_image->file));
-            $file_name = time() . '_' . $request->file('file')->getClientOriginalName();
+            unlink(public_path($uni_image->image));
+            $file_name = time() . '_' . $request->file('image')->getClientOriginalName();
             $ext = $request->file('image')->getClientOriginalExtension();
             
 

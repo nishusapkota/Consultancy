@@ -50,7 +50,10 @@
             </small>
             @enderror
           </div>
-
+          <div class="form-group">
+            <label>Current Image</label><br>
+            <img src="{{ asset($university->image) }}" alt="Current Image" style="max-width: 200px;">
+          </div>
           <div class="form-group">
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">

@@ -119,15 +119,13 @@ class RequestCourseController extends Controller
             'cat_id' => 'required|exists:course_categories,id',
             'image' => 'nullable',
             'description' => 'required',
-            'university_id' => 'array',
-            'university_id.*' => 'exists:universities,id',
             'level_id' => 'nullable|array',
             'level_id.*' => 'exists:levels,id'
         ]);
         if ($request->hasFile('image')) {
             unlink(public_path($course->image));
             $image = $request->file('image');
-            $img_name = $image->getClientOriginalName();
+            $img_name = time()."_".$image->getClientOriginalName();
             $image->move(public_path('course'), $img_name);
         }
         $course->update([
@@ -137,9 +135,9 @@ class RequestCourseController extends Controller
             'description' => $request->description,
            
         ]);
-        $course->universities()->sync($request->university_id);
+       
         $course->levels()->sync($request->course_id);
-        return redirect()->route('university.courses.index')->with('success', 'Course updated successfully');
+        return redirect()->route('university.courses.index')->with('success','CourseRequest updated successfully');
     }
 
     /**
