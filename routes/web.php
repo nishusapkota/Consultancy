@@ -114,7 +114,7 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::post('/university/{id}/add-certificate',[UniversityController::class,'store_certificate'])->name('university.store_certificate');
     Route::get('/university/edit-certificate/{id}',[UniversityController::class,'edit_certificate'])->name('university.edit_certificate');
     Route::post('/university/edit-certificate/{id}',[UniversityController::class,'update_certificate'])->name('university.update_certificate');
-
+    Route::get('/university/change-status/{id}',[UniversityController::class,'changeStatus'])->name('university.changeStatus');
     Route::resource('/social-media',SocialMediaController::class);
     
     Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('indexStudentEnquiry');

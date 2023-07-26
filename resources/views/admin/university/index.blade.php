@@ -56,24 +56,30 @@
                                         </button>
                                     </td>
                                     <td>
-
-                                        <a class="btn btn-secondary"
+                                        <form class="postdestroy" id="form_{{$university->id}}" style="margin: 0;" method="Post" action="{{ route('admin.university.destroy', $university->id) }}"  data-toggle="modal" data-target="#exampleModal" >
+                                            @csrf
+                                            @method('Delete')
+                                        </form>
+                                        <a class="btn btn-secondary btn-sm"
                                             href="{{ route('admin.university.show', $university) }}"><i
                                                 class="fas fa-eye"></i>Show</a>
-                                        <a class="btn btn-warning"
+                                        <a class="btn btn-warning btn-sm"
                                             href="{{ route('admin.university.edit', $university) }}"><i
                                                 class="fas fa-edit"></i>Edit</a>
-                                        <form class="d-inline" onclick="return confirm('Are you sure to delete this?')"
+                                        
+                                        <button class="btn btn-danger deleteBtn btn-sm"
+                                        data-id="{{$university->id}}"><i class="fas fa-trash"></i>Delete</button>
+                                        {{-- <form class="d-inline" onclick="return confirm('Are you sure to delete this?')"
                                             action="{{ route('admin.university.destroy', $university) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>Delete</button>
-                                        </form>
+                                        </form> --}}
 
-                                        <a class="btn btn-primary"
+                                        <a class="btn btn-primary btn-sm"
                                             href="{{ route('admin.university.index_image', $university->id) }}">Slider</a>
-                                        <a class="btn btn-success"
+                                        <a class="btn btn-success btn-sm"
                                             href="{{ route('admin.university.index_certificate', $university->id) }}">Cerficate</a>
 
                                     </td>
@@ -96,13 +102,37 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(function() {
+            $('body').on('click', '.deleteBtn', function(){
+                    console.log('clecked on delete btn');
+                id = $(this).data('id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "you want to delete university??",
+                    icon: "warning",
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        $('#form_'+id).submit();
+                        Swal.fire("Poof! Your university has been deleted!", {
+                        icon: "success",
+
+                        });
+                    } else {
+                        Swal.fire("Your Item file is safe!");
+                    }
+                    });
+            })
             $('body').on('click', '.customSwitchsizemd', function() {
-              // console.log('click on customSwitchsizemd')
+              console.log('click on customSwitchsizemd')
                 var id = $(this).data("id");
                 
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want change Status",
+                    text: "You want change Status??",
                     icon: 'warning',
                     showCancelButton: false,
                     showDenyButton: true,
@@ -134,6 +164,8 @@
                     }
                 })
             });
+            
+            
         });
     </script>
 @endsection
