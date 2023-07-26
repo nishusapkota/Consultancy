@@ -44,8 +44,8 @@ class ContactController extends Controller
             'address' => 'required',
             'email_primary' => 'required|email',
             'email_secondary' => 'nullable|email',
-            'phone_primary' => 'required|min:10',
-            'phone_secondary' => 'nullable|min:10',
+            'phone_primary' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'phone_secondary' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
         $contact = Contact::first();
         if ($contact) {

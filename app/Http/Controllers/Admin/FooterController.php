@@ -80,7 +80,7 @@ class footerController extends Controller
             'address' => 'required',
             'description' => 'required|max:300',
             'email' => 'required|email',
-            'phone' => 'required|min:10',
+            'phone' =>  'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
            
         ]);
         $footer = Footer::first();

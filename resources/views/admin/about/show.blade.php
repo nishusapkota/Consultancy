@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body">
-            <table class="table table-bordered table-condensed" style="width:50%">
+            <table class="table table-bordered table-condensed" style="width:100%">
                 <tr>
                     <th>ID</th>
                     <td>{{$about->id}}</td>
@@ -31,14 +31,7 @@
                     <td>{{$about->description}}</td>
                 </tr>
                 
-                <tr>
-                    <th>Image</th>
-                    <td>
-                        <div style="width: 100px; height: 100px; overflow: hidden;">
-                            <img src="{{ asset($about->image) }}" alt="About Image" style="width: 100%; height: auto; object-fit: cover;">
-                          </div> 
-                    </td>
-                </tr>
+                
                 
                 
 

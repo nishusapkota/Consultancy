@@ -134,7 +134,7 @@
           </div> 
 
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Change Password</label>
             <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
             @error('password')
             <small class="form-text text-danger">

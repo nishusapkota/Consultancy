@@ -94,11 +94,11 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::get('/uni-requested-university/{id}',[UniversityRequestController::class,'update'])->name('uni-requested-university.update');
 
  // Route::resource('/uni-requested-university',UniversityRequestController::class);
-//  Route::get('/uni-requested-certificate',[CertificateRequestController::class,'index'])->name('uni-requested-certificate.index');
-//  Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
-//  Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
+Route::get('/uni-requested-certificate',[CertificateRequestController::class,'index'])->name('uni-requested-certificate.index');
+ Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
+Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
 
-Route::resource('/uni-requested-certificate', CertificateRequestController::class);
+// Route::resource('/uni-requested-certificate', CertificateRequestController::class);
 
     Route::resource('/level',LevelController::class);
     Route::get('/level/change-status/{id}',[LevelController::class,'changeStatus'])->name('level.changeStatus');

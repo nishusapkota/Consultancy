@@ -150,8 +150,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
-    {
+    public function destroy($id)
+    { 
+        $blog=Blog::find($id)->first();
         $blog->delete();
         return redirect()->route('admin.blog.index')->with('success', 'Blog deleted successfully');
     }

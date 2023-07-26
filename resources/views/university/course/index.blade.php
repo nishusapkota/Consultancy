@@ -10,7 +10,7 @@
                 <div class="card-tools">
                     <a class="btn btn-primary" href="{{route('university.courses.create')}}">
                         <i class="fas fa-plus circle-left mr-2"></i>
-                        Request Course
+                        Request Courses
                     </a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         @foreach ($courses as $course)
                        
                         <tr>
-                            <td>{{$course->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$course->name}}</td>
                             <td>{{$course->category->name}}</td>
                             <td>

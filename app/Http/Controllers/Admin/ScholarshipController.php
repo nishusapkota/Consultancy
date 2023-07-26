@@ -89,8 +89,10 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Scholarship $scholarship)
+    public function show($id)
     {
+        $scholarship=Scholarship::with('university')->where('id',$id)->first();
+        // dd($scholarship);
         return view('admin.scholarship.show', compact('scholarship'));
     }
     
@@ -113,8 +115,9 @@ class ScholarshipController extends Controller
 
 
     
-    public function destroy(Scholarship $scholarship)
+    public function destroy($id)
     {
+        $scholarship=Scholarship::find($id);
         if ($scholarship->image && file_exists(public_path($scholarship->image))) {
             unlink(public_path($scholarship->image));
         }

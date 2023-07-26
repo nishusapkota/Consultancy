@@ -191,7 +191,7 @@ class CourseController extends Controller
             
         }  
         $image = $request->file('image');
-            $img_name = $image->getClientOriginalName();
+            $img_name = time()."_".$image->getClientOriginalName();
            $image->move(public_path('course'), $img_name);     
          }
     $courseData = [
@@ -225,8 +225,9 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
+        $course=Course::find($id)->first();
         if ($course->image && file_exists(public_path($course->image))) {
             unlink(public_path($course->image));
         }

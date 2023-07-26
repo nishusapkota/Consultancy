@@ -109,7 +109,7 @@
                   
                         <button class="btn btn-primary">
                             <i class="fas fa-save mr-2"></i>
-                            Update
+                            Request University Detail
                         </button>
                     </form>
                 </div>

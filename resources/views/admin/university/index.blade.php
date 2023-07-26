@@ -59,7 +59,7 @@
                                         <form class="postdestroy" id="form_{{$university->id}}" style="margin: 0;" method="Post" action="{{ route('admin.university.destroy', $university->id) }}"  data-toggle="modal" data-target="#exampleModal" >
                                             @csrf
                                             @method('Delete')
-                                        </form>
+                                        </form> 
                                         <a class="btn btn-secondary btn-sm"
                                             href="{{ route('admin.university.show', $university) }}"><i
                                                 class="fas fa-eye"></i>Show</a>
@@ -111,11 +111,12 @@
                     icon: "warning",
                     showCancelButton: false,
                     showDenyButton: true,
-                    buttons: true,
-                    dangerMode: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
                     })
                     .then((willDelete) => {
-                    if (willDelete) {
+                    if (willDelete.isConfirmed) {
                         $('#form_'+id).submit();
                         Swal.fire("Poof! Your university has been deleted!", {
                         icon: "success",

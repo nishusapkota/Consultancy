@@ -64,14 +64,6 @@ class UniversityController extends Controller
     }
     public function universityUpdate(Request $request, $uid)
     {
-        // $request->validate([
-        //     'details' => 'required',
-        //     'address' => 'required',
-        //     'uname' => 'required',
-        //     'image' => 'nullable',
-        //     'email' => 'required|email|unique:users,email,except,$reqUniversity->email',
-        // ]);
-        // dd($request->all());
         $reqUniversity = RequestUniversityDesc::where('university_id', $uid)->first();
         if ($reqUniversity) {
             if ($request->hasFile('image')) {
@@ -256,6 +248,33 @@ class UniversityController extends Controller
         if ($university->image && file_exists(public_path($university->image))) {
             unlink(public_path($university->image));
         }
+        if ($university->courses->count() > 0) {
+            $university->courses()->detach();
+        }
+        if ($university->enquiries->count() > 0) {
+            $university->enquiries->delete();
+        }
+        if ($university->user) {
+            $university->user->delete();
+        }
+        if ($university->scholarship) {
+            $university->scholarship->delete();
+        }
+        if ($university->universityImages->count() > 0) {
+            $university->universityImages->delete();
+        }
+        if ($university->certificates->count() > 0) {
+            $university->certificates->delete();
+        }
+        // if ($university->requestCertificates->count() > 0) {
+        //     $university->requestCertificates->delete();
+        // }   
+        // if ($university->requestUniversity->count() > 0) {
+        //     $university->requestUniversity->delete();
+        // } 
+        // if ($university->req_courses->count() > 0) {
+        //     $university->req_courses->delete();
+        // }  
         $university->delete();
         return redirect()->route('admin.university.index')->with('success', 'record deleted successfully');
     }
@@ -378,17 +397,5 @@ class UniversityController extends Controller
             return redirect()->route('admin.university.index_certificate', $certificate->university->id)->with('success', 'Certificate Image updated successfully');
         }
     }
-    public function changeStatus( $id)
-    {
-        $university = University::find($id);
-        if ($university->status==1) {
-            $university->update([
-                'status'=>0
-            ]);
-        }else {
-            $university->update([
-                'status'=>1
-            ]);
-        }
-    }
+    
 }

@@ -6,11 +6,11 @@
             <div class="card-header bg-secondary">
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                    scholarships</h3>
+                    Requested Scholarships</h3>
                 <div class="card-tools">
                     <a class="btn btn-primary" href="{{route('university.scholarship.create')}}">
                         <i class="fas fa-plus circle-left mr-2"></i>
-                        Add scholarship
+                        Add Scholarship Request
                     </a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     <tbody>
                         @foreach ($scholarships as $scholarship )
                         <tr>
-                            <td>{{$scholarship->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$scholarship->title}}</td>
                             <td>
                                 <div style="width: 100px; height: 100px; overflow: hidden;">

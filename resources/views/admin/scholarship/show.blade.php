@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body">
-            <table class="table table-bordered table-condensed" style="width:50%">
+            <table class="table table-bordered table-condensed" style="width:100%">
                 <tr>
                     <th>ID</th>
                     <td>{{$scholarship->id}}</td>

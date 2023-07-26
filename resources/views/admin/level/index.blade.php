@@ -44,14 +44,16 @@
                             </td>
                             <td>
 
-                                <a class="btn btn-secondary" href="{{route('admin.level.show',$level)}}"><i class="fas fa-eye"></i>Show</a>
-                                <a class="btn btn-warning" href="{{route('admin.level.edit',$level)}}"><i class="fas fa-edit"></i>Edit</a>
-                                <form class="d-inline" action="{{route('admin.level.destroy',$level)}}" method="post">
+                                <a class="btn btn-warning btn-sm" href="{{route('admin.level.edit',$level)}}"><i class="fas fa-edit"></i>Edit</a>
+                                <form class="postdestroy" id="form_{{$level->id}}" style="margin: 0;" method="Post" action="{{ route('admin.level.destroy', $level->id) }}"  data-toggle="modal" data-target="#exampleModal" >
                                     @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                        <i class="fas fa-trash"></i>Delete</button>
-                                </form>
+                                    @method('Delete')
+
+                                     </form> 
+                                     <button class="btn btn-danger deleteBtn btn-sm"
+                                     data-id="{{$level->id}}"><i class="fas fa-trash"></i>Delete</button>
+                                
+                               
 
                             </td>
                         </tr>
@@ -75,6 +77,31 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(function() {
+            $('body').on('click', '.deleteBtn', function(){
+                    console.log('clecked on delete btn');
+                id = $(this).data('id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "you want to delete level??",
+                    icon: "warning",
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                    })
+                    .then((willDelete) => {
+                    if (willDelete.isConfirmed) {
+                        $('#form_'+id).submit();
+                        Swal.fire("Poof! Your level has been deleted!", {
+                        icon: "success",
+
+                        });
+                    } else {
+                        Swal.fire("Your Item file is safe!");
+                    }
+                    });
+            })
             $('body').on('click', '.customSwitchsizemd', function() {
               // console.log('click on customSwitchsizemd')
                 var id = $(this).data("id");
