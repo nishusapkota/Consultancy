@@ -378,4 +378,17 @@ class UniversityController extends Controller
             return redirect()->route('admin.university.index_certificate', $certificate->university->id)->with('success', 'Certificate Image updated successfully');
         }
     }
+    public function changeStatus( $id)
+    {
+        $university = University::find($id);
+        if ($university->status==1) {
+            $university->update([
+                'status'=>0
+            ]);
+        }else {
+            $university->update([
+                'status'=>1
+            ]);
+        }
+    }
 }

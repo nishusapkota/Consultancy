@@ -24,12 +24,11 @@ class UniversityRequestController extends Controller
     }
     public function update(Request $request, $id)
     {
+            
         DB::beginTransaction();
         try {
             $details = RequestUniversityDesc::find($id);
-            //  dd($details);
-            $university = University::where('id', $details->university_id)->first();
-          
+            $university = University::with('user')->where('id', $details->university_id)->first();
             $university->update([
                 'address' => $details->address,
                 'details' => $details->details,
@@ -40,8 +39,6 @@ class UniversityRequestController extends Controller
             $university->user->update([
                 'email' => $details->email
             ]);
-            dd($university->user);
-           
             $details->delete();
             DB::commit();
             return redirect()->route('admin.uni-requested-university.index')->with('success', 'Request approved');
