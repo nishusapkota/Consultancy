@@ -1,14 +1,4 @@
 @extends('admin.layout')
-
-@push('style')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" integrity="sha512-F636MAkMAhtTplahL9F6KmTfxTmYcAcjcCkyu0f0voT3N/6vzAuJ4Num55a0gEJ+hRLHhdz3vDvZpf6kqgEa5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css" integrity="sha512-9tISBnhZjiw7MV4a1gbemtB9tmPcoJ7ahj8QWIc0daBCdvlKjEA48oLlo6zALYm3037tPYYulT0YQyJIJJoyMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-@endpush
-
-
-
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -60,8 +50,10 @@
                                   </div> 
                             </td>
                             <td> 
-                                <input data-id="{{$course->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $course->status ? 'checked' : '' }}> 
-                             </td>
+                                <button type="button" class=" btn btn-sm btn-toggle  customSwitchsizemd {{ $course->status=='1' ? 'statuson' : ''  }} " data-toggle="button" data-id="{{$course->id}}" id="customSwitchsizemd">
+                                    <div class="handle"></div>
+                                </button>        
+                            </td>
 
                             <td>
 
@@ -92,46 +84,47 @@
 </section>
 @endsection
 @section('scripts')
-<script type="text/javascript">
- $(document).ready(function() {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $('body').on('click', '.customSwitchsizemd', function() {
+              // console.log('click on customSwitchsizemd')
+                var id = $(this).data("id");
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want change Status",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Change Status'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                      $(this).toggleClass("statuson");
+                        $.ajax({
+                            type: "get",
+                            url: "{{ url('admin/course/change-status') }}" + '/' + id,
+                            success: function(data) {
+                              
+                            },
+                            error: function(data) {
+                              $(this).toggleClass("statuson");
+                            }
+                        });
+                        Swal.fire({
 
-    $('.show_confirm').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `Are you sure you want to delete this record?`,
-              text: "If you delete this, it will be gone forever.",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-
-     
-           $('.toggle-class').change(function() { 
-           var status = $(this).prop('checked') == true ? 1 : 0;  
-           var course_id = $(this).data('id');  
-           $.ajax({ 
-    
-               type: "POST", 
-               dataType: "json", 
-               url: '/changeStatus', 
-               data: {'status': status, 'course_id': course_id}, 
-               success: function(data){ 
-               console.log(data.success) 
-            } 
-         }); 
-
- });
-     
-       }); 
-  
-</script>
+                            title: 'Made Active!',
+                            text: 'Course Status Have Been Changed Successfully.',
+                            icon: 'success',
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false,
+                            timer: 1300
+                        })
+                    }
+                })
+            });
+        });
+    </script>
 @endsection
-  

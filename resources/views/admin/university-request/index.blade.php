@@ -27,6 +27,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>University</th>
+                                <th>Requested Uni_name</th>
                                 <th>University Address</th>
                                 <th>Action</th>
                             </tr>
@@ -36,6 +37,8 @@
                             @foreach ($reqChanges as $reqChange)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
+                                    
+                                    <td>{{ $reqChange->university->uname }}</td>
                                     <td>{{ $reqChange->uname }}</td>
                                     <td>{{ $reqChange->address}}</td>
 
@@ -65,40 +68,7 @@
             </div>
 
 
-                    </thead>
-                    <tbody>
-                        @forelse($reqChanges as $reqChange)
-                        <tr>
-                            <td>{{$loop->index+1}}</td>
-                            <td>{{$reqChange->university->uname}}</td>
-                            <td>{!!$reqChange->details!!}</td>
-                           
-                            <td>
-
-                                
-                                   
-                                   <a href="{{route('admin.uni-requested-university.update',$reqChange->id)}}"><button class="btn btn-success">
-                                    <i class="fas fa-save"></i>Approve</button></a> 
-                                
-
-                                <form class="d-inline" onclick="return confirm('Are you sure to disapprove this?')" action="{{route('admin.uni-requested-university.destroy',$reqChange)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">
-                                      <i class="fas fa-trash"></i>Disapprove</button>
-                                  </form>
-
-                                
-
-                            </td>
-                        </tr>
-                            
-                        @empty
-                            <tr>No data</tr>
-                        @endforelse
-
-                    </tbody>
-
+                    
                 </table>
 
             </div>

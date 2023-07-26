@@ -24,6 +24,20 @@ class ScholarshipController extends Controller
     }
     
 
+    public function changeStatus( $id)
+    {
+        $scholarship = Scholarship::find($id);
+        if ($scholarship->status==1) {
+            $scholarship->update([
+                'status'=>0
+            ]);
+        }else {
+            $scholarship->update([
+                'status'=>1
+            ]);
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -81,46 +95,24 @@ class ScholarshipController extends Controller
     }
     
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit($id)
+   
+    
+
+    
+    // public function update($id)
     // {
-    //     $scholarship = Scholarship::findOrFail($id);
-    //     $universities = University::all();
-    //     return view('admin.scholarship.edit', compact('scholarship', 'universities'));
+    //    $scholarship=Scholarship::find($id);
+    //     $scholarship->update([
+    //         'status' => '1',
+    //     ]);
+    //     return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship updated successfully');
     // }
-    
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id)
-    {
-       $scholarship=Scholarship::find($id);
-        $scholarship->update([
-            'status' => '1',
-        ]);
-        return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship updated successfully');
-    }
 
     
 
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Scholarship $scholarship)
     {
         if ($scholarship->image && file_exists(public_path($scholarship->image))) {

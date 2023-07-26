@@ -79,6 +79,21 @@ class LevelController extends Controller
         return view('admin.level.edit', compact('level', 'courses'));
     }
 
+    public function changeStatus( $id)
+    {
+        $level = Level::find($id);
+        if ($level->status==1) {
+            $level->update([
+                'status'=>0
+            ]);
+        }else {
+            $level->update([
+                'status'=>1
+            ]);
+        }
+    }
+
+
     /**
      * Update the specified resource in storage.
      *

@@ -47,19 +47,17 @@
                                     </td>
                                     <td>{{ $scholarship->university->uname }}</td>
                                     <td>
-                                        @if ($scholarship->status == 1)
-                                            <span class="badge badge-primary">Active</span>
-                                        @else
-                                            <span class="badge badge-danger">Inactive</span>
-                                        @endif
+                                        <button type="button" class=" btn btn-sm btn-toggle  customSwitchsizemd {{ $scholarship->status=='1' ? 'statuson' : ''  }} " data-toggle="button" data-id="{{$scholarship->id}}" id="customSwitchsizemd">
+                                            <div class="handle"></div>
+                                        </button>
                                     </td>
                                     <td>
 
                                         <a class="btn btn-secondary"
                                             href="{{ route('admin.scholarship.show', $scholarship) }}"><i
                                                 class="fas fa-eye"></i>Show</a>
-                                         <a href="{{route('admin.scholarship.update',$scholarship->id)}}"><button class="btn btn-success">
-                                                    <i class="fas fa-save"></i>Approve</button></a> 
+                                         {{-- <a href="{{route('admin.scholarship.update',$scholarship->id)}}"><button class="btn btn-success">
+                                                    <i class="fas fa-save"></i>Approve</button></a>  --}}
                                         <form class="d-inline" action="{{ route('admin.scholarship.destroy', $scholarship) }}" method="post">
                                             @csrf
                                             @method('DELETE')
@@ -84,25 +82,47 @@
     </section>
 @endsection
 @section('scripts')
-<script type="text/javascript">
- 
-     $('.show_confirm').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `Are you sure you want to delete this record?`,
-              text: "If you delete this, it will be gone forever.",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-  
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $('body').on('click', '.customSwitchsizemd', function() {
+              // console.log('click on customSwitchsizemd')
+                var id = $(this).data("id");
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want change Status",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Change Status'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                      $(this).toggleClass("statuson");
+                        $.ajax({
+                            type: "get",
+                            url: "{{ url('admin/scholarship/change-status') }}" + '/' + id,
+                            success: function(data) {
+                              
+                            },
+                            error: function(data) {
+                              $(this).toggleClass("statuson");
+                            }
+                        });
+                        Swal.fire({
+
+                            title: 'Made Active!',
+                            text: 'Scholarship Status Have Been Changed Successfully.',
+                            icon: 'success',
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false,
+                            timer: 1300
+                        })
+                    }
+                })
+            });
+        });
+    </script>
 @endsection

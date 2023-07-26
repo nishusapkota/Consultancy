@@ -37,11 +37,9 @@
                             <td>{{$socialmedia->name}}</td>
                             <td>{{$socialmedia->link}}</td>
                             <td>
-                                @if ($socialmedia->status==1)
-                                <span class="badge badge-primary">Active</span>
-                                @else
-                                <span class="badge badge-danger">Inactive</span>
-                                @endif
+                                <button type="button" class=" btn btn-sm btn-toggle  customSwitchsizemd {{ $socialmedia->status=='1' ? 'statuson' : ''  }} " data-toggle="button" data-id="{{$socialmedia->id}}" id="customSwitchsizemd">
+                                    <div class="handle"></div>
+                                </button>
                             </td>
                             <td>
 
@@ -66,3 +64,48 @@
 </section>
 @endsection
 
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $('body').on('click', '.customSwitchsizemd', function() {
+              // console.log('click on customSwitchsizemd')
+                var id = $(this).data("id");
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want change Status",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Change Status'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                      $(this).toggleClass("statuson");
+                        $.ajax({
+                            type: "get",
+                            url: "{{ url('admin/social-media/change-status') }}" + '/' + id,
+                            success: function(data) {
+                              
+                            },
+                            error: function(data) {
+                              $(this).toggleClass("statuson");
+                            }
+                        });
+                        Swal.fire({
+
+                            title: 'Made Active!',
+                            text: 'SocialMedia Status Have Been Changed Successfully.',
+                            icon: 'success',
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false,
+                            timer: 1300
+                        })
+                    }
+                })
+            });
+        });
+    </script>
+@endsection

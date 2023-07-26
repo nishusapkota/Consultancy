@@ -25,6 +25,19 @@ class SocialMediaController extends Controller
      * @return \Illuminate\Http\Response
      */
     
+     public function changeStatus( $id)
+    {
+        $socialmedia = SocialMedia::find($id);
+        if ($socialmedia->status==1) {
+            $socialmedia->update([
+                'status'=>0
+            ]);
+        }else {
+            $socialmedia->update([
+                'status'=>1
+            ]);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.

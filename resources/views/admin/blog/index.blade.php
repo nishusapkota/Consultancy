@@ -57,8 +57,9 @@
                             <td>{{$blog->extra}}</td>
                             {{-- <td>{{$blog->status?'<span class="badge badge-primary">'.$blog->status.'</span>':'<span class="badge badge-primary">'.$blog->status.'</span>'}}</td> --}}
                             <td>
-                                <input data-id="{{$blog->id}}" class="toggle_button" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $blog->status ? 'checked' : '' }}> 
-                               
+                                <button type="button" class=" btn btn-sm btn-toggle  customSwitchsizemd {{ $blog->status=='1' ? 'statuson' : ''  }} " data-toggle="button" data-id="{{$blog->id}}" id="customSwitchsizemd">
+                                    <div class="handle"></div>
+                                </button>                               
                         </td>
                             <td>
 
@@ -94,55 +95,49 @@
 </section>
 @endsection
 
-
 @section('scripts')
-<script>    
-    $(document).ready(function() {
-        // Handle the click event on the status toggle
-        $('.toggle-button').click(function() {
-            // console.log('Status button clicked.');
-            var status = $(this).prop('checked') ? 1 : 0;
-            var blog_id = $(this).data('id');
-            var token = "{{ csrf_token() }}";
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $('body').on('click', '.customSwitchsizemd', function() {
+              // console.log('click on customSwitchsizemd')
+                var id = $(this).data("id");
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want change Status",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Change Status'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                      $(this).toggleClass("statuson");
+                        $.ajax({
+                            type: "get",
+                            url: "{{ url('admin/blog/change-status') }}" + '/' + id,
+                            success: function(data) {
+                              
+                            },
+                            error: function(data) {
+                              $(this).toggleClass("statuson");
+                            }
+                        });
+                        Swal.fire({
 
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: '{{ route("admin.courseStatusChange") }}',
-                data: {
-                    '_token': token,
-                    'status': status,
-                    'blog_id': blog_id
-                },
-                success: function(data) {
-                    console.log('Success');
-                },
-                error: function(data) {
-                    console.log('Error');
-                }
+                            title: 'Made Active!',
+                            text: 'Blog Status Have Been Changed Successfully.',
+                            icon: 'success',
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false,
+                            timer: 1300
+                        })
+                    }
+                })
             });
         });
-
-        // Handle the click event on the delete confirmation button
-        $('.show_confirm').click(function(event) {
-            // console.log('delete button clicked.');
-            var form =  $(this).closest("form");
-            event.preventDefault();
-            swal({
-                title: `Are you sure you want to delete this record?`,
-                text: "If you delete this, it will be gone forever.",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    form.submit();
-                }
-            });
-        });
-    });
-</script>
+    </script>
 @endsection
-
   

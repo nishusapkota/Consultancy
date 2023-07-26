@@ -31,14 +31,12 @@ use App\Http\Controllers\Admin\ScholarshipRequestController;
 use App\Http\Controllers\University\RequestCourseController;
 use App\Http\Controllers\Admin\ScholarshipController as AdminScholarshipController;
 
-Route::get('/',[SiteController::class, 'index'])->name('index');
+Route::get('/',[SiteController::class, 'index'])->name('index');    
 Route::get('/courses',[SiteController::class, 'courses'])->name('courses');
 Route::get('/course-details/{name}',[SiteController::class, 'courseDetail'])->name('course-detail');
 Route::get('/course-details-from-univeristy',[SiteController::class, 'courseDetailFromUni'])->name('course-detail-from-uni');
 Route::get('/scholarships',[SiteController::class, 'scholarship'])->name('scholarship');
 Route::get('/scholarship-details/{title}',[SiteController::class, 'scholarshipDetail'])->name('scholarship-detail');
-
-
 Route::get('/colleges',[SiteController::class, 'colleges'])->name('college');
 Route::get('/college-details/{uname}',[SiteController::class, 'collegeDetail'])->name('college-detail');
 
@@ -66,13 +64,14 @@ Route::prefix('/admin')->middleware('auth','isAdmin')->name('admin.')->group(fun
     Route::post('/update-about-image',[AboutController::class,'update_image'])->name('about.update_image');
     Route::resource('/course-category',CourseCategoryController::class);
     Route::resource('/courses',CourseController::class);
-    Route::post('/changeStatus',[CourseController::class,'changeStatus'])->name('courseStatusChange');
+    Route::get('/course/change-status/{id}',[CourseController::class,'changeStatus'])->name('course.changeStatus');
 
     //Route::resource('/scholarship',AdminScholarshipController::class);
     Route::get('/scholarship',[\App\Http\Controllers\Admin\ScholarshipController::class,'index'])->name('scholarship.index');
     Route::delete('/scholarship/{id}',[\App\Http\Controllers\Admin\ScholarshipController::class,'destroy'])->name('scholarship.destroy');
-    Route::get('/scholarship/{id}',[\App\Http\Controllers\Admin\ScholarshipController::class,'update'])->name('scholarship.update');
+    // Route::get('/scholarship/{id}',[\App\Http\Controllers\Admin\ScholarshipController::class,'update'])->name('scholarship.update');
     Route::get('/scholarship/{id}/show',[\App\Http\Controllers\Admin\ScholarshipController::class,'show'])->name('scholarship.show');
+    Route::get('/scholarship/change-status/{id}',[\App\Http\Controllers\Admin\ScholarshipController::class,'changeStatus'])->name('scholarship.changeStatus');
 
 
     //Route::resource('/uni-requested-course',CourseRequestController::class);
@@ -95,11 +94,15 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::get('/uni-requested-university/{id}',[UniversityRequestController::class,'update'])->name('uni-requested-university.update');
 
  // Route::resource('/uni-requested-university',UniversityRequestController::class);
- Route::get('/uni-requested-certificate',[CertificateRequestController::class,'index'])->name('uni-requested-certificate.index');
- Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
- Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
+//  Route::get('/uni-requested-certificate',[CertificateRequestController::class,'index'])->name('uni-requested-certificate.index');
+//  Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
+//  Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
+
+Route::resource('/uni-requested-certificate', CertificateRequestController::class);
 
     Route::resource('/level',LevelController::class);
+    Route::get('/level/change-status/{id}',[LevelController::class,'changeStatus'])->name('level.changeStatus');
+
     Route::resource('/university',UniversityController::class);
 
     Route::get('/university/{id}/image',[UniversityController::class,'index_image'])->name('university.index_image');
@@ -108,7 +111,12 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::get('/university/edit-image/{id}',[UniversityController::class,'edit_image'])->name('university.edit_image');
     Route::post('/university/edit-image/{id}',[UniversityController::class,'update_image'])->name('university.update_image');
     Route::get('/university/change-status/{id}',[UniversityController::class,'changeStatus'])->name('university.changeStatus');
+    Route::get('/blog/change-status/{id}',[BlogController::class,'changeStatus'])->name('blog.changeStatus');
+
+
     
+
+
     Route::get('/university/{id}/certificate',[UniversityController::class,'index_certificate'])->name('university.index_certificate');
     Route::get('/university/{id}/add-certificate',[UniversityController::class,'create_certificate'])->name('university.create_certificate');
     Route::post('/university/{id}/add-certificate',[UniversityController::class,'store_certificate'])->name('university.store_certificate');
@@ -116,6 +124,7 @@ Route::get('/uni-requested-scholarship/{id}/show',[\App\Http\Controllers\Univers
     Route::post('/university/edit-certificate/{id}',[UniversityController::class,'update_certificate'])->name('university.update_certificate');
 
     Route::resource('/social-media',SocialMediaController::class);
+    Route::get('/social-media/change-status/{id}',[SocialMediaController::class,'changeStatus'])->name('socialmedia.changeStatus');
     
     Route::get('/student-enquiry',[EnquiryController::class,'indexStudentEnquiry'])->name('indexStudentEnquiry');
     Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry'])->name('generalEnquiry');

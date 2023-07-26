@@ -20,11 +20,19 @@ class BlogController extends Controller
         return view('admin.blog.index', compact('blogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function changeStatus( $id)
+    {
+        $blog = Blog::find($id);
+        if ($blog->status==1) {
+            $blog->update([
+                'status'=>0
+            ]);
+        }else {
+            $blog->update([
+                'status'=>1
+            ]);
+        }
+    }
     public function create()
     {
         return view('admin.blog.create');

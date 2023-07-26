@@ -30,6 +30,19 @@ class UniversityController extends Controller
         return view('admin.university.index', compact('universities'));
     }
 
+    public function changeStatus( $id)
+    {
+        $university = University::find($id);
+        if ($university->status==1) {
+            $university->update([
+                'status'=>0
+            ]);
+        }else {
+            $university->update([
+                'status'=>1
+            ]);
+        }
+    }
 
     public function universityDashboard()
     {

@@ -21,13 +21,19 @@ class CourseController extends Controller
         $courses = Course::all();
         return view('admin.course.index', compact('courses'));
     }
-    public function changeStatus(Request $request)
-{
-    $course = Course::find($request->course_id);
-    $course->status = $request->status;
-    $course->save();
-    return redirect()->back()->with('success','Status upadated successfully');
-}
+    public function changeStatus( $id)
+    {
+        $course = Course::find($id);
+        if ($course->status==1) {
+            $course->update([
+                'status'=>0
+            ]);
+        }else {
+            $course->update([
+                'status'=>1
+            ]);
+        }
+    }
 
 
     /**
