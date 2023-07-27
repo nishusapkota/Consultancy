@@ -30,6 +30,8 @@ class UniversityController extends Controller
         return view('admin.university.index', compact('universities'));
     }
 
+   
+
     public function changeStatus( $id)
     {
         $university = University::find($id);
@@ -316,6 +318,26 @@ class UniversityController extends Controller
         $uni_image = UniversityImage::find($id);
         return view('admin.university.edit_image', compact('uni_image'));
     }
+
+    public function delete_image($id){
+        $uni_image=UniversityImage::find($id);
+        if ($uni_image->image && file_exists(public_path($uni_image->image))) {
+            unlink(public_path($uni_image->image));
+            $uni_image->delete();
+            return redirect()->route('admin.university.index_image', $uni_image->university->id)->with('success', 'Images deleted successfully');    
+        }
+    }
+
+
+    public function delete_certificate($id){
+        $certificate=Certificate::find($id);
+        if ($certificate->image && file_exists(public_path($certificate->image))) {
+            unlink(public_path($certificate->image));
+            $certificate->delete();
+            return redirect()->route('admin.university.index_certificate', $certificate->university->id)->with('success', 'Certificate deleted successfully');
+        }
+    }
+
     public function update_image(Request $request, $id)
     {
         $uni_image = UniversityImage::find($id);

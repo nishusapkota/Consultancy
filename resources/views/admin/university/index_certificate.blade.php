@@ -47,7 +47,15 @@
                                         <a class="btn btn-warning"
                                             href="{{ route('admin.university.edit_certificate', $certificate->id) }}"><i
                                                 class="fas fa-edit"></i>Edit</a>
+                                                <form class="postdestroy" id="form_{{$certificate->id}}" style="margin: 0;" method="Post" action="{{ route('admin.university.delete_certificate', $certificate->id) }}"  data-toggle="modal" data-target="#exampleModal" >
+                                                    @csrf
+                                                    @method('Delete')
+                                                </form> 
+                                                <button class="btn btn-danger deleteBtn btn-sm"
+                                        data-id="{{$certificate->id}}"><i class="fas fa-trash"></i>Delete</button>
                                         
+
+
 
                                         
 
@@ -68,4 +76,36 @@
 
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $('body').on('click', '.deleteBtn', function(){
+                    console.log('clecked on delete btn');
+                id = $(this).data('id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "you want to delete certificate image??",
+                    icon: "warning",
+                    showCancelButton: false,
+                    showDenyButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                    })
+                    .then((willDelete) => {
+                    if (willDelete.isConfirmed) {
+                        $('#form_'+id).submit();
+                        Swal.fire("Poof! Your university certificate has been deleted!", {
+                        icon: "success",
+
+                        });
+                    } else {
+                        Swal.fire("Your Item file is safe!");
+                    }
+                    });
+            })   
+        });
+    </script>
 @endsection

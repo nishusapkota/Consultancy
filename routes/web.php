@@ -104,7 +104,7 @@ Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::clas
     Route::get('/level/change-status/{id}',[LevelController::class,'changeStatus'])->name('level.changeStatus');
 
     Route::resource('/university',UniversityController::class);
-
+    Route::delete('/university/{id}/image',[UniversityController::class,'delete_image'])->name('university.delete_image');
     Route::get('/university/{id}/image',[UniversityController::class,'index_image'])->name('university.index_image');
     Route::get('/university/{id}/add-image',[UniversityController::class,'create_image'])->name('university.create_image');
     Route::post('/university/{id}/add-image',[UniversityController::class,'store_image'])->name('university.store_image');
@@ -116,7 +116,7 @@ Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::clas
 
     
 
-
+    Route::delete('/university/{id}/certificate',[UniversityController::class,'delete_certificate'])->name('university.delete_certificate');
     Route::get('/university/{id}/certificate',[UniversityController::class,'index_certificate'])->name('university.index_certificate');
     Route::get('/university/{id}/add-certificate',[UniversityController::class,'create_certificate'])->name('university.create_certificate');
     Route::post('/university/{id}/add-certificate',[UniversityController::class,'store_certificate'])->name('university.store_certificate');
