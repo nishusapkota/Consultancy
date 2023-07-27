@@ -15,7 +15,7 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             @foreach ($homeSlider as $item)
-            @if ($item->extension=='jpg'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='JPEG')
+            @if ($item->extension=='jpg'||$item->extension=='JPG'||$item->extension=='png'||$item->extension=='PNG'||$item->extension=='jpeg'||$item->extension=='PNG'||$item->extension=='JPEG')
                 
             <div class="slide-item ">
                 <div class="image-layer" style="background-image: url('{{ asset($item->file) }}')">
@@ -27,28 +27,28 @@
                         <div class="btn-box">
                             <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
                             <p class="slider-text slider-content">{{$item->description}}</p>
-                            <a href="{{ route('admit') }}" class="theme-btn style-one">Admit Now</a>
+                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a>
                         </div>
                     </div>
                 </div>
             </div>
             @endif
-            @if ($item->extension=='mp4'||$item->extension=='mkv'||$item->extension=='mov')
+            @if ($item->extension=='mp4'||$item->extension=='MP4'||$item->extension=='MOV'||$item->extension=='movs')
                 
             <div class="video-slide-item">
                 <section class="main-banner" id="top" data-section="section1">
                     <video autoplay muted loop id="bg-video">
-                        <source src="{{ asset($item->file) }}" type="video/{{ $item->extension }}" />
+                        <source src="{{ asset($item->file) }}" type="video/mp4" />
                     </video>
                     <div class="video-overlay header-text">
                         <div class="video-slider-container">
                             <div class="video-slider-content">
-                                <h5 style="color: white;">{{$item->sub_heading}}</h5>
+                                <h5 style="color:white;">{{$item->sub_heading}}</h5>
                                 <h1 class="video-content-title">{{$item->title}}</h1>
                                 <p class="slider-text slider-content">{{$item->description}}
                                 </p>
                                 <div class="btn-box">
-                                    <a href="{{ route('admit') }}" class="theme-btn style-one">Apply Now</a>
+                                    <a href="{{ route('apply') }}" class="theme-btn style-one">Apply Now</a>
                                 </div>
                             </div>
                         </div>
@@ -62,6 +62,7 @@
     </section>
 
     <!-- banner-section end -->
+
 
 
     <!-- about-section -->
@@ -101,7 +102,7 @@
     </section>
 
     <!-- about-section end -->
-    <section class="university-section">
+    <section class="team-section">
         <div class="university-container">
             <div class="sec-title centred">
                 <h2>University/Colleges</h2>
@@ -128,9 +129,10 @@
             </div>
            @endforeach
       </div>
-        </div>
+    </div>
+       
 
-        <div class="btn-box d-flex align-items-center justify-content-center mt-4">
+         <div class="btn-box d-flex align-items-center justify-content-center mt-4">
             <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </section>
@@ -260,9 +262,9 @@
     <!-- scholarship-section end -->
 
     <!-- blog-section -->
-    <section class="news-section bg-color-1  pt-0">
+    <section class="news-section bg-color-1 pt-0">
         <div class="auto-container">
-            <div class="sec-title style-four right pull-centre">
+            <div class="sec-title centred">
                 <h5>Read the blogs</h5>
                 <h2>Blog</h2>
                 {{-- <p class="blog-text">Belis nisl adipiscing sapien sed malesu diame lacus eget erat Cras mollis scelerisqu
@@ -295,9 +297,12 @@
 
 
             </div>
-            <div class="btn-box blog-door">
+            {{-- <div class="btn-box blog-door">
                 <a href="{{ route('blog') }}" class="theme-btn style-one">Read More</a>
-            </div>
+            </div> --}}
+        </div>
+        <div class="btn-box d-flex align-items-center justify-content-center mt-4">
+            <a href="{{ route('blog') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </section>
     <!-- news-section end -->
