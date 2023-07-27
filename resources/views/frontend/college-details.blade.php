@@ -63,6 +63,9 @@
                     <div>
                         <h3 class="mb-4 mt-3">Fill Out Your Form</h3>
 
+                        @foreach ($errors->all() as $error)
+                        <li class="text-danger">{{ $error }}</li>
+                        @endforeach
                         <form method="post" action="{{ route('enquiry.post') }}">
                             @csrf
                             <div class="form-group">
@@ -82,15 +85,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="tel" placeholder="Phone"name="contact"
-                                    class="@error('contact') is-invalid @enderror" required />
-                                @error('contact')
+                                <input type="tel" placeholder="Phone" name="phone"
+                                    class="@error('phone') is-invalid @enderror" required />
+                                @error('phone')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="tel" placeholder="Address"name="address"
+                                <input type="tel" placeholder="Address" name="address"
                                     class="@error('address') is-invalid @enderror" required />
                                 @error('address')
                                     <small class="form-text text-danger">
@@ -100,9 +103,9 @@
                             <input name="university_id" type="text" value="{{ $college->id }}" hidden required />
                             <div class="form-group">
                                 <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
-                                    <option selected value="">Select Level</option>
-                                    @foreach ($levels as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    <option selected disabled>Select Level</option>
+                                    @foreach ($levels as $level)
+                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('level_id')
@@ -112,9 +115,9 @@
                             </div>
                             <div class="form-group">
                                 <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
-                                    <option selected value="">Select Course</option>
-                                    @foreach ($courses as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                    <option selected disabled>Select Course</option>
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('course_id')

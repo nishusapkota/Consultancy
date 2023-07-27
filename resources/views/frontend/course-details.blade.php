@@ -93,18 +93,18 @@
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
                         @foreach ($errors->all() as $error)
                         <li class="text-danger">{{ $error }}</li>
-                        @endforeach.
+                        @endforeach
                         <form method="post" action="{{route('enquiry.post')}}">
                             @csrf
                             <div class="form-group">
-                                <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror"" required/>
+                                <input type="text" placeholder="Your Name"  name="name" class="@error('name') is-invalid @enderror" required/>
                                 @error('name')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror"" required/>
+                                <input type="email" placeholder="Email address"  name="email" class="@error('email') is-invalid @enderror" required/>
                                 @error('email')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>

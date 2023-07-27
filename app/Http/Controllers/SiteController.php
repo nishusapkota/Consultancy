@@ -201,9 +201,9 @@ class SiteController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'level_id' => isset($request->level_id) ? $request->level_id : 'null',
-            'course_id' => isset($request->course_id) ? $request->course_id : 'null',
-            'university_id' => isset($request->university_id) ? $request->university_id : 'null',
+            'level_id' => isset($request->level_id) ? $request->level_id : null,
+            'course_id' => isset($request->course_id) ? $request->course_id : null,
+            'university_id' => isset($request->university_id) ? $request->university_id : null,
             'message' => $request->message,
         ]);
         return redirect()->back()->with('success', 'Your Enquiry Has Been  Submitted Successfully');
