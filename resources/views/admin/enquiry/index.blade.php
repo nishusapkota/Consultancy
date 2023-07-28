@@ -26,24 +26,26 @@
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
-                          
-                            <th>University</th>
-                            <th>Course</th>
                             <th>Level</th>
+                            <th>Course</th>
+                            <th>University</th>
                             <th>Action</th>
                             
                         </tr>
 
                     </thead>
                     <tbody>
+                       
                         @foreach ($enquiries as $enquiry )
+                        {{-- @dd($enquiry->name) --}}
                         <tr>
+
                             <td>{{$loop->index+1}}</td>
                             <td>{{$enquiry->name}}</td>
                             <td>{{$enquiry->phone}}</td>
                             <td>{{$enquiry->email}}</td>
                             
-                            <td>{{$enquiry->level->name}}</td>
+                            <td>{{ $enquiry->level? $enquiry->level->name : 'Not assigned'}}</td>
                             <td>{{$enquiry->course->name}}</td>
                             <td>{{$enquiry->university->uname}}</td>
                             <td>

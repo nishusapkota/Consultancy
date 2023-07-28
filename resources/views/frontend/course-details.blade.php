@@ -118,12 +118,14 @@
                                 @enderror
                             </div>
                             
-                            <input name="course_id" placeholder="Email address" value="{{$course->id}}" hidden/>
+                            <input name="course_id" value="{{$course->id}}" hidden/>
                             <div class="form-group">
                               <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
                                 <option selected disabled>Select Level</option>
                                 @foreach ($levels as $level)
-                                <option value="{{$level->id}}">{{$level->name}}</option>
+                                <option value="{{$level->id}}" @if ($level->id && !is_null($level->id))
+                                    selected
+                                    @endif>{{$level->name}}</option>
                                 @endforeach
                               </select>
                               @error('level_id')
@@ -148,7 +150,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <textarea placeholder="Message" name="message" class="@error('name') is-invalid @enderror"" required></textarea>
+                                <textarea placeholder="Message" name="message" class="@error('name') is-invalid @enderror" required></textarea>
                                 @error('message')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>

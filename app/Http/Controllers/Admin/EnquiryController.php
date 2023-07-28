@@ -19,7 +19,8 @@ class EnquiryController extends Controller
      */
     public function indexStudentEnquiry()
     {
-        $enquiries = StudentEnquiry::with('level', 'university', 'course')->get();
+        $enquiries = StudentEnquiry::with('level', 'university','course')->get();
+        // dd($enquiries);
         return view('admin.enquiry.index',compact('enquiries'));
     }
 

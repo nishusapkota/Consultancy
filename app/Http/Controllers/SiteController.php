@@ -164,6 +164,7 @@ class SiteController extends Controller
         $courses = Course::whereHas('universities', function ($q) use ($scholarship) {
             $q->where('universities.id', $scholarship->university_id)->where('status', '1');
         })->get();
+        // dd($courses);
         $levels = Level::where('status', '1')->get(['id', 'name']);
         return view('frontend.scholarship-details', compact('scholarship', 'courses', 'levels'));
     }
@@ -187,13 +188,14 @@ class SiteController extends Controller
    
     public function studentEnquiry(Request $request)
     {
+        
          $request->validate([
             'name' => 'required',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
-            'level_id' => 'nullable|exists:levels,id',
-            'course_id' => 'nullable|exists:courses,id',
-            'university_id' => 'nullable|exists:universities,id',
+            'level_id' => 'exists:levels,id',
+            'course_id' => 'exists:courses,id',
+            'university_id' => 'exists:universities,id',
             'message' => 'required|string'
         ]);
         // dd($request->all());
@@ -201,9 +203,9 @@ class SiteController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'level_id' => isset($request->level_id) ? $request->level_id : null,
-            'course_id' => isset($request->course_id) ? $request->course_id : null,
-            'university_id' => isset($request->university_id) ? $request->university_id : null,
+            'level_id' =>  $request->level_id,
+            'course_id' =>  $request->course_id,
+            'university_id' =>$request->university_id,
             'message' => $request->message,
         ]);
         return redirect()->back()->with('success', 'Your Enquiry Has Been  Submitted Successfully');
