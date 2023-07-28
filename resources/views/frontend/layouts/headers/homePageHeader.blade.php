@@ -1,6 +1,6 @@
 <header class="main-header style-one main-nav">
-    <div class="header-top">
-            <div class="auto-container">
+    {{-- <div class="header-lower"> --}}
+            {{-- <div class="auto-container">
                 <div class="top-inner clearfix">
                     <ul class="info top-left pull-left">
                         <li><i class="fas fa-map-marker-alt"></i>{{$footer?$footer->address:null}}</li>
@@ -15,8 +15,8 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-    </div>
+            </div> --}}
+        {{-- </div> --}}
     <div class="header-lower">
         <div class="auto-container">
             <div class="outer-box clearfix">

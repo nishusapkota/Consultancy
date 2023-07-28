@@ -69,19 +69,19 @@
     <section class="about-section bg-color-1">
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-md-6 col-12">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="banner-carousel aboutSLiderCss owl-theme owl-carousel owl-dots-none owl-autoplay-true owl-loop-true">
 
                         @foreach ($images as $image)
                             <div class="custom-slide-item ">
-                                <div class="custom-image-layer" style="background: url('{{ asset($image->image) }}')">
+                                <div class="image-layer" style="background: url('{{ asset($image->image) }}')">
                                 </div>
                             </div>
                         @endforeach
 
                     </div>
                 </div>
-                <div class="col-md-6 col-12 content-column">
+                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div id="content_block_one">
                         <div class="content-box">
                             <div class="sec-title left">
@@ -91,7 +91,7 @@
                             <div class="text">
                                 <p>{{ $about ? $about->description : null }}</p>
                             </div>
-                            <div class="btn-box d-flex justify-content-center flex-nowrap">
+                            <div class="btn-box">
                                 <a href="{{ route('admit') }}" class="theme-btn style-one">Admit Now</a>
                             </div>
                         </div>
@@ -102,8 +102,7 @@
     </section>
 
     <!-- about-section end -->
-
-    <section class="team-section">
+    <section class="university-section">
         <div class="university-container">
             <div class="sec-title centred">
                 <h2>University/Colleges</h2>
@@ -122,9 +121,8 @@
                             <h3 class="uni-title-main">{{ $university->uname }}</h3>
                             <div class="link view-course"><a
                                 href="{{ route('college-detail',$university->uname) }}"
-                                class="uni--title"><i
-                                        class="fas fa-arrow-right uni-icon "></i><span>View Details</span></a>
-                            </div>
+                                class="uni-title"><i
+                                        class="fas fa-arrow-right uni-icon "></i><span>View Details</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -146,7 +144,7 @@
     <section class="team-section">
         <div class="auto-container">
             <div class="upper-box clearfix">
-                <div class="sec-title style-two centred">
+                <div class="sec-title style-two centered">
                     <h5>Courses</h5>
                     <h2>Our Courses</h2>
                 </div>  

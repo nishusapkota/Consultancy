@@ -87,14 +87,7 @@
                                         {{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <input type="tel" placeholder="Address" name="address"
-                                    class="@error('address') is-invalid @enderror" required />
-                                @error('address')
-                                    <small class="form-text text-danger">
-                                        {{ $message }}</small>
-                                @enderror
-                            </div>
+                            
                             <input name="university_id" type="text" value="{{ $college->id }}" hidden required />
                             <div class="form-group">
                                 <select name="level_id" class="@error('level_id') is-invalid @enderror" required>

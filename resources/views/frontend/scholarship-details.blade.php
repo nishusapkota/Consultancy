@@ -74,8 +74,9 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div>
                         <h3 class="mb-4 mt-3">Fill Your Form</h3>
+                       
                         @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <li class="form-text text-danger">{{ $error }}</li>
                         @endforeach
                         <form method="post" action="{{route('enquiry.post')}}">
                             @csrf
@@ -94,25 +95,24 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="tel" placeholder="Phone"name="contact"  class="@error('contact') is-invalid @enderror" required/>
-                                @error('contact')
+                                <input type="tel" placeholder="Phone" name="phone"  class="@error('phone') is-invalid @enderror" required/>
+                                @error('phone')
                                     <small class="form-text text-danger">
                                         {{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <input type="tel" placeholder="Address"name="address"  class="@error('address') is-invalid @enderror" required/>
-                                @error('address')
-                                    <small class="form-text text-danger">
-                                        {{ $message }}</small>
-                                @enderror
-                            </div>
+                            
                             <input name="university_id" type="text" value="{{ $scholarship->university_id }}" hidden required />
+                           
                             <div class="form-group">
                                 <select name="level_id" class="@error('level_id') is-invalid @enderror" required >
-                                    <option selected value="">Select Level</option>
-                                    @foreach ($levels as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    <option selected disabled>Select Level</option>
+                                    @foreach ($levels as $level)
+                                        <option value="{{ $level->id }}" 
+                                            @if ($level->id && !is_null($level->id))
+                                            selected
+                                            @endif>
+                                            {{ $level->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('level_id')
@@ -121,10 +121,17 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                {{-- @foreach ($courses as $course)
+                                @dd($course->id);
+                                @endforeach --}}
                                 <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
-                                    <option selected value="" >Select Course</option>
-                                    @foreach ($courses as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                    <option selected disabled>Select Course</option>
+                                     
+                                    @foreach ($courses as $course)
+                                    {{-- @dd($course); --}}
+                                        <option value="{{ $course->id }}"@if ($course->id && !is_null($course->id))
+                                            selected
+                                            @endif>{{ $course->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('course_id')

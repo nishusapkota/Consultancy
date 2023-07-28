@@ -363,13 +363,13 @@ class UniversityController extends Controller
             $uni_image->update($data);
             return redirect()->route('admin.university.index_image', $uni_image->university->id)->with('success', 'Image updated successfully');    
         }
-        }
+    }
 
 
 
 
 
-
+    
     //certificate
     public function index_certificate($id)
     {

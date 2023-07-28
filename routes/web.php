@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\SocialMediaController;
+use App\Http\Controllers\University\SliderController;
 use App\Http\Controllers\University\ProfileController;
 use App\Http\Controllers\Admin\CourseRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
@@ -98,6 +99,13 @@ Route::get('/uni-requested-certificate',[CertificateRequestController::class,'in
  Route::delete('/uni-requested-certificate/{id}',[CertificateRequestController::class,'destroy'])->name('uni-requested-certificate.destroy');
 Route::get('/uni-requested-certificate/{id}',[CertificateRequestController::class,'update'])->name('uni-requested-certificate.update');
 
+//request slider
+Route::get('/uni-requested-slider',[UniversityRequestController::class,'indexSlider'])->name('uni-requested-slider.index');
+ Route::delete('/uni-requested-slider/{id}',[UniversityRequestController::class,'destroySlider'])->name('uni-requested-slider.destroy');
+Route::get('/uni-requested-slider/{id}',[UniversityRequestController::class,'updateSlider'])->name('uni-requested-slider.update');
+
+
+
 // Route::resource('/uni-requested-certificate', CertificateRequestController::class);
 
     Route::resource('/level',LevelController::class);
@@ -155,6 +163,9 @@ Route::prefix('/university')->middleware('auth','isUniversity')->name('universit
     Route::get('/request-certificate-image/{id}/edit',[CertificateController::class,'requestEdit'])->name('request-certificate.edit');
     Route::post('/request-certificate-image/{id}/update',[CertificateController::class,'requestUpdate'])->name('request-certificate.update');
     Route::delete('/request-certificate-image/{id}',[CertificateController::class,'requestDelete'])->name('request-certificate.delete');
+
+    Route::resource('/slider',SliderController::class);
+
 });
 
 Route::get('get-level-list',[FilterController::class,'levels'])->name('level.lists');

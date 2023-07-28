@@ -33,6 +33,9 @@ class University extends Model
     function universityImages(){
         return $this->hasMany(UniversityImage::class);
     }
+    function universitySlider(){
+        return $this->hasMany(UniversitySlider::class);
+    }
     function certificates(){
         return $this->hasMany(Certificate::class);
     }
