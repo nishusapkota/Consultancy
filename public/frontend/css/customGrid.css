@@ -6,7 +6,7 @@
 
 .university-container {
     /* position: static; */
-    padding: 0px 15px;
+    /* padding: 0px 15px; */
     max-width: 1440px;
     margin: 0 auto;
   }
@@ -15,7 +15,6 @@
     border-radius: 20px;
     padding: 1rem auto;
     margin: .5rem;
-    /* width: 30%; */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
@@ -40,20 +39,45 @@
   }
 
   @media only screen and (max-width: 640px) {
+
+    /* .university-container {
+      max-width: 80%;
+    } */
+
+    .uni-image {
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 12rem;
+      width: 95%;
+    }
+
     .uni-container{
-        margin: 0rem;
-        margin-bottom: .6rem;
-        width: 100%;
-  
+      margin: 0rem;
+      object-fit: cover;
+      margin-bottom: .6rem;
+      width: 95%;
+      margin-right: 1rem;
+      }
+
+      .uni-lower-content{
+        max-width: 100%;
       }
   }
 
   @media (min-width: 641px) and (max-width: 1024px) {
     .uni-container{
-        margin-bottom: .6rem;
-        width: 60%;
-        margin: 0 auto;
-        height: 25rem;
-        margin-bottom: 4rem;
-      }
+      margin-bottom: .6rem;
+      width: 60%;
+      margin: 0 auto;
+      height: 25rem;
+      margin-bottom: 4rem;
+      width: 100%;
+    }
+
+    .parent-uni-container{
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
   }

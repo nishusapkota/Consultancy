@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     <div class="header-lower">
         <div class="auto-container">
             <div class="outer-box clearfix">
@@ -24,29 +24,34 @@
                     <figure class="logo"><a href="{{route('index')}}"><img src="{{asset($footer?$footer->image:null)}}" alt="" width="150" height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
-                    <div class="mobile-nav-toggler">
-                        <i class="icon-bar"></i>
-                        <i class="icon-bar"></i>
-                        <i class="icon-bar"></i>
-                    </div>
+                <div class="mobile-nav-toggler">
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                        </div>
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li class="{{ request()->is('/') ? 'current' : '' }}">
                                     <a href="{{ route('index') }}">Home</a>
                                 </li> 
+
                                 <li class="{{ request()->is('courses') ? 'current' : '' }}">
                                     <a href="{{ route('courses') }}">Courses</a>
                                 </li>
+
                                 <li class="{{ request()->is('colleges') ? 'current' : '' }}">
                                     <a href="{{ route('college') }}">University/Colleges</a>
                                 </li>
+
                                 <li class="{{ request()->is('scholarships') ? 'current' : '' }}">
                                     <a href="{{ route('scholarship') }}">Scholarship</a>                                        
                                 </li>
+
                                 <li class="{{ request()->is('blogs') ? 'current' : '' }}">
                                     <a href="{{ route('blog') }}">Blogs</a>
                                 </li>
+
                                 <li class="{{ request()->is('contacts') ? 'current' : '' }}">
                                     <a href="{{ route('contact') }}">Contact</a>
                                 </li>
