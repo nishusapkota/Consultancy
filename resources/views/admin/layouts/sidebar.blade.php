@@ -64,7 +64,7 @@
    
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ (request()->is('admin/university*')||request()->is('admin/uni-requested-university*')||request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
+      <a href="#" class="nav-link {{ (request()->is('admin/university*')||request()->is('admin/uni-requested-slider*')||request()->is('admin/uni-requested-university*')||request()->is('admin/uni-requested-certificate*')) ? 'active' : '' }}">
         <i class="nav-icon fa fa-university" aria-hidden="true"></i>
         <p>
           University
@@ -83,6 +83,13 @@
           <a href="{{route('admin.uni-requested-university.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-university*')) ? 'active' : '' }}">
             <i class="far fa-circle nav-icon"></i>
             <p>Request University</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{route('admin.uni-requested-slider.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-slider*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Request University Slider</p>
           </a>
         </li>
 

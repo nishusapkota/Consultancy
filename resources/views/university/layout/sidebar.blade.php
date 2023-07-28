@@ -42,6 +42,13 @@
       </a>
     </li>
 
+    <li class="nav-item">
+      <a href="{{route('university.slider.index')}}" class="nav-link {{ (request()->is('university/slider*')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-sliders-h"></i>
+        <p>Request Slider</p>
+      </a>
+    </li>
+
 
     <li class="nav-item">
       <a href="#" class="nav-link {{ (request()->is('university/certificate-image*')||request()->is('university/request-certificate-image*')) ? 'active' : '' }}">
