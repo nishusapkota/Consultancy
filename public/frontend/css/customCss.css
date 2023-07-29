@@ -179,7 +179,7 @@
     height:100%;
     background-repeat: no-repeat !important;
     background-position: center;
-    background-size: contain !important;
+    background-size: cover !important;
   }
 
 
@@ -321,9 +321,9 @@
   margin-bottom: 8rem;
 }
 
-  .auto-container {
+  /* .auto-container {
     margin-top: -30%;
-  }
+  } */
 
     .banner-carousel .custom-slide-item {
         position: relative;

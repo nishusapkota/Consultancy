@@ -33,11 +33,6 @@
                         <div class="content-box ">
                             {{-- <h5></h5> --}}
                             <h1>{{ $college->uname }}</h1>
-                            {{-- <div class="btn-box">
-                                <!-- <a href="index-6.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a> -->
-                                {{-- <p class="slider-text slider-content">{{$ite->description}}</p>
-                            <a href="{{ route('apply') }}" class="theme-btn style-one">Admit Now</a> 
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -50,7 +45,7 @@
 
     <!-- main0-content-container -->
     <section class="sidebar-page-container details-content pb-0">
-        <div class="auto-container px-lg-3 px-md-2 px-0">
+        <div class="auto-container px-lg-3 px-md-2 px-3">
             <div class="row clearfix">
                 <div class="col-lg-7 col-md-12 col-sm-12 content-side ml-3 ml-sm-0">
                     <div class="blog-details-content">
@@ -66,7 +61,7 @@
                         @foreach ($errors->all() as $error)
                         <li class="text-danger">{{ $error }}</li>
                         @endforeach
-                        <form method="post" action="{{ route('enquiry.post') }}">
+                        <form method="post" action="{{ route('enquiry.post') }}" class='mx-sm-4'>
                             @csrf
                             <div class="form-group">
                                 <input type="text" placeholder="Your Name" name="name"
