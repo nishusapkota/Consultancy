@@ -7,9 +7,12 @@
                 <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
                     enquiries</h3>
-                <div class="card-tools">
-                    
-                </div>
+                    <div class="card-tools">
+                        <a class="btn btn-primary" href="{{route('admin.export-enquiry')}}">
+                         
+                            Export Excel
+                        </a>
+                      </div>
             </div>
 
             <div class="card-body">

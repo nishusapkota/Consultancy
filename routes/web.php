@@ -138,7 +138,8 @@ Route::get('/uni-requested-slider/{id}',[UniversityRequestController::class,'upd
     Route::get('/general-enquiry',[EnquiryController::class,'indexGeneralEnquiry'])->name('generalEnquiry');
     Route::delete('/delete-student-enquiry/{id}',[EnquiryController::class,'deleteindexGeneralEnquiry'])->name('delete.studentEnquiry');
     Route::delete('/delete-general-enquiry/{id}',[EnquiryController::class,'deleteGeneralEnquiry'])->name('delete.generalEnquiry');
-    
+    Route::get('/export-enquiry',[EnquiryController::class,'exportEnquiry'])->name('export-enquiry');
+    Route::get('/export-contact-enquiry',[EnquiryController::class,'exportContactEnquiry'])->name('export-contact-enquiry');
 
     // Route::resource('/contact',ContactController::class);
     Route::get('/footer-edit',[FooterController::class,'edit'])->name('footer.edit');

@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class footerController extends Controller
+class FooterController extends Controller
 {
     /**
      * Display a listing of the resource.

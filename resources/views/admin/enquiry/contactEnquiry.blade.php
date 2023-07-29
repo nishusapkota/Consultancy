@@ -8,7 +8,10 @@
         font-weight:bold">
                     General Enquiries</h3>
                 <div class="card-tools">
-                    
+                    <a class="btn btn-primary" href="{{route('admin.export-contact-enquiry')}}">
+                         
+                        Export Excel
+                    </a>
                 </div>
             </div>
 

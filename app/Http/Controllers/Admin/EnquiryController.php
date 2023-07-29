@@ -6,9 +6,12 @@ use App\Models\Level;
 use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\ContactEnquiry;
 use App\Models\StudentEnquiry;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ContactEnquiryExport;
+use App\Exports\StudentEnquiryExport;
 
 class EnquiryController extends Controller
 {
@@ -22,6 +25,14 @@ class EnquiryController extends Controller
         $enquiries = StudentEnquiry::with('level', 'university','course')->get();
         // dd($enquiries);
         return view('admin.enquiry.index',compact('enquiries'));
+    }
+
+    public function exportEnquiry(){
+        return Excel::download(new StudentEnquiryExport, 'Student Enquiries.xlsx');
+    }
+
+    public function exportContactEnquiry(){
+        return Excel::download(new ContactEnquiryExport, 'Contact Enquiries.xlsx');
     }
 
     public function indexGeneralEnquiry()
