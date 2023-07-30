@@ -74,7 +74,7 @@
 
                         @foreach ($images as $image)
                             <div class="custom-slide-item ">
-                                <div class="image-layer" style="background: url('{{ asset($image->image) }}')">
+                                <div class="custom-image-layer" style="background: url('{{ asset($image->image) }}')">
                                 </div>
                             </div>
                         @endforeach

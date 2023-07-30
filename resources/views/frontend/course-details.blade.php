@@ -121,7 +121,7 @@
                             <input name="course_id" value="{{$course->id}}" hidden/>
                             <div class="form-group">
                               <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
-                                <option selected disabled>Select Level</option>
+                                <option selected value="">Select Level</option>
                                 @foreach ($levels as $level)
                                 <option value="{{$level->id}}" @if ($level->id && !is_null($level->id))
                                     selected
@@ -135,7 +135,7 @@
                             </div>
                             <div class="form-group">
                               <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
-                                <option selected disabled>Select University</option>
+                                <option selected value="">Select University</option>
                                 @foreach ($universities as $uni)
                                 <option value="{{$uni->id}}"
                                     @if ($uni->id && !is_null($uni->id))

@@ -67,9 +67,8 @@
                                     @enderror
                                 </div> --}}
                                 <div class="form-group">
-                                    <select name="university_id" class="@error('university_id') is-invalid @enderror"
-                                        >
-                                        <option selected disabled>Select University</option>
+                                    <select name="university_id" class="@error('university_id') is-invalid @enderror" required>
+                                        <option selected value="">Select University</option>
                                         @foreach ($university as $uni)
                                             <option value="{{ $uni->id }}">{{ $uni->uname }}</option>
                                         @endforeach
@@ -80,7 +79,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select name="level_id" class="@error('level_id') is-invalid @enderror">
+                                    <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
                                         <option selected value="">Select Level</option>
                                         @foreach ($levels as $level)
                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
@@ -92,7 +91,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select name="course_id" class="@error('course_id') is-invalid @enderror">
+                                    <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
                                         <option selected value="">Select Course</option>
                                         @foreach ($courses as $course)
                                             <option value="{{ $course->id }}">{{ $course->name }}</option>

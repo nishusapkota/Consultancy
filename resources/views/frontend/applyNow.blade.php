@@ -80,7 +80,7 @@
                           <div class="form-group">
                               <select name="university_id" class="@error('university_id') is-invalid @enderror"
                                   required>
-                                  <option selected disabled>Select University</option>
+                                  <option selected value="">Select University</option>
                                   @foreach ($university as $uni)
                                       <option value="{{ $uni->id }}">{{ $uni->uname }}</option>
                                   @endforeach

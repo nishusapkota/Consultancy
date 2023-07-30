@@ -106,7 +106,7 @@
                            
                             <div class="form-group">
                                 <select name="level_id" class="@error('level_id') is-invalid @enderror" required >
-                                    <option selected disabled>Select Level</option>
+                                    <option selected value="">Select Level</option>
                                     @foreach ($levels as $level)
                                         <option value="{{ $level->id }}" 
                                             @if ($level->id && !is_null($level->id))
@@ -125,7 +125,7 @@
                                 @dd($course->id);
                                 @endforeach --}}
                                 <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
-                                    <option selected disabled>Select Course</option>
+                                    <option selected value="">Select Course</option>
                                      
                                     @foreach ($courses as $course)
                                     {{-- @dd($course); --}}

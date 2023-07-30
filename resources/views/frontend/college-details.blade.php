@@ -91,7 +91,7 @@
                             <input name="university_id" type="text" value="{{ $college->id }}" hidden required />
                             <div class="form-group">
                                 <select name="level_id" class="@error('level_id') is-invalid @enderror" required>
-                                    <option selected disabled>Select Level</option>
+                                    <option selected value="">Select Level</option>
                                     @foreach ($levels as $level)
                                         <option value="{{ $level->id }}">{{ $level->name }}</option>
                                     @endforeach
@@ -103,7 +103,7 @@
                             </div>
                             <div class="form-group">
                                 <select name="course_id" class="@error('course_id') is-invalid @enderror" required>
-                                    <option selected disabled>Select Course</option>
+                                    <option selected value="">Select Course</option>
                                     @foreach ($courses as $course)
                                         <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
