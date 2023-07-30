@@ -193,9 +193,9 @@ class SiteController extends Controller
             'name' => 'required',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
-            'level_id' => 'exists:levels,id',
-            'course_id' => 'exists:courses,id',
-            'university_id' => 'exists:universities,id',
+            'level_id' => 'required|exists:levels,id',
+            'course_id' => 'required|exists:courses,id',
+            'university_id' => 'required|exists:universities,id',
             'message' => 'required|string'
         ]);
         // dd($request->all());
