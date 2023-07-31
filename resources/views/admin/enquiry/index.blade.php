@@ -48,9 +48,9 @@
                             <td>{{$enquiry->phone}}</td>
                             <td>{{$enquiry->email}}</td>
                             
-                            <td>{{ $enquiry->level? $enquiry->level->name : 'Not assigned'}}</td>
-                            <td>{{$enquiry->course->name}}</td>
-                            <td>{{$enquiry->university->uname}}</td>
+                            <td>{{ $enquiry->level? $enquiry->level->name : null}}</td>
+                            <td>{{$enquiry->course?$enquiry->course->name:null}}</td>
+                            <td>{{$enquiry->university?$enquiry->university->uname:null}}</td>
                             <td>
 
                                 {{-- <a class="btn btn-secondary" href="{{route('admin.course.show',$course)}}"><i class="fas fa-eye"></i>Show</a>

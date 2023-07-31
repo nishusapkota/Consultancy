@@ -126,7 +126,6 @@ class ScholarshipController extends Controller
         'image' => $request->hasfile('image') ? 'scholarship/' . $img_name : $scholarship->image,
         'description' => $request->description,
         'university_id' => $request->university_id,
-        'status'=>'0'
 
     ]);
     return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship updated successfully');
