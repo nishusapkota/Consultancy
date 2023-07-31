@@ -25,23 +25,6 @@ class CourseRequestController extends Controller
     public function update($id)
     {
         $details = RequestCourse::find($id);
-    //    @dd($details);
-        // $data = $request->validate([
-        //     'name' => 'required|unique:courses,name',
-        //     'cat_id' => 'nullable|exists:course_categories,id',
-        //     'description' => 'required',
-        //     'image' => 'required|image|mimes:jpeg,png,gif',
-        //     'status' => 'boolean|nullable',
-        //     'university_id' => 'required|exists:universities,id',
-        //     'level_id' => 'nullable|exists:levels,id',
-
-        // ]);
-
-        // if ($request->hasFile('image')) {
-        //     $img_name = time() . '_' . $request->file('image')->getClientOriginalName();
-        //     $request->file('image')->move(public_path('course'), $img_name);
-        // }
-
         $courseData = [
             'name' => $details['name'],
             'description' =>$details['description'],

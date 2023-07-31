@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\University;
 
+use App\Models\University;
 use App\Models\Scholarship;
 use Illuminate\Http\Request;
+use App\Models\RequestScholarship;
 use App\Http\Controllers\Controller;
-use App\Models\University;
 use Illuminate\Support\Facades\Auth;
 
 class ScholarshipController extends Controller
@@ -17,7 +18,7 @@ class ScholarshipController extends Controller
      */
     public function index()
     {
-        $scholarships = Scholarship::all();
+        $scholarships = RequestScholarship::all();
         return view('university.scholarship.index', compact('scholarships'));
     }
 
@@ -50,7 +51,7 @@ class ScholarshipController extends Controller
             $request->file('image')->move(public_path('scholarship'), $img_name);
         }
 
-        Scholarship::create([
+        RequestScholarship::create([
             'title' => $request->title,
             'image' => 'scholarship/' . $img_name,
             'university_id' => Auth::user()->university_id,
@@ -66,7 +67,7 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Scholarship $scholarship)
+    public function show(RequestScholarship $scholarship)
     {
         return view('university.scholarship.show', compact('scholarship'));
     }
@@ -77,7 +78,7 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Scholarship $scholarship)
+    public function edit(RequestScholarship $scholarship)
     {
         return view('university.scholarship.edit', compact('scholarship'));
     }
@@ -89,7 +90,7 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Scholarship $scholarship)
+    public function update(Request $request,RequestScholarship $scholarship)
     {
         $data = $request->validate([
             'title' => 'required',
@@ -119,7 +120,7 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Scholarship $scholarship)
+    public function destroy(RequestScholarship $scholarship)
     {
         if ($scholarship->image && file_exists(public_path($scholarship->image))) {
             unlink(public_path($scholarship->image));

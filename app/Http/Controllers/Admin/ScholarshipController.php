@@ -44,11 +44,11 @@ class ScholarshipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     $universities = University::all();
-    //     return view('admin.scholarship.create', compact('universities'));
-    // }
+    public function create()
+    {
+        $universities = University::all();
+        return view('admin.scholarship.create', compact('universities'));
+    }
    
 
     /**
@@ -57,30 +57,35 @@ class ScholarshipController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     //dd($request->all());
-    //     $data = $request->validate([
-    //         'title' => 'required',
-    //         'description' => 'required',
-    //         'university_id' => 'required|exists:universities,id',
-    //         'image' => 'required|image|mimes:jpeg,png,jpg',
-    //     ]);
-    //     if ($request->hasFile('image')) {
-    //         $img_name = time() . '_' . $request->file('image')->getClientOriginalName();
-    //         $request->file('image')->move(public_path('scholarship'), $img_name);
-    //     }
+    public function store(Request $request)
+    {
+        //dd($request->all());
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'university_id' => 'required|exists:universities,id',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
+        if ($request->hasFile('image')) {
+            $img_name = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('scholarship'), $img_name);
+        }
 
-    //     Scholarship::create([
-    //         'title' => $request->title,
-    //         'image' => 'scholarship/' . $img_name,
-    //         'university_id' => $request->university_id,
-    //         'description' => $request->description
-    //     ]);
-    //     return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship created successfully');
-    // }
+        Scholarship::create([
+            'title' => $request->title,
+            'image' => 'scholarship/' . $img_name,
+            'university_id' => $request->university_id,
+            'description' => $request->description
+        ]);
+        return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship created successfully');
+    }
 
-    
+    public function edit($id)
+    {
+    $scholarship = Scholarship::findOrFail($id);
+        $universities = University::all();
+       return view('admin.scholarship.edit', compact('scholarship', 'universities'));
+ }
     
 
     /**
@@ -101,14 +106,32 @@ class ScholarshipController extends Controller
     
 
     
-    // public function update($id)
-    // {
-    //    $scholarship=Scholarship::find($id);
-    //     $scholarship->update([
-    //         'status' => '1',
-    //     ]);
-    //     return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship updated successfully');
-    // }
+    public function update(Request $request,$id)
+    {
+       $scholarship=Scholarship::find($id);
+       $data = $request->validate([
+        'title' => 'required',
+        'image' => 'nullable',
+        'description' => 'required',
+        'university_id'=>'required|exists:universities,id'
+    ]);
+    if ($request->hasFile('image')) {
+        unlink(public_path($scholarship->image));
+        $image = $request->file('image');
+        $img_name = $image->getClientOriginalName();
+        $image->move(public_path('scholarship'), $img_name);
+    }
+    $scholarship->update([
+        'title' => $request->title,
+        'image' => $request->hasfile('image') ? 'scholarship/' . $img_name : $scholarship->image,
+        'description' => $request->description,
+        'university_id' => $request->university_id,
+        'status'=>'0'
+
+    ]);
+    return redirect()->route('admin.scholarship.index')->with('success', 'Scholarship updated successfully');
+
+        }
 
     
 

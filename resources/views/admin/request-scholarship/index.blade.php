@@ -6,12 +6,12 @@
                 <div class="card-header bg-secondary">
                     <h3 class="card-title" style="font-size:1.3rem;line-height:1.8;
         font-weight:bold">
-                        scholarships</h3>
+                       Request Scholarships</h3>
                     <div class="card-tools">
-                        <a class="btn btn-primary" href="{{ route('admin.scholarship.create') }}">
+                        {{-- <a class="btn btn-primary" href="{{ route('admin.scholarship.create') }}">
                             <i class="fas fa-plus circle-left mr-2"></i>
                             Add scholarship
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
 
@@ -54,11 +54,13 @@
                                     <td>
 
                                         <a class="btn btn-secondary"
-                                            href="{{ route('admin.scholarship.show', $scholarship->id) }}"><i
+                                            href="{{ route('admin.uni-requested-scholarship.show', $scholarship->id) }}"><i
                                                 class="fas fa-eye"></i>Show</a>
-                                         <a href="{{route('admin.scholarship.edit',$scholarship->id)}}"><button class="btn btn-success">
-                                                    <i class="fas fa-save"></i>Edit</button></a>
-                                                    <form class="postdestroy" id="form_{{$scholarship->id}}" style="margin: 0;" method="Post" action="{{ route('admin.scholarship.destroy', $scholarship->id) }}"  data-toggle="modal" data-target="#exampleModal" >
+                                         {{-- <a href="{{route('admin.scholarship.update',$scholarship->id)}}"><button class="btn btn-success">
+                                                    <i class="fas fa-save"></i>Approve</button></a>  --}}
+                                                    <a href="{{route('admin.uni-requested-scholarship.update',$scholarship->id)}}"><button class="btn btn-success">
+                                                        <i class="fas fa-save"></i>Approve</button></a> 
+                                                    <form class="postdestroy" id="form_{{$scholarship->id}}" style="margin: 0;" method="Post" action="{{ route('admin.uni-requested-scholarship.destroy', $scholarship->id) }}"  data-toggle="modal" data-target="#exampleModal" >
                                                         @csrf
                                                         @method('Delete')
                     
@@ -132,7 +134,7 @@
                       $(this).toggleClass("statuson");
                         $.ajax({
                             type: "get",
-                            url: "{{ url('admin/scholarship/change-status') }}" + '/' + id,
+                            url: "{{ url('admin/uni-requested-scholarship/change-status') }}" + '/' + id,
                             success: function(data) {
                               
                             },

@@ -102,12 +102,37 @@
       </ul>
     </li>
 
+
     <li class="nav-item">
-      <a href="{{ route('admin.scholarship.index')}}" class="nav-link {{ (request()->is('admin/scholarship*')) ? 'active' : '' }}">
+      <a href="#" class="nav-link {{ (request()->is('admin/scholarship*')||request()->is('admin/uni-requested-scholarship*')) ? 'active' : '' }}">
         <i class="nav-icon fa fa-graduation-cap" aria-hidden="true"></i>
-        <p>Scholarships</p>
+        <p>
+          Scholarship
+          <i class="fas fa-angle-left right"></i>
+        </p>
       </a>
+      <ul class="nav nav-treeview" style="display: none;">
+        <li class="nav-item">
+          <a href="{{ route('admin.scholarship.index')}}" class="nav-link {{ (request()->is('admin/scholarship*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Scholarships</p>
+          </a>
+        </li>
+        
+       
+        <li class="nav-item">
+          <a href="{{route('admin.uni-requested-scholarship.index')}}" class="nav-link {{ (request()->is('admin/uni-requested-scholarship*')) ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Request Scholarship</p>
+          </a>
+        </li>
+
+       
+        
+      </ul>
     </li>
+
+   
 
     <li class="nav-item">
       <a href="{{route('admin.about.index')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">
