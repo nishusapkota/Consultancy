@@ -11,15 +11,15 @@
 @section('content')
 
     <!--Page Title-->
-    <section class="page-title style-two centred"
+    <section class="page-title custom-height style-two centred"
         style="background-image: {{ asset('frontend/images/background/page-title-5.jpg') }};">
         <div class="auto-container">
             <div class="content-box clearfix">
                 <h1>{{ $scholarship->title }}</h1>
-                <ul class="bread-crumb clearfix">
+                {{-- <ul class="bread-crumb clearfix">
                     <li><a href="{{ route('index') }}">Home</a></li>
                     <li>Scholarship Details</li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </section>

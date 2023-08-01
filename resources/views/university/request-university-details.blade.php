@@ -84,6 +84,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="fee_structure">Fee Structure</label>
+                            <input type="file" name="fee_structure" id="fee_structure" class="form-control @error('fee_structure') is-invalid @enderror" value="{{ old('fee_structure') }}">
+                            @error('fee_structure')
+                            <small class="form-text text-danger">
+                              {{ $message }}</small>
+                            @enderror
+                          </div>
+
+                        <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="email"
                                 class="form-control @error('email') is-invalid @enderror" 

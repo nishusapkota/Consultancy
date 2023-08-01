@@ -26,7 +26,7 @@
     <div class="header-lower">
         <div class="auto-container">
             <div class="outer-box clearfix">
-                <div class="logo-box pull-left">
+                <div class="logo-box custom-logo-style pull-left">
                     <figure class="logo"><a href="{{ route('index') }}"><img
                                 src="{{ asset($footer ? $footer->image : null) }}" alt="" width="150"
                                 height="48"></a></figure>
@@ -80,7 +80,7 @@
     <div class="sticky-header">
         <div class="auto-container">
             <div class="outer-box clearfix">
-                <div class="logo-box pull-left">
+                <div class="logo-box custom-logo-style pull-left">
                     <figure class="logo"><a href="{{ route('index') }}"><img
                                 src="{{ asset($footer ? $footer->image : null) }}" alt="" width="150"
                                 height="48"></a></figure>

@@ -127,9 +127,6 @@ Route::get('/uni-requested-slider/{id}',[UniversityRequestController::class,'upd
     Route::get('/university/change-status/{id}',[UniversityController::class,'changeStatus'])->name('university.changeStatus');
     Route::get('/blog/change-status/{id}',[BlogController::class,'changeStatus'])->name('blog.changeStatus');
 
-
-    
-
     Route::delete('/university/{id}/certificate',[UniversityController::class,'delete_certificate'])->name('university.delete_certificate');
     Route::get('/university/{id}/certificate',[UniversityController::class,'index_certificate'])->name('university.index_certificate');
     Route::get('/university/{id}/add-certificate',[UniversityController::class,'create_certificate'])->name('university.create_certificate');

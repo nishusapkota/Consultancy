@@ -10,14 +10,14 @@
 @endpush
 @section('content')
 <!--Page Title-->
-<section class="page-title style-two centred" style="background-image: {{asset('frontend/images/background/page-title-2.jpg')}};">
+<section class="page-title custom-height style-two centred" style="background-image: {{asset('frontend/images/background/page-title-2.jpg')}};">
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1>Apply Now</h1>
-            <ul class="bread-crumb clearfix">
+            {{-- <ul class="bread-crumb clearfix">
                 <li><a href="{{route('index')}}">Home</a></li>
                 <li>Apply</li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </section>

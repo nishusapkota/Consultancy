@@ -1,3 +1,16 @@
+.main-header.style-one .header-lower .custom-logo-style {
+  height: 55px !important;
+  width: 80px !important;
+}
+
+.sticky-header .logo-box .custom-logo-style{
+  height: 55px !important;
+  width: 80px !important;
+
+} 
+
+
+
 .slider-text{
     font-size: 1.5rem;
     line-height: 28px;
@@ -59,6 +72,8 @@
 #bg-video::-webkit-media-controls {
   display: none !important;
 }
+
+
 
 .team-section .courses .team-block-one .inner-box {
   position: relative;

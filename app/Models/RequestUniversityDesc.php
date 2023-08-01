@@ -14,7 +14,8 @@ class RequestUniversityDesc extends Model
         'uname',
         'image',
         'details',
-        'university_id'
+        'university_id',
+        'fee_structure'
     ];
     public function university(){
         return $this->belongsTo(University::class);

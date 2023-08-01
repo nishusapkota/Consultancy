@@ -81,6 +81,11 @@
                                             href="{{ route('admin.university.index_image', $university->id) }}">Slider</a>
                                         <a class="btn btn-success btn-sm"
                                             href="{{ route('admin.university.index_certificate', $university->id) }}">Cerficate</a>
+                                            @if ($university->fee_structure)
+                        
+                                            <a class="btn btn-success btn-sm" target="_blank"
+                                            href="{{ asset($university->fee_structure) }}">Fee Structure</a>
+                                            @endif
 
                                     </td>
                                 </tr>

@@ -18,7 +18,7 @@
                     @if (in_array($image->ext, ['jpg', 'jpeg', 'png']))
                     <div class="image-layer" style="background-image: url('{{ asset($image->image) }}')">
                         <!-- Show the image -->
-                        <img src="{{ asset($image->image) }}" alt="Current Image" style="max-width: 100%; max-height: 300px;">
+                        {{-- <img src="{{ asset($image->image) }}" alt="Current Image" > --}}
                     </div>
                 @elseif (in_array($image->ext, ['mp4', 'mov', 'mkv']))
                     <div class="image-layer">
@@ -54,14 +54,22 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
-
+                    @if ($college->fee_structure)
+                        
+                    <div class="col-md-12 pl-0">
+                       <a href="{{asset($college->fee_structure)}}" download>
+                            Download Fee Structure
+                          </a>
+                        
+                    </div>
+                    @endif
                     <div>
                         <h3 class="mb-4 mt-3">Fill Out Your Form</h3>
 
                         @foreach ($errors->all() as $error)
                         <li class="text-danger">{{ $error }}</li>
                         @endforeach
-                        <form method="post" action="{{ route('enquiry.post') }}" class='mx-sm-4'>
+                        <form method="post" action="{{ route('enquiry.post') }}" class='mx-sm-4 ' style="margin-left: 0% !important">
                             @csrf
                             <div class="form-group">
                                 <input type="text" placeholder="Your Name" name="name"

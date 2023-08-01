@@ -849,7 +849,7 @@ img {
   position:relative;
   display:block;
   text-align:center;
-  font-size:16px;
+  font-size:17px;
   line-height:30px;
   font-weight:700;
   opacity:1;
@@ -10567,6 +10567,11 @@ h4 a{
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.custom-height{
+  padding: 20px 0px !important;
+}
+
 
 .page-title:before{
   position: absolute;

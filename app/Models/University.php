@@ -16,7 +16,8 @@ class University extends Model
         'address',
         'image',
         'details',
-        'status'
+        'status',
+        'fee_structure'
     ];
     function courses(){
         return $this->belongsToMany(Course::class,'course_universities','university_id','course_id');

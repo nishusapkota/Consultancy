@@ -26,11 +26,10 @@
     <div class="header-lower">
         <div class="auto-container">
             <div class="outer-box clearfix">
-                <div class="logo-box pull-left">
-                    <figure class="logo">
-                        <a href="{{ route('index') }}"><img src="{{ asset($footer ? $footer->image : null) }}"
-                                alt="" width="150" height="50"></a>
-                    </figure>
+                <div class="logo-box custom-logo-style pull-left">
+                    <figure class="logo"><a href="{{ route('index') }}"><img
+                                src="{{ asset($footer ? $footer->image : null) }}" alt="" width="150"
+                                height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <div class="mobile-nav-toggler">
@@ -77,10 +76,10 @@
     <div class="sticky-header">
         <div class="auto-container">
             <div class="outer-box clearfix">
-                <div class="logo-box pull-left">
+                <div class="logo-box custom-logo-style pull-left">
                     <figure class="logo"><a href="{{ route('index') }}"><img
                                 src="{{ asset($footer ? $footer->image : null) }}" alt="" width="150"
-                                height="50"></a></figure>
+                                height="48"></a></figure>
                 </div>
                 <div class="menu-area pull-right">
                     <nav class="main-menu clearfix">
