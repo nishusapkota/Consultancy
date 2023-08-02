@@ -83,7 +83,7 @@
                                             href="{{ route('admin.university.index_certificate', $university->id) }}">Cerficate</a>
                                             @if ($university->fee_structure)
                         
-                                            <a class="btn btn-success btn-sm" target="_blank"
+                                            <a class="btn btn-primary btn-sm" target="_blank"
                                             href="{{ asset($university->fee_structure) }}">Fee Structure</a>
                                             @endif
 

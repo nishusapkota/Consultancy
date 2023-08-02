@@ -46,6 +46,12 @@
                                         <a href="{{ route('admin.uni-requested-university.show', $reqChange->id) }}"><button
                                             class="btn btn-secondary">
                                             <i class="fas fa-save"></i>Show</button></a>
+                                            @if ($reqChange->fee_structure)
+                        
+                                            <a class="btn btn-primary" target="_blank"
+                                            href="{{ asset($reqChange->fee_structure) }}">Fee Structure</a>
+                                            @endif
+
                                         <a href="{{ route('admin.uni-requested-university.update', $reqChange->id) }}"><button
                                                 class="btn btn-success">
                                                 <i class="fas fa-save"></i>Approve</button></a>
@@ -56,6 +62,7 @@
                                             <button class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                                 <i class="fas fa-trash"></i>Disapprove</button>
                                         </form>
+
                                     </td>
                                 </tr>
                             @endforeach

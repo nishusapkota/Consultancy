@@ -64,54 +64,64 @@ class UniversityController extends Controller
 
 
     public function universityUpdate(Request $request, $uid)
-    {
-        $reqUniversity = RequestUniversityDesc::where('university_id', $uid)->first();
-        if ($reqUniversity) {
-            if ($request->hasFile('image')) {
-                if ($reqUniversity->image && file_exists(public_path($reqUniversity->image))) {
-                    unlink(public_path($reqUniversity->image));
-                }
-                $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path('university/'), $img_name);
+{
+    $reqUniversity = RequestUniversityDesc::where('university_id', $uid)->first();
+    if ($reqUniversity) {
+        if ($request->hasFile('image')) {
+            if ($reqUniversity->image && file_exists(public_path($reqUniversity->image))) {
+                unlink(public_path($reqUniversity->image));
             }
-
-            if ($request->hasFile('fee_structure')) {
-                if ($reqUniversity->fee_structure && file_exists(public_path($reqUniversity->fee_structure))) {
-                    unlink(public_path($reqUniversity->fee_structure));
-                }
-                $file = time() . "." . $request->file('fee_structure')->getClientOriginalExtension();
-                $request->file('fee_structure')->move(public_path('Fee Structure'), $file);
-            }
-            $reqUniversity->update([
-                'email' => $request->email,
-                'address' => $request->address,
-                'uname' => $request->uname,
-                'details' => $request->details,
-                'image' => $request->hasfile('image') ? 'university/' . $img_name : $reqUniversity->image,
-                'fee_structure' =>  $request->hasfile('fee_structure') ? 'Fee Structure/' . $file : $reqUniversity->fee_structure,
-                'university_id' => Auth::user()->university_id
-
-            ]);
-
-            return redirect()->back()->with('success', 'Request for University detail updated');
-        } else {
-            if ($request->hasFile('image')) {
-                $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path('university/'), $img_name);
-            }
-            RequestUniversityDesc::create([
-                'email' => $request->email,
-                'address' => $request->address,
-                'uname' => $request->uname,
-                'details' => $request->details,
-                'image' =>  'university/' . $img_name,
-                'university_id' => Auth::user()->university_id
-
-            ]);
-
-            return redirect()->back()->with('success', 'Request for University detail updated');
+            $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('university/'), $img_name);
         }
+
+        if ($request->hasFile('fee_structure')) {
+            if ($reqUniversity->fee_structure && file_exists(public_path($reqUniversity->fee_structure))) {
+                unlink(public_path($reqUniversity->fee_structure));
+            }
+            $file = time() . "." . $request->file('fee_structure')->getClientOriginalExtension();
+            $request->file('fee_structure')->move(public_path('Fee Structure'), $file);
+           
+        }
+
+        // Update other university details
+        $reqUniversity->update([
+            'email' => $request->email,
+            'address' => $request->address,
+            'uname' => $request->uname,
+            'details' => $request->details,
+            'image' => $request->hasFile('image') ? 'university/' . $img_name : $reqUniversity->image,
+            'fee_structure' =>  $request->hasFile('fee_structure') ? 'Fee Structure/' . $file  : $reqUniversity->fee_structure,
+            'university_id' => Auth::user()->university_id
+        ]);
+
+        return redirect()->back()->with('success', 'Request for University detail updated');
+    } else {
+        if ($request->hasFile('image')) {
+            $img_name = time() . "_" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('university/'), $img_name);
+        }
+
+        if ($request->hasFile('fee_structure')) {
+            $file = time() . "." . $request->file('fee_structure')->getClientOriginalExtension();
+            $request->file('fee_structure')->move(public_path('Fee Structure'), $file);
+        }
+
+        // Create a new university detail record with fee_structure file path
+        RequestUniversityDesc::create([
+            'email' => $request->email,
+            'address' => $request->address,
+            'uname' => $request->uname,
+            'details' => $request->details,
+            'image' =>  'university/' . $img_name,
+            'fee_structure' =>  $request->hasFile('fee_structure') ? 'Fee Structure/' . $file : null,
+            'university_id' => Auth::user()->university_id
+        ]);
+
+        return redirect()->back()->with('success', 'Request for University detail updated');
     }
+}
+
 
     /**
      * Show the form for creating a new resource.
