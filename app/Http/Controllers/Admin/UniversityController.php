@@ -146,7 +146,7 @@ class UniversityController extends Controller
             'uname' => 'required|unique:universities,uname',
             'address' => 'required',
             'image' => 'required|image|mimes:png,jpg,jpeg',
-            'fee_structure' => 'required|file|mimes:pdf',
+            'fee_structure' => 'nullable|file|mimes:pdf',
             'details' => 'required',
             'status' => 'boolean|nullable',
             'course_id' => 'nullable|array',

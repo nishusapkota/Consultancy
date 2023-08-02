@@ -37,7 +37,7 @@ class UniversityRequestController extends Controller
                 'details' => $details->details,
                 'uname' => $details->uname,
                 'image' => $details->image,
-                'fee_structure' => $details->fee_structure
+                'fee_structure' => $details->fee_structure ?: null
                  
             ]);
             
