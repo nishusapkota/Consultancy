@@ -156,24 +156,23 @@ class UniversityController extends Controller
             'username' => 'nullable',
             'password' => 'required|confirmed',
         ]);
-        $file = time() . "." . $request->file('fee_structure')->getClientOriginalExtension();
-        $request->file('fee_structure')->move(public_path('Fee Structure'), $file);
-
+        if ($request->hasFile('fee_structure')) {
+            $file = time() . "." . $request->file('fee_structure')->getClientOriginalExtension();
+            $request->file('fee_structure')->move(public_path('Fee Structure'), $file);
+        }
         $img_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('university'), $img_name);
         $university = University::create([
             'uname' => $request->uname,
             'address' => $request->address,
             'image' => 'university/' . $img_name,
-            'fee_structure' => 'Fee Structure/' . $file ?: null,
+            'fee_structure' => $request->hasFile('fee_structure')?'Fee Structure/' . $file: null,
             'details' => $request->details,
             'status' => $request->status ? '1' : '0'
         ]);
-
         if (isset($data['course_id'])) {
             $university->courses()->attach($request->course_id);
         }
-
         User::create([
             'name' => $request->name,
             'email' => $request->email,
