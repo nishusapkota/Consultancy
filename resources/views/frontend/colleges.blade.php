@@ -21,7 +21,7 @@
     <!--End Page Title-->
 
     <!-- University-section -->
-
+@if(!universities->isEmpty())
     <section class="university-section">
         <div class="university-container mt-5">
             <div class="parent-uni-container">
@@ -54,5 +54,6 @@
             </div>
         </div>
     </section>
+@endif
     <!-- University-section end -->
 @endsection

@@ -181,6 +181,8 @@
             </div>
         </section>
     @endif
+
+    @if(!$courses->isEmpty())
     <section class="team-section py-0">
         <div class="auto-container px-lg-3 px-md-2 px-0">
             <div class="row clearfix">
@@ -223,6 +225,7 @@
             </div>
         </div>
     </section>
+    @endif
 
 
 
