@@ -153,7 +153,7 @@
                 @foreach ($courses as $course)
                     <div class="team-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="{{ asset($course->image) }}" alt=""></figure>
+                            <figure class="image-box" style="height:150px"><img src="{{ asset($course->image) }}" alt="" style="height:100%"></figure>
                             <div class="lower-content">
                                 <div class="content-box">
                                     <h3 class="course-title"><a href="{{ route('index') }}">{{ $course->name }}</a></h3>

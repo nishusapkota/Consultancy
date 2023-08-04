@@ -26,6 +26,7 @@
                         <thead class="bg-primary">
                             <tr>
                                 <th>ID</th>
+                                <th>University</th>
                                 <th>Slider</th>
                                 <th>Action</th>
                             </tr>
@@ -35,6 +36,7 @@
                             @foreach ($sliders as $slider)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $slider->university->uname}}</td>
                                     <td>
                                         @if (in_array($slider->ext, ['jpg', 'jpeg', 'png']))
                                         <img src="{{ asset($slider->image) }}" alt="Current Image"

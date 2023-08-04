@@ -11,18 +11,16 @@
 @endpush
 @section('content')
     <!--Page Title-->
-    <section class="banner-section">
+    {{-- <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
             @foreach ($images as $image)
                 <div class="slide-item " style="height: 20px;">
                     @if (in_array($image->ext, ['jpg', 'jpeg', 'png']))
                     <div class="image-layer" style="background-image: url('{{ asset($image->image) }}')">
-                        <!-- Show the image -->
-                        {{-- <img src="{{ asset($image->image) }}" alt="Current Image" > --}}
+                        
                     </div>
                 @elseif (in_array($image->ext, ['mp4', 'mov', 'mkv']))
                     <div class="image-layer">
-                        <!-- Show the video -->
                         <video autoplay muted loop width="100%" height="490">
                             <source src="{{ asset($image->image) }}" type="video/mp4">
                             Your browser does not support the video tag.
@@ -31,7 +29,6 @@
                 @endif
                     <div class="auto-container">
                         <div class="content-box ">
-                            {{-- <h5></h5> --}}
                             <h1>{{ $college->uname }}</h1>
                         </div>
                     </div>
@@ -39,6 +36,43 @@
             @endforeach
 
 
+        </div>
+    </section> --}}
+    <section class="banner-section">
+        <div class="banner-carousel owl-theme owl-carousel owl-dots-none autoplay-false">
+            @foreach ($images as $item)
+            @if ($item->ext=='jpg'||$item->ext=='JPG'||$item->ext=='png'||$item->ext=='PNG'||$item->ext=='jpeg'||$item->ext=='PNG'||$item->ext=='JPEG')
+                
+            <div class="slide-item first-slide">
+                <div class="image-layer" style="background-image: url('{{ asset($item->image) }}')">
+                </div>
+                <div class="auto-container">
+                    <div class="content-box first-slide-content">
+                        <h5>{{ $college->uname}}</h5>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @if ($item->ext=='mp4'||$item->ext=='MP4'||$item->ext=='MOV'||$item->ext=='movs')
+                
+            <div class="video-slide-item">
+                <section class="main-banner" id="top" data-section="section1">
+                    <video autoplay muted loop id="bg-video">
+                        <source src="{{ asset($item->image) }}" type="video/mp4" />
+                    </video>
+                    <div class="video-overlay header-text">
+                        <div class="video-slider-container">
+                            <div class="video-slider-content">
+                                <h5 style="color:white;">{{$college->uname}}</h5>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            @endif
+        @endforeach 
+           
         </div>
     </section>
     <!--End Page Title-->

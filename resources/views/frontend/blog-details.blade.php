@@ -6,7 +6,7 @@
 @section('content')
 
 <!--Page Title-->
-<section
+{{-- <section
 class="page-title style-two centred"
 style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}}"
 >
@@ -16,7 +16,7 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
     
   </div>
 </div>
-</section>
+</section> --}}
 <!--End Page Title-->
 
 <!-- sidebar-page-container -->
@@ -25,7 +25,7 @@ style="background-image: {{asset('frontend/images/background/page-title-5.jpg')}
   <div class="row clearfix">
     <div class="col-12content-side">
       <div class="blog-details-content">
-        <div class="sec-title style-two pull-left">
+        <div class="sec-title style-two pull-center pb-5">
                         
           <h2>{{$blog->title}}</h2>
       </div>

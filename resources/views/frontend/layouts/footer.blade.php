@@ -76,7 +76,7 @@
     </div>
     <div class="footer-bottom">
         <div class="auto-container">
-            <div class="copyright"><p>&copy; 2020 <a href="{{route('index')}}">SPELL</a> - Business & Consulting. All rights reserved.</p></div>
+            <div class="copyright"><p>&copy; {{date('Y')}} <a href="{{route('index')}}">Study In India </a> - Powered By <a href="https://spellinnovation.com/home">Spell</a> </p></div>
         </div>
     </div>
 </footer>

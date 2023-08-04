@@ -38,7 +38,7 @@
             {{ __('Logout') }}
           </a>
           <a class="dropdown-item" href="{{route('university.uni-request.create')}}">
-            {{ __('University Detail') }}
+            {{ __('Profile') }}
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf

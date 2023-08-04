@@ -125,9 +125,9 @@
             <div class="course-component" style="margin-top: 4%;">
               @foreach ($courses as $course )
               {{-- @dd($course) --}}
-              <div class="team-block-one">
-                <div class="inner-box">
-                    <figure class="image-box">
+              <div class="team-block-one custom-block">
+                <div class="inner-box custom-inner-box">
+                    <figure class="image-box custom-image-box">
                         <img src="{{ asset($course->image) }}" alt="" />
                     </figure>
                     <div class="lower-content">
@@ -136,7 +136,7 @@
                                {{$course->name}}
                                 
                             </h3>
-                            <span class="designation">({{$course->category->name}})</span>
+                            <span class="designation">({{$course->category?$course->category->name:null}})</span>
                             <div class="link view-course"><a href="{{ route('course-detail',$course->name) }}"><i class="fas fa-arrow-right uni-icon"></i><span>View detail</span></a></div>
 
                         </div>
