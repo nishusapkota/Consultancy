@@ -102,6 +102,7 @@
     </section>
 
     <!-- about-section end -->
+    @if(!$universities->isEmpty())
     <section class="university-section">
         <div class="university-container">
             <div class="sec-title centred">
@@ -136,11 +137,13 @@
             <a href="{{ route('college') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </section>
+    @endif
 
 
 
 
     <!-- courses-section -->
+    @if(!$courses->isEmpty())
     <section class="team-section">
         <div class="auto-container">
             <div class="upper-box clearfix">
@@ -183,9 +186,10 @@
         </div>
     </section>
     <!-- courses-section end -->
-
+@endif
 
     <!-- scholarship-section -->
+    @if(!$scholarships->isEmpty())
     <section class="project-style-four bg-color-1">
         <div class="auto-container scholarship">
             <div class="title-inner clearfix">
@@ -220,9 +224,11 @@
             <a href="{{ route('scholarship') }}" class="theme-btn style-one mb-4">View all</a>
         </div>
     </section>
+    @endif
     <!-- scholarship-section end -->
 
     <!-- blog-section -->
+    @if(!$blogs->isEmpty())
     <section class="news-section bg-color-1">
         <div class="auto-container">
             <div class="sec-title centred">
@@ -268,5 +274,6 @@
             <a href="{{ route('blog') }}" class="theme-btn style-one mb-5">View all</a>
         </div>
     </section>
+    @endif
     <!-- news-section end -->
 @endsection

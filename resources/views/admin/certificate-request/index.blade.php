@@ -26,7 +26,8 @@
                         <thead class="bg-primary">
                             <tr>
                                 <th>ID</th>
-                                <th>Certificate Image</th>
+                                <th>University</th>
+         <th>Certificate Image</th>
                                 <th>Action</th>
                             </tr>
 
@@ -35,6 +36,7 @@
                             @foreach ($certificates as $certificate)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{$certificate->university->uname}}</td>
                                     <td>
                                         <div style="width: 100px; height: 100px; overflow: hidden;">
                                             <img src="{{ asset($certificate->image) }}" alt="Certificate Image"
